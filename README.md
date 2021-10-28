@@ -6,4 +6,3 @@ This is a collection of notes I've made; however, only the notes I've decided to
 I take notes can change with time, so how they are presented may be very inconsistent.
 
 Not all files have their source attached to them.
-Brief screenshots from lectures may appear in these notes, but only showing what is necessrary.
