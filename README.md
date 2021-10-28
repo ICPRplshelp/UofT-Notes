@@ -1,5 +1,5 @@
 # UofT-Notes
-All the notes I've decided to release to the public.
+All the notes I've decided to release to the public. All of the notes were taken during lecture.
 
 ## Important stuff
 This is a collection of notes I've made; however, only the notes I've decided to make public will show up here. The way
