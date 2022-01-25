@@ -1,0 +1,942 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+
+\usepackage{iftex}
+\usepackage[fontsize=11pt]{scrextend}
+\usepackage[margin=0.75in]{geometry}
+
+\newcounter{example}
+\counterwithin*{example}{section}
+\newenvironment{example}[1][]{%
+\stepcounter{example}%
+\par\vspace{5pt}\noindent
+\fbox{\textbf{Example~\thesection.\theexample}}%
+\hrulefill\par\vspace{10pt}\noindent\rmfamily}%
+{\par\noindent\hrulefill\vrule width10pt height2pt depth2pt\par}
+
+\usepackage{array}
+
+\usepackage[many]{tcolorbox}
+\usepackage{lipsum}
+
+\definecolor{myblue}{RGB}{0,163,243}
+
+\newtcolorbox[auto counter,number within=section]{mytheorem}[1][]{
+  enhanced jigsaw,colback=white,colframe=myblue,coltitle=myblue,
+  fonttitle=\bfseries\sffamily,
+  sharp corners,
+  detach title,
+  leftrule=22mm,
+  underlay unbroken and first={\node[below,text=white,font=\sffamily\bfseries,align=center]
+    at ([xshift=-11mm,yshift=-1mm]interior.north west) {THEOREM\\\thetcbcounter};},
+  breakable,pad at break=1mm,
+  #1,
+  code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par\medskip}}}},
+}
+
+
+\usepackage{xcolor}
+\definecolor{grey}{RGB}{0.5,0.5,0.5}
+
+\usepackage{tcolorbox}
+
+
+% Warning tcolorbox
+% #1: tcolorbox options
+% #2: Box title
+\newtcolorbox{warningbox}[2][]
+{
+  colframe = red!25,
+  colback  = red!10,
+  coltitle = red!20!black,
+  title    = #2,
+  #1,
+}
+
+% Hint tcolorbox
+% #1: tcolorbox options
+% #2: Box title
+\newtcolorbox{hintbox}[2][]
+{
+  colframe = green!25,
+  colback  = green!10,
+  coltitle = green!20!black,
+  title    = #2,
+  #1,
+}
+
+% Info (information) tcolorbox
+% #1: tcolorbox options
+% #2: Box title
+\newtcolorbox{infobox}[2][]
+{
+  colframe = grey!25,
+  colback  = grey!10,
+  coltitle = grey!20!black,
+  title    = #2,
+  #1,
+}
+
+\usepackage{array}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+\usepackage[style=apa]{biblatex}
+\renewcommand\qedsymbol{$\blacksquare$}
+% \usepackage{mathptmx}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Integrals},
+  pdfauthor={ICPR},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Integrals}
+\author{ICPR}
+\date{January 25, 2022}
+
+\begin{document}
+
+\maketitle
+
+
+\section{The idea of integration}
+
+Assume $f(x) > 0$
+
+We want the area under the curve of $f(x)$ on
+$\lbrack a,\ b\rbrack$. Split the area underneath into many rectangles
+and add up their total area.
+
+\includegraphics[width=2.21712in,height=1.65368in]{TEXIMAGEF_Integrals-1/media/image1.png}
+
+\textbf{Partition}: the way we pick the bases of the rectangles. There's
+nothing stopping you from splitting the partitions into equal length
+intervals, but you should. For example, Partition $P$: some number of
+rectangles between $a$ and $b$. You can refine a partition by adding
+other points. The result would be called a \textbf{refinement.}
+
+\textbf{Choosing the heights of the rectangles:} There are two methods
+we can do (WIDTH OF RECTANGLE IS CONTROLLED HERE):
+
+\begin{itemize}
+\item
+  Upper sum: Highest point; maximum value of $f$ (supremum) of $f$
+  in the rectangle; called $U_{f}(P)$; area over-estimator $\geq$
+\end{itemize}
+
+\includegraphics[width=2.25972in,height=0.83542in]{TEXIMAGEF_Integrals-1/media/image2.png}
+
+\begin{itemize}
+\item
+  Lower sum: Lowest point; takes the infimum of $f$; called
+  $L_{f}(P)$; area under-estimator
+\end{itemize}
+
+\includegraphics[width=1.39234in,height=0.59376in]{TEXIMAGEF_Integrals-1/media/image3.png}\includegraphics[width=1.61458in,height=0.59306in]{TEXIMAGEF_Integrals-1/media/image4.png}
+
+While these two are great for theoretical purposes they aren't
+computationally feasible. Here are the methods that are easy for
+computation:
+
+\begin{itemize}
+\item
+  Right-point method
+\end{itemize}
+
+\includegraphics[width=1.27292in,height=0.79931in]{TEXIMAGEF_Integrals-1/media/image5.png}
+
+\begin{itemize}
+\item
+  Left-point method
+\end{itemize}
+
+\includegraphics[width=1.49306in,height=0.86597in]{TEXIMAGEF_Integrals-1/media/image6.png}
+
+There are drawbacks of these two methods (often due to inaccuracies),
+but the height is already determined for you the moment you choose where
+your rectangles go. For example:
+
+\includegraphics[width=1.5368in,height=1.47276in]{TEXIMAGEF_Integrals-1/media/image7.png}
+
+$$h_{1} = f\left( t_{1} \right),\ h_{2} = f\left( t_{2} \right),\ h_{3} = f\left( t_{3} \right)$$
+
+
+\subsection{Formulas for these
+methods}
+
+Given a partition of $\lbrack a,\ b\rbrack$ where $t_{0} = a$ and
+$t_{n} = b$
+
+$$P = t_{0} < t_{1} < \ldots < t_{n}$$
+
+We may compute the total area explicitly. In the $i$th rectangle with
+base $\left\lbrack t_{i - 1},\ t_{i} \right\rbrack$, the right most
+endpoint is $t_{i}$ and left is $t_{i - 1}$.
+
+Total area by the right-point method:
+
+$$A = \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\left( t_{i} - t_{i - 1} \right) \cdot f\left( t_{i} \right)}$$
+
+For the left-point method:
+
+$$A = \sum_{i = 1}^{i}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\left( t_{i} - t_{i - 1} \right) \cdot f(t_{i - 1})}$$
+
+The right-point method is slightly easier.
+
+
+\subsection{Even splits}
+
+\includegraphics[width=1.54545in,height=1.0439in]{TEXIMAGEF_Integrals-1/media/image8.png}
+
+If we split an interval $\lbrack a,\ b\rbrack$ into $n$-equal sized
+pieces:
+
+Each rectangle would have base length $b_{i} = \frac{b - a}{n}$
+
+This means to determine where a split point $t$ is, where
+$t_{0} = a$:
+
+\begin{align*}
+t_{1} &= a + \frac{b - a}{n}
+ \\
+t_{i} &= a + i\frac{(b - a)}{n}
+\end{align*}
+
+
+Using equal-length intervals, using rectangle width and height (depends
+on right point or left point):
+
+\begin{align*}
+A_{R} &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + i\frac{(b - a)}{n} \right)}
+ \\
+A_{L} &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + (i - 1)\frac{(b - a)}{n} \right)}
+\end{align*}
+
+
+
+\subsection{True area}
+
+As we use more rectangles, the better approximation to the \textbf{true
+area} under the curve we get of $f(x)$.
+
+An informal definition of the true area (named integral) under the curve
+of $f(x)$ is approximated using more and more angles.
+
+$$A_{T} = \int_{a}^{b}{f(x)\text{d}x} = \lim_{n \rightarrow \infty}{\sum_{i = 1}^{n}{b_{i} \cdot h_{i}}}$$
+
+(Remember how $b_{i}$ and $h_{i}$ are defined, but $h_{i}$
+represents some way we choose the height of the rectangles. As the
+number of rectangles reaches infinity, we are supposed to get the true
+answer every time.)
+
+When $n$ becomes large, $b_{i}$ becomes verry narrow so it is
+centered around a point $x$, so we can change that notation from
+$b_{i} \rightarrow dx$. $f(x)$ comes from the fact that
+$h_{i} \rightarrow f(x)$ when $b_{i}$, the box length becomes very
+narrow.
+
+
+\subsection{Positive and negative
+area}
+
+About net area:
+
+When $f(x) > 0$, we count the area above the $x$-axis and below
+$f(x)$ to be positive area.
+
+When $f(x) < 0$, we count the area below the $x$-axis and below
+$f(x)$ to be negative area.
+
+\includegraphics[width=1.41736in,height=0.81528in]{TEXIMAGEF_Integrals-1/media/image9.png}
+
+The net area is the sum of both positive area and negative area.
+
+
+\subsection{Integrals without integral
+rules}
+
+Compute $\int_{0}^{1}{2xdx}$. Area is
+$A = \frac{1}{2} \cdot 1 \cdot 2 = 1$ (triangle).
+
+\includegraphics[width=0.71667in,height=1.01597in]{TEXIMAGEF_Integrals-1/media/image10.png}
+
+Using integrals, we can do this instead, for
+$f(x) = 2x,\ \lbrack a = \ 0,b = 1\rbrack$:
+
+\begin{align*}
+A &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + i\frac{(b - a)}{n} \right)}
+ \\
+&= \sum_{i = 1}^{n}{\frac{1}{n} \cdot f\left( i\frac{1}{n} \right)} = \sum_{i = 1}^{n}{\frac{1}{n} \cdot 2\left( i\frac{1}{n} \right)}
+ \\
+&= 2\sum_{i = 1}^{n}\frac{i}{n^{2}} = \frac{2}{n^{2}}\sum_{i = 1}^{n}i = \frac{2}{n^{2}} \cdot \frac{n(n + 1)}{2} = \frac{n + 1}{n}
+\end{align*}
+
+
+Anything that does not involve $i$ can be taken out of summations, so
+you can use this fact to your advantage.
+
+Taking the limit of $n$ to infinity:
+
+$$\lim_{n \rightarrow \infty}\frac{n + 1}{n} = \frac{n}{n} + \frac{1}{n} = 1$$
+
+
+\section{1D Integration}
+
+The upper and lower sums are the methods to theoretically find the
+integral. The true area is always sandwiched between the upper sum and
+the lower sum.
+
+For any partitions $P_{1}$ and $P_{2}$:
+
+$$L_{f}\left( P_{1} \right) \leq \text{True\ Area} \leq U_{f}\left( P_{2} \right)$$
+
+This holds even if $P_{1}$ and $P_{2}$ are different.
+
+\includegraphics[width=1.35707in,height=1.34807in]{TEXIMAGEF_Integrals-1/media/image11.png}
+
+By picking more rectangles, we can make the upper sum and lower sum
+closer and closer together.
+
+If $P_{2}$ is a \textbf{refinement} of $P_{1}$ ($P_{2}$ has all
+the rectangles of $P_{1}$ and some more), then $P_{2}$ should
+provide a better estimate:
+
+$$L_{f}\left( P_{1} \right) \leq L_{f}\left( P_{2} \right) \leq \text{True\ Area} \leq U_{f}\left( P_{2} \right) \leq U_{f}\left( P_{1} \right)$$
+
+\includegraphics[width=1.61265in,height=1.05556in]{TEXIMAGEF_Integrals-1/media/image12.png}
+
+Here, there are 4 rectangles instead of the 3. The area of the green
+rectangles is larger than the area of the black rectangles, and the area
+of the red rectangles is less than the area of the blue rectangles.
+
+\includegraphics[width=4.49722in,height=1.13819in]{TEXIMAGEF_Integrals-1/media/image13.png}
+
+The more rectangles, the closer to the true area we are, but we haven't
+defined true area yet.
+
+
+\subsection{Defining true area without defining true
+area}
+
+Approximate the true area up to some error $\varepsilon$ we are
+comfortable with, such that $U_{f}(P) - L_{f}(P) < \varepsilon$. Pick
+an $\varepsilon$ as small as possible.
+
+
+\begin{definition}
+A function is \textbf{integrable} if the upper sum
+and lower sum can be made as close as you want (by picking more
+rectangles).
+
+$$\forall\varepsilon > 0,\ \exists P\ \text{such\ that}\ U_{f}(P) - L_{f}(P) < \varepsilon$$
+
+Note the same partition $P$ is used here in the upper and lower sum.
+The theory here is that the error can be made as small as possible (you
+can always make your error smaller provided that it is positive), but
+there will always be some error.
+\end{definition}
+
+
+The \textbf{true area} should be the minimum of all possible upper sums
+whilst also being equal to the maximum of all possible lower sums. There
+are however infinitely as many upper and lower sums, so a maximum and
+minimum wouldn't exist. We could believe that an intuitive max/min
+exists for them:
+
+\begin{itemize}
+\item
+  The supremum of a set $S$ is intuitively understood as the maximum
+  of the set $S$.
+\item
+  The infimum of a set $S$ is intuitively understood as the minimum of
+  the set $S$.
+\item
+  This is from point 13 of the axioms of real numbers.
+\end{itemize}
+
+
+\begin{definition}
+True area:
+
+\begin{align*}
+\text{True\ Area} &= \int_{a}^{b}f = \text{infimum\ of\ all\ possible}\ \left\{ U_{f}(P) \right\} = {\overline{I}}_{a}^{b}  \\
+&= \text{supremum\ of\ all\ possible}\ \left\{ L_{f}(P) \right\}
+\end{align*}
+\end{definition}
+
+
+I'd rather use definition 1.
+
+$U_{f}(P) - L_{f}(P)$ is liked the shaded area below:
+
+\includegraphics[width=1.29282in,height=0.90948in]{TEXIMAGEF_Integrals-1/media/image14.png}
+
+Almost all functions are integrable. Even though definition 1 can be
+used, it doesn't define true area.
+
+
+\subsection{Proving that a function is
+integrable}
+
+Show whether the following functions are integrable.
+
+$$f(x) = 2,\ x \in \lbrack 0,\ 2\rbrack$$
+
+Prove
+$\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon$.
+
+\begin{proof} Let $\varepsilon > 0$. Pick $P$, which is the
+rectangle from 0 to 2. There is only one rectangle, the base being 2 and
+the height being 2 by looking at the function, so
+$U_{f}(P) = 2_{\text{height}} \cdot 2_{\text{base}} = 4$.
+
+For $L_{f}(P)$, calculate it by
+$L_{f}(P) = 2_{\text{height}} \cdot 2_{\text{base}} = 4$.
+
+Then:
+
+$$U_{f}(P) - L_{f}(P) = 2 - 2 = 0 < \varepsilon$$
+
+Here, the error is always less than epsilon. \end{proof}
+
+We can try something more complicated:
+
+$$f(x) = \left\{ \begin{matrix}
+2 & x \neq 1 \\
+4 & x = 1 \\
+\end{matrix} \right.\ ,\ x \in \lbrack 0,\ 2\rbrack$$
+
+\includegraphics[width=1.1105in,height=0.98625in]{TEXIMAGEF_Integrals-1/media/image15.png}
+
+This is a jump discontinuity.
+
+\includegraphics[width=2.47569in,height=2.04306in]{TEXIMAGEF_Integrals-1/media/image16.png}
+
+\begin{proof} Let $\varepsilon > 0$. Pick partition
+$P:0 \rightarrow 1 - \frac{l}{2} \rightarrow 1 + \frac{l}{2} \rightarrow 2$
+(the partitions do not need to be equal length).
+
+Effectively, you are creating three rectangles. This means:
+
+\begin{align*}
+U_{f}(P) &= \overset{\text{left\ rectangle}}{\overbrace{b_{1} \cdot 2}} + \overset{\text{middle\ rectangle}}{\overbrace{l \cdot 4}} + \overset{\text{right\ rectangle}}{\overbrace{b_{3} \cdot 2}}
+ \\
+L_{f}(P) &= b_{1} \cdot 2 + l \cdot 2 + b_{2} \cdot 2
+\end{align*}
+
+
+Now:
+
+\begin{align*}
+U_{f}(P) - L_{f}(P) &< \varepsilon
+ \\
+\left( 2b_{1} + 4l + 2b_{3} \right) - \left( 2b_{1} + 2l + 2b_{2} \right) &< \varepsilon
+\end{align*}
+
+
+Choose $l = \frac{\varepsilon}{4}$. You can choose whatever you want,
+but you should be choosing $l$ such that the end result does not look
+ugly.
+
+\begin{align*}
+2b_{1} + \varepsilon + 2b_{3} - 2b_{1} - \frac{\varepsilon}{2} - 2b_{2} &< \varepsilon
+ \\
+\frac{\varepsilon}{2} &< \varepsilon
+\end{align*}
+
+\end{proof}
+
+
+What does this mean? Integrals are more versatile than the derivative.
+It can handle discontinuities, which can be done by picking small
+rectangles around discontinuities, which will control the discontinuity
+for you.
+
+Another example:
+
+$$f(x) = \left\{ \begin{matrix}
+2 & x \neq 1 \\
+4 & x = 1 \\
+\end{matrix} \right.\ ,\ x \in \lbrack 0,\ 2\rbrack$$
+
+\begin{proof} Let $\varepsilon > 0$, and pick
+$P:0 \rightarrow 1 - \frac{l}{2} \rightarrow 1 + \frac{l}{2} \rightarrow 2 - \frac{l}{2} \rightarrow 2$.
+This means
+
+\begin{align*}
+U_{f}(P) &= 2b_{1} + 4l + 4b_{3} + 6 \cdot \frac{l}{2}
+ \\
+L_{f}(P) &= 2b_{1} + 2l + 4b_{3} + 4 \cdot \frac{l}{2}
+ \\
+U_{f}(P) - L_{f}(P) &< \varepsilon
+ \\
+2b_{1} + 4l + 4b_{3} + 6 \cdot \frac{l}{2} - 2b_{1} - 2l - 4b_{3} - 4 \cdot \frac{l}{2} &< \varepsilon
+ \\
+(4 - 2)l + \frac{(6 - 4)l}{2} = 3l &< \varepsilon
+\end{align*}
+
+
+Pick $l = \frac{\varepsilon}{6}$
+
+\begin{align*}
+3 \cdot \frac{\varepsilon}{6} &< \varepsilon
+ \\
+\frac{\varepsilon}{2} &< \varepsilon
+\end{align*}
+
+\end{proof}
+
+
+This method handles all discontinuities.
+
+For a function that isn't flat:
+$f(x) = x,\ x \in \lbrack 0,\ 2\rbrack$
+
+\begin{align*}
+b_{1}h_{1} &= b_{2}h_{2}
+ \\
+U_{f}(P) &= 1 \cdot 1 + 1 \cdot 2
+ \\
+L_{f}(P) &= 1 \cdot 2 + 1 \cdot 1
+\end{align*}
+
+
+Notice that $f$ is increasing so if you pick the same base for each
+rectangle, then the adjacent rectangle's area of the upper sum and the
+lower sum would cancel.
+
+\includegraphics[width=1.57013in,height=2.04865in]{TEXIMAGEF_Integrals-1/media/image17.png}
+
+\begin{proof} Let $\varepsilon > 0$. Let $P$ be $n$-equal spaced
+intervals, meaning $b = \frac{2}{n}$. Pick $n$ such that
+$\frac{4}{n} < \varepsilon$.
+
+Then:
+
+\begin{align*}
+U_{f}(P) &= b \cdot f\left( t_{1} \right) + b \cdot f\left( t_{2} \right) + \cdots + b \cdot f\left( t_{n} \right)
+ \\
+L_{f}(P) &= b \cdot f\left( t_{0} \right) + b \cdot f\left( t_{1} \right) + \cdots + b \cdot f\left( t_{n - 1} \right)
+\end{align*}
+
+
+$$U_{f}(P) - L_{f}(P) = b \cdot f\left( t_{n} \right) - b \cdot f\left( t_{0} \right) = b\left( f\left( t_{n} \right) - f\left( t_{0} \right) \right) = \frac{2}{n} \cdot 2 = \frac{4}{n} < \varepsilon\ $$ \end{proof}
+
+
+\subsubsection{Finitely many
+discontinuities}
+
+Suppose $g(x)$ is integrable and bounded (by $M$) on
+$\lbrack a,\ b\rbrack$. Let $f(x) = g(x)$ except at finitely many
+points $\left\{ c_{1},\ \ldots,\ c_{n} \right\}$ where
+$f\left( c_{i} \right) \neq g\left( c_{i} \right)$.
+
+The idea is to have small rectangles around each of the discontinuities.
+Make each of the errors $\frac{\varepsilon}{2n}$ and the total error
+is
+$n \cdot \frac{\varepsilon}{2n} = \frac{\varepsilon}{2} < \varepsilon$.
+
+Key word: \textbf{finitely} as many discontinuities.
+
+Basically, if you have a continuous function with finitely many holes.
+
+
+\subsubsection{Infinitely as many
+discontinuities}
+
+This will cause you to set something like
+$\frac{\varepsilon}{\infty} = 0$, which can't happen, as the error
+can't be zero. The techniques of splitting up partitions and creating
+rectangles on discontinuities wouldn't work.
+
+Example, where $\mathbb{Q}$ (standing for quotient) means rational
+numbers, which can be represented as
+$\frac{p}{q},\ p,\ q\mathbb{\in Z}$:
+
+$$f(x) = \left\{ \begin{matrix}
+1 & x\mathbb{\in Q} \\
+0 & x\mathbb{\notin Q} \\
+\end{matrix} \right.\ $$
+
+There are a lot of rational numbers (more like infinitely as many)
+scattered between $\lbrack 0,\ 1\rbrack$. It is an infinitely
+scattering of points in $\lbrack 0,\ 1\rbrack$. It is not a solid
+line; irrational numbers like $\frac{\pi}{4}$ exist. This means
+$f\left( \frac{\pi}{4} \right) = 0$. But also $\frac{\pi}{8}$ is
+irrational, so $f\left( \frac{\pi}{8} \right) = 0$, and so is
+$\frac{\pi}{16}$, $\frac{\pi}{5}$, and so on, and don't forget
+$\frac{e}{5},\ \sqrt{2}$, and so on. There is an infinite scattering
+of points at $y = 0$, as there are a lot of irrational numbers
+scattered at $y = 0$.
+
+At a visual standpoint, there are points at $y = 1$ infinitely
+scattered and points at $y = 0$ infinitely scattered.
+
+The trick of controlling errors can only work for finite
+discontinuities. If there are infinitely as many discontinuities, it
+feels like the function is not continuous everywhere, or even anywhere.
+At every single point, there's a discontinuity.
+
+It does not mean that the function isn't integrable, but we run into
+this problem (note that $a < b$):
+
+\begin{align*}
+&\forall\lbrack a,\ b\rbrack,\ \exists x_{1}\mathbb{\in Q,\ }x_{1} \in \lbrack a,\ b\rbrack
+ \\
+&\forall\lbrack a,\ b\rbrack,\ \exists x_{1}\mathbb{\notin Q,\ }x_{2} \in \lbrack a,\ b\rbrack
+\end{align*}
+
+
+We can see where the problem comes.
+
+\includegraphics[width=2.00541in,height=1.3292in]{TEXIMAGEF_Integrals-1/media/image18.png}
+
+The upper sum for any interval (that isn't squished to a point) will
+always be 1, and 0 for the lower sum. There will always be an error of 1
+overall, and $1 \nless \varepsilon$. Is it possible to make the error
+less than $\varepsilon$? Regardless of the partition you choose, the
+error will stay at 1.
+
+What does it mean to be integrable?
+$\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon$.
+I don't think this can be satisfied.
+
+What is the negation of this definition?
+
+$$\exists\varepsilon > 0,\ \forall P,\ U_{f}(P) - L_{f}(P) \geq \varepsilon$$
+
+This is our proof that $f(x)$ here isn't integrable.
+
+\begin{proof} Pick $\varepsilon = \frac{1}{2}$. Let $P$ be
+arbitrary. Regardless of how we choose our partition $P$,
+$U_{f}(P) - L_{f}(P)$ will always be greater or equal than
+$\varepsilon$:
+
+\begin{align*}
+U_{f}(P) &= \sum b_{i} \cdot h_{i} = \sum b_{i} \cdot 1 = 1
+ \\
+L_{f}(P) &= \sum b_{i} \cdot h_{i} = \sum b_{i} \cdot 0 = 0
+\end{align*}
+
+
+This always happens. What can we conclude?
+
+$$U_{f}(P) - L_{f}(P) = 1$$
+
+\ldots regardless of what $P$ we choose. The error here is always
+going to be greater than 1, greater than or equal to the $\varepsilon$
+we set, $\frac{1}{2}$. We are unable to minimize the error to be under
+$\varepsilon$. \end{proof}
+
+Ever so slightly harder example:
+
+$$f(x) = \left\{ \begin{matrix}
+\frac{1}{q} & x = \frac{p}{q}\ \text{written\ as\ an\ irreducible\ fraction} \\
+0 & x\mathbb{\notin Q} \\
+\end{matrix} \right.\ {x \in \lbrack 0,\ 1\rbrack}\ $$
+
+What does it mean?
+$f\left( \frac{2}{3} \right) = \frac{1}{3},\ f\left( \frac{4}{5} \right) = \frac{1}{5},f\left( \frac{6}{10} \right) = \frac{1}{5}$
+
+\includegraphics[width=4.5in,height=3.73681in]{TEXIMAGEF_Integrals-1/media/image19.png}
+
+
+\subsubsection{That for an increasing
+function}
+
+Suppose $f$ is increasing on $\lbrack a,\ b\rbrack$. Prove $f$ is
+integrable. Do not assume $f$ is continuous.
+
+
+\begin{definition}
+A function which is increasing or decreasing would
+be called monotonic.
+\end{definition}
+
+
+
+\subsubsection{Debunking Q7}
+
+Suppose $g(x)$ is integrable and bounded by M on
+$\lbrack a,\ b\rbrack$
+
+\includegraphics[width=4.5in,height=2.75208in]{TEXIMAGEF_Integrals-1/media/image20.png}
+
+
+\subsubsection{Debunking Question 6}
+
+Suppose $g(x)$ is integrable and bounded (by $M$) on
+$\lbrack a,\ b\rbrack$.
+
+$$f(x) = \left\{ \begin{matrix}
+g(x) & \text{if\ }x \neq c \\
+f(c) & \text{if\ }x = c \\
+\end{matrix} \right.\ ,\ \text{where\ }f(c) \neq g(c)$$
+
+\includegraphics[width=2.42366in,height=1.64757in]{TEXIMAGEF_Integrals-1/media/image21.png}
+
+\begin{proof} Let $\varepsilon > 0$. Choose
+$l = \frac{\varepsilon}{2(N - n)}$ (technically, we were supposed to
+define $N$ and $n$ earlier).
+
+Since $g$ is integrable,
+$\forall\varepsilon_{2} > 0,\ \exists Q,\ \text{such\ that\ }U_{g}(Q) - L_{g}(Q) < \varepsilon_{2}$
+(there exists partition $Q$ such that $U_{g}(Q) - L_{g}(Q)$.
+
+Because $g$ is integrable, we can remove parts of the partition in
+parts where we don't need it, such as the $l$-length region around
+$c$. This means the partition $Q$ is only in the blue region.
+
+Choose $\varepsilon_{2} = \frac{\varepsilon}{2}$. This means the
+following:
+
+\begin{itemize}
+\item
+  The error in the blue region must be at most
+  $\frac{\varepsilon}{4}$.
+\item
+  The error in the green region must be at most
+  $\frac{\varepsilon}{4}$.
+\item
+  The total error we will be making will be
+  $\frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}$.
+\end{itemize}
+
+$$\exists Q,\ U_{g}(Q) - L_{g}(Q) < \varepsilon_{2}$$
+
+Choose $P = Q \cup \left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$
+($Q$ union the green rectangle). There is some way to pick rectangles
+in the partition of $Q$ such that the total error in the blue region
+will be less than $\frac{\varepsilon}{2}$.
+
+Focusing on the error in the green region (and we must see how much
+error at most there can be):
+
+For
+$x \in \left\lbrack c - \frac{l}{2},\ c + \frac{l}{2} \right\rbrack$,
+what can be the error at most? It should be less than $\varepsilon$.
+Here, $f$ can be at most $f(c)$, but $g$ could be even larger, so
+
+\begin{align*}
+x &\leq \max\left( f(x),M \right)
+ \\
+\min\left( f(x),\  - M \right) &\leq x
+\end{align*}
+
+
+This is based on the bounds $g$, as the function $g$ may not go
+higher than $M$ or lower than $- M$. Also, here are our bounds for
+$x$ if it is in
+$\left\lbrack c - \frac{l}{2},\ c + \frac{l}{2} \right\rbrack$.
+
+$$\min\left( f(c),\  - M \right) \leq f(x) \leq \max\left( f(c),M \right)$$
+
+These two values are simply two numbers, so let
+$n = \min\left( f(c),\  - M \right)$ and
+$N = \max\left( f(c),\ M \right)$.
+
+So
+
+\begin{align*}
+U_{f}(P) - L_{f}(P) &= \overset{\text{blue\ region\ error}}{\overbrace{U_{g}(Q) - L_{g}(Q)}} + \overset{\text{green\ region\ error}}{\overbrace{l \cdot N - l \cdot n}}  \\
+&= \frac{\varepsilon}{4} + \overset{\text{which\ we\ pick\ to\ be\ }\frac{\varepsilon}{4}}{\overbrace{l(N - n)}} = \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}
+\end{align*}
+
+
+\end{proof}
+
+
+\paragraph{I don't get it.}
+
+Our goal is to prove that $f$ is integrable. This means we must prove
+that
+$\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon$,
+knowing that we have $g$ and the fact that it is integrable. Here's
+how we did it:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Name $g$'s partition $Q$, which is actually from $a$ to
+  $c - \frac{l}{2}$, and then there is a region where we are not in
+  partition $Q$, and then partition $Q$ resumes at
+  $c + \frac{l}{2}$ all the way to $b$. Yes, partitions can be split
+  up.
+\item
+  Because we know $g$ is integrable, we know the error it must not
+  exceed: $\varepsilon_{2}$, which is universally quantified. We can
+  let it be anything, so use that opportunity to assign it to something
+  like $\frac{\varepsilon}{9999}$.
+\item
+  Choose the partition of $f$, which is the function we wish to prove
+  integrable in the interval $\lbrack a,\ b\rbrack$. Pick it to be
+  partition $Q \cup$ the gap in the middle, which is
+  $\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$ -- just one
+  rectangle, and we have made gaps like this before because we want
+  $l$ to be the length of that rectangle.
+\item
+  This still concerns the partition of $f$ we've just chosen. We know
+  that $\forall x \in$ the gap
+  $\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$, $x$ can't:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    Go higher than $f(c)$ or $M$. We only worry about $f(c)$ when
+    $x = c$, so $M$ covers all the other cases: the maximum possible
+    value of $g$.
+  \item
+    Go lower than $f(c)$ or $- M$. We only worry about $f(c)$ when
+    $x = c$, so $- M$ covers all the other cases: the minimum
+    possible value of $g$.
+  \item
+    We end up with this expression:
+    $\min\left( f(c),\  - M \right) \leq f(x) \leq \max\left( f(c),\ M \right)$
+    We give aliases: $n = \min\left( f(c),\  - M \right)$ and
+    $N = \max\left( f(c),\ M \right)$ although we totally didn't have
+    to. The reason why we chose $M$ and $- M$ instead of some
+    $g(x)$ thing is because $M$ and $- M$ are constants and will
+    always be an overestimate/underestimate of where $g$ always is.
+  \end{enumerate}
+\item
+  We conclude that the error caused by that rectangle is
+  $\leq (l \cdot N - l \cdot n)$. $l \cdot N$ is the upper height
+  bound of that rectangle, and $l \cdot n$ is the lower height bound
+  of the rectangle. A reminder that $l$ is the length of the
+  rectangle, and remember that we overestimated the upper bound and
+  underestimated the lower bound because instead of choosing $g(x)$,
+  we just looked at the highest/lowest possible value of $g$.
+\item
+  We return to the partition $P$ we've chosen because before after
+  acquiring more information about the rectangle in the middle in the
+  region $\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$. Because
+  we overestimated the error bound, we can safely say that
+  $U_{f}(P) - L_{f}(P) \leq U_{g}(Q) - L_{g}(Q) + (l \cdot N - l \cdot \ n)$
+  and can finally choose
+  $U_{g}(Q) - L_{g}(Q) < \frac{\varepsilon}{9999999}$ and choose $l$
+  such that $(l \cdot N - l \cdot n) < \frac{\varepsilon}{9999999}$ in
+  the front of the proof and finally prove that
+  $U_{f}(P) - L_{f}(P) < \varepsilon$.
+\end{enumerate}
+
+
+\subsubsection{Debunking question 10}
+
+$$f(x) = \left\{ \begin{matrix}
+\frac{1}{q} & x = \frac{p}{q}\ \text{written\ as\ an\ irreducible\ fraction} \\
+0 & x\mathbb{\notin Q} \\
+\end{matrix} \right.\ {x \in \lbrack 0,\ 1\rbrack}$$
+
+\includegraphics[width=2.23457in,height=1.49833in]{TEXIMAGEF_Integrals-1/media/image22.png}
+
+Let $\varepsilon > 0$. There are finitely many $x$ with
+$f(x) > \frac{\varepsilon}{4}$. There is a list of possible $x$ for
+which $f(x) > \frac{\varepsilon}{4}$.
+
+$$x:\left\{ c_{1},\ c_{2},\ \ldots,\ c_{n} \right\} = \left\{ \frac{1}{2},\frac{1}{3},\frac{2}{3},\ \ldots \right\}$$
+
+Well, excluding duplicates.
+
+Construct rectangles around each $c_{i}$ length
+$l = \frac{\varepsilon}{4n}$ (we chose that later).
+
+$$U_{f}(P) - L_{f}(P) = \sum_{\begin{matrix}
+\text{rectangles\ } \\
+\text{including}\ c_{i} \\
+\end{matrix}}^{}{b_{i}h_{i}} + \sum_{\begin{matrix}
+\text{rectangles\ not} \\
+\text{including}\ c_{i} \\
+\end{matrix}}^{}{b_{i}h_{i}}$$
+
+In the first (left) sum, there are $n$ rectangles with the base being
+$n \cdot l$ with the height values all being less than $\frac{1}{2}$
+(which implies they are all less than 1). There are $n$ rectangles at
+most, where each base is chosen to have length $l$, and the height of
+each rectangle which includes one of these $c_{i}$ points:
+
+\begin{align*}
+&\sum_{\begin{matrix}
+\text{rectangles\ } \\
+\text{including}\ c_{i} \\
+\end{matrix}}^{}{b_{i}h_{i}} + \sum_{\begin{matrix}
+\text{rectangles\ not} \\
+\text{including}\ c_{i} \\
+\end{matrix}}^{}{b_{i}h_{i}}
+\end{align*}
+
+
+What about the sum on the right? These rectangles do not include any of
+the $c_{1\ldots i\ldots n}$, so the height of these rectangles is at
+most $\frac{\varepsilon}{4}$. So, and we will just be assuming the max
+height and that it does not cover a length over 1:
+
+\begin{align*}
+&< n \cdot l + \sum_{\begin{matrix}
+\text{rectangles\ not} \\
+\text{including}\ c_{i} \\
+\end{matrix}}^{}{b_{i}\left( \frac{\varepsilon}{4} \right)_{\text{max\ ht\ of\ each\ rect}}} < n \cdot l + (1)_{\text{dist\ from\ 0\ to\ 1}}\frac{\varepsilon}{4} = \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}
+\end{align*}
+
+
+\includegraphics[width=2.94545in,height=1.88in]{TEXIMAGEF_Integrals-1/media/image23.png}
+
+
+\end{document}
