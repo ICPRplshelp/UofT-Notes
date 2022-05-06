@@ -8,4 +8,11 @@ I take notes can change with time, so how they are presented may be very inconsi
 
 ## A note on compiling tex files
 All files are compiled with xelatex. Using pdfLaTeX may result in problems.
-I have commented out the font commands as you may not have them installed.
+
+## DEPENDENCIES
+
+**THESE FONTS MUST BE INSTALLED ON YOUR COMPUTER IF YOU WANT TO COMPILE THESE FILES!!!**
+
+- STIX Two Text
+- STIX Two Math
+- JetBrains Mono
