@@ -1,0 +1,1973 @@
+\documentclass[12pt]{article}  
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{booktabs}
+\usepackage{array}
+
+\usepackage{hyperref}
+\providecommand{\href}[1]{\url{#1}}
+\usepackage{iftex}
+\usepackage[utf8]{inputenc}  
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\usepackage[normalem]{ulem}
+\usepackage[
+]{geometry}
+
+\usepackage{amsthm}
+\usepackage{float}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{claim}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]  
+\newtheorem{condition}{Condition}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}{Example}[section]
+
+\renewcommand\qedsymbol{$\blacksquare$}  
+
+\usepackage{mathtools}
+\usepackage{listings}
+
+\usepackage{framed}
+
+\ProvidesPackage{iftex}
+
+\ifxetex
+
+\usepackage{unicode-math}
+% \setmainfont{STIX Two Text}
+% \setmathfont{STIX Two Math}
+% \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{STIX Two Math}
+
+% \setmonofont{JetBrains Mono}
+
+\fi
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} 
+
+\usepackage{csquotes}
+\title{Sequences}
+\author{https://github.com/icprplshelp/}
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{The basics}
+
+A note about the epsilon characterization of the inf or the sup, it can
+only really be used if we know for a fact that we are dealing with
+something that is confirmed to be the inf or sup. Don't try to prove
+that something is the sup / inf using the epsilon characterization.
+
+A sequence \(S = \left\{ a_{n} \right\}_{n = 1}^{\infty}\) is like a
+regular function \(f(n) = a_{n}\), except you can only ask its limit as
+\(n \rightarrow \infty\). Sequences are discrete, so you can't take the
+limit anywhere but \(\infty\).
+
+Properties:
+
+\begin{definition}[Bounded above]
+A sequence \(S\) is bounded above
+if every number in the sequence is less than some big number \(M\). For
+example:
+
+\[a_{n} = \frac{1}{n}\]
+
+is bounded above.
+\end{definition}
+
+If a sequence \(S\) is bounded above, there exists a quantity that is
+very similar to the maximum of \(S\), It is called the \textbf{supremum}
+of \(S\), denoted \(\sup S\). A supremum is a value if you take an
+\(\varepsilon\)-sized step to the left, you will bump into something
+inside \(S\).
+
+If a sequence \(S\) is bounded below, there exists a quantity similar to
+the minimum of \(S\), called the infimum of \(S\), denoted \(\inf S\).
+An infimum is a value in which if you add \(\varepsilon\), then you're
+in \(S\).
+
+For example:
+
+\[S_{1} = \left\{ x:|x - 1| < 2 \right\}\]
+
+Then \(\sup S_{1} = 3,\inf S_{1} = - 1\). This is like a 2-radius circle
+centered at 1.
+
+\[S_{2} = \left\{ 0.9,\ 0.99,\ 0.999,\ \ldots \right\}\]
+
+Then \(\sup S_{2} = 1,\inf S_{2} = 0.9\).
+
+\[S_{3} = \left\{ ( - 1)^{n}\left( 1 - \frac{1}{n} \right) \right\}\]
+
+Then \(\sup S_{3} = 1\) and \(\inf S_{3} = - 1\).
+
+
+\subsection{Limits for sequences to
+infinity}
+
+Same as regular functions. The definition is:
+
+\[\forall\varepsilon > 0,\ \exists N,\ n > N \Rightarrow \left| a_{n} - L \right| < \varepsilon\]
+
+If the limit exists, then \(S\) gets close to \(L\), so it is not going
+to infinity, so it is bounded above and below. However, being bounded
+above and below is not enough for the limit to exist -- which occurs if
+the sequence is oscillating.
+
+
+\subsection{Convergent, divergent}
+
+If the limit of \(S = \left\{ a_{n} \right\}\) DNE, we say it diverges.
+It could:
+
+\begin{itemize}
+\item
+  Approach \(\infty\)
+\item
+  Oscillate
+\end{itemize}
+
+
+\subsection{Bounded above and increasing implies
+convergence}
+
+\begin{itemize}
+\item
+  Increasing means \(\forall n,\ a_{n + 1} > a_{n}\) (successive terms
+  are larger)
+\item
+  Non-decreasing means \(\forall n,\ a_{n + 1} \geq a_{n}\) (nothing
+  goes down as \(n\) goes up)
+\item
+  If \(S\) is increasing, then it's non-decreasing.
+\end{itemize}
+
+If \(S\) is bounded above and it's \textbf{non-decreasing,} then it
+converges to its \textbf{supremum.} It will be stuck at the supremum. It
+will be bounded by the least upper bound.
+
+\begin{proof} Suppose \(S\) is bounded above, meaning
+\(\exists\sup S = L\) as the least upper bound. Show that
+\(\lim_{n \rightarrow \infty}a_{n} = L\). This means to show:
+
+\begin{align*}
+\forall\varepsilon &> 0,\ \exists N,\ n > N \Rightarrow \left| a_{n} - L \right| < \varepsilon \\
+L - a_{n} &< \varepsilon\ \text{because\ we\ are\ proving\ the\ supremum}
+\end{align*}
+
+
+Let \(\varepsilon > 0\). We know:
+
+\begin{align*}
+&\exists a_{N} \in S\ \text{such\ that} \\
+L - \varepsilon &< a_{N} \leq L
+\end{align*}
+
+
+Because it is between \(a_{n}\), which is greater than
+\(L - \varepsilon\).
+
+Show that \(\forall n > N,\ \ L - a_{n} < \varepsilon\)
+
+We know \(N\) is fixed. If \(N = 100\), we need to show all \(n\) above
+100. To prove this question, use induction.
+
+\textbf{Base:} \(n = N + 1\). We're not trying to show for every natural
+number \(n\) is true -- we're trying to show every natural number over
+\(N\) is true.
+
+\begin{itemize}
+\item
+  Show \(L - a_{N + 1} < \varepsilon\). Our assumption is we know
+  \(L - \varepsilon < a_{N} \leq L\) (within epsilon distance). But
+  \(a_{N + 1}\) should be the right (or the same position) as \(a_{N}\).
+  Manipulate the inequalities a bit:
+\item
+  \(a_{N + 1} \geq a_{N}\)
+\item
+  \(- a_{N + 1} \leq - a_{N}\) (Multiply both sides by \(- 1\))
+\item
+  \(L - a_{N + 1} \leq L - a_{N}\)
+\end{itemize}
+
+Remember \(L - \varepsilon < a_{N} \leq L\) (which we assumed true)?
+Rearrange this:
+
+\begin{align*}
+L - \varepsilon &< a_{N} \leq L \\
+- \varepsilon &< a_{N} - L \leq 0 \\
+\varepsilon &> L - a_{N}
+\end{align*}
+
+
+So:
+
+\begin{itemize}
+\item
+  \(L - a_{N + 1} \leq L - a_{N} < \varepsilon\)
+\end{itemize}
+
+We showed what we wanted to show.
+
+\textbf{Inductive step:}
+
+\begin{itemize}
+\item
+  Suppose \(L - a_{n} < \varepsilon\)
+\item
+  Show \(L - a_{n + 1} < \varepsilon\)
+\end{itemize}
+
+We know
+
+\begin{itemize}
+\item
+  \(a_{n + 1} \geq a_{n}\) because the sequence is increasing
+\item
+  \(- a_{n + 1} \leq - a_{n}\)
+\item
+  \(L - a_{n + 1} \leq L - a_{n}\)
+\item
+  \(L - a_{n + 1} \leq L - a_{n} < \varepsilon\) by the inductive
+  hypothesis.
+\end{itemize}
+
+Since \(L = \sup S\), \(a_{n} \leq L\), so
+\(\left| a_{n} - L \right| = L - a_{n}\)
+
+
+\end{proof}
+
+What is \(a_{N}\)? The thing you bump into when taking a small step to
+the left from the supremum. Then you will bump into something from
+\(S\). Then you can assume it is greater than \(L - \varepsilon\)
+because the step is very small.
+
+Flip this definition for decreasing equivalents. If \(S\) is bounded
+below and it's \textbf{non-increasing,} then it converges to its
+\textbf{infimum.}
+
+Being \textbf{non-increasing} or \textbf{non-decreasing} is called
+monotone.
+
+\emph{The limit of a sequence has nothing to do with how it behaves at
+the beginning.} Feel free to ignore the first few terms (or more,
+precisely finitely as many).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.0839in,height=0.55216in]{latex_images_Sequences_20/media/image1.png}
+\end{figure}
+
+
+
+\subsection{Finding limits to
+infinity}
+
+Given in a regular formula, compute the limit to infinity like normal.
+For example:
+
+\[\frac{n + ( - 1)^{n}}{n} = \frac{n}{n} + \frac{( - 1)^{n}}{n} = 1 + 0 = 1\]
+
+And
+
+\[{1.01}^{n} = \left( e^{\ln(1.01)} \right)^{n} = e^{n \cdot \ln(1.01)} = e^{\infty} = \infty\]
+
+And
+
+\[\frac{4n}{\sqrt{4n^{2} + 2}} = \frac{\frac{4n}{n}}{\sqrt{\frac{4n^{2}}{n^{2}} + \frac{2}{n^{2}}}} = \frac{4}{\sqrt{4}} = \frac{4}{2} = 2\]
+
+
+\subsection{Recursively defined
+sequences}
+
+Consider the recursively defined sequence. Determine whether it
+converges. If it converges, find its limit.
+
+\begin{align*}
+a_{1} &= 1, \\
+a_{n + 1} &= \frac{1}{2}a_{n} + 1
+\end{align*}
+
+
+This means:
+
+\begin{align*}
+a_{2} &= \frac{1}{2} + 1 = \frac{3}{2} \\
+a_{3} &= \frac{3}{4} + 1 = \frac{7}{4} \\
+a_{4} &= \frac{7}{8} + 1 = \frac{15}{8}
+\end{align*}
+
+
+How can we show that it converges? We need to show that this function
+is:
+
+\begin{itemize}
+\item
+  Bounded above
+\item
+  Increasing / non-decreasing
+\item
+  And find \(\sup S = L\) (the supremum)
+\end{itemize}
+
+So, what do we do? Take the limit of both sides in the recursive part of
+the function.
+
+\begin{align*}
+\lim_{n \rightarrow \infty}a_{n + 1} &= \lim_{n \rightarrow \infty}{\frac{1}{2}a_{n} + 1} \\
+L &= \frac{1}{2}L + 1 \\
+L &= 2
+\end{align*}
+
+
+Here, we kind of assumed that \(\infty + 1 = \infty\), but assuming that
+isn't sufficient. We need to show that it is bounded above, so we're
+going to use induction. We technically aren't supposed to do that first,
+but we're going to do it anyways, because we need to so we can prove it.
+
+Show bounded above: show \(\forall n,\ a_{n} \leq 2\).
+
+\begin{proof} Base: \(n = 1,\ a_{1} = 1 \leq 2\)
+
+Suppose \(a_{n} \leq 2\). Show \(a_{n + 1} \leq 2\)
+
+\[a_{n + 1} = \frac{1}{2}a_{n} + 1 \leq \frac{1}{2}2 + 1 = 1 + 1 = 2\ \]
+\end{proof}
+
+
+\subsubsection{How to show its
+increasing}
+
+For \(a_{1} = 1,\ a_{n + 1} = \frac{1}{2}a_{n} + 1\)
+
+\begin{itemize}
+\item
+  Show \(\forall n,\ a_{n + 1} > a_{n}\). Use induction:
+\item
+  Base: \(n = 1\). In this case, \(a_{2} = \frac{3}{2},\ a_{1} = 1\).
+  Then \(a_{2} > a_{1}\)
+\item
+  Suppose \(a_{n + 1} > a_{n}\). Then show \(a_{n + 2} > a_{n + 1}\).
+\item
+  Because we know \(a_{n + 1} > a_{n}\),
+\item
+  \(a_{n + 2} = \frac{1}{2}a_{n + 1} + 1 > \frac{1}{2}a_{n} + 1 = a_{n + 1}\)
+\end{itemize}
+
+
+\subsection{The big theorem}
+
+Constant \textless{} Logs \textless{} Polynomials \textless{}
+Exponentials \textless{} Factorials \textless{} Power of itself
+
+We get the ascending growth rates:
+
+\[1 \ll \ln(n) \ll \sqrt{n} \ll n \ll n^{2} \ll \cdots \ll 2^{n} \ll e^{n} \ll n! \ll n^{b}\]
+
+Where \(a_{n} \ll b_{n}\),
+
+\[\lim_{n \rightarrow \infty}\frac{a_{n}}{b_{n}} = 0\]
+
+
+\section{Improper integrals}
+
+The integral is the area of many rectangles, which is base times height.
+
+\textbf{Type 1: Base is infinite}
+
+\[\int_{a}^{\infty}{f(x)\text{d}x} = \lim_{b \rightarrow \infty}{\int_{a}^{b}{\text{\ f}(x)\text{d}x}}\]
+
+\textbf{Type 2: Height is infinite}
+
+The function is approaching infinity. Assume \(f(x)\) approaches
+infinity at \(x = k\) and \(a < k\). Then:
+
+\[\int_{a}^{k}{\text{\ f}(x)} = \lim_{b \rightarrow k^{-}}{\int_{a}^{b}{\text{\ f}(x)\text{d}x}}\]
+
+Example: The harmonic series:
+
+\[\int_{0}^{1}{\frac{1}{x}\text{d}x} = \ln|x| \mid_{0}^{1} = \ln 1 - \ln 0 = 0 - ( - \infty) = \infty\]
+
+Alternatively:
+
+\[\lim_{b \rightarrow 0^{+}}{\ln|x|} \mid_{b}^{1} = 0 - ( - \infty) = \infty\]
+
+Some more problems regarding improper integrals:
+
+\[\int_{- 1}^{\infty}\frac{1}{x^{2} + 1} = \arctan(x) \mid_{- 1}^{\infty} \rightarrow \lim_{b \rightarrow \infty}{\arctan(x) \mid_{- 1}^{b}\ }\]
+
+\[= \arctan(\infty) - \arctan( - 1) = \frac{\pi}{2} - \left( - \frac{\pi}{4} \right) = \frac{3\pi}{4}\]
+
+Example 2:
+
+\[\int_{2}^{\infty}{\frac{1}{x + 2}\text{d}x} = \ln|x + 2| \mid_{2}^{\infty} = \infty\]
+
+Example 3:
+
+\[\int_{0}^{\infty}{\cos(x)\text{d}x} = \sin(x) \mid_{0}^{\infty} \rightarrow \lim_{b \rightarrow \infty}{\sin(x) \mid_{0}^{b}} = \text{DNE}\]
+
+Example 4:
+
+\[\int_{0}^{1}{\frac{1}{x^{2}}\text{d}x} = \int_{0}^{1}x^{- 2} = \frac{x^{- 1}}{- 1} \mid_{0}^{1} = - \frac{1}{x} \mid_{0}^{1} = - \frac{1}{1} - \left( - \frac{1}{0} \right) = + \infty\]
+
+Of course, we should have used
+\(\lim_{b \rightarrow 0^{+}}{\frac{1}{x} \mid_{b}^{1}} = \infty\)
+
+Example 5:
+
+\[\int_{0}^{1}{\frac{1}{\sqrt{x}}\text{d}x} = \int_{}^{}x^{- \frac{1}{2}} = \frac{x^{\frac{1}{2}}}{\frac{1}{2}} = 2\sqrt{x} \mid_{0}^{1} = 2 - 0 = 2\ \]
+
+It turns out that somehow when the function is \(\frac{1}{\sqrt{x}}\).
+The area is finite. You can't see that the area is finite, but it is
+finite. Of course, we should have used
+\(\lim_{b \rightarrow 0^{+}}{2\sqrt{x} \mid_{b}^{1}}\), but that's just
+a technical detail.
+
+
+\subsection{Multiple infinite points}
+
+Split the integral into several pieces, so that in each piece, only 1 of
+the 2 bounds is approaching an infinite point. For example:
+
+\[\int_{0}^{\infty}\frac{1}{(x - 1)^{3}}\]
+
+Just integrate from 0 to 1, 1 to some finite location \(C\), and \(C\)
+to infinity.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in,height=1.10069in]{latex_images_Sequences_20/media/image2.png}
+\end{figure}
+
+
+This changes the direction of limits if you choose to evaluate some. In
+this case:
+
+\begin{align*}
+&\lim_{b \rightarrow 1^{-}}{\int_{0}^{b}{\frac{1}{(x - 1)^{3}}\text{d}x}} + \lim_{b \rightarrow 1^{+}}{\int_{b}^{c}\frac{1}{(x - 1)^{3}}\text{d}x}  \\
+&+ \lim_{b \rightarrow \infty}{\int_{c}^{b}{\frac{1}{(x - 3)^{3}}\text{d}x}} \\
+&= - \frac{2}{{2(x - 1)}^{2}} \mid_{0}^{1} + \frac{- 2}{{2(x - 1)}^{2}} \mid_{1}^{c} + \left( - \frac{2}{{2(x - 1)}^{2}} \mid_{c}^{\infty} \right)\  \\
+&\cdots \\
+&= - \infty + \infty + \frac{1}{2(c - 1)^{3}} = \pm \infty
+\end{align*}
+
+
+\textbf{When one piece of the integral results in infinity, the entire
+integral diverges.}
+
+The problem is you cannot cancel infinities. You need to split the
+integral up if there are multiple infinite points.
+
+
+\section{P-series}
+
+Let \(p > 0\). For what values of \(p\) would the integral converge or
+diverge?
+
+\[\int_{1}^{\infty}{\frac{1}{x^{p}}\text{d}x}\]
+
+Case 1: \(p = 1\). Then
+\(\int_{}^{}\frac{1}{x} = \ln|x| \mid_{1}^{\infty} = \infty\)
+
+\begin{align*}
+&= \int_{}^{}x^{- p} = \frac{x^{- p + 1}}{- p + 1} \\
+&\lim_{b \rightarrow \infty}b^{- p + 1}
+\end{align*}
+
+
+\[\lim_{x \rightarrow \infty}x^{n} = \infty,\]
+
+What if \(n < 0\)? \(n = - k\). Then:
+
+\[\lim_{x \rightarrow \infty}x^{- k} = \frac{1}{x^{k}} = 0\]
+
+So, we get (\(b\) is like the upper bound of the integral, and avoids us
+from typing in \(\infty\)):
+
+\[\lim_{b \rightarrow \infty}b^{- p + 1} = \left\{ \begin{matrix}
+\infty & p + 1 > 0\ \text{diverge} \\
+0 & - p + 1 < 0\ \text{converge} \\
+\end{matrix} \right.\ \ \]
+
+So, when \(- p + 1 < 0\) is true, then we get a convergent interval. So:
+
+\[\int_{1}^{\infty}\frac{1}{x^{p}}\]
+
+Will converge if \(p > 1\) and will diverge if \(p \leq 1\).
+
+
+\section{Integral comparison test}
+
+Integrals can't always be computed, but we can ask whether an integral
+is convergent.
+
+Comparison test for improper integrals:
+
+If \(f,\ g\) is continuous, and \(0 \leq f(x) \leq g(x)\) for
+\(x \geq a\), then:
+
+\[0 \leq \int_{a}^{\infty}{f(x)\text{d}x} \leq \int_{a}^{\infty}{g(x)\text{d}x}\]
+
+In particular:
+
+\begin{itemize}
+\item
+  To check for convergence, look for another integral that is larger and
+  base it on that.
+\item
+  To check for divergence, look for another integral that is smaller
+\end{itemize}
+
+Example question:
+
+\[\int_{1}^{\infty}\frac{\sin x + 2\cos(x) + 10}{x^{2}} \leq \int_{1}^{\infty}\frac{1 + 2 + 10}{x^{2}} < \infty\]
+
+
+\subsection{Limit comparison test for improper
+integrals}
+
+If \(f,\ g\) are continuous and both test positive for \(x \geq a\), IF
+
+\[\lim_{x \rightarrow \infty}\frac{f(x)}{g(x)} \neq 0 \neq \infty\]
+
+Then:
+
+\[f(x) \approx g(x)\ (\text{The\ rate\ of\ growth\ is\ similar)}\]
+
+\[\int_{a}^{\infty}{f(x)}\text{dx\ }\text{converges\ if\ and\ only\ if}\ \int_{a}^{\infty}{g(x)\text{d}x}\ \text{converges}\]
+
+For example:
+
+\[\int_{}^{}\frac{1}{x^{2}} < \infty,\ \int_{}^{}{\frac{1}{2x^{2}} < \infty},\ \int_{}^{}\frac{1}{x^{2} + 1} < \infty\]
+
+Checking limits:
+
+\[\lim\left( \frac{f}{g} \right) = \lim\left( \frac{1}{x^{2}}\left( x^{2} + 1 \right) \right) = 1\]
+
+Hence why we don't want \(f\) to grow faster than \(g\) and \(g\) to
+grow faster than \(f\). Similar to them having the same \(\Theta\).
+
+Example:
+
+\[\int_{0}^{\infty}{\frac{(x - 7)}{x^{2} + x + 5}\text{d}x} \approx \int_{1}^{\infty}\frac{x}{x^{2}} = \int_{}^{}\frac{1}{x} = \infty\]
+
+Does \(x - 7\) and \(x^{2} + x + 5\) grow at the same rate?
+
+\[\frac{(x - 7)}{x^{2} + x + 5}\]
+
+Then we do some:
+
+\[\frac{(x - 7)}{x^{2} + x + 5} \cdot \frac{x^{2}}{x}\]
+
+
+\section{Series}
+
+Consider the sequence
+\(s_{1} = a_{1},\ s_{2} = a_{1} + a_{2},\ s_{3} = a_{1} + a_{2} + a_{3},\ \cdots\)
+
+The sequence \(\{ s_{n}\}\) are the partial sums. We say that the series
+converges if the sequence \(\{ s_{n}\}\) converges.
+
+Usually, infinite series are very difficult to calculate, but for
+geometric series:
+
+\[\sum_{x = 0}^{\infty}x^{n} = \frac{1}{1 - x},\ |x| < 1\]
+
+Only when series converge, we can perform regular algebra with them like
+non-infinite series.
+
+\begin{proof}
+
+\[\sum_{x = 0}^{\infty}x^{n} = \lim_{N \rightarrow \infty}{\sum_{n = 0}^{N}x^{n}}\]
+
+First step: \(\sum_{n = 0}^{N}x^{n} = \frac{1 - x^{N + 1}}{1 - x}\).
+
+Then as \(N \rightarrow \infty\), \(x^{N + 1} = 0\), as \(|x| < 1\).
+Then we get \(\frac{1}{1 - x}\).
+
+\begin{align*}
+&\sum_{n = 0}^{N}x^{n} = \frac{1 - x^{N + 1}}{1 - x} = 1 + x + x^{2} + \ldots + x^{N} \\
+(1 - x)\left( 1 + x + x^{2} + \cdots + x^{N} \right) &= 1 - x^{N + 1}
+\end{align*}
+
+
+If we expand the left side:
+
+\[1 + x + x^{2} + \cdots + x^{N} - x - x^{2} - \cdots - x^{N} - x^{N + 1} = 1 - x^{N + 1}\]
+
+Now that we have the formula, we can then figure out the sum of infinite
+series.
+
+
+\end{proof}
+
+
+\subsection{When series converge}
+
+We can ignore finitely as many terms in the front of the sequence.
+
+
+\subsubsection{The zero test for
+divergence}
+
+If \(\lim_{n \rightarrow \infty}a_{n} \neq 0\), then
+\(\sum_{n = 1}^{\infty}a_{n}\) diverges. This test is almost never
+useful due to oscillations or divergence for other reasons.
+
+
+\subsubsection{The integral test}
+
+For \(a_{n}\) positive and decreasing eventually:
+
+\[\sum_{n = 1}^{\infty}a_{n} \approx \int_{1}^{\infty}a_{n}\]
+
+The series converges if and only if the integral converges. Almost never
+useful due to how hard it is to calculate integrals.
+
+\textbf{Harmonic series}
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\frac{1}{n} = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \cdots = \infty \\
+\int_{1}^{\infty}{\frac{1}{x}\text{d}x} &= \ln|x| \mid_{1}^{\infty} = \ln\infty
+\end{align*}
+
+
+
+\subsubsection{P-series}
+
+\[\sum_{}^{\infty}\frac{1}{n^{p}} \approx \int_{}^{\infty}{\frac{1}{x^{p}}\text{d}x}\]
+
+Converges for \(p > 1\), diverges for \(p \leq 1\)
+
+Given this result, what can we say about:
+
+\[\int_{}^{\infty}\frac{1}{n^{2} - 1} \approx \sum_{}^{\infty}\frac{1}{n^{2}}\]
+
+This will converge as \(p > 1\). When \(a_{n}\) is a rational function,
+we only need to take the leading powers on the top and bottom to create
+a new series \(\sum_{}^{\infty}b_{n}\).
+
+
+\subsubsection{Limit comparison test}
+
+For \(a_{n},\ b_{n}\), positive eventually:
+
+\[\lim_{n \rightarrow \infty}\frac{a_{n}}{b_{n}} \neq 0 \neq \infty \Rightarrow \sum_{}^{\infty}a_{n} \approx \sum_{}^{\infty}b_{n}\]
+
+Example: \(a_{n} = n^{2},\ b_{n} = n^{2} - 1\)
+
+\[\frac{a_{n}}{b_{n}} = \frac{1}{n^{2} - 1} \cdot \frac{n^{2}}{1} = 1\]
+
+
+\subsubsection{Comparison tests}
+
+Suppose \(a_{n} \leq b_{n}\) and positive eventually.
+
+If \(\sum_{}^{\infty}b_{n}\) converges then \(\sum_{}^{\infty}a_{n}\)
+converges.
+
+If \(\sum_{}^{\infty}b_{n}\) diverges then \(\sum_{}^{\infty}a_{n}\)
+diverges\ldots?
+
+For example:
+
+\[\sum_{}^{\infty}\frac{\arctan(n)}{n^{2}} \leq \sum_{}^{\infty}{\frac{\pi}{2} \cdot \frac{1}{n^{2}}}\]
+
+This converges.
+
+Using \(\ln(n) < n^{p}\) for any \(p > 0\) (pick \(p\) to be small):
+
+\[\sum_{}^{\infty}\frac{\ln(n)}{n^{2}} < \sum_{}^{\infty}\frac{\sqrt{n}}{n^{2}} = \sum_{}^{\infty}\frac{1}{n^{\frac{3}{2}}}\]
+
+Which converges.
+
+
+\subsubsection{Ratio test}
+
+For \(a_{n}\) positive eventually, compute:
+
+\[\lim_{n \rightarrow \infty}\frac{a_{n + 1}}{a_{n}} = L\]
+
+If \(L < 1\), then \(\sum_{}^{\infty}a_{n}\) converges.
+
+If \(L > 1\), then \(\sum_{}^{\infty}a_{n}\) diverges.
+
+If \(L = 1\), it is inclusive.
+
+Example:
+
+\begin{align*}
+\frac{a_{n + 1}}{a_{n}} &= L < 1 \Rightarrow  \\
+&\lim_{n \rightarrow \infty}{\left( \frac{1}{2} \right)^{n + 1} \cdot \frac{2^{n}}{1} = \frac{1}{2}} \\
+a_{n + 1} &\approx \frac{1}{2}a_{n}
+\end{align*}
+
+
+\(L = 1\) example:
+
+\[\frac{a_{n + 1}}{a_{n}} = \frac{1}{n + 1} \cdot \frac{n}{1} = 1\]
+
+Not a huge difference between \(a_{n + 1}\) and \(a_{n}\). So, this test
+does not give us any conclusions, as we don't know how fast this is
+decreasing. This means this test does not work for polynomials, but it
+does for exponentials and factorials. For polynomials, use the p-series.
+
+\(L > 1\) example: If \(\frac{a_{n + 1}}{a_{n}} > 1\), it's getting
+larger and larger. The series is divergent.
+
+
+\subsection{Exponential vs. Polynomial
+series}
+
+Exponential series can be calculated easily. Polynomials, on the other
+hand, seem to be very hard.
+
+\[\sum_{n = 1}^{\infty}\frac{1}{n^{2}} = \frac{\pi^{2}}{6}\]
+
+
+\subsection{Convergence of series involving positive or negative
+terms}
+
+\[\sum_{}^{}a_{n},\ a_{n}\sim\frac{1}{n} = \frac{1}{1} - \frac{1}{2} - \frac{1}{3} + \frac{1}{4} - \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} - \frac{1}{9} + \frac{1}{10} - \frac{1}{11} \pm \cdots\]
+
+In general, this is a difficult problem. Thus, it is much easier to just
+get rid of all the negative signs. Now, with this series, the negative
+terms are somehow cancelling some of the positive terms. This means it
+is possible for this series to not be infinite. We've said that:
+
+\[\sum_{}^{}a_{n} \leq \sum_{}^{}\left| a_{n} \right|\]
+
+There may be cancellation on the left side, for our above series. But
+there is no cancellation on the right.
+
+\textbf{Test 5: Absolute Convergence Test}
+
+\[if\sum_{}^{\infty}\left| a_{n} \right|\ \text{converges} \Rightarrow \text{then}\sum_{}^{\infty}a_{n}\ \text{converges}\]
+
+When \(\sum_{}^{\infty}\left| a_{n} \right|\) converges, we say
+\(\sum_{}^{\infty}a_{n}\) is \textbf{absolutely convergent.} Also, if
+\(a_{n} > 0\ \forall n,\ \)convergent and absolutely convergent mean the
+same thing.
+
+There is a distinction when \(\exists a_{n},\ a_{n} < 0\). In the event
+where the original series involving positive and negative terms
+converge, but if we absolute value \(a_{n}\), then we say that it is
+conditionally convergent. In formal logic:
+
+\[\sum_{}^{\infty}a_{n}\ \text{converges}\ \text{and\ }\sum_{}^{\infty}\left| a_{n} \right|\ \text{diverges} \Rightarrow \sum_{}^{\infty}a_{n}\ \text{is\ conditionally\ convergent}\]
+
+An example of an erratic sequence:
+
+\[\sum_{}^{\infty}\left| \frac{\sin(n)}{n^{2}} \right| \leq \sum_{}^{\infty}\frac{1}{n^{2}}\ \text{which\ converges}\]
+
+The sine function is erratic, as its period is \(2\pi\), which happens
+to not be a rational number or even an integer. Determining a pattern
+for \(\sin(n)\) being positive or negative with increasing \(n\)s can be
+very hard to determine by hand, so the distributions of + and \(-\)s are
+very erratic.
+
+Well:
+
+\begin{align*}
+\sin(n) &\leq 1 \Rightarrow  \\
+\sum_{}^{\infty}\left| \frac{\sin(n)}{n^{2}} \right| &\leq \sum_{}^{\infty}\frac{1}{n^{2}} \Rightarrow \sum_{}^{\infty}\frac{\sin(n)}{n^{2}}\ \text{converges\ absolutely}
+\end{align*}
+
+
+By the theorem we stated in the beginning of this subsection.
+
+
+\subsubsection{The alternating series
+test}
+
+A special case is when the positive and negative terms alternate in
+turn:
+
+\[a_{1} - a_{2} + a_{3} - a_{4}\ldots\]
+
+This can be written with the notation \(( - 1)^{n}\) or
+\(( - 1)^{n + 1}\).
+
+For example:
+
+\[\sum( - 1)^{n} \times \frac{1}{n}\sim\frac{1}{1} - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \ldots\]
+
+We know:
+
+\[\sum_{}^{\infty}\left| \frac{( - 1)^{n}}{n} \right| = \sum_{}^{\infty}\frac{1}{n} = \infty\]
+
+(When you have infinitely as many things, you cannot change the order in
+which you add terms).
+
+And also, we have this theorem, which requires us to only compute the
+limit of \(a_{n}\):
+
+\[\lim_{(n \rightarrow \infty)}a_{n} = 0\ \text{if\ and\ only\ if}\ \sum_{}^{\infty}{( - 1)^{n}a_{n}}\ \text{converges}\]
+
+In the event, when you have positive and negative terms alternating, we
+don't need to worry how fast the terms head towards zero. Essentially
+what happens, is that even if 0 is being approached slowly, with
+adjacent positive and negative terms, we still get convergence.
+
+\begin{align*}
+&\left( \frac{1}{1} - \frac{1}{2} \right) + \left( \frac{1}{3} - \frac{1}{4} \right) + \ldots \\
+&= \frac{1}{2} + \frac{1}{12} + \ldots
+\end{align*}
+
+
+Because \(\lim_{n \rightarrow \infty}\frac{1}{n} = 0\) we know that
+\(\sum_{}^{\infty}\frac{( - 1)^{n}}{n}\) converges, using the theorem
+from above.
+
+The test also holds with
+\(\cos\left( n\pi  \right) = ( - 1)^{n} = \sin\left( \left( n + \frac{1}{2} \right)\pi \right) = ( - 1)^{n + 1}\)
+
+
+\paragraph{A note about looping
+convergence}
+
+\(a_{1} - a_{2} + a_{3} - a_{4}\).
+
+Add \(a_{1}\) to 0. Then subtract \(a_{2}\). But since you said the
+sequence is decreasing:
+
+\[a_{1} > a_{1} - a_{2} > 0\]
+
+And then you add back \(a_{3}\). Then you take back most of what you
+subtracted back in \(a_{2}\). So:
+
+\[a_{1} > a_{1} - a_{2} + a_{3} > a_{1} - a_{2} > 0\]
+
+The cycle repeats.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=2.18518in,height=2.22363in]{latex_images_Sequences_20/media/image3.png}
+\end{figure}
+
+
+And that's another reason to why \(\sum_{}^{\infty}\frac{1}{n}\)
+converges.
+
+
+\section{Summary of Tests for
+Series}
+
+Terms lower under \(+\) can be ignored, but terms under multiplication
+can't be ignored. You can say that the numerator / denominator is order
+something\emph{.}
+
+Combining all the tests, the steps for determining convergence of a
+series \(\sum_{}^{\infty}a_{n}\):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Take absolute value of \(a_{n}\): \(\left| a_{n} \right|\)
+\item
+  If there are exponents or factorials, apply the ratio test:
+  \(\lim_{n \rightarrow \infty}\left| \frac{a_{n + 1}}{a_{n}} \right| = L\)
+  or the root test:
+  \(\lim_{n \rightarrow \infty}\sqrt[n]{\left| a_{n} \right|}\)
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    \(L < 1\) concludes \(\sum_{}^{\infty}a_{n}\) absolutely converges.
+  \item
+    \(L > 1\) concludes \(\sum_{}^{\infty}a_{n}\) diverges.
+  \item
+    \(L = 1\) and we are unclear.
+  \end{enumerate}
+\item
+  Upper bounds:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    If \(\ln(n)\) in the numerator, compare \(1 < \ln(n) < n^{p}\) with
+    \(p\) small.
+  \item
+    \(\ln(n)\) in the denominator, compare
+    \(1 > \frac{1}{\ln(n)} > \frac{1}{n^{p}}\) with \(p\) small.
+  \item
+    For sine and cosine in the numerator, conclude
+    \(\left| \sin(n) \right| \leq 1,\ |cos(n)| \leq 1\).
+  \item
+    For arctangent in the numerator, compare
+    \(\arctan(n) < \frac{\pi}{2}\)
+  \end{enumerate}
+\item
+  For series in rational function form, take \(b_{n}\) to be leading
+  powers of top and bottom. Attain \(b_{n} = \frac{1}{n^{p}}\).
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    \(p > 1 \Rightarrow \sum_{}^{\infty}a_{n}\) absolutely converges.
+  \item
+    \(p \leq 1 \cdot \sum_{}^{\infty}{|a_{n}|}\) diverges, but
+    \(\sum_{}^{\infty}a_{n}\) may still converge.
+  \end{enumerate}
+\item
+  If the original series can be written in the form
+  \(\sum_{}^{\infty}{( - 1)^{n}a_{n}}\), compute
+  \(\lim_{n \rightarrow \infty}a_{n} = L\).
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    \(L = 0 \Rightarrow \sum_{}^{\infty}{( - 1)^{n}a_{n}}\)
+    conditionally converges.
+  \item
+    \(L \neq 0 \Rightarrow \sum_{}^{\infty}{( - 1)^{n}a_{n}}\) diverges.
+  \end{enumerate}
+\end{enumerate}
+
+\[\sum_{}^{\infty}a_{n}\ \text{converges}\ \text{and\ }\sum_{}^{\infty}\left| a_{n} \right|\ \text{diverges} \Rightarrow \sum_{}^{\infty}a_{n}\ \text{is\ conditionally\ convergent}\]
+
+Otherwise, it is absolutely convergent.
+
+
+\subsection{Linearithmic on the
+denominator}
+
+For \(a_{n} = \frac{1}{n \cdot \ln(n)}\), there is one power of \(n\) in
+the bottom so use the integral test:
+\(\int_{}^{}\frac{1}{x\ln(x)}\text{d}x\)
+
+Use small angle approximation on (note that
+\(n^{p} \rightarrow \infty \Rightarrow \frac{1}{n^{p}} \rightarrow 0\)):
+
+\[\sin\left( \frac{1}{n^{p}} \right) \approx \frac{1}{n^{p}} \approx \tan\left( \frac{1}{n^{p}} \right) \approx \arcsin\left( \frac{1}{n^{p}} \right) \approx \arctan\left( \frac{1}{n^{p}} \right)\]
+
+
+\subsection{The very obvious}
+
+If
+\(\lim_{n \rightarrow \infty}a_{n} \neq 0 \Rightarrow \sum_{}^{\infty}a_{n}\)
+diverges.
+
+
+\subsection{Some examples}
+
+Special case 1: From something you know, try to get to the original
+function.
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\frac{1}{2 + \cos(n)} \\
+- 1 &\leq \cos(n) \leq 1 \\
+1 &\leq 2 + \cos(n) \leq 3 \\
+\frac{1}{3} &\leq \frac{1}{2 + \cos(n)} \leq 1 \\
+\lim_{n \rightarrow \infty}\frac{1}{2 + \cos(n)} &\neq 0
+\end{align*}
+
+
+Divergent.
+
+Special case 2:
+
+\begin{align*}
+\sum_{n = 2}^{\infty}\frac{1}{n\ln(n)} &\approx \int_{2}^{\infty}{\frac{1}{x\ln(x)}\text{d}x} \\
+u &= \ln(x),\ du = \frac{1}{x}\text{d}x \\
+\int_{}^{}{\frac{1}{u}\text{d}u} &= \ln|u| = \ln\left| \ln(x) \right| \mid_{a}^{\infty} \\
+&= \lim_{b \rightarrow \infty}{\ln\left| \ln b \right|} = \infty
+\end{align*}
+
+
+Divergent.
+
+(3)
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\frac{( - 1)^{n}}{n} \\
+&\sum_{n = 1}^{\infty}\left| \frac{( - 1)^{n}}{n} \right| = \sum_{}^{}\frac{1}{n}
+\end{align*}
+
+
+Because \(p = 1 \leq 1\), this one diverges.
+
+Consider \(\lim_{n \rightarrow \infty}\frac{1}{n} = 0\). Then we can
+tell the series of (3) is conditionally convergent. Conditionally
+converges \(\Rightarrow\) converges.
+
+(4)
+
+\[\sum_{n = 1}^{\infty}\frac{1}{n^{2}}\]
+
+Converges due to the \(p\)-series
+
+(5)
+
+\[\sum_{n = 1}^{\infty}\frac{( - 1)^{n}}{n^{2} - 1},\ \sum_{n = 1}^{\infty}\left| \frac{( - 1)^{n}}{n^{2} - 1} \right| \approx \sum_{n = 1}^{\infty}\left| \frac{1}{n^{2}} \right| = \sum_{}^{}\frac{1}{n^{2}}\]
+
+This absolutely converges. Meaning it converges.
+
+(6)
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\frac{n^{2} + 4n}{\sqrt{n^{5} + 4n^{4} + 2n}} \\
+\sum_{n = 1}^{\infty}\left| \frac{n^{2} + 4n}{\sqrt{n^{5} + 4n^{4} + 2n}} \right| &\approx \sum_{n = 1}^{\infty}\left| \frac{n^{2}}{\sqrt{n^{5}}} \right| = \sum_{n = 1}^{\infty}\frac{1}{n^{\frac{1}{2}}},\ p = \frac{1}{2} \leq 1
+\end{align*}
+
+
+Diverges due to the p-series.
+
+(7)
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\frac{\sqrt{n}\sin(n)}{n^{2}} \\
+\sum_{n = 1}^{\infty}\left| \frac{\sqrt{n}\sin(n)}{n^{2}} \right| &\leq \sum_{n = 1}^{\infty}\left| \frac{\sqrt{n}}{n^{2}} \right| = \sum_{n = 1}^{\infty}\left| \frac{1}{n^{\frac{3}{2}}} \right|
+\end{align*}
+
+
+Converges due to the p-series. This converges absolutely.
+
+(8)
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}{( - 1)^{n}\sin\left( \frac{1}{n} \right)} \\
+\sum_{n = 1}^{\infty}\left| ( - 1)^{n}\sin\left( \frac{1}{n} \right) \right| = \sum_{n = 1}^{\infty}{\sin\left( \frac{1}{n} \right)} &\approx \sum_{n = 1}^{\infty}\frac{1}{n}
+\end{align*}
+
+
+Divergent due to the p-series. But does it conditionally converge?
+
+\[\lim_{n \rightarrow \infty}{\sin\left( \frac{1}{n} \right)} = 0\ \text{converges}\]
+
+So, it conditionally converges.
+
+(9)
+
+\[\sum_{}^{}\left| ( - 1)^{n}\sin\left( \frac{1}{n^{2}} \right) \right| = \sum_{}^{}{\sin\left( \frac{1}{n^{2}} \right)} \approx \sum_{}^{}\frac{1}{n^{2}}\]
+
+Converges absolutely.
+
+
+\subsubsection{An aside on small angle
+approximation}
+
+\begin{align*}
+\sum_{n = 1}^{\infty}{\sin\left( \frac{1}{n^{2}} \right)} &\approx \sum_{n = 1}^{\infty}\frac{1}{n^{2}} \\
+\lim_{n \rightarrow \infty}{\sin\left( \frac{1}{n^{2}} \right) \cdot n^{2}} &\approx \frac{1}{n^{2}} \cdot n^{2}
+\end{align*}
+
+
+(10)
+
+\[\sum_{n = 1}^{\infty}\frac{(n + 1)2^{n}}{n!}\]
+
+Time for the ratio test:
+
+\begin{align*}
+\lim_{n \rightarrow \infty\ }\left| \frac{a_{n + 1}}{a_{n}} \right| &= \left| \frac{(n + 2)2^{n + 1}}{(n + 1)!} \cdot \frac{n!}{(n + 1)2^{n}} \right| = \left( \frac{n!}{(n + 1)!} \cdot \frac{n + 2}{n + 1} \cdot \frac{2^{n + 1}}{2^{n}} \right) \\
+&= \left( \frac{1}{n + 1} \cdot \frac{n + 2}{n + 1} \cdot \frac{2^{n + 1}}{2^{n}} \right) = 0 \cdot 1 \cdot 2 = 0
+\end{align*}
+
+
+Meaning this converges absolutely.
+
+The point of the ratio test is to take the next term and divide it by
+the previous term. Then, you can say that the series decreases fast
+enough.
+
+(11)
+
+\[\sum_{n = 1}^{\infty}\frac{n!}{2^{3n}}\]
+
+Try
+
+\begin{align*}
+\lim_{n \rightarrow \infty}{\ \left| \frac{a_{n + 1}}{a_{n}} \right|} &= \left| \frac{(n + 1)!}{2^{3n + 3}} \cdot \frac{2^{3n}}{n!} \right| \\
+&= \left| \frac{(n + 1)}{2^{3}} \right|
+\end{align*}
+
+
+Diverges
+
+(12)
+
+\[\sum_{n = 1}^{\infty}\frac{n!}{(2n)!}\]
+
+\begin{align*}
+&\lim_{n \rightarrow \infty}\left| \frac{a_{n + 1}}{a_{n}} \right| \\
+&= \frac{(n + 1)!}{\left( 2(n + 1) \right)!} \cdot \frac{(2n)!}{n!} = \frac{(n + 1)n!}{(2n + 2)(2n + 1)(2n)!} \cdot \frac{(2n)!}{n!} = \frac{n + 1}{(2n + 2)(2n + 1)} \approx \frac{n}{n^{2}} \approx \frac{1}{n}
+\end{align*}
+
+
+Diverges
+
+(13)
+
+\[\sum_{n = 1}^{\infty}\frac{n!(2n)!}{(3n)!}\]
+
+The ratio test:
+
+\begin{align*}
+&\frac{(n + 1)!(2n + 2)!}{(3n + 3)!} \cdot \frac{(3n)!}{n!(2n)!} \\
+&= \frac{(3n)!}{(3n + 3)!} \cdot \frac{(n + 1)!}{n!} \cdot \frac{(2n + 2)!}{(2n)!} \\
+&= \frac{(3n)!}{(3n + 3)(3n + 2)(3n + 1)(3n)!} \cdot \frac{(n + 1)n!}{n!} \cdot \frac{(2n + 2)(2n + 1)(2n)!}{(2n)!} \\
+&= \frac{1}{(3n + 3)(3n + 2)(3n + 1)} \cdot \frac{(n + 1)}{1} \cdot \frac{(2n + 2)(2n + 1)}{1}
+\end{align*}
+
+
+There are 3 powers of the numerator and 3 powers on the denominator.
+
+Expand:
+
+\[\frac{\left( 2n^{2} + 4n + 2 \right)(2n + 1)}{\left( 9n^{2} + 15n + 6 \right)(3n + 1)} = \frac{4n^{3} + \cdots}{27n^{3} + \cdots} = \frac{4}{27} < 1\]
+
+It's convergent, absolutely. You can calculate this quickly by only
+treating the leading coefficients as existing:
+
+\[\frac{(1 \cdot 2 \cdot 2)n^{3}}{(3 \cdot 3 \cdot 3)n^{3}}\]
+
+(14)
+
+\[\sum_{n = 1}^{\infty}\frac{1}{n^{n}}\]
+
+Let's try this:
+
+\[\lim_{n \rightarrow \infty}{\frac{1}{(n + 1)^{n + 1}} \cdot n^{n}}\]
+
+This becomes problematic. If you have \(n^{n}\) as your series, if you
+try to use the ratio test, the answer may not be obvious. This means we
+have to factor out \(n + 1\) in the exponent:
+
+\[\frac{1}{(n + 1)^{n + 1}} \cdot \frac{1}{n + 1} = \left( \frac{n}{n + 1} \right)^{n} \cdot \frac{1}{n + 1} = \frac{1}{e} \cdot \frac{1}{n + 1} = 0 < 1\]
+
+Okay, that isn't the best decision. However, since \(n^{n}\) sits on the
+top of the growth hierarchy, we can do comparisons:
+
+\[\sum_{n = 1}^{\infty}\frac{1}{n^{2}} > \sum_{n = 1}^{\infty}\frac{1}{n^{n}}\]
+
+Because \(\sum_{n = 1}^{\infty}\frac{1}{n^{2}}\) converges, so does
+\(\sum_{n = 1}^{\infty}\frac{1}{n^{n}}\). However, if we want to do the
+ratio test:
+
+Choose strategically, but make sure to choose something high in the
+hierarchy that retains the information that \(n^{n}\) grows very fast.
+For example:
+
+\[\sum_{n = 1}^{\infty}\frac{1}{n^{n}}:\sum_{n = 1}^{\infty}\left| a_{n} \right| = \ \sum_{n = 1}^{\infty}\frac{2^{n}}{n^{n}}\sim\sum_{n = 1}^{\infty}\frac{2^{n}}{3^{n}},\ x = \frac{2}{3},\ |x| < 1 \Rightarrow \text{conver}\text{ges}\]
+
+Try this again:
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\frac{1}{n^{n}} \\
+&\lim_{n \rightarrow \infty}\left( \frac{n^{n}}{(n + 1)^{n + 1}} \right)
+\end{align*}
+
+
+
+\subsubsection{Evaluating n to the n}
+
+From \(\frac{1}{n^{n}}\): Do the ratio test. We get
+\(\left( \frac{n}{n + 1} \right)^{n} \cdot \frac{1}{n + 1}\). Also:
+\(\frac{1}{(n + 1)^{n + 1}} \cdot n^{n} = \left( \frac{n}{n + 1} \right)^{n} \cdot \frac{1}{n + 1}\)
+
+\begin{align*}
+\lim_{n \rightarrow \infty}\left( \frac{n}{n + 1} \right)^{n} &= \frac{1}{e} \\
+\left( \frac{n}{n + 1} \right) &= e^{\ln\left( \frac{n}{n + 1} \right)} \\
+\left( \frac{n}{n + 1} \right)^{n} &= \left( e^{\ln\left( \frac{n}{n + 1} \right)} \right)^{n} = e^{n \cdot \ln\left( \frac{n}{n + 1} \right)}
+\end{align*}
+
+
+So what's
+\(\lim_{n \rightarrow \infty}{n \cdot \ln\left( \frac{n}{n + 1} \right)}\)?
+Perhaps use L'Hopital's rule. We have the form of something like
+\(\infty \cdot 0\).
+
+\[\frac{\ln\left( \frac{n}{n + 1} \right)}{\frac{1}{n}}\]
+
+Take the derivative of both sides:
+
+\[\frac{\frac{1}{\frac{n}{n + 1}} \cdot \frac{(n + 1) - n}{(n + 1)^{2}}}{- \frac{1}{n^{2}}} = - \frac{n + 1}{n} \cdot \frac{1}{(n + 1)^{2}} \cdot n^{2} = - \frac{1}{n} \cdot \frac{1}{n + 1} \cdot n^{2} = - \frac{n}{n + 1} = - 1\]
+
+The answer to this exponent limit is \(- 1\) so the answer is
+\(e^{- 1} = \frac{1}{e}\)
+
+
+\subsubsection{The compound interest
+limit}
+
+\begin{align*}
+\lim_{n \rightarrow \infty}\left( 1 + \frac{1}{n} \right)^{n} &= e \\
+\left( \frac{n + 1}{n} \right)^{n} &= \left( \frac{n}{(n + 1)^{- 1}} \right)^{n} = \left( \left( \frac{n}{n + 1} \right)^{n} \right)^{- 1} = e
+\end{align*}
+
+
+Now, why is this \(e\)?
+\(\lim_{n \rightarrow \infty}\left( 1 + \frac{1}{n} \right)^{n} = e\)
+
+It is not defined directly. We have to define ln:
+
+\[\ln(x) = \int_{1}^{x}{\frac{1}{t}\text{d}t}\]
+
+But that was not how \(e\) was originally discovered. It was done
+through this formula.
+
+\[\lim_{n \rightarrow \infty}\left( 1 + \frac{1}{n} \right)^{n}\]
+
+100\% interest? With \$1, one year later, you have \$1+\$1=\$2.
+
+Now, you want a different plan. What if you withdraw mid-year? Well,
+then I withdraw \$1.50. Keep it in the bank. \(\$ 1.50\). Half a year
+later -- I was supposed to receive 100\% interest per year. So you get
+\$1.5 + \$0.75. The total you now have is \$2.25. While previously you
+had \$2 when the arrangement you had with the bank has always been the
+same.
+
+Say compounding happens \(\frac{1}{4}\) years. Then precisely at the
+\(\frac{1}{4}\)\textsuperscript{th} point of the year, my money gets
+multiplied by \(1\):
+
+\begin{align*}
+&\$ 1 \\
+&\$ 1 + \$ 0.25 \\
+\$ 1.25 + \frac{1}{4}\$ 1.25 &= \$ 1.25 + \$ 0.3125 =
+\end{align*}
+
+
+\[\lim_{n \rightarrow \infty}\left( 1 + \frac{1}{n} \right)^{n}\]
+
+Must exist. So call it to be \(e\).
+
+Why is this significant? These numbers are computationally infeasible at
+high values.
+
+Say we have \(r\%\) interest. For example, \(r = 0.05\).
+
+Then \(\$ 1 + \$ 0.05 = 1 + \frac{r}{1}\)
+
+So, for continuous compounding, we would have:
+
+\[\lim_{n \rightarrow \infty}{\ \left( 1 + \frac{r}{n} \right)^{n}}\]
+
+If you want an initial deposit:
+
+\[P_{1} \approx \lim_{n \rightarrow \infty}{P_{0}\left( 1 + \frac{r}{n} \right)^{n}} = P_{0}e^{r}\]
+
+
+\section{Taylor series}
+
+To approximate the function \(f(x)\) with a polynomial.
+
+We choose the point \(a\) as the center of expansion. We require the
+polynomial to have the same derivatives as the function at \(a\). This
+infinite polynomial is called the \textbf{Taylor (power) series of}
+\(f(x)\)\textbf{.}
+
+\[f(x) \approx P(x) = \sum_{n = 0}^{\infty}{\frac{f^{(n)}(a)}{n!}(x - a)^{n}}\]
+
+Note that \(f'(a),\ f''(a),\ f^{(n)}(a)\) are constants. If
+\(a = 0\), take the derivative and plug in 0.
+
+\begin{align*}
+P(x) &= f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x - a)^{2} + \frac{f'''(a)}{3!}(x - a)^{3} + \cdots \\
+P'(x) &= f'(a) + f''(a)(x - a) + \frac{f'''(a)}{2!}(x - a)^{2} + \cdots \\
+P''(x) &= f''(a)(1) + \frac{f'''(a)(x - a)}{2!} + \cdots \\
+P'(a) &= f'(a) \\
+P''(a) &= f''(a)
+\end{align*}
+
+
+We defined the derivative of the Taylor polynomial at a point to be
+exactly the derivative of the original function\ldots{} at \(a\). The
+same applies for the second derivative, and so on. The \(n!\) is here to
+cancel out the powers that come out from \((x - a)^{n}\).
+
+For \(a = 0\), the most important Taylor Series to know are:
+
+\begin{align*}
+e^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{n!} \\
+\sin(x) &= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}x^{2n + 1}} \\
+\cos(x) &= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n)!}x^{2n}} \\
+\frac{1}{1 - x} &= \sum_{n = 0}^{\infty}x^{n} = 1 + x + x^{2} + x^{3} + \cdots,\ |x| < 1
+\end{align*}
+
+
+Usually, the approximation only holds in a symmetric interval centered
+at \(a\). This is called the interval of convergence. Half the length of
+the interval is called the radius of convergence.
+
+It turns out, that the approximation for \(e^{x},\sin(x)\) and
+\(\cos(x)\) works for every \(x\). Oftentimes, these functions are just
+defined like these.
+
+Since the formula holds for any \(x\) inside the interval of
+convergence, we can substitute \(x\) with any other quantity.
+
+\begin{align*}
+e^{x^{2}} &= \sum_{n = 0}^{\infty}\frac{\left( x^{2} \right)^{n}}{n!} = 1 + x^{2} + \frac{x^{4}}{2!} + \frac{x^{6}}{3!} \\
+\frac{1}{3 - x} &= \frac{1}{3} \cdot \frac{1}{1 - \frac{x}{3}} = \frac{1}{3}\sum_{n = 0}^{\infty}\left( \frac{x}{3} \right)^{n} = \frac{1}{3}\left( 1 + \frac{x}{3} + \left( \frac{x}{3} \right)^{2} + \left( \frac{x}{3} \right)^{3} + \cdots \right)
+\end{align*}
+
+
+
+\subsection{Derivatives and Integrals}
+
+\begin{align*}
+\int_{}^{}{\left( \sum a_{n} \right)\text{d}x} &= \sum_{}^{}{\int_{}^{}{a_{n}\text{d}x}} \\
+\frac{d}{\text{d}x}\sum a_{n} &= \sum_{}^{}{\frac{d}{\text{d}x}a_{n}}
+\end{align*}
+
+
+Example:
+
+\[\frac{1}{1 + x^{2}} = \frac{1}{1 - \left( - x^{2} \right)} = \sum_{n = 0}^{\infty}\left( - x^{2} \right)^{n} = \sum_{n = 0}^{\infty}{( - 1)^{n}x^{2n}}\]
+
+Take the integral of both sides:
+
+\begin{align*}
+\int_{}^{}{\frac{1}{1 + x^{2}}\text{d}x} &= \arctan(x) = C + \sum_{n = 0}^{\infty}{\int_{}^{}{( - 1)^{n}x^{2n}}},\ |x| < 1 \\
+\arctan(x) &= C + \sum_{n = 0}^{\infty}\frac{( - 1)^{n}x^{2n + 1}}{2n + 1} = \sum_{n = 0}^{\infty}\frac{( - 1)^{n}x^{2n + 1}}{2n + 1}
+\end{align*}
+
+
+This is the case where \(C\) is needed. To solve for \(C\), plug in
+\(x = 0,\ x^{2n + 1} = 0\), so \(\arctan(0) = 0 = C + \sum_{}^{}0 = 0\)
+
+Similarly:
+
+\begin{align*}
+\frac{1}{1 - x} &= \sum_{n = 0}^{\infty}x^{n} \\
+\int_{}^{}{\frac{1}{1 - x}\text{d}x} &= C + \sum_{n = 0}^{\infty}{\int x^{n}\text{d}x},\ |x| < 1 \\
+- \ln(1 - x) &= C + \sum_{n = 0}^{\infty}\frac{x^{n + 1}}{n + 1},\ |x| < 1 \\
+- \ln(1 - x) &= C + \sum_{k = 1}^{\infty}\frac{x^{k}}{k}\ \text{to\ get\ rid\ of}\ n + 1,\ k = n + 1s \\
+x &= 0,\  - \ln(1) = C + \sum_{n = 0}^{\infty}\frac{0^{n + 1}}{0 + 1} = 0,\ C = 0
+\end{align*}
+
+
+\[\ln(1 - x) = - \sum_{n = 0}^{\infty}\frac{x^{n}}{n} = - x - \frac{x^{2}}{2} - \frac{x^{3}}{3}\]
+
+
+\subsection{Radius of convergence}
+
+Involves \(n\) and \(x\) as a variable. Has an interval of convergence
+and radius of convergence. For example, find the radius of convergence
+for this in the power series:
+
+\[\sum_{n = 1}^{\infty}{n(x - 2)^{n}}\]
+
+Ratio test:
+
+\begin{align*}
+\lim_{n \rightarrow \infty}\left| \frac{a_{n + 1}}{a_{n}} \right| &= \lim_{n \rightarrow \infty}\left| \frac{(n + 1)(x - 2)^{n + 1}}{n(x - 2)^{n}} \right| = 1 \times |x - 2| \\
+|x - 2| &< 1 \Rightarrow 1 < x < 3
+\end{align*}
+
+
+Another example:
+
+\begin{align*}
+&\sum_{n = 2}^{\infty}\frac{x^{3n}}{2^{n}} \\
+\left| \frac{x^{3n + 3}}{2^{n + 1}} \cdot \frac{2^{n}}{x^{3n}} \right| &= \left| \frac{1}{2}x^{3} \right| < 1 \Rightarrow \left| x^{3} \right| < 2 \Rightarrow |x| < \sqrt[3]{2}
+\end{align*}
+
+
+Then 2 is the radius of convergence, and the interval of convergence is
+\(- \sqrt[3]{2} < x < \sqrt[3]{2}\)
+
+Isolate \(x\) when it is multiplied by a constant? Do it.
+
+\begin{align*}
+&\sum_{n = 3}^{\infty}{( - 1)^{n}(x - 3)^{2n}} \\
+\lim_{n \rightarrow \infty}\left| \frac{a_{n + 1}}{a_{n}} \right| &= \left| \frac{( - 1)^{(n + 1)}(x - 3)^{2n + 2}}{( - 1)^{n}(x - 3)^{2n}} \right| \\
+\left| (x - 3)^{2} \right| &< 1 \\
+|x - 3| < \sqrt{1} &= 1 \\
+2 &< x < 4
+\end{align*}
+
+
+
+\subsection{Taylor series of some
+functions:}
+
+\[\cos\left( x^{4} \right) = 1 - \frac{x^{8}}{2!} + \frac{x^{16}}{4!} + \cdots,\ x\mathbb{\in R}\]
+
+Note that \(\sin(x) = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!}\)
+
+\[\sin(2x) = 2x - \frac{(2x)^{3}}{3!} + \frac{(2x)^{5}}{5!}\ \]
+
+\[e^{- x} = 1 + ( - x) + \frac{( - x)^{2}}{2!} + \frac{( - x)^{3}}{3!} + \cdots = 1 - x + \frac{x^{2}}{2!} - \frac{x^{3}}{3!} + \cdots\]
+
+\begin{align*}
+e^{x} - e^{- x} &= 2x + \frac{2x^{3}}{3!} + \cdots \\
+\frac{e^{x} - e^{- x}}{2} &= x + \frac{x^{3}}{3!} + \frac{x^{5}}{5!} + \cdots = \sinh(x) \\
+e^{x} + e^{- x} &= 2 + 2\left( \frac{x^{2}}{2!} \right) + 2\left( \frac{x^{4}}{4!} \right) + \cdots \\
+\frac{e^{x} + e^{- x}}{2} &= 1 + \frac{x^{2}}{2!} + \frac{x^{4}}{4!} = \cosh(x)
+\end{align*}
+
+
+
+\subsubsection{Euler's formula}
+
+\begin{align*}
+e^{ix} &= 1 + ix + \frac{\left( ix \right)^{2}}{2!} + \frac{\left( ix \right)^{3}}{3!} + \cdots \\
+&= 1 + ix - \frac{x^{2}}{2!} - \frac{ix^{3}}{3!} + \cdots
+\end{align*}
+
+
+Note that
+
+\[i \cdot \sin(x) = ix - \frac{ix^{3}}{3!} + \frac{ix^{5}}{5!} - \cdots\]
+
+So:
+
+\[\cos(x) + i \cdot \sin(x) = 1 + ix + \frac{\left( ix \right)^{2}}{2!} + \frac{\left( ix \right)^{3}}{3!} + \cdots\]
+
+Note:
+
+\begin{align*}
+\frac{\left( e^{ix} + e^{- ix} \right)}{2} &= \cos(x) \\
+\frac{e^{ix} - e^{- ix}}{2i} &= \sin(x)
+\end{align*}
+
+
+
+\subsection{Taylor series expansion}
+
+Find the Taylor series centered at \(a = 0\):
+
+\[\frac{1}{x^{2} - 3x + 2}\]
+
+We'll have to do partial fractions. If the quadratic is irreducible,
+then you can complete the square (don't try otherwise).
+\(1 + x^{2} = 0\) is the quintessential irreducible quadratic, where its
+roots are \(\pm i\).
+
+\begin{align*}
+\frac{1}{x^{2} - 3x + 2} &= \frac{1}{(x - 1)(x - 2)} = \frac{A}{x - 1} + \frac{B}{x - 2} \\
+&= \frac{A}{x - 1} \cdot \frac{x - 2}{x - 2} + \frac{B}{x - 2} \cdot \frac{x - 1}{x - 1} \\
+0x + 1 &= (A + B)x + ( - 2A - B) \\
+A + B &= 0,\  - 2A - B = 1 \\
+A &= - B \\
+&\vdots  \\
+B &= 1,\ A = - 1 \\
+&- \frac{1}{x - 1} + \frac{1}{x - 2} \\
+&= \frac{1}{1 - x} - \frac{1}{2 - x} = \frac{1}{1 - x} - \frac{1}{2} \cdot \frac{1}{1 - \frac{x}{2}} \\
+&= \sum_{n = 0}^{\infty}x^{n} - \frac{1}{2}\sum_{n = 0}^{\infty}\left( \frac{x}{2} \right)^{n}\ \text{given}\ |x| < 1\ \text{and\ }\left| \frac{x}{2} \right| < 1 \Rightarrow |x| < 1
+\end{align*}
+
+
+The series will be the following above as long as the above conditions
+are met. If \(x\) is multiplied by anything in \(\frac{1}{1 - x}\), then
+\(x\) is swapped with what \(x\) is multiplied by.
+
+\[\frac{\sin(x)}{x}\]
+
+We know:
+
+\begin{align*}
+\sin(x) &= x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \cdots \\
+\frac{\sin(x)}{x} &= 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{5!} - \cdots
+\end{align*}
+
+
+Now, for
+\(\ln(1 - x) = - \sum_{n = 1}^{\infty}\frac{x^{n}}{n},\ |x| < 1\)
+
+So what is \(\ln(1 + x)\)
+
+\[\sum_{n = 1}^{\infty}\frac{( - 1)^{n + 1}x^{n}}{n}\]
+
+So what about:
+
+\[f(x) = \int_{0}^{x}{\ e^{- t^{2}}\text{d}t}\]
+
+So \(f'(x) = e^{- x^{2}}\). If we look for the Taylor series for
+\(e^{- x^{2}}\) and integrate it, we will get back \(f\).
+
+\begin{align*}
+e^{- x^{2}} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{n!} \\
+&\int_{0}^{x}{\ e^{t^{2}}\text{d}t}  \\
+&= \int_{0}^{x}{\sum_{n = 0}^{\infty}\frac{t^{n}}{n!}}\text{d}t = f(x)  \\
+&= C + \sum_{n = 0}^{\infty}{\int_{0}^{x}{\frac{( - 1)^{n}t^{2n}}{n!}\text{d}t}} \\
+&= C + \sum_{n = 0}^{\infty}\frac{( - 1)^{n}x^{2n + 1}}{(n!)(2n + 1)}
+\end{align*}
+
+
+To find \(C\), plug in \(x = 0\).
+
+\begin{align*}
+f(0) &= 0 = C + \sum_{n = 0}^{\infty}\frac{( - 1)^{n}0^{2n + 1}}{(n!)(2n + 1)} \\
+&= C + \sum_{n = 0}^{\infty}\frac{0}{(n!)(2n + 1)} = C \Rightarrow C = 0
+\end{align*}
+
+
+As the integral from 0 to 0 is 0, always
+
+Meaning
+
+\[\int_{0}^{x}e^{{- t}^{2}} = \sum_{n = 0}^{\infty}\frac{( - 1)^{n}x^{2n + 1}}{(n!)(2n + 1)}\]
+
+
+\subsection{Convergence or divergence on the boundary of the
+interval}
+
+\textbf{The series may converge or diverge on the boundary of the
+interval of convergence.} How would we determine if the series converges
+or diverges on the boundary?
+
+\textbf{Test for convergence individually on the boundaries, from the
+series itself. Do not use ratio tests.}
+
+The moment when the ratio test fails, other steps will have to be taken.
+Working with a sum involving factorial, \(p\)-series will not work.
+
+To check whether it converges or diverges is very complicated. For
+example:
+
+\[\sum_{n = 3}^{\infty}{( - 1)^{n}(x - 3)^{2n}}\]
+
+Ratio test:
+
+\begin{align*}
+\lim_{n \rightarrow \infty}\left| \frac{a_{n + 1}}{a_{n}} \right| &= \lim_{n \rightarrow \infty}\left| \frac{( - 1)^{n + 1}(x - 3)^{2n + 2}}{( - 1)^{n}(x - 3)^{2n}} \right| \\
+&= (x - 3)^{2} < 1 \Rightarrow |x - 3| < 1 \Rightarrow 2 < x < 4
+\end{align*}
+
+
+What will always happen, is for \(x\) values in the boundary of the
+interval, the series may converge or diverge. That is, when \(x = 2\) or
+\(x = 4\). To check for this, we would need to do something else.
+Considering \(x = 4\), the ratio will exactly be 1, which may not be
+possible to run the ratio test with. First check \(x = 4\). Our series
+is of the form:
+
+\[\sum_{n = 3}^{\infty}{( - 1)^{n}(4 - 3)^{2n}} = \sum_{n = 3}^{\infty}{( - 1)^{n}(1)^{2n}}\ \text{diverges}\]
+
+If we keep going to infinity, our total is not going closer to a
+particular number. The more we add, the closer and closer we get to 2.
+As we continue to add 1 and subtract 1, we are not getting closer to any
+number. We are bounding between 0 and 1. This is why it counts as
+divergent.
+
+We may plug in \(x = 2\):
+
+\[\sum_{n = 3}^{\infty}{( - 1)^{n}( - 1)^{2n}} = \sum_{n = 3}^{\infty}( - 1)^{n}\ \text{diverges}\]
+
+This means that \((2,\ 4)\) is the interval of convergence.
+
+For this course, boundaries should be inspected, but it may not be done
+for future courses.
+
+Another one:
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}{n(x - 2)^{n}} \\
+\lim_{n \rightarrow \infty}\left| \frac{(n + 1)(x - 2)^{n + 1}}{n(x - 2)^{n}} \right| &= |x - 2| < 1 \\
+\Rightarrow |x - 2| &< 1
+\end{align*}
+
+
+Do some tests:
+
+\begin{align*}
+x &= 1 \\
+\sum_{n = 1}^{\infty}{n( - 1)^{n}},\lim_{n \rightarrow \infty}n &\neq 0 \Rightarrow \text{diverges}
+\end{align*}
+
+
+\[x = 3 \Rightarrow \sum_{n = 1}^{\infty}n \Rightarrow \text{diverges}\]
+
+Let's change the question up:
+
+\[\sum_{n = 1}^{\infty}{\frac{1}{n}(x - 2)^{n}\ }\]
+
+What would change? Not much.
+
+\begin{align*}
+\lim_{n \rightarrow \infty}\left| \frac{(x - 2)^{n + 1}n}{(n + 1)(x - 2)^{n}} \right| &= |x - 2| < 1 \\
+1 &< x < 3
+\end{align*}
+
+
+Check \(x = 3\)
+
+\[\sum_{n = 1}^{\infty}{\frac{1}{n}(1)^{n}\ } \Rightarrow \text{diverges}\]
+
+Check \(x = 1\)
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}\left| \frac{1}{n}( - 1)^{n} \right| = \sum_{n = 1}^{\infty}\frac{1}{n} \Rightarrow \text{div.} \\
+&\sum_{n = 1}^{\infty}{\frac{1}{n}( - 1)^{n}} \Rightarrow \text{cond.}\ \text{conv.\ }
+\end{align*}
+
+
+The interval of convergence is \(\lbrack 1,\ 3)\)
+
+The same question, but:
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}{\frac{1}{n^{2}}(x - 2)^{n}} \\
+&\lim_{n \rightarrow \infty}\left| \frac{1}{(n + 1)^{2}}(x - 2)^{n + 1} \cdot \frac{n^{2}}{(x - 2)^{n}} \right| \\
+\lim_{n \rightarrow \infty}|x - 2| &= |x - 2| < 1 \\
+1 &< x < 3
+\end{align*}
+
+
+Testing boundaries:
+
+\begin{align*}
+x &= 3 \\
+&\sum_{n = 1}^{\infty}{\frac{1}{n^{2}}(3 - 2)^{n}} \Rightarrow \text{conv} \\
+&\sum_{n = 1}^{\infty}{\frac{1}{n^{2}}( - 1)^{n}}
+\end{align*}
+
+
+\[\sum_{n = 1}^{\infty}\frac{1}{n^{2}} \Rightarrow \text{conv}\]
+
+If a series is absolutely convergent, it is convergent. The interval of
+convergence is \(\lbrack 1,\ 3\rbrack\).
+
+Anything out of the interval of convergence, the sum doesn't exist, so
+there's no approximation going on.
+
+
+\subsection{Interval of convergence for the geometric
+series}
+
+If we try to plot \(\frac{1}{1 - x}\), we have a function that looks
+like
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.45607in,height=1.10493in]{latex_images_Sequences_20/media/image4.png}
+\end{figure}
+
+
+We can only approximate the function up to \(|x| < 1\). The function
+approaching infinity gives us the radius of convergence. In the real
+plane and the complex plane, anything inside the circle formed by the
+radius of convergence will converge.
+
+
+\section{Taylor series at a given
+value}
+
+To find the Taylor series of the functions centered at the given value
+of \(a\), you'll need \(x - a\).
+
+\begin{align*}
+e^{x} &= e^{(x - a) + a} = e^{x - a} \cdot e^{a} \\
+\Rightarrow e^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{n!} = \sum_{n = 1}^{\infty}{\frac{(x - a)^{n}}{n!} \cdot e^{a}} \\
+&= \sum_{n = 0}^{\infty}{\frac{e^{a}}{n!}(x - a)^{n}}
+ \\
+\frac{1}{1 - x} &= \frac{1}{1 - \left( (x - 3) + 3 \right)} = \frac{1}{- 2} \cdot \frac{1}{1 - \frac{x - 3}{- 2}} \\
+&= - \frac{1}{2}\sum_{n = 0}^{\infty}\left( \frac{x - 3}{- 2} \right)^{n}
+\end{align*}
+
+
+Also: \(\left| \frac{x - 3}{- 2} \right| < 1 \Rightarrow |x - 3| < 2\)
+
+Note that \(x\) will work for every interval as exponentials'
+intervals\ldots{}
+
+
+\subsection{To deal with a constant}
+
+\[f(x) = f\left( (x - a) + a \right)\]
+
+Example with \(\sin(x)\) at \(a = \frac{\pi}{4}\). The sum of angles
+formula must be used:
+
+\begin{align*}
+\sin(x) &= \sin\left( \left( x - \frac{\pi}{4} \right) + \frac{\pi}{4} \right) \\
+&= \sin\left( x - \frac{\pi}{4} \right)\cos\left( \frac{\pi}{4} \right) + \cos\left( x - \frac{\pi}{4} \right)\sin\left( \frac{\pi}{4} \right) \\
+&= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}\left( x - \frac{\pi}{4} \right)^{2n + 1} \cdot \frac{1}{\sqrt{2}}} + \sum_{n = 0}^{\infty}{\frac{- 1}{(2n)!}\left( x - \frac{\pi}{4} \right)^{2n}} \cdot \frac{1}{\sqrt{2}}
+\end{align*}
+
+
+
+\subsection{Exact value of some
+series}
+
+What does \(\sum_{n = 1}^{\infty}\frac{1}{n^{2}}\) converge to?
+\(\frac{\pi^{2}}{6}\). We'll never get this result.
+
+The geometric series formula is:
+
+\[\frac{1}{1 - x} = \sum_{n = 0}^{\infty}x^{n}\]
+
+Which happens to be the Taylor series. If you encounter a series in the
+form
+
+\[\sum_{n = 1}^{\infty}{nx^{n}}\]
+
+Work backwards.
+
+\[\frac{1}{1 - x} = \sum_{n = 0}^{\infty}x^{n}\]
+
+Take the derivative of both sides:
+
+\[- \frac{1}{(1 - x)^{2}} \cdot ( - 1) = \sum_{n = 1}^{\infty}{nx^{n - 1}}\]
+
+Keep in mind:
+\(\frac{d}{\text{d}x}\sum_{n = 0}^{\infty}x^{n} = \frac{d}{\text{d}x}\left( 1 + x + x^{2} + x^{3} \right) = 1 + 2x + 3x^{2} + 4x^{3} + \cdots = \sum_{n = 1}^{\infty}{nx^{n - 1}}\)
+meaning we can get rid of the starting term. That is when the former
+starting term ends up as 0 after the derivative is taken.
+
+Multiply \(x\) on both sides:
+
+\begin{align*}
+\frac{x}{(1 - x)^{2}} &= x\sum_{n = 1}^{\infty}{nx^{n - 1}} \\
+\frac{x}{(1 - x)^{2}} &= \sum_{n = 1}^{\infty}{nx^{n}}
+\end{align*}
+
+
+There we go.
+
+Another one:
+
+\[\sum_{n = 0}^{\infty}\frac{x^{n + 1}}{n!}\]
+
+\begin{align*}
+e^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{n!} \\
+xe^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n + 1}}{n!!}
+\end{align*}
+
+
+Another one:
+
+\begin{align*}
+&\sum_{n = 0}^{\infty}\frac{x^{n}}{(n + 2)n!} \\
+e^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{n!} \\
+xe^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n + 1}}{n!}
+\end{align*}
+
+
+Take the derivative of both sides with respect to \(x\):
+
+\[e^{x} + xe^{x} = \sum_{n = 0}^{\infty}\frac{(n + 1)x^{n}}{n!}\]
+
+Another example to get \(n + \text{something}\) on the denominator:
+
+\[\sum_{n = 0}^{\infty}\frac{x^{n}}{(n + 2)n!}\]
+
+\begin{align*}
+e^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{n!} \\
+xe^{x} &= \sum_{n = 0}^{\infty}\frac{x^{n + 1}}{n!}
+\end{align*}
+
+
+\[xe^{x} - e^{x} = C + \sum_{n = 0}^{\infty}\frac{x^{n + 2}}{(n + 2)n!}\]
+
+When you integrate both sides, add the constant of integration. Most of
+the time, it is 0, but best to check it every time by setting \(x\) to
+0.
+
+\(x = 0\):
+
+\begin{align*}
+0e^{0} - e^{0} &= C + \sum_{n = 0}^{\infty}{\frac{1}{n + 2} \cdot \frac{0^{n + 2}}{n!}} = C + 1 + 0 \\
+- 1 &= C
+\end{align*}
+
+
+Be a bit careful when you think sums evaluate to zero -- there may be
+causes where something might be raised to the power of zero. You may
+need to expand sums first.
+
+Some things:
+
+\begin{align*}
+xe^{x} - e^{x} + 1 &= \sum_{n = 0}^{\infty}\frac{x^{n + 2}}{(n + 2)n!} \\
+\frac{xe^{x} - e^{x} + 1}{x^{2}} &= \sum_{n = 0}^{\infty}\frac{x^{n}}{(n + 2)n!}
+\end{align*}
+
+
+Hardest example:
+
+\begin{align*}
+\sin(x) &= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}x^{2n + 1}} \\
+x\sin(x) &= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}x^{2n + 2}} \\
+\sin(x) + x\cos(x) &= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}(2n + 2)x^{2n + 1}}
+\end{align*}
+
+
+
+\subsection{Finding limits using Taylor
+series}
+
+\begin{align*}
+&\lim_{x \rightarrow 0}\frac{6\sin(x) - 6x + x^{3}}{x^{5}} \\
+&= \lim_{x \rightarrow 0}\frac{6\left( x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!}\cdots \right) - 6x + x^{3}}{x^{5}} \\
+&= \lim_{x \rightarrow 0}\frac{6\left( \frac{x^{5}}{5!} - \frac{x^{7}}{7!}\cdots \right)}{x^{5}} \\
+&= \lim_{x \rightarrow 0}{\frac{6}{5!} - \frac{6x^{2}}{7!} + \frac{6x^{4}}{9!} - \cdots} \\
+&= \frac{6}{5!} = \frac{1}{20}
+\end{align*}
+
+
+Because \(x = 0\), all terms that are multiplied by \(x\) cancel out.
+
+Another:
+
+\begin{align*}
+&\lim_{x \rightarrow 0}\frac{e^{x^{2}} - \cos(2x) - 3x^{2}}{x^{2}\sin\left( x^{2} \right)} \\
+&= \lim_{x \rightarrow 0}\frac{\left( 1 + x^{2} + \frac{x^{4}}{2} + \frac{x^{6}}{3!} + \cdots \right) - \left( 1 - \frac{(2x)^{2}}{2!} + \frac{(2x)^{4}}{4!} - \cdots \right) - 3x^{2}}{x^{2}\left( x^{2} - \frac{x^{6}}{3!} + \frac{x^{10}}{5!} - \cdots \right)}
+\end{align*}
+
+
+
+\section{Telescoping series}
+
+A \textbf{telescoping series} is when adjacent positive and negative
+terms cancel so the \(N\)th partial sum: \(\sum_{n = 1}^{N}a_{n}\) would
+only consist of the first and the last term, and we can compute the
+series by taking the limit \(N \rightarrow \infty\).
+
+\[\sum_{n = 1}^{\infty}a_{n} = \lim_{N \rightarrow \infty}{\sum_{n = 1}^{N}a_{n}}\]
+
+Example:
+
+\begin{align*}
+&\sum_{n = 1}^{\infty}{\arctan(n) - \arctan(n + 1)} = \lim_{N \rightarrow \infty}{\sum_{n = 1}^{N}{\arctan(n) - \arctan(n + 1)}} \\
+&= \arctan(0) - \arctan(1) + \arctan(1) - \arctan(2) + \arctan(2) - \arctan(3) + \cdots + \arctan(N) - \arctan(N + 1)
+\end{align*}
+
+
+Because we're adding one positive and one negative, the adjacent terms
+cancel out. We're left out with the first and last term:
+
+\begin{align*}
+&= \arctan(0) - \arctan(N + 1) \\
+&= - \frac{\pi}{2}
+\end{align*}
+
+
+
+\section{Power series}
+
+\[g(x) = \sum_{n = 0}^{\infty}{a_{n}(x - a)^{n}}\]
+
+is called a power series.
+
+For any power series \(g(x)\), there exists a unique radius of
+convergence \(R \geq 0\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The power series \(g(x)\) converges absolutely for \(|x - a| < R\) (in
+  the circle).
+\item
+  The power series \(g(x)\) diverges for \(|x - a| > R\) (outside the
+  circle).
+\item
+  You must check whether the series diverges or converges on the
+  boundaries.
+\end{enumerate}
+
+If \(R > 0\), then the power series \(g(x)\), as a function of \(x\), is
+analytic in \(|x - a| < R\) and \(g'(x)\) is given by term-by-term
+differentiation:
+
+\[g'(x) = \sum_{n = 1}^{\infty}{na_{n}(x - a)^{n - 1}}\]
+
+Within the same radius of convergence \(R\).
+
+
+\subsection{Solving for the radius of
+convergence}
+
+\[R = \frac{1}{\lim_{n \rightarrow \infty}\left| \frac{a_{n + 1}}{a_{n}} \right|}\]
+
+
+\subsection{Taylor polynomial}
+
+Why is the series equal to the function? If we only take finitely many
+terms of the Taylor Series, we get a polynomial called the Nth order
+polynomial. The Taylor polynomial will not be equal to \(f(x)\), but it
+will be an approximation. The difference between the Taylor Polynomial
+and \(f(x)\) which is called the remainder \(R_{N}(x)\).
+
+\begin{align*}
+P_{N}(x) &= \sum_{n = 0}^{N}{\frac{f^{(n)}(a)}{n!}(x - a)^{n}} \\
+f(x) &= \sum_{n = n}^{N}{\frac{f^{(n)}(a)}{n!}(x - a)^{n}} + R_{N}(x) \\
+R_{N}(x) &= \frac{f^{(N + 1)}(c)}{(N + 1)!}(x - a)^{N + 1}
+\end{align*}
+
+
+Why does adding up a lot of terms give you a precise quantity? Because
+adding more terms give you a more precise approximation. Because \(n!\)
+grows extremely quickly, as long as your \(N + 1\)th derivative doesn't
+get too big, it will grow slower than \((N + 1)!\) -- since \((N + 1)!\)
+is extremely large, all other values:
+\(f^{(N + 1)}(c) \cdot (x - a)^{N + 1}\) will be small.
+
+
+\subsection{First order Taylor
+polynomial}
+
+The first-order Taylor polynomial is the tangent line at \(a\).
+
+\[P_{1}(x) = f(a) + f'(a)(x - a)\]
+
+Why is this first-order Taylor polynomial giving the best approximation?
+Why couldn't we give the line a different slope?
+
+The definition of the derivative,
+\(f'(a) = \lim_{x \rightarrow a}\frac{f(a) - f(a)}{x - a}\) gives:
+
+\begin{align*}
+\lim_{x \rightarrow a}\frac{f(x) - P_{1}(x)}{x - a} &= \lim_{x \rightarrow a}\frac{f(x) - f(a) - f'(a)(x - a)}{x - a} \\
+&= f'(a) - f'(a) = 0
+\end{align*}
+
+
+\textbf{This is why the tangent line is good at making approximations.}
+
+Let's say I want to use the second-order Taylor approximation. Why is
+the second order Taylor approximation more special than any other
+quadratic? We can see that the error we're making is tending towards 0?
+
+\[\lim_{x \rightarrow a}\frac{f(x) - P_{2}(x)}{(x - a)^{2}} = 0\]
+
+The tangent line is a good approximation of \(y = f(x)\) near
+\(\left( a,\ f(a) \right)\):
+
+\[y - f(a) = f'(a)(x - a)\]
+
+As \(N\) increases, the speed for which \((x - a)^{N}\) is going to zero
+increases. In general, the Nth order Taylor Polynomial would have its
+error go to zero \textbf{faster than N powers} \((x - a):\)
+
+\[\lim_{x \rightarrow a}\frac{f(x) - P_{N}(x)}{(x - a)^{N}} = 0\]
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1in,height=0.8642in]{latex_images_Sequences_20/media/image5.png}
+\end{figure}
+
+\end{document}

@@ -1,11 +1,11 @@
 # UofT-Notes
-All the notes I've decided to release to the public. All of the notes were taken during lecture.
+All the notes I've decided to release to the public. All of the notes were taken during lecture, meaning they are not formatted
+to look like a professional textbook.
 
 ## Important stuff
 This is a collection of notes I've made; however, only the notes I've decided to make public will show up here. The way
-I take notes can change with time, so how they are presented may be very inconsistent.
-
-Not all files have their source attached to them.
+I take notes can change with time, so how they are presented may be very inconsistent. Not all files have their source attached to them.
 
 ## A note on compiling tex files
-All files are compiled with xelatex. Do NOT use pdflatex, as it won't compile.
+All files are compiled with xelatex. Using pdfLaTeX may result in problems.
+I have commented out the font commands as you may not have them installed.

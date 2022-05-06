@@ -1,0 +1,3751 @@
+\documentclass[12pt]{article}  
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{booktabs}
+\usepackage{array}
+
+\usepackage{hyperref}
+\providecommand{\href}[1]{\url{#1}}
+\usepackage{iftex}
+\usepackage[utf8]{inputenc}  
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\usepackage[normalem]{ulem}
+\usepackage[
+]{geometry}
+
+\usepackage{amsthm}
+\usepackage{float}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{claim}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]  
+\newtheorem{condition}{Condition}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}{Example}[section]
+
+\renewcommand\qedsymbol{$\blacksquare$}  
+
+\usepackage{mathtools}
+\usepackage{listings}
+
+\usepackage{framed}
+
+\ProvidesPackage{iftex}
+
+\ifxetex
+
+\usepackage{unicode-math}
+% \setmainfont{STIX Two Text}
+% \setmathfont{STIX Two Math}
+% \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{STIX Two Math}
+
+% \setmonofont{JetBrains Mono}
+
+\fi
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} 
+
+\usepackage{csquotes}
+\title{Linear Algebra}
+\author{https://github.com/icprplshelp/}
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Linear transformations}
+
+A function \(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a linear
+transformation if
+\(\forall\mathbf{v},\ \mathbf{u} \in \mathbb{R}^{n}\) and
+\(\forall r\mathbb{\in R}\) and has the following properties:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  \(T\left( \mathbf{u} + \mathbf{v} \right) = T\left( \mathbf{u} \right) + T(\mathbf{v})\)
+\item
+  \(T\left( r\mathbf{v} \right) = rT(\mathbf{v})\)
+\end{enumerate}
+
+Example: \(f(x) = kx\) is a linear function
+\(\mathbb{R}^{1} \rightarrow \mathbb{R}^{1}\). The following properties
+hold:
+
+\begin{align*}
+f\left( x_{1} + x_{2} \right) &= k\left( x_{1} + x_{2} \right) = f\left( x_{1} \right) + f\left( x_{2} \right) \\
+f\left( rx_{1} \right) &= k\left( rx_{1} \right) = rkx_{1} = rf(x_{1})
+\end{align*}
+
+
+Second example: \(f(x) = x^{2}\) is not a linear function
+\(\mathbb{R}^{1} \rightarrow \mathbb{R}^{1}\) a.k.a.
+
+\[f(2x) \neq 2f(x)
+\]
+
+RHS: \(2f(x) \Rightarrow \text{LHS} \neq \text{RHS}\)
+
+\begin{remark}
+To show that a function is linear, you can combine (i)
+and (ii) together.
+
+\[{(i) + \left( ii \right) = f\left( \mathbf{u} + r\mathbf{v} \right) }{= f\left( \mathbf{u} \right) + rf\left( \mathbf{v} \right)\ \forall\mathbf{u},\ \mathbf{v} }{\in \mathbb{R}^{n},\ \forall r\mathbb{\in R}} \]
+\end{remark}
+
+\textbf{Capital letters may be used to denote a linear function. Don't
+confuse them and matrices!}
+
+
+\subsection{What are functions?}
+
+\textbf{A function \emph{compacts} complex statements. For example:}
+
+Let \(h(x) = 4x^{2} + 6x\)
+
+Then we can write \(4 + h(x)\) as \(4 + 4x^{2} + 6x\), and anytime we
+see \(4x^{2} + 6x\) appear in a statement, we can convert it back to
+\(h(x)\). Note that \(h(x)\) doesn't have to be represented in function
+notation; if we let \(y = h(x)\), then we could write \(4 + h(x)\) as
+\(4 + y\). Knowing this is essential to prevent misunderstandings. That
+being said, if we define \(g(x) = 1\) then whenever \(g(x)\) appears
+anywhere in a statement we can replace it with \(1\) (isn't that just a
+constant?).
+
+
+\subsection{What are sets?}
+
+Sets are an unordered collection of anything. For example,
+\(\{ 1,\ 2,\ 3,\ 4\}\) is a set. We can also have a set of real numbers,
+or a set of even numbers, which would be denoted as
+\(\left\{ x\mathbb{\in Z}\mid x\% 2 = 0 \right\}\). That's set builder
+notation, and here's how it works: \{our set \textbar{} if it meets what
+we write here\}. Knowing this will help mitigate confusion further on.
+
+
+\subsection{Matrices as a form of a linear
+function}
+
+If these properties hold, then \(f(\mathbf{x})\) is linear. \(A\) is
+a matrix. Remember that \(A\mathbf{x}\) returns a vector.
+
+\begin{align*}
+f\left( \mathbf{x} \right) &= A\mathbf{x} = \mathbf{y} \Rightarrow f:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m} \\
+A\left( \mathbf{x} + \mathbf{y} \right) &= A\mathbf{x} + A\mathbf{y} \\
+A\left( r\mathbf{x} \right) &= rA\mathbf{x},\ r\mathbb{\in R} \\
+&\Rightarrow f\left( \mathbf{x} \right)\text{\ is\ linear}
+\end{align*}
+
+
+
+\subsection{Domain, Codomain, Image, and
+Kernel}
+
+A linear transformation's domain, codomain, image, and kernel are sets,
+and thus can be described in the set builder notation.
+
+\textbf{Definition:} If \(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\)
+is a linear transformation then\ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\mathbb{R}^{n}\) is the domain of \(T\). (The set of inputs)
+\item
+  \(\mathbb{R}^{m}\) is the codomain of \(T\). (The set of possible
+  outputs)
+\item
+  Let \(w \subseteq \mathbb{R}^{n}\), then the image of \(w\) under
+  \(T\) is
+  \(T(w) = \left\{ T\left( \mathbf{w} \right) \middle| \mathbf{w} \in W \right\}\)
+\end{enumerate}
+
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(T(w)\) is a collection of all possible outputs corresponding to the
+  inputs of \(w\). \(T(w)\) is the image.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  The range of \(T\) is
+  \(T\left( \mathbb{R}^{n} \right) = \left\{ T\left( \mathbf{v} \right) \middle| \mathbf{v} \in \mathbb{R}^{n} \right\}\)
+  (i.e., Range of \(T\) is the image of the domain.)
+\item
+  Let \(w' \subseteq \mathbb{R}^{m}\). The inverse image of \(w'\)
+  under \(T\) is
+  \(T^{- 1}\left( w' \right) = \left\{ \mathbf{v} \in \mathbb{R}^{n} \middle| T\left( \mathbf{v} \right) \in w' \right\}\)
+  (is this the domain?)
+\item
+  Let \(\mathbf{0}\) be the zero vector in \(\mathbb{R}^{m}\).
+\end{enumerate}
+
+\(T^{- 1}\left( \mathbf{0} \right) = \left\{ \mathbf{v} \in \mathbb{R}^{n} \middle| T\left( \mathbf{v} \right) = \mathbf{0} \in \mathbb{R}^{m} \right\}\)
+is called the kernel of \(T\). \textbf{(The \emph{kernel} of a linear
+transformation \emph{T} is the set of inputs that \emph{T} sends to the
+zero vector.)}
+
+
+\subsection{An example of a linear
+transformation}
+
+\textbf{Example:} Let \(T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}\).
+\(T\left( \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \right) = \lbrack x_{1} - x_{2},\ x_{2} + x_{3}\rbrack\).
+
+This is one way for us to define a function and is a definition of a
+function.
+
+\textbf{Here's a series of questions:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{DETERMINING WHETHER \emph{T} IS LINEAR}
+\end{enumerate}
+
+Is \(T\) a linear map/function/transformation? \textbf{Answer: Yes.
+Why?}
+
+\(T\left( \mathbf{u} + r\mathbf{v} \right) = T\left( \mathbf{u} \right) + rT\left( \mathbf{v} \right)\ \forall\mathbf{u},\mathbf{v},\ \ r\mathbb{\in R}\).
+
+If we verify if LHS of the above equation is always equal to RHS,
+\textbf{then} \(T\) is a linear function. Our objective is to start with
+\(T(\mathbf{u} + r\mathbf{v})\) and perform some operations to
+get us to
+
+\[T\left( \mathbf{u} \right) + rT(\mathbf{v})
+\]
+
+\[r\mathbb{\in R}\]
+
+\emph{Rationale:} \(\mathbf{u}\) \emph{and} \(\mathbf{v}\)
+\emph{are inputs to} \(T\) \emph{and must be} \(\mathbb{R}^{3}\)\emph{.}
+
+LHS:
+
+\begin{align*}
+T\left( \mathbf{u} + r\mathbf{v} \right) &= T\left( \left\lbrack u_{1},\ u_{2},\ u_{3} \right\rbrack + r\left\lbrack v_{1},\ v_{2},\ v_{3} \right\rbrack \right) \\
+&= T\left( \left\lbrack u_{1} + rv_{1},\ u_{2} + rv_{2},\ u_{3} + rv_{3} \right\rbrack \right)
+\end{align*}
+
+
+Running the function, we get this. We can do some algebraic manipulation
+to get what we have as close to the RHS,
+
+\begin{align*}
+&= \left\lbrack u_{1} + rv_{1} - u_{3} - rv_{3},\ u_{2} + rv_{2} + u_{3} + rv_{3} \right\rbrack \\
+&= \left\lbrack u_{1} - u_{3} + r\left( v_{1} - v_{3} \right),\ u_{2} + u_{3} + r\left( v_{2} + v_{3} \right) \right\rbrack \\
+&= \left\lbrack u_{1} - u_{3},\ u_{2} + u_{3} \right\rbrack + \lbrack r\left( v_{1} - v_{3} \right),\ r\left( v_{2} + v_{3} \right)\rbrack \\
+&= \left\lbrack u_{1} - u_{3},\ u_{2} + u_{3} \right\rbrack + r\lbrack v_{1} - v_{3},\ v_{2} + v_{3}\rbrack
+\end{align*}
+
+
+Recall:
+
+\begin{align*}
+T\left( x_{1},x_{2},\ x_{3} \right) &= \left( x_{1} - x_{3},\ x_{2} + x_{3} \right) \\
+&= T\left( \left\lbrack u_{1},\ u_{2},\ u_{3} \right\rbrack \right) + rT\left( \left\lbrack v_{1},\ v_{2},\ v_{3} \right\rbrack \right)
+\end{align*}
+
+
+\[T\left( \mathbf{u} \right) + rT\left( \mathbf{v} \right) = RHS\]
+
+Therefore \(LHS = RHS \Rightarrow T\) is a linear transformation.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{FINDING THE IMAGE OF A FUNCTION WITH AN INPUT DOMAIN}
+\end{enumerate}
+
+Let
+\(H = \left\{ \lbrack x,\ x,\ x\rbrack \in \mathbb{R}^{3} \right\} \subseteq \mathbb{R}^{3}\).
+Find the \textbf{image} of \(H\) under \(T\).
+
+\textbf{Recall:} We let \(T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}\).
+\(T\left( \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \right) = \lbrack x_{1} - x_{2},\ x_{2} + x_{3}\rbrack\).
+
+\textbf{Objective:} Want to find the image of \emph{H} under \emph{T} in
+the most explicit way as possible.
+
+\[T(H) = \left\{ \mathbf{y} \in \mathbb{R}^{2} \right|\mathbf{y} = T\left( \mathbf{u} \right),\ \mathbf{u} \in H\}\]
+
+The above notation says \(\mathbf{y}\) is in \(\mathbb{R}^{2}\)
+(because \(T(H)\) is in \(\mathbb{R}^{2}\)), but only if
+\(\mathbf{y}\) is an output of \(T(\mathbf{u})\) where
+\(\mathbf{u}\) is in \(H\), a set of \(\mathbb{R}^{3}\) vectors
+where all its entries are identical. We \emph{could} stop at this step,
+but why not expand this further?
+
+\begin{align*}
+&= \left\{ \mathbf{y} \in \mathbb{R}^{2} \middle| \mathbf{y} = T\left( \lbrack u,\ u,\ u\rbrack \right),\ \mathbf{u} = \lbrack u,\ u,\ u\rbrack \in H \right\} \\
+&= \{\mathbf{y} \in \mathbb{R}^{2}|\mathbf{y} = \lbrack 0,\ u + u\rbrack = \lbrack 0,\ 2u\rbrack,\ u\mathbb{\in R\}}
+\end{align*}
+
+
+Conclude that
+\(\left\{ \mathbf{y} \in \mathbb{R}^{2} \middle| \mathbf{y} = \lbrack 0,\ 2u\rbrack,\ u\mathbb{\in R} \right\}\)
+
+This is the image of \(H\) under \(T\). This is an explicit
+representation of an image without \(T(\mathbf{u})\) appearing
+anywhere within the set builder.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \textbf{DEDUCING INVERSE IMAGES WITH AN IMAGE}
+\end{enumerate}
+
+\textbf{Question:} Let
+\(u = \left\{ \lbrack 1,\ 2\rbrack,\ \lbrack - 1,\ 3\rbrack \right\} \subseteq \mathbb{R}^{2}\)
+(which is a subset of the codomain of \(T\). Find the inverse image of
+\(u\), under \(T\).
+
+We are given a \textbf{set} \(u\) with two elements -- it's like two
+dots in a set, so what we actually have to do is compute a function's
+inverse with these inputs -- we were given two inputs, which means
+double the work!
+
+\textbf{Recall:} We let \(T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}\).
+\(T\left( \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \right) = \lbrack x_{1} - x_{2},\ x_{2} + x_{3}\rbrack\).
+
+The set builder below denotes our inverse image. We just have to compact
+that down, so we end up with an actual set.
+
+\begin{align*}
+T^{- 1}(u) &= \left\{ \mathbf{x} = \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \in \mathbb{R}^{3} \right|\ T\left( \mathbf{x} \right) \in u\} \\
+\Rightarrow T\left( \mathbf{x} \right) &= \lbrack 1,\ 2\rbrack\ or\ \lbrack - 1,\ 3\rbrack
+\end{align*}
+
+
+\textbf{Case 1:}
+\(T\left( \mathbf{x} \right) = \lbrack 1,\ 2\rbrack\). You'll need
+to find \(\lbrack x_{1},\ x_{2},\ x_{3}\rbrack\) such that
+\(T\left( \left\lbrack x_{1},x_{2},x_{3} \right\rbrack \right) = \lbrack 1,\ 2\rbrack\)
+
+\begin{align*}
+\left\lbrack x_{1} - x_{3},\ x - 2 + x_{3} \right\rbrack &= \lbrack 1,\ 2\rbrack \Rightarrow \begin{matrix}x_{1} - x_{3} = 1 \\x_{2} + x_{3} = 2 \\\end{matrix} \\
+&\Rightarrow \left\lbrack \begin{matrix}1 & 0 & - 1 \\0 & 1 & 1 \\\end{matrix}\  \middle| \ \begin{matrix}1 \\2 \\\end{matrix} \right\rbrack
+\end{align*}
+
+
+\emph{So, you might be asking, where did the augmented matrix come
+from?} That was because a system of linear equations appeared in your
+work, so you must solve it. It is a 3-unknown 2-equation system, so you
+will end up with a free variable.
+
+3-variable, 2-equation systems typically have infinite solutions, and
+can be solved like any other linear system. If you're having trouble
+making sense out of this, you can always add a useless equation
+\(0x_{1} + 0x_{2} + 0x_{3} = 0\) giving you
+
+\[\left\lbrack \begin{matrix}
+1 & 0 & - 1 \\
+0 & 1 & 1 \\
+0 & 0 & 0 \\
+\end{matrix}\, \middle| \,\begin{matrix}
+1 \\
+2 \\
+0 \\
+\end{matrix} \right\rbrack\]
+
+Which will have a free variable, resulting in infinitely many solutions.
+
+This will give you: \(\left\{ \begin{matrix}
+x_{1} - x_{3} = 1 \\
+x_{2} + x_{3} = 2 \\
+\end{matrix} \right.\  \Rightarrow \begin{matrix}
+x_{3} = s \\
+x_{1} = 1 + s \\
+x_{2} = 2 - s \\
+\end{matrix}\)
+
+We can thus conclude that:
+
+\[\mathbf{x} = \left\lbrack x_{1},x_{2},\ x_{3} \right\rbrack = \lbrack 1 + s,\ 2 - s,\ s\rbrack,\ s\mathbb{\in R}\]
+
+We deduced a part of the inverse image of \(u\) under \(T\).
+
+\[T\left( \left\lbrack \frac{1 + s}{x_{1}},\frac{2 - s}{x_{2}},\frac{s}{x_{3}} \right\rbrack \right) = \left\lbrack \frac{1 + s}{x_{1}} - \frac{s}{x_{3}},\frac{2 - s}{x_{2}} + \frac{s}{x_{3}} \right\rbrack = \lbrack 1,\ 2\rbrack\]
+
+\textbf{Case 2:}
+\(T\left( \mathbf{x} \right) = \left\lbrack x_{1} - x_{3},\ x_{2} + x_{3} \right\rbrack = \lbrack - 1,\ 3\rbrack\)
+
+\[\Rightarrow \left\{ \begin{matrix}
+x_{1} - x_{3} = - 1 \\
+x_{2} + x_{3} = 3 \\
+\end{matrix} \right.\  \Rightarrow \mathbf{x} = \lbrack - 1 + t,\ 3 - t,\ t\rbrack,\ t\mathbb{\in R}\]
+
+That's case 2, complete. Now we can combine case 1 and 2 together and
+that is our inverse image, which is:
+
+\[\lbrack 1 + s,\ 2 - s,\ s\rbrack\ \text{and}\ \lbrack - 1 + t,\ 3 - t,\ t\rbrack\]
+
+Or we can represent it as a set:
+\(\left\{ \lbrack 1 + s,\ 2 - s,\ s\rbrack,\ \lbrack - 1 + t,\ 3 - t,\ t\rbrack \right\}\)
+
+\textbf{Because} \(\mathbf{u}\) \textbf{is an ``image'', we can
+represent the inverse image like the following:}
+
+\[T\left( \left\{ \lbrack 1 + s,\ 2 - s,\ s\rbrack,\ \lbrack - 1 + t,\ 3 - t,\ t\rbrack\mid t,\ s\mathbb{\in R} \right\} \right) = u\]
+
+\[T\left( \left\{ \begin{bmatrix}
+1 + s \\
+2 - s \\
+s \\
+\end{bmatrix},\ \begin{bmatrix}
+ - 1 + t \\
+3 - t \\
+t \\
+\end{bmatrix}\mid t,\ s\mathbb{\in R} \right\} \right) = u\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{FINDING THE KERNEL OF A FUNCTION}
+\end{enumerate}
+
+Find the kernel of \emph{T}.
+
+\[\ker(T) = \{\mathbf{x} \in \mathbb{R}^{3}|T\left( \mathbf{x} \right) = 0\}\]
+
+Figure out when input \(\mathbf{x}\) can give you 0 as its output.
+
+\textbf{Recall:}
+\(T\left( \mathbf{x} \right) = T\left( \left\lbrack x_{1},x_{2},\ x_{3} \right\rbrack \right) = \left\lbrack x_{1} - x_{3},\ x_{2} + x_{3} \right\rbrack = \lbrack 0,\ 0\rbrack\)
+
+This can be used to build a system of equations.
+
+\begin{align*}
+&\left\lbrack \begin{matrix}1 & 0 & - 1 \\0 & 1 & 1 \\\end{matrix}\, \middle| \,\begin{matrix}0 \\0 \\\end{matrix} \right\rbrack \Rightarrow \lbrack s,\  - s,\ s\rbrack,\ s\mathbb{\in R} \\
+T\left( \lbrack s,\  - s,\ s\rbrack \right) &= \lbrack s - s,\  - s + s\rbrack = \lbrack 0,\ 0\rbrack \Rightarrow \mathbf{0} \in \mathbb{R}^{2}
+\end{align*}
+
+
+\[\ker{(T)} = \left\{ \lbrack s,\  - s,\ s\rbrack \in \mathbb{R}^{3} \middle| s\mathbb{\in R} \right\}\]
+
+
+\subsection{Basis vectors}
+
+\textbf{Proposition:} Let
+\(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) be a linear
+transformation. Then
+
+\begin{align*}
+&T\left( r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \ldots + r_{k}{\mathbf{v}}_{k} \right) \\
+&= rT\left( {\mathbf{v}}_{1} \right) + r_{2}T\left( {\mathbf{v}}_{2} \right) + \cdots + r_{k}T\left( {\mathbf{v}}_{k} \right)
+\end{align*}
+
+
+This is a linear combination between
+\(\mathbf{v_{1}},\ \cdots,\ {\mathbf{v}}_{k}\)
+
+\textbf{Remark:} What if \(\mathbf{v_{1}}\cdots\mathbf{v_{n}}\)
+is a set of \textbf{basis} vectors of \(\mathbb{R}^{n}\), i.e.,
+\(\text{span}\left( \mathbf{v_{1}}\cdots\mathbf{v_{n}} \right) = \mathbb{R}^{n}\)
+and \({\mathbf{v}}_{1}\cdots{\mathbf{v}}_{n}\) are linearly
+independent
+
+Then
+
+\[\Leftrightarrow \begin{bmatrix}
+| & | & | \\
+{\mathbf{v}}_{1} & \cdots & {\mathbf{v}}_{n} \\
+| & | & | \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & \cdots & 0 \\
+ \vdots & \ddots & \vdots \\
+0 & \cdots & 1 \\
+\end{bmatrix}\]
+
+\textbf{Proposition:} For any input
+\(\mathbf{\alpha} \in \mathbb{R}^{n}\text{.\ }\mathbf{\alpha} = r_{1}\mathbf{v_{1}} + r\mathbf{v_{2}} + \cdots + r\mathbf{v_{n}}\)
+(given \(\mathbf{v_{1}}\cdots\mathbf{v_{n}}\) are a set of basis
+vectors)
+
+\[T\left( \mathbf{\alpha} \right) = r_{1}T\left( \mathbf{v_{1}} \right) + r_{2}T\left( \mathbf{v_{2}} \right) + \cdots + r_{n}T\left( {\mathbf{v}}_{n} \right)\]
+
+Tell me the image of the basis vectors without telling me the formula of
+T, and I would still be able to compute the value of the output for any
+given no input. If you have the image of basic for the T, then you can
+compute the output for any given input.
+
+\textbf{Property:} The linear transformation must fix a zero. This means
+\(T\left( \mathbf{0} \right) = \mathbf{0}\) must be in the
+codomain. This gives us a shortcut to check if a given function is
+linear or not. If a zero gives an output as a nonzero vector, then you
+can tell it is not a linear transformation.
+
+Proof. Let
+\(\mathbf{0} = \mathbf{v} - \mathbf{v}\text{.\ }\mathbf{v} \in \mathbb{R}^{n}\).
+
+\[T\left( \mathbf{0} \right) = T\left( \mathbf{v} - \mathbf{v} \right) = T\left( \mathbf{v} \right) - T\left( \mathbf{v} \right) = \mathbf{0}\]
+
+\(\Rightarrow ker(T)\) always contains the zero vector.
+
+
+\section{Vector Spaces and Linear
+Independence}
+
+A homogeneous linear system can be represented as:
+
+\[A\mathbf{x} = 0\]
+
+Where \(A\) is an \(m \times n\) matrix, where
+\(\mathbf{x} = \begin{bmatrix}
+x_{1} \\
+ \vdots \\
+x_{n} \\
+\end{bmatrix}\).
+
+\[T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}:T\left( \mathbf{x} \right) = A\mathbf{x}
+\]
+
+\textbf{Remark}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Every homogeneous system is consistent (\(\geq 1\) soln)
+\end{enumerate}
+
+If the system gives you no solutions -- you know how that looks like.
+But, for a homogeneous equation, the right side of a partitioned matrix
+will always be zero for all components.
+
+Moreover, the trivial solution always is a solution for
+\(A\mathbf{x} = \mathbf{0}\). The reason why we call this the
+trivial solution is that
+\(A\left( \mathbf{0} \right) = \mathbf{0},\ \mathbf{x} = 0\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  If \(A\sim H\) and \(H\) has a pivot in every column, then
+  \(A\mathbf{x} = 0\) only has the trivial solution
+  (\(\mathbf{x} = \mathbf{0})\).
+\item
+  If \(m < n\) (number of rows \textless{} columns) and \(A\sim H\)
+  (\emph{H} is in RREF) then it is impossible for \(H\) to have a pivot
+  in every column, which means a free variable definitely exist. This
+  means \(A\mathbf{x} = \mathbf{0}\) has infinitely many
+  solutions.
+\end{enumerate}
+
+
+\subsection{Null Space, row space, col
+space}
+
+\begin{definition}
+Let \(A\) be an \(m \times n\) matrix
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The null space of \(A\) is a set of vectors \(\mathbf{x}\) such
+  that \(A\mathbf{x} = 0\) i.e.,
+  \(\left\{ \mathbf{x} \in \mathbb{R}^{n}\mid A\mathbf{x} = 0 \right\}\).
+  It is the set of vectors that go to the zero vector when multiplying
+  \(A\) from the right.
+\item
+  The row space of \(A\), \(row(A)\) is the span of row vectors of
+  \(A\).
+\item
+  The column space of \(A\), \(col(A)\) is the span of column vectors of
+  \(A\).
+\end{enumerate}
+\end{definition}
+
+A linear system \(A\mathbf{x} = \mathbf{b}\) has a solution if
+and only if \(\mathbf{b}\) is in the column space of \(A\).
+
+
+\subsubsection{Deducing Null Spaces}
+
+For example, suppose I have this matrix:
+
+\[A = \begin{bmatrix}
+2 & - 6 & - 2 & 4 \\
+ - 1 & 3 & 3 & 2 \\
+ - 1 & 3 & 7 & 10 \\
+\end{bmatrix}\]
+
+\begin{align*}
+\text{row}(A) &= \text{span}\left( \lbrack 2,\  - 6,\ 2,\ 4\rbrack,\ \lbrack - 1,\ 3,\ 3,\ 2\rbrack,\ \lbrack - 1,\ 3,\ 7,\ 10\rbrack \right) \\
+\text{col}(A) &= \text{span}\left( \begin{bmatrix}2 \\ - 1 \\ - 1 \\\end{bmatrix},\ \begin{bmatrix} - 6 \\3 \\3 \\\end{bmatrix},\ \begin{bmatrix} - 2 \\3 \\7 \\\end{bmatrix},\ \begin{bmatrix}4 \\2 \\10 \\\end{bmatrix} \right) \\
+\text{null}(A) &= \left\{ \mathbf{x} \in \mathbb{R}^{4}\mid A\mathbf{x} = 0 \right\}
+\end{align*}
+
+
+We need to solve \(A\mathbf{x} = 0\).
+
+\[\left\lbrack \begin{matrix}
+2 & - 6 & - 2 & 4 \\
+ - 1 & 3 & 3 & 2 \\
+ - 1 & 3 & 7 & 10 \\
+\end{matrix}\mid\,\begin{matrix}
+0 \\
+0 \\
+0 \\
+\end{matrix} \right\rbrack\sim\left\lbrack \begin{matrix}
+1 & - 3 & 0 & 4 \\
+0 & 0 & 1 & 2 \\
+0 & 0 & 0 & 0 \\
+\end{matrix}\;\middle|\;\begin{matrix}
+0 \\
+0 \\
+0 \\
+\end{matrix} \right\rbrack\]
+
+There are infinitely many solutions to this.
+
+\begin{align*}
+x_{2} &= t \\
+x_{4} &= s \\
+x_{3} + 2x_{4} &= 0 \Rightarrow x_{3} = - 2x_{4} = - 2s \\
+x_{1} - 3x_{2} + 4x_{4} &= 0 \Rightarrow x_{1} = 3x_{2} - 4x_{4} = 3t - 4s
+ \\
+\begin{bmatrix}x_{1} \\x_{2} \\x_{3} \\x_{4} \\\end{bmatrix} &= \begin{bmatrix}3t - 4s \\t \\ - 2s \\s \\\end{bmatrix} = \begin{bmatrix}3t \\t \\0 \\0 \\\end{bmatrix} + \begin{bmatrix} - 4s \\0 \\ - 2s \\s \\\end{bmatrix} \\
+&= t\begin{bmatrix}3 \\1 \\0 \\0 \\\end{bmatrix} + s\begin{bmatrix} - 4 \\0 \\ - 2 \\1 \\\end{bmatrix}
+\end{align*}
+
+
+Therefore:
+
+\[\text{null}(A) = \text{span}\left( \begin{bmatrix}
+3 \\
+1 \\
+0 \\
+0 \\
+\end{bmatrix},\ \begin{bmatrix}
+ - 4 \\
+0 \\
+ - 2 \\
+1 \\
+\end{bmatrix} \right)\]
+
+Null space is the only space that requires computations.
+
+
+\subsubsection{Proofs regarding null
+spaces}
+
+\textbf{Proposition:} Let \(A\mathbf{x} = \mathbf{b}\) be a
+linear system with a particular solution \(p\).
+\((A\mathbf{p} = \mathbf{b})\)
+
+If \(\mathbf{h}\) is a vector in the \(null(A)\), then
+\(\mathbf{p} + \mathbf{h}\) is also a solution for
+\(A\mathbf{x} = \mathbf{b}\).
+
+Proof.
+\(A\left( \mathbf{p} + \mathbf{h} \right) = \mathbf{b}\)
+
+\begin{align*}
+\text{LHS} &= A\mathbf{p} + A\mathbf{h} \\
+\text{LHS} &= A\mathbf{p} + 0 \\
+\text{LHS} &= \mathbf{b}
+\end{align*}
+
+
+Remember that because h is a vector in the null space of A, it means
+\(A\mathbf{h}\) is always equals to zero. \(A\mathbf{p} = b\) is
+true because it is defined as true as part of the proof.
+
+If \(\mathbf{q}\) is any solution to
+\(A\mathbf{x} = \mathbf{b}\), then
+\(\mathbf{q} = \mathbf{p} + {\mathbf{h}}_{1}\) for some
+\(\mathbf{h} \in \text{null}(A)\)
+
+\[A\mathbf{q} = A\left( \mathbf{p} + {\mathbf{h}}_{1} \right) = A\mathbf{p} + A{\mathbf{h}}_{1} = \mathbf{b} + 0 \Rightarrow {\mathbf{h}}_{1} \in \text{null}(A)\]
+
+
+\subsection{Linear independence}
+
+\textbf{Definition:} Linear independence (every single vector is useful;
+none of the other vectors can be made up through linear combinations of
+other vectors).
+
+If
+\({\mathbf{v}}_{1},\ {\mathbf{v}}_{2},\ \ldots,\ {\mathbf{v}}_{k} \in \mathbb{R}^{n}\),
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \ldots + r_{k}{\mathbf{v}}_{k} = \mathbf{0}\)
+has exactly 1 solution (that is \(\mathbf{r}\) being all zero), then
+we say that \({\mathbf{v}}_{1},\ \ldots,\ {\mathbf{v}}_{k}\) are
+linearly independent.
+
+(It is impossible that this system has no solutions. If this system has
+infinite solutions, then
+\({\mathbf{v}}_{1},\ {\mathbf{v}}_{2},\ \ldots,\ {\mathbf{v}}_{k}\)
+are linearly dependent.)
+
+
+\subsubsection{Linear independence
+properties}
+
+\textbf{Remark:} \(r_{1} = r_{2} = r_{3} = \cdots = r_{k} = 0\) is a
+solution for
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \ldots + r_{k}{\mathbf{v}}_{k} = 0\),
+and if that is the only solution then
+\({\mathbf{v}}_{1},\ {\mathbf{v}}_{2},\ \ldots,\ {\mathbf{v}}_{k}\)
+are linearly independent.
+
+Suppose not. \(\alpha_{1},\ \alpha_{2},\ \ldots,\ \alpha_{k}\) is
+another solution for
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \ldots + r_{k}{\mathbf{v}}_{k} = 0\).
+\(\exists\alpha_{i} \neq 0\) (Why are we writing that? Because one
+solution has \(r_{1}\ldots r_{k}\) be all zero and we are trying to
+incorporate a non-all-zero solution for
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \ldots + r_{k}{\mathbf{v}}_{k} = 0\).
+Our work is here:
+
+\begin{align*}
+\alpha_{1}{\mathbf{v}}_{1} + \alpha_{2}{\mathbf{v}}_{2} + \ldots + \alpha_{i}{\mathbf{v}}_{i} + \ldots + \alpha_{k}{\mathbf{v}}_{k} &= 0 \\
+&\alpha_{1}{\mathbf{v}}_{1} + \alpha_{2}{\mathbf{v}}_{2} + \ldots  \\
+&+ \alpha_{i - 1}{\mathbf{v}}_{i - 1} + \ldots + \alpha_{k}{\mathbf{v}}_{k}  \\
+&= - \alpha_{i}{\mathbf{v}}_{i} \\
+\frac{\alpha_{1}}{\alpha_{i}}{\mathbf{v}}_{1} + \frac{\alpha_{2}}{\alpha_{i}}{\mathbf{v}}_{2} + \cdots + \frac{\alpha_{k}}{\alpha_{i}}{\mathbf{v}}_{k} &= - {\mathbf{v}}_{i}
+\end{align*}
+
+
+If \({\mathbf{v}}_{i}\) can be represented by the left equation,
+then \({\mathbf{v}}_{i}\) is redundant, which is \emph{impossible}
+because we said that
+\({\mathbf{v}}_{1},\ \ldots,\ {\mathbf{v}}_{k}\) are linearly
+independent. We thus arrive at a contradiction.
+
+\textbf{Definition:} Two vectors in \(\mathbb{R}^{n}\) are linearly
+independent if they are non-zero and nonparallel.
+
+
+\subsubsection{Testing for linear
+independence}
+
+\textbf{Example:}
+\({\mathbf{v}}_{1} = \lbrack 2,\  - 1,\  - 1\rbrack,\ {\mathbf{v}}_{2} = \lbrack - 2,\ 3,\ 7\rbrack,\ {\mathbf{v}}_{3} = \lbrack 2,\ 1,\ 5\rbrack\)
+
+Solution: If
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + r_{3}{\mathbf{v}}_{3} = 0\)
+\textbf{has exactly one solution,} the vectors are linearly independent.
+You can represent this in a matrix \(A\mathbf{r}\), where \(A\)'s
+rows are formed by the column vectors \(\mathbf{v}\).
+
+If a column is missing a pivot, then it is impossible for this system to
+have a unique solution \(\mathbf{r}\).
+
+\[\begin{bmatrix}
+2 & - 2 & 2 \\
+ - 1 & 3 & 1 \\
+ - 1 & 7 & 5 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+2 & 1 & 0 \\
+\end{bmatrix}\]
+
+While we did not reduce the above matrix to RREF, but this is good
+enough as we can see there is at least one column without the pivot.
+
+
+\subsubsection{Testing for linear
+dependence}
+
+Because
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + r_{3}{\mathbf{v}}_{3} = 0\)
+has more than one solution, the vectors are linearly dependent.
+
+Is this matrix invertible (if no, then we've got linear dependence)?
+
+\[\begin{bmatrix}
+2 & - 1 & - 1 \\
+ - 2 & 3 & 7 \\
+2 & 1 & 5 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 2 \\
+0 & 1 & 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\]
+
+The rightmost column causes this matrix to have a free variable. If we
+let it equal to zero:
+
+\[\left\lbrack \begin{matrix}
+1 & 0 & 2 \\
+0 & 1 & 1 \\
+0 & 0 & 0 \\
+\end{matrix}\;\middle|\;\begin{matrix}
+0 \\
+0 \\
+0 \\
+\end{matrix} \right\rbrack\]
+
+\(A\mathbf{x} = 0\) has the solution \(r\begin{bmatrix}
+2 \\
+1 \\
+ - 1 \\
+\end{bmatrix}\) (we factored out the negatives)
+
+\[\left\lbrack {\mathbf{v}}_{3} \right\rbrack = 2\left\lbrack {\mathbf{v}}_{1} \right\rbrack + \left\lbrack {\mathbf{v}}_{2} \right\rbrack\]
+
+\({\mathbf{v}}_{3}\) is a redundant vector, and so could the others?
+
+
+\section{Subspaces and basis
+vectors}
+
+\emph{Hint: checking ``in a subspace'' WILL appear on an exam.}
+
+\textbf{Definition:} Let \(W \subseteq \mathbb{R}^{n}\text{.\ W}\) is
+called \textbf{a subspace} of \(\mathbb{R}^{n}\) if these following
+properties hold:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(W \neq \varnothing\)
+\item
+  If \(\mathbf{u},\ \mathbf{v} \in W\), then
+  \(\mathbf{u} + \mathbf{v} \in W\) (Add two vectors in the
+  ``subspace'' and your sum must still be within the subspace. This is
+  the closure property regarding subspaces.)
+\item
+  If \(\mathbf{u} \in W,\ r\mathbb{\in R}\), then
+  \(r \cdot \mathbf{u} \in W\) (Closure under scalar multiplication)
+\end{enumerate}
+
+To check properties 2 and 3, you may need to pick variables arbitrarily
+and you must end up with a way to represent the sum or scalar product of
+the vectors in the way an individual vector in the set would be defined.
+
+With all three holding \(W\) is a subspace.
+
+
+\subsection{Checking if a set is a subspace:
+Examples}
+
+\textbf{Example}:
+\(W = \left\{ \mathbf{v} \in \mathbb{R}^{2}\mid\mathbf{v} = \lbrack x,\ 0\rbrack,\ x\mathbb{\in R} \right\}\)
+
+\emph{A subspace is usually seen as a line or an infinite plane, and so
+on.}
+
+Is \(W\) a subspace?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(W \neq \varnothing;\varnothing \subset W\) (NOT the zero vector.)
+\item
+  Pick \(\mathbf{u} = \left\lbrack x_{1},\ 0 \right\rbrack \in W\),
+  \(\mathbf{v} = \left\lbrack x_{2},\ 0 \right\rbrack \in W\), The
+  sum?
+  \(\mathbf{u} + \mathbf{v} = \left\lbrack x_{1} + x_{2},\ 0 \right\rbrack \in W\)
+  (it still lies on \(W\) and the \(x\)-axis.)
+\item
+  \(r\mathbf{u} = r\lbrack x,\ 0\rbrack = \lbrack rx,\ 0\rbrack \in W\)
+\end{enumerate}
+
+Because these properties hold, \(W\) is a subspace in
+\(\mathbb{R}^{2}\).
+
+\textbf{Second example:}
+\(H = \{\mathbf{v} \in \mathbb{R}^{2} \mid \mathbf{v} = \lbrack 0,\ y\rbrack,\ y\mathbb{\in R\}}\)
+
+You can show that \(H\) is a subspace in \(\mathbb{R}^{2}\).
+
+\textbf{Third example:} \(H \cup W\)? No. The reason why this is not a
+subspace.
+
+We can disprove this with vector addition:
+
+\[\lbrack 1,\ 0\rbrack + \lbrack 0,\ 1\rbrack = \lbrack 1,\ 1\rbrack \notin H \cup W\]
+
+Therefore \(H \cup W\) can't be a subspace.
+
+
+\textbf{Fourth example:} (Try this out of lecture) \(H \cap W\). That is
+just the zero vector. Scalar multiply a zero vector by any amount, and
+you will get the zero vector. Add the zero vector by another zero
+vector, and you get the zero vector. Therefore, the zero subspace is
+closed under addition and scalar multiplication.
+
+\textbf{Remark:} I will check if \(\mathbf{0}\) is contained in
+\(W\) \textbf{as a subspace must contain zero (but does not imply that a
+subspace is valid).}
+
+Suppose \(W\) is a subspace. This implies that \(W\) is non-empty,
+implying \(\exists\mathbf{u} \in W\). This also implies:
+
+\begin{align*}
+&\Rightarrow - 1\mathbf{u} \in W \Rightarrow \mathbf{u} + \left( - 1\mathbf{u} \right) \in W \\
+&\Rightarrow \mathbf{0} \in W
+\end{align*}
+
+
+If \(\overrightarrow{0}\) is not in the subspace, then I can immediately
+declare that \(W\) is not a subspace. Because all subspaces must be
+closed under addition and scalar multiplication you must be able to find
+zero when doing a combination of the two.
+
+\textbf{Example:}
+\(W = sp\left\{ {\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ \ldots,\ {\mathbf{w}}_{k} \right\}\),
+where
+\(w_{1},\ w_{2},\ \ldots,\ w_{k} \in \mathbb{R}^{n} \Rightarrow W\) is a
+subspace of \(\mathbb{R}^{n}\).
+
+\begin{proof} Check if \(\mathbf{0}\) belongs to \(W\).
+
+\[r_{1}{\mathbf{w}}_{1} + r_{2}{\mathbf{w}}_{2} + \ldots + r_{k}{\mathbf{w}}_{k} = \mathbf{0}\]
+
+To show this is true, show that this system is homogeneous, and that
+there is always one solution: \(r_{1} = r_{2} = \ldots = r_{k} = 0\).
+
+Firstly, \(\mathbf{0}\) is a vector in \(W\), and a span means all
+possible linear combinations. Therefore,
+\(\mathbf{0} \in W,\  \Rightarrow \mathbf{w} \neq 0\).
+
+Step 2: Check if \(\mathbf{u} + r\mathbf{v} \in W\) where
+\(\mathbf{u} \cdot \mathbf{v} \in W,\ r\mathbb{\in R}\). If I
+can answer this, then \(\mathbf{u},\ \mathbf{v}\) are closed
+under vector addition and scalar multiplication.
+
+\begin{align*}
+\mathbf{u} &= \alpha_{1}{\mathbf{w}}_{1} + \alpha_{2}{\mathbf{w}}_{2} + \ldots + \alpha_{k}{\mathbf{w}}_{k} \\
+\mathbf{v} &= \beta_{1}{\mathbf{w}}_{1} + \beta_{2}{\mathbf{w}}_{2} + \ldots + \beta_{k}{\mathbf{w}}_{k}
+\end{align*}
+
+
+Where
+\(\alpha_{1}\mathbb{\in R\forall}i,\ \beta_{i}\mathbb{\in R\forall}i\)
+
+\begin{align*}
+&\mathbf{u} + r\mathbf{v}  \\
+&= \left( \alpha{\mathbf{w}}_{1} + \ldots + \alpha_{k}{\mathbf{w}}_{k} \right)  \\
+&+ \left( r\beta_{1}{\mathbf{w}}_{1} + r\beta_{2}{\mathbf{w}}_{2} + \ldots + r\beta_{k}{\mathbf{w}}_{k} \right) \\
+& \\
+&= \left( \alpha_{1} + r\beta_{1} \right){\mathbf{w}}_{1} + \left( \alpha_{2} + r\beta_{2} \right){\mathbf{w}}_{2}  \\
+&+ \ldots + \left( \alpha_{n} + r\beta_{n} \right){\mathbf{w}}_{k}
+\end{align*}
+
+
+This is just another linear combination, showing that
+\(\mathbf{u} + r\mathbf{v} \in sp\left\{ {\mathbf{w}}_{1}\ldots{\mathbf{w}}_{k} \right\} = W\)
+which means \(\mathbf{u} + r\mathbf{v} \in W \Rightarrow\) \(W\)
+is closed under addition and scalar multiplication. Therefore, \(W\) is
+a subspace of \(\mathbb{R}^{n}\).
+
+
+
+\end{proof}
+\subsection{Finding a basis for a set of
+vectors}
+
+In a nutshell:
+
+If we need to find a basis for
+\(W = sp\left( w_{1},\ w_{2},\ \ldots,\ w_{k} \right)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Form the matrix \(A\) whose \(j\)th column vector is \(w_{j}\)
+\item
+  Row-reduce \(A\) to REF, which we will call \(H\).
+\item
+  The set of all \(w_{j}\) such that the \(j\)th column of \(H\)
+  contains a pivot is a basis for \(W\).
+\end{enumerate}
+
+\textbf{Definition:} Let \(W\) be a subspace of \(\mathbb{R}^{n}\).
+
+If
+\(Β = \left\{ {\mathbf{b}}_{1},\ {\mathbf{b}}_{2},\ \ldots,\ {\mathbf{b}}_{k} \right\}\)
+is a subset of \(W\), then \(B\) is a \textbf{basis} for \(W\) if every
+vector in \(W\) can be written \textbf{uniquely} as a linear combination
+of vectors in \(B\). (All the vectors in \(W\) can be generated by
+\(B\). If that holds, \(B\) has that property.)
+
+\textbf{Remark:} Pick \(\mathbf{w} \in W\).
+
+\[\mathbf{w} = r_{1}{\mathbf{b}}_{1} + r_{2}{\mathbf{b}}_{2} + \ldots + r_{k}{\mathbf{b}}_{k},\ r_{i}\mathbb{\in R\forall}i\]
+
+And we need to prove this representation is unique, i.e.,
+\(\{ r_{1},\ \ldots,\ r_{k}\}\) is unique. This gives us another linear
+system, with unknowns \(\mathbf{r}\). We need to check if this
+system has a unique solution; if it does, then those vectors
+\({\mathbf{b}}_{1}\ldots{\mathbf{b}}_{k}\) are basis vectors.
+
+\[\left\lbrack \begin{matrix}
+{\mathbf{b}}_{1} & {\mathbf{b}}_{2} & \cdots & {\mathbf{b}}_{k} \\
+\end{matrix}\;\middle|\;\begin{matrix}
+\mathbf{0} \\
+\end{matrix} \right\rbrack\ \]
+
+This system having more than one solution indicates that
+\(\{ r_{1}\ldots r_{k}\}\) is not unique.
+
+\textbf{Example:}
+\(W = sp\{{\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ \ldots,\ {\mathbf{w}}_{5}\}\)
+
+\[w_{1} = \begin{bmatrix}
+1 \\
+0 \\
+1 \\
+0 \\
+\end{bmatrix},\ w_{2} = \begin{bmatrix}
+4 \\
+1 \\
+4 \\
+1 \\
+\end{bmatrix},\ w_{3} = \begin{bmatrix}
+3 \\
+1 \\
+3 \\
+2 \\
+\end{bmatrix},\ w_{4} = \begin{bmatrix}
+ - 1 \\
+0 \\
+ - 1 \\
+1 \\
+\end{bmatrix},w_{5} = \begin{bmatrix}
+ - 6 \\
+3 \\
+ - 2 \\
+0 \\
+\end{bmatrix}\ \]
+
+\[\begin{bmatrix}
+1 & 0 & 0 & 0 & - 6 \\
+0 & 1 & 0 & - 1 & 3 \\
+0 & 0 & 1 & 1 & - 2 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}\ \]
+
+Then only
+\({\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ {\mathbf{w}}_{3}\)
+are single-pivot row vectors; all of the other vectors are redundant.
+\({\mathbf{w}}_{4} = - {\mathbf{w}}_{2} + {\mathbf{w}}_{3}\)
+and
+\({\mathbf{w}}_{5} = - 6{\mathbf{w}}_{1} + {3\mathbf{h}}_{2} - 2{\mathbf{w}}_{3}\)
+
+The basis vectors are
+\(sp\left\{ {\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ {\mathbf{w}}_{3} \right\}\).
+
+This is equivalent to
+\(sp\left\{ {\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ {\mathbf{w}}_{3},\ {\mathbf{w}}_{4},\ {\mathbf{w}}_{5} \right\}\).
+The span is in \(\mathbb{R}^{3}\);
+\(\text{dimension}\left( sp\left\{ {\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ {\mathbf{w}}_{3} \right\} \right) = 3\).
+
+
+\subsection{Basis Theorems}
+
+\begin{theorem}
+Let \(A \in M_{n \times n}\). The following are
+equivalent (if you can show one of them all in this list will be true):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The linear system \(A\mathbf{x} = \mathbf{b}\) has a unique
+  solution for any \(\mathbf{b} \in \mathbb{R}^{n}\).
+\item
+  \(A\sim I\)
+\item
+  \(A\) is invertible.
+\item
+  The column vectors of \(A\) form a basis for \(\mathbb{R}^{n}\).
+\item
+  The row vectors in \(A\) form a basis for \(\mathbb{R}^{n}\).
+\end{enumerate}
+\end{theorem}
+
+
+\subsubsection{Proofs for these
+Theorems}
+
+\begin{proof} \(1 \Rightarrow 2\) is the process of solving a linear
+system. Reducing \(A\) to RREF, if every single column has a pivot
+(\(n\) pivots), you'll get a unique solution. That matrix will look like
+\(I\), thus forcing \(A\) to be row equivalent to the identity matrix.
+
+This is trivially equivalent to \(3\).
+\(\left\lbrack A\mid I \right\rbrack\sim\left\lbrack H\mid A^{- 1} \right\rbrack\),
+where \(H\) is the identity matrix.
+
+For no. 4: Column vectors form a basis \(\Rightarrow\) they are linearly
+independent \(\Rightarrow\) every column must contain a pivot
+\(\Rightarrow\) you will have \(n\) pivots, meaning no free variables
+and a unique solution. If that is case, then \(A\sim I \Leftrightarrow\)
+every single column has a pivot \(\Leftrightarrow\) they can form a
+basis.
+
+For no. 5: \(A\sim I \Leftrightarrow A^{T}\sim I\)
+
+
+
+\end{proof}
+\subsection{Rectangular cases}
+
+\begin{theorem}
+Let \(A\) be \(m \times n\) matrix. \((m > n)\). The
+following are equivalent:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Each \textbf{consistent} system \(A\mathbf{x} = \mathbf{b}\)
+  has a unique solution.
+\item
+  The RREF of \(A\) must contain the \(n \times n\) identity matrix with
+  \(m - n\) rows of zeros (on the bottom). This means there are
+  \(m - n\) redundant equations.
+\item
+  The column vectors of \(A\) form a basis for the column space of
+  \(A\).
+\end{enumerate}
+\end{theorem}
+
+
+\subsubsection{Proofs for these
+theorems}
+
+\begin{proof} \(1 \Rightarrow 2\)
+
+\(A\mathbf{x} = \mathbf{b}\), and for a unique solution, free
+variables are not allowed to exist, which means every column must
+contain a pivot. All entries below the identity matrix must be all zero,
+implying \(m - n\) rows of zeroes.
+
+\emph{Proof.} \(2 \Rightarrow 3\)
+
+Every column has a pivot \(\Rightarrow\) the column vectors are linearly
+independent \(\Rightarrow\) can serve as basis.
+
+\emph{Proof.} \(3 \Rightarrow 1\)
+
+Basis \(\Rightarrow\) linearly independent. Building a linear system out
+of the basis guarantees no free variables \(\Rightarrow\) unique
+solution.
+
+\begin{remark}
+The number of solutions will depend on whether free
+variables exist. If you have a rectangular matrix \(M_{m < n}\) (wider
+than it is tall), then \(A\mathbf{x} = \mathbf{b}\) is a linear
+system with fewer equations than unknowns. If
+\(A\mathbf{x} = \mathbf{b}\) is consistent (ruling out no
+solution situations), then it has infinitely many solutions.
+\end{remark}
+
+\begin{theorem}
+Let
+\(B = \left\{ {\mathbf{b}}_{1},\ \ldots,\ {\mathbf{b}}_{k} \right\}\)
+be a basis for the subspace \(W \subset \mathbb{R}^{n}\), if and only if
+{[}1{]}
+\(B = \left\{ {\mathbf{b}}_{1},\ \ldots,\ {\mathbf{b}}_{k} \right\}\)
+is a linearly independent set and {[}2{]} it spans \(W\).
+\end{theorem}
+
+\emph{Proof.} \(B\) is a basis for \(W\) \(\Leftrightarrow\) Pick any
+\(\mathbf{w} \in W\); \(\mathbf{w}\) has a unique
+representation:
+\(\mathbf{w} = r_{1}{\mathbf{b}}_{1} + r_{2}{\mathbf{b}}_{2} + \cdots + r_{k}{\mathbf{b}}_{k}\),
+and the solution for \(r\) must be unique. You could view this as a
+linear system \(A\mathbf{x} = \mathbf{b}\), that has a unique
+solution where \(\mathbf{b} = \mathbf{w}\), and \(A\) is a
+matrix with column vectors
+\({\mathbf{b}}_{1}\ldots{\mathbf{b}}_{k}\), and
+\(\mathbf{x} = \left\lbrack r_{1},\ r_{2},\ \ldots,\ r_{k} \right\rbrack\)
+\(\Leftrightarrow\) no free variable \(\Leftrightarrow\) every column
+must contain a pivot \(\Leftrightarrow\) none of any element in \(B\)
+are redundant \(\Leftrightarrow\) \(\forall{\mathbf{b}}_{i}\)
+(column vectors), it cannot be represented by linear combination of
+other \({\mathbf{b}}_{i}\) \(\Leftrightarrow\) they are linearly
+independent.
+
+
+
+\end{proof}
+\subsection{How to find a basis for any set of
+vectors}
+
+This: \(W = sp\{{\mathbf{w}}_{1}\cdots{\mathbf{w}}_{k}\}\) where
+\({\mathbf{w}}_{i} \in \mathbb{R}^{n}\) for
+\(i = 1,\ 2,\ \ldots,\ k\)
+
+Step 1. Create a matrix \(A\) where the columns of it are formed by the
+\(i\)th vectors in \(W\).
+
+Step 2: \(A\sim H,\) where \(H\) is REF or RREF. (Idea: check if every
+column has a pivot.
+
+Step 3: The basis for \(W\) consists only of all the columns of \(A\),
+corresponding to the columns of \(H\) that contains the pivots.
+
+\textbf{Definition:} Let \(W\) be a subspace of \(\mathbb{R}^{n}\). The
+number of elements in a basis for \(W\) is called the dimension of
+\(W\), denoted by \(\dim(w)\). There are two facts supported by this
+definition:
+
+\textbf{{[}EXAM HINT{]} Fact 1:} Let \(W\) be a subspace of
+\(\mathbb{R}^{n}\). Let
+\({\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ \ldots,\ {\mathbf{w}}_{k}\)
+be vectors in \(W\) that span \(W\) and let
+\({\mathbf{v}}_{1},\ \ldots,\ {\mathbf{v}}_{m}\) be linearly
+independent vectors in \(W\). Then, \(k \geq m\). (This fact is trivial
+-- the dimension of \(W \geq K\).)
+
+\({\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m}\) being linearly
+independent could be a basis for either \(W\) or a subspace of \(W\). In
+other words,
+\(sp\left\{ {\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m} \right\} = U \leq W \Rightarrow m \leq k\).
+
+TL;DR: The quantity of linear independent vectors in \(W\) is always
+less or equal to the quantity of a list of vectors that have to at least
+span \(W\).
+
+\textbf{Fact 2:} Any two bases for a subspace \(W \in \mathbb{R}^{n}\)
+contain the same number of vectors.
+
+(The number of elements in a basis tells you the dimensions of the
+subspace it is in. If you have two bases with different numbers of
+vectors the dimensions formed by the span of it will be different.) For
+example, for
+\(\mathbb{R}^{2}:\ sp\left( \lbrack 1,0\rbrack,\ \lbrack 0,1\rbrack \right) = \mathbb{R}^{2}\).
+Also,
+\(sp\left( \lbrack 2,\ 0\rbrack,\ \lbrack 0,2\rbrack \right) = \mathbb{R}^{2}\),
+as \(\begin{bmatrix}
+2 & 0 \\
+0 & 2 \\
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+\end{bmatrix} = \mathbf{b}\) has a unique solution, meaning every
+\(\mathbf{b}\) can uniquely be represented by
+\(\lbrack 2,\ 0\rbrack,\ \lbrack 0,\ 2\rbrack\).
+\(sp\left( \lbrack 2,\ 0\rbrack,\ \lbrack 0,2\rbrack,\ \lbrack a,b\rbrack \right)\),
+\(\lbrack a,b\rbrack = \frac{a}{2}\lbrack 2,\ 0\rbrack + \frac{b}{2}\lbrack 0,\ 2\rbrack \Rightarrow \lbrack a,\ b\rbrack\)
+is a redundant vector.
+
+\textbf{Proving Fact 1:} Given:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(sp\left\{ {\mathbf{w}}_{1}\cdots{\mathbf{w}}_{k} \right\} = W \in \mathbb{R}^{n}\).
+\item
+  \({\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m} \in W\) are linearly
+  independent
+\end{enumerate}
+
+Show \(k \geq m\).
+
+Suppose \(k < m\). By the idea of span,
+\(\forall{\mathbf{v}}_{i}\ \left( i \in \lbrack 1,\ 2,\ 3,\ \ldots,\ m\rbrack \right) \in W = sp\left\{ {\mathbf{w}}_{1}\cdots{\mathbf{w}}_{k} \right\}\).
+All of \(v_{i}\) are chosen from \(W\). This means
+
+\begin{align*}
+{\mathbf{v}}_{1} &= a_{11}{\mathbf{w}}_{1} + a_{21}{\mathbf{w}}_{2} + \cdots + a_{k1}{\mathbf{w}}_{k} \\
+{\mathbf{v}}_{2} &= a_{12}{\mathbf{w}}_{1} + a_{22}{\mathbf{w}}_{2} + \cdots + a_{k2}{\mathbf{w}}_{k} \\
+&\vdots  \\
+{\mathbf{v}}_{m} &= a_{1m}{\mathbf{w}}_{1} + a_{2m}{\mathbf{w}}_{2} + \cdots + a_{km}{\mathbf{w}}_{k}
+\end{align*}
+
+
+This is true by definition of span (all in \(\mathbf{v}\) are in the
+span of \(W\)).
+
+Pick a vector \(\mathbf{w} \in W\).
+
+\[{\mathbf{w} }{= r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \cdots + r_{m}{\mathbf{v}}_{m} }{\in sp\left\{ {\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m} \right\}} \]
+
+By the definition of span. Now, we can rewrite \(\mathbf{w}\) by
+replacing \({\mathbf{v}}_{1}\) with the first equation, and so on.
+
+\[{\mathbf{w} }{= r_{1}\left( a_{11}{\mathbf{w}}_{1} + a_{21}{\mathbf{w}}_{2} + \cdots a_{k1}{\mathbf{w}}_{k} \right) }{+ r_{2}\left( a_{12}{\mathbf{w}}_{1} + a_{22}{\mathbf{w}}_{2} + \cdots + a_{k2}{\mathbf{w}}_{k} \right) }{+ \cdots + r_{n}(a_{1m}{\mathbf{w}}_{1} + a_{2m}{\mathbf{w}}_{2} }{+ \cdots + a_{km}{\mathbf{w}}_{k})} \]
+
+\[{}{= \left( r_{1}a_{11} + r_{2}a_{12} + \cdots + r_{m}a_{1m} \right){\mathbf{w}}_{1} }{+ \cdots + \left( r_{1}a_{k1} + r_{2}a_{k2} + \cdots + r_{m}a_{km} \right){\mathbf{w}}_{k}} \]
+
+If \(\mathbf{w} = 0\), then \(A\mathbf{r} = \mathbf{0}\),
+where \(A\) is a matrix formed by the column vectors of
+\({\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m}\). We know that
+\({\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m}\) is linearly
+independent, meaning the matrix has a unique and trivial solution. This
+means \(\mathbf{r} = 0\). This means
+
+\begin{align*}
+r_{1}a_{11} + r_{2}a_{12} + \cdots + r_{m1}a_{1m} &= 0 \\
+&\vdots  \\
+r_{1}a_{k1} + r_{2}a_{k2} + \cdots + r_{m}a_{km} &= 0
+\end{align*}
+
+
+This system only contains one solution, and that solution must be the
+trivial solution of \(\mathbf{r} = 0\). However, you have \(k\)
+equations and \(m\) unknowns. Recall that we assumed \(k < m\), meaning
+the number of equations is less than the number of unknowns, and you
+cannot have a unique solution that way -- you would have infinitely many
+solutions.
+
+\sout{You are supposed to have infinitely many} \(\mathbf{r}\)
+\sout{to satisfy}
+\(r_{1}{\mathbf{v}}_{1} + r_{2}{\mathbf{v}}_{2} + \cdots + r_{m}{\mathbf{v}}_{m} = \mathbf{0}\)\sout{.
+Therefore} \({\mathbf{v}}_{1}\cdots{\mathbf{v}}_{m}\) \sout{are
+linearly independent.}
+
+\textbf{{[}1{]} Remark.} (Existence and determination of Base): Every
+subspace \(W \subset \mathbb{R}^{n}\) has a basis and
+\(\dim(w) \leq n\).
+
+Pick \(\mathbf{b} \in W\), and pick a collection of linearly
+independent vectors
+\({\mathbf{w}}_{1},\ {\mathbf{w}}_{2},\ \ldots,\ {\mathbf{w}}_{k}\),
+and use them to build a linear system. The objective is to make this
+system always have a solution.
+
+\[{\mathbf{w}}_{1}x_{1} + {\mathbf{w}}_{2}x_{2} + ⋯ + {\mathbf{w}}_{k}x_{k} = \mathbf{b}\]
+
+Should have a unique solution \(\Rightarrow\) pivot for every single
+column vector. If so, then they form a basis.
+
+\textbf{{[}2{]}} Every linearly independent set of vectors in
+\(\mathbb{R}^{n}\) can be enlarged if necessary to become a basis for
+\(\mathbb{R}^{n}\).
+
+\(sp\left( {\mathbf{v}}_{1}\cdots{\mathbf{v}}_{k} \right)\)
+gives you a \(k\)-dimensional space, if \(k < n\). If you add some more
+linearly independent vectors (to all of the existing span) so that the
+number of vectors matches \(n\), i.e.
+
+\[sp\left( {\mathbf{v}}_{1},\ \ldots,\ {\mathbf{v}}_{k},\ {\mathbf{v}}_{k + 1},\ \ldots,\ {\mathbf{v}}_{n} \right)\]
+
+This forms a basis for \(\mathbb{R}^{n}.\)
+
+\emph{Recall: Number of basis vectors of a subset gives you, its
+dimension.}
+
+\textbf{{[}3{]}} If \(W\) is a subspace of
+\(\mathbb{R}^{n},\dim(w) = k\). Then:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  Every linearly independent \(k\) vectors in \(W\) is a basis for \(W\)
+\item
+  Every \(k\) vectors, the span of them gives you \(W\), then those
+  \(k\) vectors are basis for \(W\).
+\end{enumerate}
+
+
+\subsection{Finding a basis from a
+matrix}
+
+\[A = \begin{bmatrix}
+1 & 1 & 2 & 1 & 2 \\
+2 & - 1 & 1 & 1 & 1 \\
+1 & 2 & 3 & 1 & 3 \\
+2 & 1 & 3 & 3 & 3 \\
+\end{bmatrix}\]
+
+What is the basis for the row space, and what is the basis for the
+column space?
+
+The candidate bases for
+\(\text{col}(A) = sp\left\{ {\mathbf{c}}_{1},\ {\mathbf{c}}_{2},\ {\mathbf{c}}_{3},\ {\mathbf{c}}_{4},\ {\mathbf{c}}_{5} \right\}\),
+\(\text{row}(A) = sp\left\{ {\mathbf{R}}_{1},\ {\mathbf{R}}_{2},\ {\mathbf{R}}_{3},\ {\mathbf{R}}_{4} \right\}\)
+
+To figure out the basis, we need to figure which \(\mathbf{c}\) and
+which \(\mathbf{r}\) is redundant. Row reducing this matrix:
+
+\[A\sim H = \begin{bmatrix}
+1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}\]
+
+Columns 1, 2, and 4 have pivots. Columns 3 and 5 are redundant and can
+be made up by linear combinations of columns 1, 2, and 4. For example:
+
+\begin{align*}
+{\mathbf{c}}_{5} &= {\mathbf{c}}_{1} + {\mathbf{c}}_{2} \\
+{\mathbf{c}}_{3} &= {\mathbf{c}}_{1} + {\mathbf{c}}_{2}
+\end{align*}
+
+
+We can remove the redundant vectors from \(\text{col}(A)\) to determine
+the basis for the column vectors of \(A\):
+
+\[\text{col}(A) = sp\left\{ {\mathbf{c}}_{1},\ {\mathbf{c}}_{2},\ {\mathbf{c}}_{4} \right\} \Rightarrow \dim\left( \text{col}(A) \right) = 3\]
+
+The row space of \(A\): Remove \({\mathbf{R}}_{4}\); it is
+pivotless.
+
+\[\text{row}(A) = sp\left\{ {\mathbf{R}}_{1},\ {\mathbf{R}}_{2},\ {\mathbf{R}}_{3} \right\} \Rightarrow \dim\left( \text{row}(A) \right) = 3\]
+
+
+\subsubsection{The general procedure}
+
+How to find bases for spaces associated with a matrix?
+
+Let \(A \in M_{m \times n}\) matrix, and \(A\sim H,\ H\) is RREF of
+\(A\).
+
+There are 3 types of spaces associated with \(A\): \(A\) has
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  Row space
+\item
+  Column space
+\item
+  Null space (span of vectors for \(\mathbf{x}\) that satisfies
+  \(A\mathbf{x} = 0\))
+\end{enumerate}
+
+Procedure:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  The non-zero rows of \(H\) form a basis for the row space.
+\item
+  The column has a pivot \(\Rightarrow\) the column is a basis vector
+  for the column space.
+\item
+  For a basis of null space \(\mathcal{N}\), we need to solve this
+  system: \(H\mathbf{x} = 0\), to see how many basis vectors are in
+  the solution space. The quantity of free variables in the system above
+  will determine how many basis vectors in the solution space. If there
+  are no free variables, then you only have one vector as the null
+  space. One free variable generates a line; 2 generates a plane, 3
+  generates \(\mathbb{R}^{3}\), and so on.
+\end{enumerate}
+
+\emph{Recall: Number of basis vectors of a subset gives you, its
+dimension.}
+
+\[\text{no.\ of\ basis\ for\ N} = \dim\left( \mathcal{N} \right) = \text{no.\ of\ free\ variables} = \text{no.\ of\ pivot-free\ columns}\]
+
+\begin{remark}
+\[\dim\left( \text{col}(A) \right) = \dim\left( \text{row}(A) \right) = \text{no.\ of\ pivot\ columns\ in\ H}\]
+\end{remark}
+
+\begin{example}
+\[A = \begin{bmatrix}
+1 & 1 & 2 & 1 & 2 \\
+2 & - 1 & 1 & 1 & 1 \\
+1 & 2 & 3 & 1 & 3 \\
+2 & 1 & 3 & 3 & 3 \\
+\end{bmatrix}\sim H = \begin{bmatrix}
+1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}\]
+\end{example}
+
+Compute \(\text{null}(A)\). Firstly, column 3 and column 5 of \(H\) are
+free variables, so we have two free variables. Therefore, the dimension
+of the null space is 2.
+
+\[\begin{bmatrix}
+1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+x_{4} \\
+x_{5} \\
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+0 \\
+0 \\
+\end{bmatrix} \Leftrightarrow \ \left\lbrack \begin{matrix}
+1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{matrix}\;\middle|\;\begin{matrix}
+0 \\
+0 \\
+0 \\
+0 \\
+\end{matrix} \right\rbrack\]
+
+Solve this linear system:
+
+\begin{align*}
+1 \cdot x_{4} &= 0 \Rightarrow x_{4} = 0 \\
+x_{3} &= t \\
+x_{5} &= s \\
+x_{1} &= - x_{3} - x_{5} = - t - s \\
+x_{2} &= - x_{3} - x_{5} = - t - s \\
+\begin{bmatrix}x_{1} \\x_{2} \\x_{3} \\x_{4} \\x_{5} \\\end{bmatrix} &= \begin{bmatrix} - t - s \\ - t - s \\t \\0 \\s \\\end{bmatrix} = t\begin{bmatrix} - 1 \\ - 1 \\1 \\0 \\0 \\\end{bmatrix} + s\begin{bmatrix} - 1 \\ - 1 \\0 \\0 \\1 \\\end{bmatrix}
+\end{align*}
+
+
+Therefore, \(\text{Null}(A) = sp\left\{ \begin{bmatrix}
+ - 1 \\
+ - 1 \\
+1 \\
+0 \\
+0 \\
+\end{bmatrix},\begin{bmatrix}
+ - 1 \\
+ - 1 \\
+0 \\
+0 \\
+1 \\
+\end{bmatrix} \right\}\)
+
+The rank of a matrix is how many basis vectors it can form. Also, it can
+be quantified by the number of pivots in the matrix when reduced to
+RREF.
+
+
+\subsubsection{Rank}
+
+Let \(A \in M_{m \times n}\) matrix.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The dimension of \(\text{col}(A) = \dim\left( \text{row}(A) \right)\)
+  is called the rank of \(A\), denoted by \(\text{rank}(A)\). The rank
+  can also be seen as the pivot count for a matrix reduced to RREF.
+\item
+  The dimension of the nullspace of \(A\), represented as
+  \(\text{null}(A)\) is called the nullity of \(A\).
+\end{enumerate}
+
+\begin{theorem}
+The rank equation of a matrix, where \(H\) is in REF
+or RREF:
+
+\begin{align*}
+&A\sim H \\
+&A,\ H \in M_{m \times n}\ \left( \mathbb{R} \right)
+\end{align*}
+
+\end{theorem}
+
+Based on \(H\), we have:
+
+\[\text{rank}(A) + \text{nullity}(A) = n\ \text{(width\ of\ matrix)}\]
+
+\begin{proof} If \(A\sim H\)
+
+\[\text{rank}(A) = \text{no.\ of\ pivots\ in\ H} = \text{no.\ of\ columns\ in\ H\ with\ pivots}\]
+
+\[\text{nullity}(A) = \text{no.\ of\ pivotless\ columns}\]
+
+\begin{align*}
+\text{rank}(A) + \text{nullity}(A) &= \text{col\ with\ pivots\ in\ H} + \text{col\ without\ pivots\ in\ H} \\
+&= \text{no.\ of\ columns\ in\ A\ and\ H} \\
+&= n
+\end{align*}
+
+
+If you have a matrix with a zero column on the right:
+
+\[\left\lbrack \begin{matrix}
+1 & 2 & 3 & 0 \\
+4 & 5 & 6 & 0 \\
+7 & 8 & 9 & 0 \\
+10 & 11 & 12 & 0 \\
+\end{matrix}\;\middle|\;\begin{matrix}
+0 \\
+0 \\
+0 \\
+a \\
+\end{matrix} \right\rbrack = \mathbf{0}\]
+
+\(a\) is guaranteed to be mapped to zero. That is, the last element of
+\(\mathbf{x}\).
+
+\[x \cdot a = b \Rightarrow x = \frac{b}{a};b \neq 0 \Rightarrow a \neq 0\]
+
+
+
+\end{proof}
+\section{Matrices and Linear Maps}
+
+Recall from section 1: A linear map \(T\) from \(\mathbb{R}^{n}\) to
+\(\mathbb{R}^{m}\) is a map that meets the following conditions:
+
+\[T\left( \mathbf{x} + \alpha\mathbf{y} \right) = T\left( \mathbf{x} \right) + \alpha T(\mathbf{y})\]
+
+As long as the map satisfies this then it is a linear map. This map can
+be modeled with a matrix of the appropriate size.
+
+If \(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a linear map, let
+\(A \in M_{m \times n}\ \left( \mathbb{R} \right)\).
+
+\[A = \begin{bmatrix}
+ \mid & \mid & \mid & \cdots & \mid \\
+T({\mathbf{e}}_{1}) & T({\mathbf{e}}_{2}) & T({\mathbf{e}}_{3}) & \cdots & T({\mathbf{e}}_{n}) \\
+ \mid & \mid & \mid & \cdots & \mid \\
+\end{bmatrix}\]
+
+\(T\left( {\mathbf{e}}_{i} \right) = {\mathbf{v}}_{i} \in \mathbb{R}^{m};{\mathbf{v}}_{i}\)
+has \(m\) rows.
+\({\mathbf{e}}_{1},\ {\mathbf{e}}_{2},\ \ldots,\ {\mathbf{e}}_{n}\)
+are basis vectors that span \(\mathbb{R}^{n}\). (i.e.,
+\(sp\left( {\mathbf{e}}_{1},\ {\mathbf{e}}_{2},\ \ldots,\ {\mathbf{e}}_{n} \right) = \mathbb{R}^{n}\)).
+
+Then \(T\left( \mathbf{x} \right) = A\mathbf{x}\), where
+\(\mathbf{x} \in \mathbb{R}^{n}\).
+
+You can call \(A\) as the standard matrix representation of \(T\).
+
+\emph{Proof:} Why do linear maps work?
+
+For any possible input
+\(\mathbf{x} \in \mathbb{R}^{n},\ \exists!\mathbf{x} = x_{1}e_{1} + x_{2}e_{2} + \cdots + x_{n}{\mathbf{e}}_{n}\)
+(\(\mathbf{x}\) can be represented \emph{uniquely} in the fashion of
+a linear combination, by definition of basis.)
+
+\begin{align*}
+T\left( \mathbf{x} \right) &= T\left( x_{1}{\mathbf{e}}_{1} + x_{2}{\mathbf{e}}_{2} + \cdots + x_{n}{\mathbf{e}}_{n} \right) \\
+&= x_{1}T\left( {\mathbf{e}}_{1} \right) + x_{2}T\left( {\mathbf{e}}_{2} \right) + \cdots + x_{n}T\left( {\mathbf{e}}_{n} \right) \\
+&= \begin{bmatrix} \mid & \mid & \mid & \cdots & \mid \\T\left( {\mathbf{e}}_{1} \right) & T\left( {\mathbf{e}}_{2} \right) & T\left( {\mathbf{e}}_{3} \right) & \cdots & T\left( {\mathbf{e}}_{n} \right) \\ \mid & \mid & \mid & \cdots & \mid \\\end{bmatrix}\begin{bmatrix}x_{1} \\x_{2} \\ \vdots \\x_{n} \\\end{bmatrix} \\
+&= x_{1}\begin{bmatrix} \mid \\T\left( {\mathbf{e}}_{1} \right) \\ \mid \\\end{bmatrix} + x_{2}\begin{bmatrix} \mid \\T\left( {\mathbf{e}}_{2} \right) \\ \mid \\\end{bmatrix} + \cdots + x_{n}\begin{bmatrix} \mid \\T\left( {\mathbf{e}}_{n} \right) \\ \mid \\\end{bmatrix}
+\end{align*}
+
+
+Example: \(T:\mathbb{R}^{4} \rightarrow \mathbb{R}^{3}\) is a linear
+map.
+
+\[{T:\left( \left\lbrack x_{1},\ x_{2},\ x_{3},\ x_{4} \right\rbrack \right) }{= \left\lbrack x_{2} - 3x_{3} - x_{4},\ 6x_{1} + 5x_{2},\ x_{3} + 2x_{1} \right\rbrack} \]
+
+How do I redefine \(T\) in terms of the matrix \(A\) such that
+\(T\left( \mathbf{x} \right) = A\mathbf{x}\), i.e.
+
+\[T\left( \left\lbrack x_{1},\ x_{2},\ x_{3},\ x_{4} \right\rbrack \right) = A \cdot \begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+x_{4} \\
+\end{bmatrix}\]
+
+Solution: \(\text{domain}(T) = \mathbb{R}^{4}\).
+\(\mathbb{R}^{4} = sp\left( \lbrack 1,\ 0,\ 0,\ 0\rbrack,\ \lbrack 0,\ 1,\ 0,\ 0\rbrack,\ \lbrack 0,\ 0,\ 1,\ 0\rbrack,\ \lbrack 0,\ 0,\ 0,\ 1\rbrack \right)\)
+
+To construct \(A\), compute the image of the basis:
+\(T({\mathbf{e}}_{1\ to\ 4})\):
+
+\begin{align*}
+T\left( {\mathbf{e}}_{1} \right) &= \lbrack 0,\ 6,\ 2\rbrack \\
+T\left( {\mathbf{e}}_{2} \right) &= \lbrack 1,\ 5,\ 0\rbrack \\
+T\left( {\mathbf{e}}_{3} \right) &= \lbrack - 3,\ 0,\ 1\rbrack \\
+T\left( {\mathbf{e}}_{4} \right) &= \lbrack - 1,\ 0,\ 0\rbrack
+\end{align*}
+
+
+(\({\mathbf{e}}_{1} = \lbrack 1,\ 0,\ 0,\ 0\rbrack\), and so on --
+we just ran those through the linear map.)
+
+\[{A }{= \begin{bmatrix}
+ \mid & \mid & \mid & \mid \\
+T\left( {\mathbf{e}}_{1} \right) & T\left( {\mathbf{e}}_{2} \right) & T\left( {\mathbf{e}}_{3} \right) & T\left( {\mathbf{e}}_{4} \right) \\
+ \mid & \mid & \mid & \mid \\
+\end{bmatrix} }{= \begin{bmatrix}
+0 & 1 & - 3 & 1 \\
+6 & 5 & 0 & 0 \\
+2 & 0 & 1 & 0 \\
+\end{bmatrix}_{\text{this\ is\ A}}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+x_{4} \\
+\end{bmatrix}} \]
+
+\[\Rightarrow T\left( \mathbf{x} \right) = A\mathbf{x}\]
+
+Question: If we have a linear map
+\(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\), how can the
+\(A(T\left( \mathbf{x} \right) = A\mathbf{x})\) help you to find
+\(\ker(T)\) and \(\text{range}{(T)}\)?
+
+Answer: \(\ker(T) = \text{null}{(A)}\), and
+\(\text{range}{(T)} = \text{col}(A)\)
+
+Why?
+
+\[\ker(T) = \left\{ \mathbf{x} \in \mathbb{R}^{n}\mid T\left( \mathbf{x} \right) = 0 \right\} = \left\{ \mathbf{x} \in \mathbb{R}^{n}\mid A\mathbf{x} = 0 \right\} = \text{null}(A)\]
+
+You can tell \(\text{null}(A)\) by checking
+\(\left( A\sim H_{\text{RREF}} \right)\) the location of the pivots and
+the number of the pivots in \(H_{\text{RREF}}\).
+
+\[\text{range}{(T)} = \left\{ T\left( \mathbf{x} \right) \in \mathbb{R}^{M}\mid\mathbf{x} \in \mathbb{R}^{n} \right\} = \left\{ A\mathbf{x}\mid\mathbf{x} \in \mathbb{R}^{n} \right\} = \text{col}(A)\]
+
+(How many columns have a pivot?)
+
+Example: The linear map
+\(T:\left( \left\lbrack x_{1},\ x_{2},\ x_{3},\ x_{4} \right\rbrack \right) = \left\lbrack x_{2} - 3x_{3} - x_{4},\ 6x_{1} + 5x_{2},\ x_{3} + 2x_{1} \right\rbrack\):
+Deduce the kernel and the range. You can do that by finding the basis.
+
+Firstly, find matrix \(A\) (already deduced before). Reduce it to \(H\).
+
+\[\begin{bmatrix}
+0 & 1 & - 3 & 1 \\
+6 & 5 & 0 & 0 \\
+2 & 0 & 1 & 0 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 0 & - 5/24 \\
+0 & 1 & 0 & 1/4 \\
+0 & 0 & 1 & 5/12 \\
+\end{bmatrix} = H\]
+
+\[T\left( \mathbf{x} \right) = A\mathbf{x}\]
+
+\(\mathbf{c}\) represents the column vectors of \(H\).
+
+\begin{align*}
+{\mathbf{c}}_{4} &= - \frac{5}{24}{\mathbf{c}}_{1} + \frac{1}{4}{\mathbf{c}}_{2} + \frac{5}{12}{\mathbf{c}}_{3} \\
+{\mathbf{c}}_{4} + \frac{5}{24}{\mathbf{c}}_{1} - \frac{1}{4}{\mathbf{c}}_{2} - \frac{5}{12}{\mathbf{c}}_{3} &= 0
+\end{align*}
+
+
+\[\text{col}(A) = \text{span}\left( c_{1},\ c_{2},\ c_{3} \right) = \text{range}(T)\]
+
+\[\ker(T) = \left\{ \mathbf{x}\mid T\left( \mathbf{x} \right) = 0 \right\} = \left\{ \mathbf{x}\mid A\mathbf{x} = 0 \right\} \Leftrightarrow \left\{ \mathbf{x}\mid H\mathbf{x} = 0 \right\}\]
+
+The \(\Leftrightarrow\) statement is true as
+\(\text{null}{(A)} = \text{null}(H)\) if \(A\sim H\).
+
+To figure out the kernel, I need to figure out what is happening to
+\(H\mathbf{x} = 0\).
+
+\[H\mathbf{x} = 0\]
+
+\[\begin{bmatrix}
+1 & 0 & 0 & - 5/24 \\
+0 & 1 & 0 & 1/4 \\
+0 & 0 & 1 & 5/12 \\
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+x_{4} \\
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0 \\
+0 \\
+\end{bmatrix}\]
+
+\begin{align*}
+x_{1} - \frac{5}{24}x_{4} &= 0 \Rightarrow x_{1} = \frac{5}{24}x_{4} = \frac{5}{24}s \\
+x_{2} + \frac{1}{4}x - 4 &= 0 \Rightarrow x_{2} = - \frac{1}{4}x_{4} = - \frac{1}{4}s \\
+x_{3} + \frac{5}{12}x_{4} &= 0 \Rightarrow x_{3} = - \frac{5}{12}x_{4} = - \frac{5}{12}s \\
+x_{4}\ \text{is\ a\ free\ variable},\ x_{4} &= s
+\end{align*}
+
+
+\[\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+x_{4} \\
+\end{bmatrix} = \left\{ s\begin{bmatrix}
+5/24 \\
+ - 1/4 \\
+ - 5/12 \\
+1 \\
+\end{bmatrix}\mid s\mathbb{\in R} \right\} = sp\left\{ \begin{bmatrix}
+5/24 \\
+ - 1/4 \\
+ - 5/12 \\
+1 \\
+\end{bmatrix} \right\} = \ker(T)\]
+
+This is the basis for the kernel, or a basis for
+\(\text{null}{(A)} = \text{null}(H)\). \(\text{nullity}{(A)} = 1\)
+
+\[\text{nullity}(A) + \text{rank}(A) = 1 + 3 = 4 = \text{no.\ of\ columns\ in\ A}\]
+
+Based on this observation:
+
+\emph{Remark.} Let \(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) be a
+linear map.
+
+\[T\left( \mathbf{x} \right) = A\mathbf{x}\]
+
+We can define
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\text{rank}(T)\) is the dimension of the range of \(T\), which is
+  the same as \(\text{rank}(A)\).
+\item
+  The nullity of \(T\) (\(\text{nullity}{(T)})\) is the dimension of the
+  kernel, or the same as \(\text{nullity}{(A)}\).
+\item
+  If \(A\) is an invertible matrix, then \(T\) is invertible as well.
+  (i.e., \(\exists T^{- 1})\).
+  \(T^{- 1}\left( \mathbf{x} \right) = A^{- 1}\mathbf{x}\)
+\end{enumerate}
+
+Using these definitions, we can determine the fundamental theorem of the
+linear map:
+
+\begin{theorem}
+\(\text{rank}(T) + \text{nullity}{(T)} = \dim\left( \text{domain}(T) \right)\)
+\end{theorem}
+
+This is the same as
+\(\text{rank}(A) + \text{nullity}{(A)} = \text{no.\ of\ columns\ in\ A}\)
+
+We have a new way to say matrix \(A\) is invertible:
+
+\begin{align*}
+&\left( A \in M_{n \times n} \right) \\
+\text{rank}(A) &= n \\
+A\mathbf{x} &= \mathbf{b}\ \text{has\ a\ unique\ sol'n} \Rightarrow \text{no\ free\ variable} \Rightarrow n\ \text{pivots} \\
+\Leftrightarrow \text{nullity}(A) &= 0 \\
+\Leftrightarrow A\mathbf{0} &= \mathbf{0} \\
+\Leftrightarrow \text{rank}(A) &= \text{no.\ of\ columns}
+\end{align*}
+
+
+In this case, we call \(A\) full rank. The full rank is the highest
+possible value for the rank.
+
+\(A\) is invertible if and only if \(A\) is full rank.
+
+If a space only contains the zero vector, the dimension is zero.
+
+\begin{theorem}
+Preservation of subspaces.
+\end{theorem}
+
+Let \(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) be a linear map.
+
+If \(W\) is a subspace of \(\mathbb{R}^{n}\), then \(T(W)\) is a
+subspace in \(\mathbb{R}^{n}\). (Linear transformations never knock
+inputs within a subspace out of the subspace.)
+
+Proof. \(W = \left\{ \begin{matrix}
+ \neq \varnothing \\
+\mathbf{x},\ \mathbf{y} \in W,\ \mathbf{x} + \alpha\mathbf{y} \in W \\
+\end{matrix} \right.\ \)
+
+How about \(T(W)\)? If
+\(\mathbf{\alpha},\ \mathbf{\beta} \in T(W)\), we want to check
+\(\alpha + r\beta \in T(W)\), and \(r\mathbb{\in R}\)
+
+\[\exists\mathbf{x},\ \mathbf{y} \in W,\ T\left( \mathbf{x} \right) = \mathbf{\alpha},\ T\left( \mathbf{y} \right) = \mathbf{\beta}\]
+
+This means you have two inputs in the domain of \(T\) such that (the
+above statement).
+
+We can find the inputs corresponding to
+\(\mathbf{\alpha} + r\mathbf{\beta}\)
+
+Consider \(\mathbf{x} + r\mathbf{y} \in W\), as \(W\) is a
+subspace.
+
+\[T\left( \mathbf{x} + r\mathbf{y} \right) = T\left( \mathbf{x} \right) + rT\left( \mathbf{y} \right) = \mathbf{\alpha} + r\mathbf{\beta} \in T(w)\]
+
+This means \(T(w)\) is closed under addition and scalar multiplication.
+
+\(T(W) \neq \varnothing\)\emph{,} as \(W\) is a subspace
+\(\Rightarrow \mathbf{0} \in W\) (which again shows
+\(W \neq \varnothing\))
+
+\[T\left( \mathbf{0} \right) = \mathbf{0} \Rightarrow T(\mathbf{w}) \neq \varnothing\]
+
+\(\mathbf{0}\) is an input in W.
+
+Homework (something you should be able to do for the final exam): Prove
+if \(W'\) is a subspace in \(\mathbb{R}^{m}\), then the pre-image of
+\(W'\) under \(T\) is a subspace of the domain \(\mathbb{R}^{n}\).
+
+\(f:V \rightarrow W\): if \(f\) is bijective, then \(|V| = |W|\). (In
+terms of size).
+
+
+This is how sizes of infinity are compared.
+
+\begin{definition}
+Suppose
+\(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a linear map. What is
+injective, surjective, and bijective? Injectivity is the same as
+one-to-one. Bijective means isomorphism (one-to-one correspondence from
+domain to codomain, for example, \(y = mx + b\) -- every single element
+in the domain has a counterpart in the codomain, and the other way
+around.)
+\end{definition}
+
+
+\section{\texorpdfstring{ Injective, onto, and
+bijective}{ Injective, onto, and bijective}}
+
+\begin{definition}
+Suppose
+\(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) is a linear map.
+\end{definition}
+
+\(T\) is \textbf{one to one} (injective) if:
+
+\[T\left( \mathbf{v} \right) = T\left( \mathbf{u} \right) \Rightarrow \mathbf{u} = \mathbf{v}\]
+
+Or if \(\mathbf{u} \neq \mathbf{v}\), then
+\(T(\mathbf{u}) \neq T\left( \mathbf{v} \right)\).
+
+For example: \(\left\{ \begin{matrix}
+f(x) = x & \text{one\ to\ one} \\
+f(x) = x^{2} & \text{one\ to\ many} \\
+\end{matrix} \right.\ \)
+
+\begin{quote}
+\(\ker(T) = \left\{ \mathbf{0} \right\} \Rightarrow\) \(T\) is one
+to one.
+\end{quote}
+
+A function is \textbf{onto} if:
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\item
+  \(T\left( \mathbb{R}^{n} \right) = \mathbb{R}^{m}\) (The image/range
+  covers the entire codomain)
+\item
+  \(\forall v' \in \mathbb{R}^{m},\ \exists v \in \mathbb{R}^{n}\ \text{s.t.}\text{\ T}(v) = v'\)
+\item
+  \(\text{Range}(T) = \mathbb{R}^{m}\)
+\item
+  \(T\left( \mathbf{x} \right) = A\mathbf{x}\), only if
+  \(\text{col}(A) = \mathbb{R}^{m}\) and \(\text{rank}{(A)} = m\)
+\end{enumerate}
+
+These three statements are equivalent. (A function is onto if every
+element on the codomain can be traced back to the domain)
+
+Example: \(f(x) = x\) is onto, but \(f(x) = e^{x}\) is \textbf{not} an
+onto function as outputs are strictly positive. If you try to reverse a
+negative value (which is in the codomain) it does not exist.
+
+
+\subsection{Isomorphism (Bijective):}
+
+If a linear map is one-to-one and onto, the linear map is bijective.
+
+
+\begin{remark}
+Let \(T:\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}\) be
+a linear map. Represent \(T\) as
+\(T\left( \mathbf{x} \right) = A\mathbf{x}\). The input vector
+must be \(n\)-dimensional, so column count of \(A\) is \(n\). Output
+vector must be \(m\)-dimensional, so row count of \(A\) is \(m\).
+\end{remark}
+
+To compute \(A\), it is the image of the basis of
+\({\mathbf{e}}_{1}\ldots e_{n}\).
+
+\[\begin{bmatrix}
+ \mid & \mid & \mid & \cdots & \mid \\
+T\left( {\mathbf{e}}_{1} \right) & T\left( {\mathbf{e}}_{2} \right) & T\left( {\mathbf{e}}_{3} \right) & \cdots & T\left( {\mathbf{e}}_{n} \right) \\
+ \mid & \mid & \mid & \cdots & \mid \\
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+ \vdots \\
+x_{n} \\
+\end{bmatrix} = \begin{bmatrix}
+y_{1} \\
+ \vdots \\
+ \vdots \\
+y_{m} \\
+\end{bmatrix}\]
+
+\begin{framed}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  A function is one to one \(\Leftrightarrow\)
+  \(\ker(T) = \text{null}(A) = \left\{ \mathbf{0} \right\}\) (The
+  kernel of \(T\) is strictly the zero vector.) \textbf{THE COLUMNS OF}
+  \(\mathbf{A}\) \textbf{ARE LINEARLY INDEPENDENT.}
+\item
+  A function is onto \(\Leftrightarrow\)
+  \(\text{col}(A) = \mathbb{R}^{m}\) or \(\text{Rank}{(A)} = m\) (full
+  rank.) (\textbf{COL SPACE MUST MATCH THE CODOMAIN or ALL ROWS HAVE
+  PIVOTS or RANK MATCHES DIMENSION OF OUTPUT)}
+\item
+  Isomorphism: \(A\sim I \Leftrightarrow A^{- 1}\)
+\end{enumerate}
+
+\end{framed}
+
+
+
+Example: \(T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{3}\) is defined by
+\(T\left( \begin{bmatrix}
+x_{1} & x_{2} & x_{3} \\
+\end{bmatrix} \right) = \left\lbrack x_{1} - 2x_{2},\ x_{2} + x_{3},\  - 2x_{3} - x_{1} \right\rbrack\)
+
+Check if this is one-to-one, onto, or isomorphic.
+
+For example:
+\(T\left( \mathbf{x} + r\mathbf{y} \right) = T\left( \mathbf{x} \right) + rT\left( \mathbf{y} \right)\)
+
+\begin{align*}
+T\left( \mathbf{x} \right) &= A\mathbf{x} \\
+T\left( \mathbf{x} + r\mathbf{y} \right) &= A\left( \mathbf{x} + r\mathbf{y} \right) = A\mathbf{x} + rA\mathbf{y}
+\end{align*}
+
+
+Example: \(H\mathbf{x} = 0\), \(\mathbf{x}\) unique?
+
+\[\begin{bmatrix}
+1 & 0 & 2 \\
+0 & 1 & 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+\end{bmatrix} = \begin{bmatrix}
+x_{1} + 2x_{3} \\
+x_{2} + x_{3} \\
+0 \\
+\end{bmatrix}\]
+
+This implies that \(x_{3}\) is a free variable, meaning anything in this
+vector in the map brings it to zero:
+
+\[s\begin{bmatrix}
+ - 2 \\
+ - 1 \\
+1 \\
+\end{bmatrix},\ s\mathbb{\in R}\]
+
+This implies: \({\mathbf{u}}_{1} \neq {\mathbf{u}}_{2}\). i.e.,
+\({\mathbf{u}}_{1} = \lbrack - 2,\  - 1,\ 1\rbrack,\ {\mathbf{u}}_{2} = \lbrack - 4,\ 2,\ 2\rbrack,\ T\left( {\mathbf{u}}_{1} \right) = 0\ \text{and}\text{\ T}\left( {\mathbf{u}}_{2} \right) = 0\)
+
+Based on the kernel argument, you can find two different vectors,
+meaning at least two different vectors map to zero.
+
+Onto:
+\(\dim\left( \text{codomain} \right) = \dim\left( \mathbb{R}^{3} \right) = 3\)
+
+\[\text{rank}(A) = 2\]
+
+(The rank is 2 because \(H\) only has two pivots.)
+
+Isomorphic: NOT. \(A\) is not invertible.
+
+\textbf{CHECK FOR ISOMORPHISM}
+
+\[T:\mathbb{R}^{N} \rightarrow \mathbb{R}^{n},\ A \in M_{n \times n}\left( \mathbb{R}^{2} \right)\]
+
+(The corresponding matrix has to be square)
+
+\[A\mathbf{x} = \mathbf{0} \rightarrow \text{unique}\ \mathbf{x} = 0\]
+
+(There should be a pivot for every column)
+
+\[A\sim I_{n \times n}\]
+
+
+\subsubsection{Example 1: One-to-one but not
+onto}
+
+\[T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{4}\]
+
+\[{T\left( \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \right) }{= \left\lbrack x_{1} - x_{2} + x_{3},\ x_{2} - x_{3},\ x_{3} - x_{1},\ x_{1} + 2x_{2} + x_{3} \right\rbrack} \]
+
+Check if one to one / onto / isomorphic.
+
+Firstly, this transformation is not isomorphic as the input and output
+dimension does not match. The size of \(A\) will be \(4 \times 3\), as
+you expect the input to be a 3D vector meaning the matrix must contain
+three columns.
+
+The matrix \(A\): \(\dim\left( \text{col}(A) \right) = 3\), which is the
+best case. The column space cannot cover \(\mathbb{R}^{4}\).
+
+\(\dim\left( \text{col}(A) \right) = 3 \Rightarrow \text{Range}(T)\) is
+strictly a subset of \(R^{4}\) and is NOT \(R^{4}\). The linear
+transformation is not onto.
+
+
+The map \textbf{can} be one-to-one: Just set up
+\(A\mathbf{x} = \mathbf{0}\) and check the solution count. All
+you need to do is check if it has free variables.
+
+Write down the image of the standard basis:
+
+\[A = \begin{bmatrix}
+ \mid & \mid & \mid \\
+T\left( {\mathbf{e}}_{1} \right) & T\left( {\mathbf{e}}_{2} \right) & T\left( {\mathbf{e}}_{3} \right) \\
+ \mid & \mid & \mid \\
+\end{bmatrix} = \begin{bmatrix}
+1 & - 1 & 1 \\
+0 & 1 & - 1 \\
+ - 1 & 0 & 1 \\
+1 & 2 & 1 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\]
+
+No free variable. We have a unique solution for
+\(A\mathbf{x} = \mathbf{0}\), meaning \(T\) is one-to-one as
+\(\ker(T) = null(A) = \left\{ \mathbf{0} \right\}\).
+
+
+\subsubsection{Example 2: Onto but not
+one-to-one}
+
+\[{T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{2};T\left( \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \right) }{= \left\lbrack x_{1} - 2x_{2} + 3x_{3},\ x_{2} - 2x_{3} \right\rbrack} \]
+
+Matrix \(A \in M_{2 \times 3}\)
+
+
+The matrix being wider than it is tall → \(\exists\) free variable. The
+system \(A\mathbf{x} = \mathbf{0}\) cannot give you a unique
+solution, implying infinitely as many solutions. This means
+
+\[\ker(T) = \text{Null}(A) \neq \left\{ \mathbf{0} \right\} \Rightarrow \text{T\ is\ not\ one-to-one}\]
+
+Check for onto:
+\(\text{Rank}(A) = 2 \Rightarrow \text{col}(A) = \mathbb{R}^{2}\)
+
+\[A = \begin{bmatrix}
+1 & - 2 & 3 \\
+0 & 1 & - 2 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & - 1 \\
+0 & 1 & - 2 \\
+\end{bmatrix}\]
+
+We know every single \textbf{row} contains a pivot.
+
+
+\subsubsection{Example 3:}
+
+\[T:\mathbb{R}^{3} \rightarrow \mathbb{R}^{3},\ A \in M_{3 \times 3}\]
+
+\[{T:\left( \left\lbrack x_{1},\ x_{2},\ x_{3} \right\rbrack \right) }{= \left\lbrack x_{2} - 2x_{2} + 3x_{3},\ x_{2} - 2x_{3},\ x_{1} + x_{2} + x_{3} \right\rbrack} \]
+
+If the domain and the codomain have the same dimension computations have
+to be done to figure out if the transformation is one-to-one, onto, or
+isomorphic.
+
+Solution: \(A = \begin{bmatrix}
+1 & - 2 & 3 \\
+0 & 1 & - 2 \\
+1 & 1 & 1 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & - 2 & - 3 \\
+0 & 1 & - 2 \\
+0 & 0 & 4 \\
+\end{bmatrix}\sim I\)
+
+This matrix is not RREF but can convince me that the matrix can be
+reduced to an identity matrix.
+
+Therefore, the linear system is \textbf{isomorphic}, implying it is
+one-to-one and onto. (\(T\) is isomorphic).
+
+\begin{align*}
+A\sim I \Rightarrow Rank(A) &= 3 = \dim\left( \mathbb{R}^{3} \right) \Rightarrow \text{onto} \\
+&\text{No\ free\ variable} \Rightarrow A\mathbf{x}  \\
+&= \mathbf{0}\ \text{has\ a\ unique\ solution} \Rightarrow null(A)  \\
+&= \left\{ \mathbf{0} \right) \Leftrightarrow \ker(T) = \left\{ \mathbf{0} \right\}  \\
+&\Rightarrow T\ \text{is\ one-to-one} \Rightarrow T\ \text{is\ isomorphic.}
+\end{align*}
+
+
+(Longer explanation above)
+
+\begin{framed}
+
+\textbf{One-to-one but not onto} \(\mathbf{\Rightarrow}\) \textbf{The
+matrix is taller than it is wide.} \(\begin{bmatrix}
+a & b \\
+c & d \\
+e & f \\
+\end{bmatrix}\)
+
+\begin{itemize}
+\item
+  \textbf{Typically} has pivots in every column \(\Leftrightarrow\)
+  column space is typically linearly independent.
+\item
+  \textbf{NO FREE VARIABLES}
+\item
+  Will not have pivots in every row.
+\item
+  Column space does not span the codomain. For example, in a
+  \(3 \times 2\) matrix, \(\dim\left( \text{col}(A) \right) \leq 2\). It
+  needs to be 3 to be onto.
+\item
+  If you have a 2D input your image will only be a plane, or something
+  that is worse than that, unless you try to compress a 3D space into
+  2D, in which you can't in this case.
+\end{itemize}
+
+\textbf{Onto but not one-to-one} \(\mathbf{\Rightarrow}\) \textbf{The
+matrix is wider than it is tall.} \(\begin{bmatrix}
+a & b & c \\
+d & e & f \\
+\end{bmatrix}\)
+
+\begin{itemize}
+\item
+  In a \(2 \times 3\) matrix, \(\text{rank}(A) \leq 2\). If
+  \(\text{rank}(A) = 2\), which occurs most of the time, the matrix is
+  onto. \textbf{(COLUMN PIVOT COUNT = HEIGHT OF MATRIX)}
+\item
+  \(\text{rank}(A) \leq 2 \Rightarrow \text{rank}(A) < 3\). The rank can
+  never match the width of the matrix \(\Leftrightarrow\) has pivotless
+  columns \(\Leftrightarrow\) matrix has free variable
+  \(\Leftrightarrow\) the span of the column space has redundant
+  vectors.
+\item
+  Compressing a 3D input to a 2D output, of course the existence of one
+  of the entries in the 4D input will be redundant.
+\end{itemize}
+
+\textbf{Neither onto nor one-to-one:}
+
+\begin{itemize}
+\item
+  Read the above two like a flow chart. There are conditions on the
+  first point. If the condition fails, it is neither.
+\end{itemize}
+
+\textbf{Square matrices:}
+
+For square matrix \(A \in M_{n \times n}\), \(A\) is one-to-one
+\(\Leftrightarrow\) \(A\) is onto. \textbf{(A SQUARE MATRIX IS EITHER
+ISOMORPHIC, OR NEITHER ONE-TO-ONE OR ONTO.)}
+
+RATIONALE: one-to-one requires pivots in all columns; onto requires
+pivots in every row. These notions become equivalent if the matrix is
+square.
+
+\textbf{Isomorphism:}
+
+\(A\sim I \Leftrightarrow A\) is invertible \(\Leftrightarrow\) \(A\) is
+one-to-one and \(A\) is onto.
+
+\end{framed}
+
+
+
+
+\section{Determinant}
+
+Represented by \(\det(A)\) or \(|A|\) (this isn't absolute value)
+
+In lower dimensional cases
+(\(\mathbb{R}^{1},\ \mathbb{R}^{2},\ \mathbb{R}^{3})\):
+
+\begin{definition}
+The determinant of a \(1 \times 1\) matrix is just
+its entry.
+
+\[A \in M_{1 \times 1} \Rightarrow \det(A) = \alpha\mathbb{\in R}\]
+\end{definition}
+
+The determinant of a \(2 \times 2\) matrix is:
+
+\[A = \begin{bmatrix}
+a_{1}\  & a_{2} \\
+b_{1} & b_{2} \\
+\end{bmatrix} \Rightarrow \det(A) = \left| \begin{bmatrix}
+a_{1}\  & a_{2} \\
+b_{1} & b_{2} \\
+\end{bmatrix} \right| = a_{1}b_{2} - a_{2}b_{1}\]
+
+The determinant of a \(3 \times 3\) matrix is:
+
+\[A = \begin{bmatrix}
+a_{1} & a_{2} & a_{3} \\
+b_{1} & b_{2} & b_{3} \\
+c_{1} & c_{2} & c_{3} \\
+\end{bmatrix}\]
+
+\[{\det(A) = \left| \begin{matrix}
+a_{1} & a_{2} & a_{3} \\
+b_{1} & b_{2} & b_{3} \\
+c_{1} & c_{2} & c_{3} \\
+\end{matrix} \right| }{= a_{1}\left| \begin{matrix}
+b_{2} & b_{3} \\
+c_{2} & c_{3} \\
+\end{matrix} \right| - a_{2}\left| \begin{matrix}
+b_{1} & b_{3} \\
+c_{1} & c_{3} \\
+\end{matrix} \right| }{+ a_{3}\left| \begin{matrix}
+b_{1} & b_{2} \\
+c_{1} & c_{2} \\
+\end{matrix} \right|} \]
+
+
+\subsection{Cross product}
+
+If
+\(\mathbf{a} = \left\lbrack a_{1},\ a_{2},\ a_{3} \right\rbrack \in \mathbb{R}^{3},\ \mathbf{b} = \left\lbrack b_{1},\ b_{2},\ b_{3} \right\rbrack \in \mathbb{R}^{3}\)
+
+\[\mathbf{a} \times \mathbf{b} = \det\left| \begin{matrix}
+i & j & k \\
+a_{1} & a_{2} & a_{3} \\
+b_{1} & b_{2} & b_{3} \\
+\end{matrix} \right| = i\left| \begin{matrix}
+a_{2} & a_{3} \\
+b_{2} & b_{3} \\
+\end{matrix} \right| - j\left| \begin{matrix}
+a_{1} & a_{3} \\
+b_{1} & b_{3} \\
+\end{matrix} \right| + k\left| \begin{matrix}
+a_{1} & a_{2} \\
+b_{1} & b_{2} \\
+\end{matrix} \right|\]
+
+In vector form:
+
+\[\mathbf{v} = \left( \left| \begin{matrix}
+a_{2} & a_{3} \\
+b_{2} & b_{3} \\
+\end{matrix} \right|,\  - \left| \begin{matrix}
+a_{1} & a_{3} \\
+b_{1} & b_{3} \\
+\end{matrix} \right|,\ \left| \begin{matrix}
+a_{1} & a_{2} \\
+b_{1} & b_{2} \\
+\end{matrix} \right| \right)\]
+
+We also want to check if
+\(\mathbf{v}\bot\mathbf{a},\ \mathbf{v}\bot\mathbf{b}\).
+Just use the dot product.
+
+\begin{align*}
+\mathbf{a} \cdot \mathbf{v} &= \left( a_{1},\ a_{2},\ a_{3} \right) \cdot \left( \mathbf{a} \times \mathbf{b} \right) \\
+&= \left( a_{1},\ a_{2},\ a_{3} \right) \cdot \left( \left| \begin{matrix}a_{2} & a_{3} \\b_{2} & b_{3} \\\end{matrix} \right|,\  - \left| \begin{matrix}a_{1} & a_{3} \\b_{1} & b_{3} \\\end{matrix} \right|,\ \left| \begin{matrix}a_{1} & a_{2} \\b_{1} & b_{2} \\\end{matrix} \right| \right) \\
+& \\
+&= \left( a_{1},\ a_{2},\ a_{3} \right) \cdot \left( a_{2}b_{3} - a_{3}b_{2},\  - a_{1}b_{3} + a_{3}b_{1},\ a_{1}b_{2} - a_{2}b_{1} \right) \\
+& \\
+&= a_{1}a_{2}b_{3} - a_{1}a_{3}b_{2} - a_{2}a_{1}b_{3} + a_{2}a_{3}b_{1}  \\
+&+ a_{3}a_{1}b_{2} - a_{3}a_{2}b_{1} \\
+&= 0
+\end{align*}
+
+
+(All cancels out. Similar computations can be done for \(b\).)
+
+\textbf{Lemma:}
+\(\mathbf{a} \times \mathbf{b} = \mathbf{v}\) such that
+\(\mathbf{v}\bot\mathbf{a},\ \mathbf{v}\bot\mathbf{b}\)
+
+
+\subsection{Geometric interpretation of
+determinants}
+
+Determinant of a \(2 \times 2\) matrix
+
+\[\begin{bmatrix}
+ - & {\mathbf{v}}_{1} & - \\
+ - & {\mathbf{v}}_{2} & - \\
+\end{bmatrix},\ {\mathbf{v}}_{1},\ {\mathbf{v}}_{2} \in \mathbb{R}^{2}\]
+
+\[\det(A) = \text{The\ area\ defined\ by\ }{\mathbf{v}}_{1},\ {\mathbf{v}}_{2}\]
+
+
+If \({\mathbf{v}}_{1} \parallel {\mathbf{v}}_{2}\), the area of
+the parallelogram formed by it is 0, so \(\det(A) = 0\).
+
+\textbf{Proof.}
+
+\[{\text{Area}^{2} = \left( \left| \left| \mathbf{a} \right| \right|\left| \left| \mathbf{h} \right| \right| \right)^{2} }{= \left( \left| \left| \mathbf{a} \right| \right| \cdot \left| \left| \mathbf{b} \right| \right| \cdot \sin^{2}\theta \right) }{= \left( \left| \left| \mathbf{a} \right| \right| \cdot \left| \left| \mathbf{b} \right| \right| \cdot (1 - \cos^{2}\theta \right) }{= \cdots} \]
+
+
+Dealing with three-dimensional vectors:
+
+\[\mathbf{a},\ \mathbf{b},\ \mathbf{c} \in \mathbb{R}^{3}\]
+
+If the three vectors are mutually independent, a parallelepiped can be
+formed.
+
+
+The determinant of the three vectors tells us the volume of this thing.
+
+The case where \(\mathbf{a},\ \mathbf{b},\ \mathbf{c}\) are
+linearly dependent, the volume of the parallelepiped is zero.
+
+
+If all vectors are parallel to each other, they define a 1-dimensional
+object.
+
+
+Either case, \(\det(A) = 0,\) where \(A = \begin{bmatrix}
+a_{1} & a_{2} & a_{3} \\
+b_{1} & b_{2} & b_{3} \\
+c_{1} & c_{2} & c_{3} \\
+\end{bmatrix}\)
+
+\textbf{Example:} All these operations have the same intent.
+
+Find the volume of the parallelepiped determined by
+\(\mathbf{a} = \lbrack 1,\ 0,\ 3\rbrack,\ \mathbf{b} = \lbrack 0,\ 1,\ 2\rbrack,\ \mathbf{c} = \lbrack 3,\ 3,\ 1\rbrack\)
+and check if it isn't 0
+
+\(\Leftrightarrow \ \)Check of
+\(\mathbf{a},\ \mathbf{b},\mathbf{c}\) are linearly
+independent
+
+\(\Leftrightarrow\) Check if
+\(\left\{ \mathbf{a},\ \mathbf{b},\ \mathbf{c} \right\}\) is
+a basis for \(\mathbb{R}^{3}\)
+
+\(\Leftrightarrow\) Check if \(A\mathbf{x} = \mathbf{d}\) has a
+unique solution where \(A = \begin{bmatrix}
+a_{1} & a_{2} & a_{3} \\
+b_{1} & b_{2} & b_{3} \\
+c_{1} & c_{2} & c_{3} \\
+\end{bmatrix}\)
+
+\(\Leftrightarrow\) Check of \(T = A\mathbf{x}\) is isomorphic,
+one-to-one, or onto
+
+\(\Leftrightarrow\) check if \(A\) is invertible.
+
+\textbf{Solution:} Compute the determinant.
+
+\[\text{Vol} = \det(A) = \left| \begin{matrix}
+1 & 0 & 3 \\
+0 & 1 & 2 \\
+3 & 3 & 1 \\
+\end{matrix} \right| = 1 \cdot \left| \begin{matrix}
+1 & 2 \\
+3 & 1 \\
+\end{matrix} \right| - 0 + 3 \cdot \left| \begin{matrix}
+0 & 1 \\
+3 & 3 \\
+\end{matrix} \right| = | - 14| = 14\]
+
+The volume must be positive.
+
+The position of the vectors must form something like this.
+
+
+Therefore, these vectors are linearly independent, so they can span 3D
+space. The matrix \(A\sim I\), has no free variable, the equation
+\(A\mathbf{x} = \mathbf{d}\) has a unique solution, is
+full-rank, and the matrix is invertible.
+
+\textbf{THE VOLUME OF A PARALLELPIPED FROM THREE ADJACENT VECTORS IS THE
+DETERMINANT OF THE MATRIX FORMED BY THE ROW VECTORS}
+
+
+\subsection{Generalization of
+determinant}
+
+The row vectors determine the edge of the polyhedron formed by the
+vectors. If the polyhedron has a nonzero volume, the row vectors are
+linearly independent.
+
+\textbf{Definition:} The minor matrix \(A_{ij}\) for
+\(A \in M_{n \times n}\left( \mathbb{R} \right)\) is the
+\((n - 1) \times (n - 1)\) matrix. Obtain this matrix by removing the
+\(i\)th row and \(j\)th column of \(A\) (remove the column and row for
+the element we are targeting).
+
+Example: The minor of \(b_{3}\) is
+
+\[\begin{bmatrix}
+a_{1} & a_{2} & a_{3} & a_{4} \\
+b_{1} & b_{2} & b_{3} & b_{4} \\
+c_{1} & c_{2} & c_{3} & c_{4} \\
+d_{1} & d_{2} & d_{3} & d_{4} \\
+\end{bmatrix} \rightarrow \begin{bmatrix}
+a_{1} & a_{2} & a_{4} \\
+c_{1} & c_{2} & c_{4} \\
+d_{1} & d_{2} & d_{4} \\
+\end{bmatrix}\]
+
+The cofactor of \(a_{ij}\) of \(A\) is:
+
+\[{a_{ij}' }{= ( - 1)^{1 + j}\det\left( A_{ij} \right)\ \text{where\ }A_{ij}\ \text{is\ the\ minor\ for\ }a_{ij}} \]
+
+Based on these two, we are able to determine the determinant for an
+\(n \times n\) matrix \(A\).
+
+\[{\det(A) = \left| \begin{matrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & \ddots & \ddots & a_{2n} \\
+ \vdots & \ddots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{matrix} \right| }{= a_{11} \cdot a_{11}' + a_{12} \cdot a_{12}' + \cdots + a_{1n} \cdot a_{1n}'} \]
+
+For example:
+
+\[{\text{d}et}\begin{bmatrix}
+a_{1} & a_{2} & a_{3} & a_{4} \\
+b_{1} & b_{2} & b_{3} & b_{4} \\
+c_{1} & c_{2} & c_{3} & c_{4} \\
+d_{1} & d_{2} & d_{3} & d_{4} \\
+\end{bmatrix}\]
+
+\[= a_{1}a_{1}' + a_{2}a_{2}' + a_{3}a_{3}' + a_{4}a_{4}'\]
+
+\[{= a_{1}( - 1)^{1 + 1}\det\left( \begin{bmatrix}
+b_{1} & b_{3} & b_{4} \\
+c_{2} & c_{3} & c_{4} \\
+d_{2} & d_{3} & d_{4} \\
+\end{bmatrix} \right) }{+ a_{2}( - 1)^{1 + 2}\det\left( \begin{bmatrix}
+b_{1} & b_{3} & b_{4} \\
+c_{1} & c_{3} & c_{4} \\
+d_{1} & d_{3} & d_{4} \\
+\end{bmatrix} \right) }{+ a_{3}( - 1)^{1 + 3}\det\left( \begin{bmatrix}
+b_{1} & b_{2} & b_{4} \\
+c_{1} & c_{2} & c_{4} \\
+d_{1} & d_{2} & d_{4} \\
+\end{bmatrix} \right) }{+ a_{4}( - 1)^{1 + 4}\det\left( \begin{bmatrix}
+b_{1} & b_{2} & b_{3} \\
+c_{1} & c_{2} & c_{3} \\
+d_{1} & d_{2} & d_{3} \\
+\end{bmatrix} \right)} \]
+
+The determinant of a \(5 \times 5\) matrix:
+
+\begin{align*}
+\det(A) &= a_{1}a_{1}' + a_{2}a_{2}' + \cdots + a_{5}a_{5}' \\
+&= a_{1}( - 1)^{1 + 1}\det(4 \times 4) + \cdots + a_{5}( - 1)^{1 + 5}\det(4 \times 4)
+\end{align*}
+
+
+To compute the determinant for a \(5 \times 5\) matrix, you are required
+to compute the determinant of a \(4 \times 4\) matrix 5 times.
+
+\textbf{You can work with any row you want as long as the rows stay the
+same.}
+
+Computing these are impossible by hand.
+
+(You do not need to prove properties of determinants / use the
+properties to make computations easier)
+
+\(\text{adj}(A) = C^{T}\), where \(C\) is the minor matrix of \(A\),
+a.k.a. \(C = \begin{bmatrix}
+a_{11}' & a_{12}' \\
+a_{21}' & a_{22}' \\
+\end{bmatrix}\) if \(A \in M_{2 \times 2}\)
+
+
+\subsection{Tricks for computing
+determinant}
+
+\begin{itemize}
+\item
+  Compute \(\det(A)\) along the row with the most zeroes
+\item
+  Compute \(\det\left( A^{T} \right)\) if a column has many zeroes
+  (rotate)
+\end{itemize}
+
+
+\subsubsection{Targeting different
+rows}
+
+\emph{Our target row is the row we are working with.}
+
+When calculating the determinant of a larger matrix, aim to compute it
+along the row with the most zeroes. For example:
+
+\[A = \begin{bmatrix}
+1 & 3 & - 2 \\
+0 & 1 & 5 \\
+ - 2 & - 6 & 7 \\
+\end{bmatrix},\det(A) = 1 \cdot \left| \begin{matrix}
+1 & 5 \\
+ - 6 & 7 \\
+\end{matrix} \right| - 3\left| \begin{matrix}
+0 & 5 \\
+ - 2 & 7 \\
+\end{matrix} \right| - 2\left| \begin{matrix}
+0 & 1 \\
+ - 2 & 6 \\
+\end{matrix} \right|\]
+
+You'll have to compute \(2 \times 2\) determinants three times. However,
+when we target the second row:
+
+\[\det(A) = 0( - 1)^{2 + 1}\left| \begin{matrix}
+3 & - 2 \\
+ - 6 & 7 \\
+\end{matrix} \right| + 1( - 1)^{2 + 2}\left| \begin{matrix}
+1 & - 2 \\
+ - 2 & 7 \\
+\end{matrix} \right| + 5( - 1)^{2 + 3}\left| \begin{matrix}
+1 & 3 \\
+2 & - 6 \\
+\end{matrix} \right|\]
+
+You will notice that one of the terms added is multiplied by zero, so we
+can get rid of that:
+
+\[\det(A) = 1( - 1)^{2 + 2}\left| \begin{matrix}
+1 & - 2 \\
+ - 2 & 7 \\
+\end{matrix} \right| + 5( - 1)^{2 + 3}\left| \begin{matrix}
+1 & 3 \\
+2 & - 6 \\
+\end{matrix} \right|\]
+
+
+\subsubsection{Transpose invariance}
+
+\[\det(A) = \det\left( A^{T} \right)\]
+
+Working with the columns is the same as working with a row.
+
+Example: \(A = \begin{bmatrix}
+1 & 2 & 0 & 0 \\
+0 & 4 & 1 & 5 \\
+0 & 2 & 2 & 6 \\
+0 & 1 & 4 & 7 \\
+\end{bmatrix},\det(A) = \det\left( A^{T} \right) = \left| \begin{matrix}
+1 & 0 & 0 & 0 \\
+2 & 4 & 2 & 1 \\
+0 & 1 & 2 & 4 \\
+0 & 5 & 6 & 7 \\
+\end{matrix} \right| = 1( - 1)^{1 + 1}\left| \begin{matrix}
+4 & 2 & 1 \\
+1 & 2 & 4 \\
+5 & 6 & 7 \\
+\end{matrix} \right|\)
+
+
+\subsubsection{Triangular and diagonal
+matrices}
+
+If \(A\) is a triangular matrix (either upper or lower triangular), then
+\(\det(A) =\) product of all its diagonal entries.
+
+Example:
+
+\[{A = \begin{bmatrix}
+a_{11} & a_{12} & a_{12} \\
+0 & a_{22} & a_{23} \\
+0 & 0 & a_{33} \\
+\end{bmatrix},\det(A) }{= a_{33} \cdot a_{33}' }{= a_{33}( - 1)^{3 + 3}\left| \begin{matrix}
+a_{11} & a_{12} \\
+0 & a_{22} \\
+\end{matrix} \right| }{= a_{11} \cdot a_{22} \cdot a_{33}} \]
+
+\[{\left| \begin{matrix}
+a_{11} & * & * & * \\
+0 & a_{22} & * & * \\
+0 & 0 & \ddots & * \\
+0 & 0 & 0 & a_{nn} \\
+\end{matrix} \right| }{= a_{nn}( - 1)^{n + n}\left| \begin{matrix}
+a_{11} & * & * \\
+0 & \ddots & * \\
+0 & 0 & a_{(n - 1)(n - 1)} \\
+\end{matrix} \right| }{= \cdots = a_{nn}a_{(n - 1)(n - 1)}\cdots a_{11}} \]
+
+If one of the diagonal entries are zero for an upper triangular matrix,
+then the determinant is zero.
+
+The same applies to diagonal matrices. \(\left| \begin{matrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 \\
+\end{matrix} \right| = 2 \cdot 3 \cdot 4\)
+
+
+\subsubsection{Row operations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{ROW SWAPS NEGATE:} Let \(A \in M_{n \times n}\) matrix.
+  Perform the row operation \(R_{i} \leftrightarrow R_{j}\). Let \(A'\)
+  be the \(n \times n\) matrix after row interchange of one time. Then
+  \(\det(A) = - \det\left( A' \right)\).
+\item
+  \textbf{LINEAR DEPENDENCE OF COLUMNS/ROWS MAKES IT ZERO:} If \(A\) has
+  two equal or linearly dependent rows, then \(\det(A) = 0\) (implies
+  the column space of the matrix is linearly dependent and compresses
+  everything to a lower dimension, which always makes the volume zero)
+\item
+  \textbf{ROW SCALING ALSO SCALES THE DETERMINANT:}
+  \(R_{i} \rightarrow r \cdot R_{i}\), \(\det(A) = r \cdot \det(A)\)
+  \emph{Scaling one row of a matrix scales the determinant of the matrix
+  by how much you scaled that row.}
+\item
+  \textbf{SCALING THE ENTIRE MATRIX APPLIES THE SQUARE-CUBE LAW:}
+  \(r \cdot A = A' \Rightarrow \det\left( A' \right) = r^{n}\det(A)\)
+  \emph{(Based off the square-cube law -- if a} \(2 \times 2\)
+  \emph{matrix scales everything by two the determinant is 4 or the
+  square of 2)}
+\item
+  \textbf{DETERMINANT WON'T CHANGE FOR ROW ADDITIONS:}
+  \(R_{i} \rightarrow R_{i} + rR_{j}\),
+  \(\det(A) = \det\left( A' \right)\)
+\end{enumerate}
+
+\emph{Note: The determinant of a matrix's RREF is not necessarily the
+same as the original matrix, as row scaling could have been done.}
+
+\[A = \begin{bmatrix}
+1 & 3 & - 2 \\
+0 & 1 & 5 \\
+ - 2 & - 6 & 7 \\
+\end{bmatrix}\sim A' = \begin{bmatrix}
+1 & 3 & - 2 \\
+0 & 1 & 5 \\
+ - 2 & - 5 & 12 \\
+\end{bmatrix}\]
+
+\[R_{3} + R_{2};\det(A) = \det\left( A' \right) = 3\]
+
+\[R_{3} - R_{2},\det\left( A'' \right) = 3\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\item
+  \textbf{SPLITTING MATRIX MULTIPLICATION:} Let
+  \(A,\ B \in M_{n \times n}\).
+  \(\det\left( AB \right) = \det(A) \cdot \det(B)\)
+\item
+  \textbf{DETERMINANT OF} \(\mathbf{A}^{\mathbf{- 1}}\)\textbf{:} If
+  \(A\) is invertible, then
+  \(\det\left( A^{- 1} \right) = \frac{1}{\det(A)}\)
+\end{enumerate}
+
+Remark: \(A\) is invertible
+\(\Rightarrow \exists A^{- 1},\ A \cdot A^{- 1} = A^{- 1} \cdot A = I\)
+
+\begin{align*}
+\det(I) &= \det\left( A \cdot A^{- 1} \right) = \det(A) \cdot \det\left( A^{- 1} \right) = 1 \\
+1 &= \det(A) \cdot \det\left( A^{- 1} \right) \Rightarrow \frac{1}{\det(A)} = \det\left( A^{- 1} \right)
+\end{align*}
+
+
+
+\section{Eigenvalues, Eigenvectors}
+
+\begin{definition}
+Let
+\(A \in M_{n \times n}\left( \mathbb{R} \right)\) (square matrix). A
+scalar \(\lambda\) is an eigenvalue of \(A\) if there exists a non-zero
+vector \(\mathbf{v}\backslash n\ \mathbb{R}^{n}\) such that
+\(A\mathbf{v} = \lambda\mathbf{v}\). We will call
+\(\mathbf{v}\) the eigenvector of \(A\) corresponding to the
+eigenvalue \(\lambda\) (eigenvectors must correspond to a specific
+eigenvalue).
+\end{definition}
+
+
+\subsection{Computation of
+eigenvalues}
+
+To find the eigenvalues of \(A\), I am looking for \(\lambda\) such that
+\(\lambda\mathbf{v} = A\mathbf{v}\), where \(\mathbf{v}\) is
+a corresponding eigenvector, where \(\mathbf{v} \neq 0\). We can
+call the pair \(\left( \lambda,\ \mathbf{v} \right)\).
+
+\begin{align*}
+\lambda\mathbf{v} &= A\mathbf{v} \\
+\Leftrightarrow 0 &= A\mathbf{v} - \lambda\mathbf{v} \\
+\Leftrightarrow 0 &= (A - I\lambda)\mathbf{v} \\
+\Leftrightarrow \det(A - I\lambda) &= 0
+\end{align*}
+
+
+\(\mathbf{v} \neq 0\) is a solution for
+\(\left( A - I\lambda  \right)\). However, because
+\(\left( A - I\lambda  \right)\mathbf{v} = \mathbf{0}\), then
+\(\left( A - I\lambda  \right)\)'s determinant is zero.
+
+\(\Rightarrow \lambda\) is an eigenvalue of \(A\) if it sastifies
+\(\det(A - \lambda I) = 0\).
+
+Recall: \(A\mathbf{x} = \mathbf{0} \Rightarrow\) unique solution
+where \(\mathbf{x} = \mathbf{0}\).
+
+
+\subsection{Computation of eigenspaces and
+eigenvectors}
+
+\begin{definition}
+Let
+\(A \in M_{n \times n}\left( \mathbb{R} \right)\). The characteristic
+polynomial of \(A\) is \(p(\lambda) = \det(A - \lambda I)\) (this
+expression itself, either side of the equality is the polynomial). The
+roots of this characteristic polynomial gives you the eigenvalues. The
+set
+\(E_{\lambda} = \left\{ \mathbf{x} \in \mathbb{R}^{n}\mid A\mathbf{x} = \lambda\mathbf{x} \right\}\)
+is the eigenspace of \(\lambda\). This space contains the zero vector
+and all the eigenvectors of \(A\) corresponding to \(\lambda\).
+
+\[E_{\lambda} = \text{null}\left( A - \lambda I \right)\]
+\end{definition}
+
+Why?
+
+\begin{align*}
+E_{\lambda} &= \left\{ \mathbf{x} \in \mathbb{R}^{n}\mid A\mathbf{x} = \lambda\mathbf{x} \right\} \\
+\Leftrightarrow E_{\lambda} &= \left\{ \mathbf{x} \in \mathbb{R}^{n}\mid A\mathbf{x} - \lambda\mathbf{x} = 0 \right\} \\
+&= \left\{ \mathbf{x} \in \mathbb{R}^{n}\mid\left( A - \lambda I \right)\mathbf{x} = 0 \right\}
+\end{align*}
+
+
+
+\subsubsection{Computational example}
+
+Suppose I have the square matrix \(A = \begin{bmatrix}
+2 & 0 & 0 \\
+1 & 2 & - 1 \\
+1 & 3 & 2 \\
+\end{bmatrix}\) and I want to compute the eigenvalues and the
+eigenspace.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Compute all eigenvalues for \(A\).
+\item
+  For each eigenvalue \(\lambda\) of \(A\), find its eigenspace
+  \(E_{\lambda}\).
+\end{enumerate}
+
+\begin{framed}
+
+\textbf{FINDING EIGENVALUES}
+
+Find all \(\lambda\) for \(0 = \det(A - I\lambda)\).
+
+\textbf{FINDING EIGENSPACES}
+
+For each eigenvalue, compute the nullspace of \(A - I\lambda\).
+
+The eigenvectors (nonzero) corresponding to that \(\lambda\) is spanned
+by the nullspace of \(A - I\lambda\).
+
+\end{framed}
+
+
+
+
+\paragraph{Determining eigenvalues}
+
+Solution: \(p(\lambda) = 0 \rightarrow\) roots of \(p(\lambda)\) gives
+you all eigenvalues of \(A\).
+
+\[0 = p(\lambda) = \det(A - \lambda I) = \left| \begin{matrix}
+2 - \lambda & 0 & 0 \\
+1 & 2 - \lambda & - 1 \\
+1 & 3 & - 2 - \lambda \\
+\end{matrix} \right|\]
+
+\begin{align*}
+&= (2 - \lambda)( - 1)^{1 + 1}\left| \begin{matrix}2 - \lambda & - 1 \\3 & - 2 - \lambda \\\end{matrix} \right| \\
+&= (2 - \lambda)\left( (2 - \lambda)( - 2 - \lambda) + 3 \right) \\
+&= (2 - \lambda)\left( \lambda^{2} - 1 \right) = (2 - \lambda)(\lambda - 1)(\lambda + 1)
+\end{align*}
+
+
+Based on this factorization
+\(p(\lambda) = 0 \Rightarrow \lambda = 2,\ \lambda = 1,\ \lambda = - 1\)
+
+Simplifying this gives you a polynomial to solve, where it is equated to
+zero.
+
+The eigenvalues of \(A\) gives 2, 1, and \(- 1\). We have three
+different eigenspaces:
+
+\[E_{\lambda = 2},\ E_{\lambda = 1},\ E_{\lambda = - 1}\]
+
+
+\paragraph{Determining eigenspaces}
+
+For \(\lambda = 2\), compute the nullspace of
+\(A - \lambda I = A - 2I = \begin{bmatrix}
+0 & 0 & 0 \\
+1 & 0 & - 1 \\
+1 & 3 & - 4 \\
+\end{bmatrix}\). Nullspace:
+\((A - \lambda I)\mathbf{x} = \mathbf{0}\)
+
+Reduce the matrix. We will obtain \(\begin{bmatrix}
+1 & 0 & - 1 \\
+0 & 1 & - 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\). (We have \(x_{2} - x_{3} = 0\) and
+\(x_{1} - x_{3} = 0\))
+
+This reduced matrix has precisely one free variable, so
+\(x_{3} = s,\ x_{2} = s,\ x_{1} = s\), so the general solution is
+\(\mathbf{x} = \begin{bmatrix}
+s \\
+s \\
+s \\
+\end{bmatrix},\ s\mathbb{\in R}\). Therefore, the set of vectors in
+\(E_{\lambda = 2} = \left\{ \mathbf{x} \in s\begin{bmatrix}
+1 \\
+1 \\
+1 \\
+\end{bmatrix},\ s\mathbb{\in R} \right\}\) (A set of vectors spanned by
+\(\begin{bmatrix}
+1 \\
+1 \\
+1 \\
+\end{bmatrix}\) and has a subspace structure, as it is generated by span
+meaning closed under addition and scalar multiplication.)
+
+\[{\mathbf{b}}_{1} = \begin{bmatrix}
+1 \\
+1 \\
+1 \\
+\end{bmatrix} \rightarrow \text{eigenv}\text{ector}\]
+
+An eigenvector corresponding to \(\lambda = 2\) is where
+\(A\mathbf{v} = \lambda\mathbf{v}\).
+
+\[\begin{matrix}
+A\mathbf{v} = \begin{bmatrix}
+2 & 0 & 0 \\
+1 & 2 & - 1 \\
+1 & 3 & - 2 \\
+\end{bmatrix} \cdot \begin{bmatrix}
+1 \\
+1 \\
+1 \\
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+2 \\
+2 \\
+\end{bmatrix} \\
+\lambda\mathbf{v} = 2 \cdot \begin{bmatrix}
+2 \\
+2 \\
+2 \\
+\end{bmatrix} \\
+\end{matrix} \Rightarrow A\mathbf{v} = \lambda\mathbf{v}\]
+
+For \(E_{\lambda = 1}\):
+\(\text{null}(A - 1I) = null\left( \begin{bmatrix}
+1 & 0 & 0 \\
+1 & 1 & - 1 \\
+1 & 3 & 3 \\
+\end{bmatrix} \right)\)
+
+The nullspace is \(\mathbf{x}\) such that
+\(\beta\mathbf{x} = \mathbf{0}\)
+
+\[\begin{bmatrix}
+1 & 0 & 0 \\
+1 & 1 & - 1 \\
+1 & 3 & 3 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & - 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\]
+
+Therefore \(x_{3} = s,\ x_{2} = s,\ x_{1} = 0\) and
+\(\mathbf{x} = sp\left\{ \begin{bmatrix}
+0 \\
+1 \\
+1 \\
+\end{bmatrix} \right\}\)
+
+This means
+\(E_{\lambda = 1} = \left\{ \mathbf{x} = sp\begin{bmatrix}
+0 \\
+1 \\
+1 \\
+\end{bmatrix} \right\}\)
+
+This means \(A\mathbf{v} = \mathbf{\lambda}\) given
+\(\mathbf{v}\) is in the span of \(\begin{bmatrix}
+0 \\
+1 \\
+1 \\
+\end{bmatrix}\).
+
+For \(\lambda = - 1\)
+
+\[\text{null}(A + I) = null\begin{bmatrix}
+3 & 0 & 0 \\
+1 & 3 & - 1 \\
+1 & 3 & - 1 \\
+\end{bmatrix}\sim null\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 3 & - 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\]
+
+To compute the solution, reduce the matrix.
+
+\[\mathbf{x} = sp\begin{bmatrix}
+0 \\
+1 \\
+3 \\
+\end{bmatrix}\]
+
+This is one concrete example for computation of eigenvalues and
+corresponding eigenspaces. The eigenvectors are nonzero vectors in the
+corresponding eigenspaces.
+
+
+\subsection{Properties of eigenvalues}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(A^{k}\mathbf{v} = \lambda^{k}\mathbf{v}\) (Proof:
+  \(A^{2}\mathbf{v} = AA\mathbf{v} = A\lambda \mathbf{v} = \lambda A\mathbf{v} = \lambda \lambda \mathbf{v} = \lambda^{2}\mathbf{v}\),
+  then proceed with induction)
+\item
+  Zero (0) cannot be an eigenvalue for an invertible matrix.
+\end{enumerate}
+
+\begin{proof} \(A\) is invertible
+\(\Leftrightarrow \det(A) \neq 0 \Leftrightarrow \det(A - 0 \cdot I) \neq 0 \Leftrightarrow (A - \lambda I) \neq 0 \Leftrightarrow \lambda = 0\)
+is not a solution for \(p(\lambda) = 0\) \(\Leftrightarrow \lambda = 0\)
+is \textbf{not} an eigenvalue of \(A\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \(A\) is invertible \(\Rightarrow\) \(\frac{1}{\lambda}\) is an
+  eigenvalue of \(A^{- 1}\) corresponding to the eigenvector of
+  \(\mathbf{v}\)
+\end{enumerate}
+
+\(A\mathbf{v} = \lambda\mathbf{v} \Rightarrow A^{- 1}\mathbf{v} = \frac{1}{\lambda}\mathbf{v}\)
+(if \(A\) is invertible)
+
+\emph{Proof.}
+
+Firstly, \(\lambda \neq 0\), so \(\frac{1}{\lambda}\) makes sense.
+
+\begin{align*}
+A\mathbf{v} &= \lambda\mathbf{v} \\
+A^{- 1}A\mathbf{v} &= A^{- 1}\lambda\mathbf{v} \\
+\mathbf{v} &= A^{- 1}\mathbf{\lambda}\mathbf{v} \\
+\mathbf{v} &= \lambda A^{- 1}\mathbf{v} \\
+\frac{\mathbf{v}}{\lambda} &= A^{- 1}\mathbf{v} \\
+\frac{1}{\lambda}\mathbf{v} &= A^{- 1}\mathbf{v}
+\end{align*}
+
+
+
+
+\end{proof}
+\section{Diagonalization}
+
+Let \(A,\ B \in M_{n \times n}\) (STRICTLY SQUARE MATRICES). \(A,\ B\)
+are similar if:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The determinants match (\(\det(A) = \det(B)\))
+\item
+  Both matrices are either invertible or not invertible (\(A\) is
+  invertible iff \(B\) is invertible)
+\item
+  The rank and nullity of them match
+  (\(\text{rank}(A) = \text{rank}(B)\);
+  \(\text{nullity}(A) = \text{nullity}(B)\))
+\item
+  \(\det\left( A - \lambda I \right) = \det\left( B - \lambda I \right)\)
+\item
+  Same solutions for their characteristic polynomial meaning
+  \(p\left( \lambda_{A} \right) = p\left( \lambda_{D} \right)\)
+\item
+  Same eigenvalues
+\end{enumerate}
+
+Proofs:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  --
+\item
+  Recall \(A\) is invertible if and only if \(\det(A) \neq 0\).
+  \(\Rightarrow\) If \(A,\ B\) give you the same determinant, \(A\) is
+  invertible if and only if \(B\) is invertible.
+\item
+  \(\text{rank}(A) + \text{nullity}(A) = n\), and
+  \(\text{rank}(D) + \text{nullity}(D) = n\) (\(n\) is the column/row
+  count of the matrix, and they have to at least be the same size) We
+  need to show that the rank agrees with each other (which implies the
+  nullities agree with each other).
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    Show \(\text{rank}(A) = \text{rank}(D)\).
+  \end{enumerate}
+\end{enumerate}
+
+\begin{quote}
+\emph{Lemma:} \(\text{rank}\left( QM \right) = \text{rank}(M)\)
+if \(Q\) is invertible (because we only care about the number of pivots
+in the matrix -- reduce it to RREF and based off it we can count how
+many pivots there are for the given matrix.)
+
+You can review \(Q\) as a linear transformation, and if \(Q\) isn't
+invertible it will squish everything into a lower dimension, removing
+its bijectivity. That's why Q needs to be a bijective (isomorphic)
+linear map \(\Rightarrow\) \textbf{Q PRESERVES ALL INFORMATION}. (Note
+that for matrix multiplication, the order of application of linear maps
+are from right to left)
+
+If this is true, then
+\(\text{rank}(B) = \text{rank}\left( P^{- 1}AP \right)\). By the
+lemma,
+\(\text{rank}\left( P^{- 1}AP \right) = \text{rank}\left( AP \right) = \text{rank}(A)\)
+(as \(P\) is invertible).
+\end{quote}
+
+\begin{align*}
+&= \det\left( P^{- 1}AP - P^{- 1} \cdot \lambda I \cdot P \right) = \det\left( P^{- 1}\left( A - \lambda I \right)P \right) \\
+&= \frac{1}{\det(P)} \cdot \det\left( A - \lambda I \right) \cdot \det(P) = \det\left( A - \lambda I \right)
+\end{align*}
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  --
+\item
+  --
+\end{enumerate}
+
+
+\subsection{Diagonal matrices}
+
+The determinant of a diagonal matrix is the product of its diagonal
+entries. Computing the inverse matrix for the diagonal matrix is also
+very easy (is the reciprocal of all entries in the diagonal matrix).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Recall: A matrix \(A\) is diagonalizable if \(\exists\) an invertible
+  \(n \times n\) matrix \(P\) such that \(D = P^{- 1}AP\) where
+  \(D\) is a diagonal matrix.
+\item
+  If \(A\) and \(D\) are similar, then \(\exists P\) such that
+  \(D = P^{- 1}AP\) or \(PDP^{- 1} = A\)
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    \emph{Proof:}
+    \(\det(D) = \det\left( P^{- 1}AP \right) = \det\left( P^{- 1} \right)\det(A)\det(P) = \frac{\det(P)}{\det(P)}\det(A) = \det(A)\)
+  \end{enumerate}
+\item
+  We should know how to check if \(A\) is real-diagonalizable.
+  \(p(\lambda) = 0\)
+\end{enumerate}
+
+
+\subsection{Check if a matrix is
+diagonalizable}
+
+Information about diagonalization: \(A \in M_{n \times n}\) (strictly
+square)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(A\) is diagonalizable \(\Leftrightarrow\) \(A\) has \(n\) linearly
+  independent eigenvectors.
+\end{enumerate}
+
+\(P(\lambda) = \det(A - \lambda I) = 0 \Rightarrow \lambda_{1}\cdots\lambda_{k}\)
+eigenvalues for \(A\)
+
+For \(E\left( \lambda_{1} \right)\), basis vector
+\({\mathbf{v}}_{i}\) is a good representation for the eigenvector
+corresponding to \(\lambda_{1}\),
+\(\lambda_{1}{\mathbf{v}}_{i} = A{\mathbf{v}}_{i}\).
+(\({\mathbf{v}}_{i}\) is a basic vector, which changes on which
+eigenvalue you are checking) However, eigenspaces do not necessarily
+contain one eigenvector, so you'll have to figure it out yourself.
+
+The total number of eigenvector spaces must be equal to \(n\). Once
+you've deduced \(n\) eigenvectors, you must verify that they are
+linearly independent by putting them as column vectors in a matrix, then
+row reducing it.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  If \(A \in M_{n \times n}\) and \(A\) has \(n\) \textbf{distinct}
+  eigenvalues, \(\Rightarrow\) then \(A\) is diagonalizable. Write down
+  the characteristic equation. \textbf{(This is a strictly an if then
+  statement and not an iff)}
+\end{enumerate}
+
+\[p(\lambda) = 0,\deg\left( p(\lambda) \right) = \text{no.\ of\ distinct\ roots} \Rightarrow A\ \text{is\ diagonalizable}\]
+
+\textbf{All distinct eigenvalues imply all the basis of all
+eigenvectors} \({\mathbf{\mathbf{v}}}_{\mathbf{i}}\) \textbf{are
+linearly independent.}
+
+
+\subsection{The procedure of
+diagonalization}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Find
+  \(\det(A - \lambda I) = 0 \Rightarrow \text{roots}\ \lambda_{1}\ldots\lambda_{n}\)
+  (check if \(\text{A\ }\)is diagonalizable; all roots must be distinct)
+\item
+  Find
+  \({\mathbf{v}}_{1},\ {\mathbf{v}}_{2}\ldots{\mathbf{v}}_{n}\)
+  for \({\mathbf{v}}_{1}\ldots{\mathbf{v}}_{n}\) such that
+  \(A{\mathbf{v}}_{i} = \lambda{\mathbf{v}}_{i}\forall i\)
+\item
+  Use them to construct matrix \(P = \begin{bmatrix}
+   \mid & \mid & \mid & \mid & \mid \\
+  {\mathbf{v}}_{1} & {\mathbf{v}}_{2} & {\mathbf{v}}_{3} & \cdots & {\mathbf{v}}_{n} \\
+   \mid & \mid & \mid & \mid & \mid \\
+  \end{bmatrix}\) and \(D = \begin{bmatrix}
+  \lambda_{1} & 0 & 0 & 0 \\
+  0 & \lambda_{2} & 0 & 0 \\
+  0 & 0 & \ddots & 0 \\
+  0 & 0 & 0 & \lambda_{n} \\
+  \end{bmatrix}\)
+\item
+  \(P^{- 1} \cdot A \cdot P = D\)
+\end{enumerate}
+
+Why is this true? \emph{Proof.}
+\(P^{- 1}AP = D \Leftrightarrow AP = PD\) (pre-multiply \(P\) on both
+sides)
+
+Verify if \(AP = PD\). Compute LHS and RHS.
+
+\[{LHS = AP }{= A\begin{bmatrix}
+ \mid & \mid & \mid & \mid & \mid \\
+{\mathbf{v}}_{1} & {\mathbf{v}}_{2} & {\mathbf{v}}_{3} & \cdots & {\mathbf{v}}_{n} \\
+ \mid & \mid & \mid & \mid & \mid \\
+\end{bmatrix} }{= \left\lbrack A\begin{matrix}
+ \mid & \mid & \mid & \mid & \mid \\
+{\mathbf{v}}_{1} & A{\mathbf{v}}_{2} & A{\mathbf{v}}_{3} & \cdots & A{\mathbf{v}}_{n} \\
+ \mid & \mid & \mid & \mid & \mid \\
+\end{matrix} \right\rbrack} \]
+
+\[A{\mathbf{v}}_{i} = \lambda_{i}{\mathbf{v}}_{i}\]
+
+\[{}{= \left\lbrack \lambda_{1}\begin{matrix}
+ \mid & \mid & \mid & \mid & \mid \\
+{\mathbf{v}}_{1} & \lambda_{2}{\mathbf{v}}_{2} & \lambda_{3}{\mathbf{v}}_{3} & \cdots & \lambda_{n}{\mathbf{v}}_{n} \\
+ \mid & \mid & \mid & \mid & \mid \\
+\end{matrix} \right\rbrack }{= \begin{bmatrix}
+ \mid & \mid & \mid & \mid & \mid \\
+{\mathbf{v}}_{1} & {\mathbf{v}}_{2} & {\mathbf{v}}_{3} & \cdots & {\mathbf{v}}_{n} \\
+ \mid & \mid & \mid & \mid & \mid \\
+\end{bmatrix} \cdot \begin{bmatrix}
+\lambda_{1} & 0 & 0 & 0 \\
+0 & \lambda_{2} & 0 & 0 \\
+0 & 0 & \ddots & 0 \\
+0 & 0 & 0 & \lambda_{n} \\
+\end{bmatrix} }{= PD = RHS} \]
+
+Example: \(A = \begin{bmatrix}
+2 & 0 & 0 \\
+1 & 3 & 0 \\
+ - 3 & 5 & 4 \\
+\end{bmatrix}\). Check if \(A\) is diagonalizable. If yes, find
+\(D,\ P\) such that \(P^{- 1}AP = D\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Find all eigenvalues.
+\end{enumerate}
+
+\[\det\left( \begin{bmatrix}
+2 - \lambda & 0 & 0 \\
+1 & 3 - \lambda & 0 \\
+ - 3 & 5 & 4 - \lambda \\
+\end{bmatrix} \right) = (\lambda - 2)(\lambda - 3)(\lambda - 4) = 0\]
+
+The eigenvalues: \(\lambda_{1} = 2,\ \lambda_{2} = 3,\ \lambda_{3} = 4\)
+
+For \(\lambda = 2\), \(A - 2I = \begin{bmatrix}
+0 & 0 & 0 \\
+1 & 1 & 0 \\
+3 & 5 & 2 \\
+\end{bmatrix};\text{null}(A - \lambda I) = sp\left( \begin{bmatrix}
+1 \\
+ - 1 \\
+4 \\
+\end{bmatrix} \right)\). Your basis is\(\begin{bmatrix}
+1 \\
+ - 1 \\
+4 \\
+\end{bmatrix} = {\mathbf{v}}_{1}\);
+\(\lbrack A\rbrack\begin{bmatrix}
+1 \\
+ - 1 \\
+4 \\
+\end{bmatrix} = \lambda\begin{bmatrix}
+1 \\
+ - 1 \\
+4 \\
+\end{bmatrix}\) where \(\lambda = 2\).
+
+For \(\lambda = 3\), \(A - 3I = \begin{bmatrix}
+ - 1 & 0 & 0 \\
+1 & 0 & 0 \\
+ - 3 & 5 & 1 \\
+\end{bmatrix},\text{null}(A - 3I) = sp\left( \begin{bmatrix}
+0 \\
+1 \\
+ - 5 \\
+\end{bmatrix} \right)\). Your basis is \(\begin{bmatrix}
+0 \\
+1 \\
+ - 5 \\
+\end{bmatrix} = {\mathbf{v}}_{2}\).
+
+For \(\lambda = 4,\ A - 4I = \begin{bmatrix}
+ - 2 & 0 & 0 \\
+ - 1 & - 1 & 0 \\
+ - 3 & 5 & 0 \\
+\end{bmatrix},\text{null}(A - 4I) = sp\left( \begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\end{bmatrix} \right)\). Your basis is \(\begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\end{bmatrix} = {\mathbf{v}}_{3}\).
+
+\({\mathbf{v}}_{1},\ {\mathbf{v}}_{2},\ {\mathbf{v}}_{3}\)
+should be linearly independent, as the eigenvalues are distinct.
+
+\[P = \begin{bmatrix}
+ \mid & \mid & \mid \\
+{\mathbf{v}}_{1} & {\mathbf{v}}_{2} & {\mathbf{v}}_{3} \\
+ \mid & \mid & \mid \\
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 & 0 \\
+ - 1 & 1 & 0 \\
+4 & - 5 & 1 \\
+\end{bmatrix}\]
+
+Fact: Let
+\({\mathbf{v}}_{1},\ {\mathbf{v}}_{2},\ \ldots,\ {\mathbf{v}}_{k}\)
+be eigenvectors corresponding to distinct eigenvalues
+\(\lambda_{1}\ldots\lambda_{k}\). Then,
+\({\mathbf{v}}_{1}\ldots{\mathbf{v}}_{k}\) are linear
+independent \(\Rightarrow P = \begin{bmatrix}
+ \mid & \mid & \mid & \mid & \mid \\
+{\mathbf{v}}_{1} & {\mathbf{v}}_{2} & {\mathbf{v}}_{3} & \cdots & {\mathbf{v}}_{k} \\
+ \mid & \mid & \mid & \mid & \mid \\
+\end{bmatrix} \Rightarrow\) \(P\) is invertible. Then
+
+\[P^{- 1}AP = D = \begin{bmatrix}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 \\
+\end{bmatrix}\]
+
+Where \(A\) is similar to \(D\).
+
+\[\det(A) = \det(D) = 2 \cdot 3 \cdot 4 = 24\]
+
+\begin{definition}
+Let \(A\) be an \(n \times n\) matrix with
+characteristic polynomial
+
+\[p(\lambda) = \left( \lambda - \lambda_{1} \right)^{\alpha_{1}}\left( \lambda - \lambda_{2} \right)^{\alpha_{2}}\cdots\left( \lambda - \lambda_{i} \right)^{\alpha i}\]
+\end{definition}
+
+\(p(\lambda) = 0 \Rightarrow \lambda_{1},\ \lambda_{2},\ \cdots,\ \lambda_{i}\ \)with
+order \(\alpha_{1}\cdots\alpha_{i}\).
+
+Algebraic multiplicity of \(\lambda_{i}\) is \(\alpha_{i}\)
+
+Geometric multiplicity of \(\lambda_{i}\) is
+\(\dim\left( E_{\lambda_{i}} \right) = \beta_{i}\)
+
+\textbf{Fact:} For every \(\lambda_{i}:\) If
+\(\text{alg}\left( \lambda_{i} \right) = geo\left( \lambda_{i} \right) \Rightarrow A\)
+is diagonalizable \textbf{(Matching algebraic and geometric multiplicity
+FOR ALL eigenvalues will guarantee you are diagonalizable matrix)}
+
+
+\subsection{The diagonalization
+process}
+
+Let \(A \in M_{n \times n}\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Find the characteristic polynomial
+  \(p(\lambda) = \det(A - \lambda I)\)
+\item
+  Factor.
+  \(p(\lambda) = \left( \lambda - \lambda_{1} \right)^{n_{1}}\left( \lambda - \lambda_{2} \right)^{n_{2}}\cdots\left( \lambda - \lambda_{i} \right)^{n_{i}}\)
+\end{enumerate}
+
+\begin{align*}
+\text{alg}\left( \lambda_{i} \right) &= n_{i} \\
+\text{geo}\left( \lambda_{i} \right) &= \dim\left( E_{\lambda_{i}} \right) = \dim\left( \text{null}\left( A - \lambda_{i}I \right) \right) = \text{nullity}\left( A - \lambda_{i}I \right)
+\end{align*}
+
+
+To figure \(\text{null}\left( A - \lambda_{i}I \right)\),
+\(\left( A - \lambda_{i}I \right)\mathbf{x} = \mathbf{0}\) and
+figure out how many free variables, which tells us the dimension of the
+nullspace. This tells us the dimension of the eigenspace.
+
+Once you know the dimension for the eigenspace, you will know the
+geometric multiplicity.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Check if
+  \(\text{alg}\left( \lambda_{i} \right) = \text{geo}\left( \lambda_{i} \right)\)
+  for every \(\lambda_{i}\). If that is the case the matrix is
+  diagonalizable.
+\item
+  If \(A\) is diagonalizable, then you can diagonalize \(A\) by the
+  following:
+\end{enumerate}
+
+\[A\sim D = \begin{bmatrix}
+\lambda_{1} & 0 & 0 & 0 \\
+0 & \lambda_{2} & 0 & 0 \\
+0 & 0 & \ddots & 0 \\
+0 & 0 & 0 & \lambda_{n} \\
+\end{bmatrix}\]
+
+An example:
+
+If \(A\) is an \(n \times n\) matrix and \(A\) is diagonalizable. Then
+there is a shortcut to compute \(A^{k}\).
+
+Solution: \(P^{- 1}AP = D = \begin{bmatrix}
+\lambda_{1} & 0 & 0 \\
+0 & \ddots & 0 \\
+0 & 0 & \lambda_{n} \\
+\end{bmatrix}\)
+
+\begin{align*}
+A &= PDP^{- 1} \\
+A^{k} &= \left( PDP^{- 1} \right)\left( PDP^{- 1} \right)\cdots\left( PDP^{- 1} \right)\ \text{k\ times} = P \cdot D^{k} \cdot P^{- 1}
+\end{align*}
+
+
+Note that because matrix multiplication is associative you have a bunch
+of \(P^{- 1}P\) cases.
+
+Then \(D^{k} = \begin{bmatrix}
+\lambda_{1}^{k} & 0 & 0 \\
+0 & \ddots & 0 \\
+0 & 0 & \lambda_{n}^{k} \\
+\end{bmatrix}\)
+
+\emph{When you mention an eigenvector, it must correspond to an
+eigenvalue}
+
+\emph{The rank-nullity theorem will appear in the final exam.}
+
+Determine whether matrix \(A = \begin{bmatrix}
+0 & 0 & - 2 \\
+1 & 2 & 1 \\
+1 & 0 & 3 \\
+\end{bmatrix}\) is real diagonalizable.
+
+\[P^{- 1}AP = D = \begin{bmatrix}
+\lambda_{1} & 0 & 0 \\
+0 & \lambda_{2} & 0 \\
+0 & 0 & \lambda_{3} \\
+\end{bmatrix}\]
+
+\begin{align*}
+p(A) &= \det(A - \lambda I) \\
+(a - \lambda)(b - \lambda) - cd &= 0 \\
+\Delta &< 0 \Rightarrow \text{Can't\ be\ real\ diagonalized}
+\end{align*}
+
+
+Solution:
+
+\[p(\lambda) = \det(A - \lambda I) = \left| \begin{matrix}
+ - \lambda & 0 & - 2 \\
+1 & - 2 - \lambda & 1 \\
+1 & 0 & 3 - \lambda \\
+\end{matrix} \right| = (2 - \lambda)\left( \lambda^{2} - 3\lambda + 2 \right) = (2 - \lambda)(\lambda - 2)(\lambda - 1)\]
+
+\[\lambda_{1} = 2,\ \lambda_{2} = 2,\ \lambda_{3} = 1\]
+
+You have a repeated eigenvalue. This means the eigenvalue 2 repeats
+twice, meaning the algebraic multiplicity for \(\lambda = 2\) to be two.
+This means we expect the geometric multiplicity to be two as well.
+
+Meaning \(\dim\left( E_{\lambda = 2} \right) = 2\). If this were not the
+case, \(\text{alg}(A) \neq \text{geo}(A) \Rightarrow A\) wouldn't be
+diagonalizable.
+
+Checking eigenspaces: For \(\lambda = 2,\text{null}(A - \lambda I)\)
+(the nullspace is the solution space of
+\((A - \lambda I)\mathbf{x} = \mathbf{0}\))
+
+\[A - \lambda I = \begin{bmatrix}
+ - 2 & 0 & - 2 \\
+1 & 0 & 1 \\
+1 & 0 & 1 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 1 \\
+0 & 0 & 0 \\
+0 & 0 & 0 \\
+\end{bmatrix} \Rightarrow \text{nullity}(A - \lambda I) = 2\]
+
+Based on this I can tell there are two free variables, meaning
+\(\dim\left( \mathbf{x} \right) = 2 \Rightarrow \dim\left( E_{\lambda = 2} \right) = 2\).
+
+For \(\lambda = 1\)
+
+\[A - \lambda I = \begin{bmatrix}
+ - 1 & 0 & - 2 \\
+1 & 1 & 1 \\
+1 & 0 & 2 \\
+\end{bmatrix}\sim\begin{bmatrix}
+1 & 0 & 2 \\
+0 & 1 & - 1 \\
+0 & 0 & 0 \\
+\end{bmatrix}\]
+
+Two columns have a pivot \(\Rightarrow 1\) free variable
+\(\Rightarrow \dim\left( \mathbf{x} \right) = 1 \Rightarrow \dim\left( E_{\lambda = 1} \right) = 1 \Rightarrow \text{geo}\left( E_{\lambda = 1} \right) = 1\)
+
+The eigenvalue only appears one time during the factorization of the
+characteristic polynomial, so the algebraic multiplicity of this
+eigenvalue is 1. Therefore,
+\(\text{alg}(\lambda = 1) = \text{geo}(\lambda = 1)\).
+
+\(\Rightarrow A\) is diagonalizable; \(\Rightarrow A\) is similar to
+\(D = \begin{bmatrix}
+2 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 1 \\
+\end{bmatrix}\), \(\det(D) = 2 \cdot 2 \cdot 1 = 4\)
+
+\emph{What can we get out of this?}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\det(A) = \det(D) = 2 \cdot 2 \cdot 1 = 4\) \emph{As A is similar to
+  D, their determinants match.}
+\item
+  Is \(A\) invertible? Yes. \(A\) is invertible as \(D\) is invertible
+  \emph{(and also because we just computed the determinant of} \(A\)
+  \emph{already and it is nonzero)}
+\item
+  \(T\left( \mathbf{x} \right) = A\mathbf{x}:\mathbb{R}^{3} \rightarrow \mathbb{R}^{3}\)
+  (And this is bijective because \(A\) is invertible -
+  \(A\sim I;A\mathbf{x} = \mathbf{0} \Rightarrow \mathbf{x} = \mathbf{0}\).)
+\item
+  \(\text{nullity}(A) = 0\); \(A\) is full rank as
+  \(\text{rank}(A) = 3\).
+\end{enumerate}
+
+Rank-nullity theorem: \(\text{nullity}(A) + \text{rank}(A) = n\);
+\(0 + 3 = 3\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \(A\mathbf{x} = \mathbf{b}\) will always have a unique
+  solution.
+\end{enumerate}
+
+
+\subsection{\texorpdfstring{Every symmetric matrix is diagonalizable
+\(\mathbf{A}^{\mathbf{T}}\mathbf{= A}\)}{Every symmetric matrix is diagonalizable \textbackslash mathbf\{A\}\^{}\{\textbackslash mathbf\{T\}\}\textbackslash mathbf\{= A\}}}
+
+Example: \(A = \begin{bmatrix}
+3 & - 3 & - 3 \\
+ - 3 & 3 & - 3 \\
+ - 3 & - 3 & 3 \\
+\end{bmatrix}\); \(A^{T} = A \Rightarrow A\) is symmetric
+\(\Rightarrow A\) is diagonalizable \(\Rightarrow A\) is similar to
+\(D = \begin{bmatrix}
+\lambda_{1} & 0 & 0 \\
+0 & \lambda_{2} & 0 \\
+0 & 0 & \lambda_{3} \\
+\end{bmatrix}\)
+
+(Excuse: from lecture, every symmetric matrix is diagonalizable.)
+
+Computing the eigenvalues for \(A\):
+
+\(p(\lambda) = \det(A - \lambda I) = \left| \begin{matrix}
+3 - \lambda & - 3 & - 3 \\
+ - 3 & 3 - \lambda & - 3 \\
+ - 3 & - 3 & 3 - \lambda \\
+\end{matrix} \right| = (6 - \lambda)(\lambda + 3)(\lambda - 6) = 0 \Rightarrow\)
+Eigenvalues: \(\lambda_{1} = 6,\ \lambda_{2} = - 3,\ \lambda_{3} = 6\)
+
+\emph{In this case, you have one eigenvalue repeating twice, and one
+eigenvalue appearing only once. Normally, you would have to verify if}
+\(\text{alg}(\lambda = 6) = \text{geo}(\lambda = 6) = 2\) \emph{and the
+one for 3, but because the matrix is diagonalizable, you don't need to.}
+
+\begin{align*}
+&\dim\left( E_{\lambda = 6} \right) = 2 \\
+A - 6I &= \begin{bmatrix} - 3 & - 3 & - 3 \\ - 3 & - 3 & - 3 \\ - 3 & - 3 & - 3 \\\end{bmatrix}\sim\begin{bmatrix}1 & 1 & 1 \\0 & 0 & 0 \\0 & 0 & 0 \\\end{bmatrix};\text{nullity}(A - 6I) = 2
+\end{align*}
+
+
+\[x_{3} = s;x_{2} = t;\mathbf{x} = \begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+\end{bmatrix} = \begin{bmatrix}
+ - t - s \\
+t \\
+s \\
+\end{bmatrix} = t\begin{bmatrix}
+ - 1 \\
+1 \\
+0 \\
+\end{bmatrix} + s\begin{bmatrix}
+ - 1 \\
+0 \\
+1 \\
+\end{bmatrix}\]
+
+\begin{align*}
+&\dim\left( E_{\lambda = 1} \right) = 1 \\
+&E_{\lambda = 1} = sp\left( \begin{bmatrix}1 \\1 \\1 \\\end{bmatrix} \right)
+\end{align*}
+
+
+Note: To make \(P\) nicely, exactly 3 linearly independent eigenvectors
+must appear in your solutions. In this case, we have exactly 3, so we
+can use them to make up \(P\):
+
+\[P = \begin{bmatrix}
+1 & 1 & 0 \\
+1 & 0 & 1 \\
+1 & - 1 & - 1 \\
+\end{bmatrix}\]
+
+Composed from the column vectors of
+\({\mathbf{v}}_{1},\ {\mathbf{v}}_{2},\ {\mathbf{v}}_{3}\).
+The order of what vectors from the eigenvalues you put does not matter,
+but \textbf{it will affect} the column ordering of \(D\). For example,
+if \({\mathbf{v}}_{1}\) is an eigenvector of \(\lambda = 1\), \(1\)
+has to be put on the top left of the matrix.
+
+\[P^{- 1}AP = D = \begin{bmatrix}
+ - 3 & 0 & 0 \\
+0 & 6 & 0 \\
+0 & 0 & 6 \\
+\end{bmatrix}\]
+
+
+\subsection{\texorpdfstring{ Justifying
+order}{ Justifying order}}
+
+\[{A \cdot \begin{bmatrix}
+ \mid & \mid & \mid \\
+{\mathbf{v}}_{3} & {\mathbf{v}}_{2} & {\mathbf{v}}_{1} \\
+ \mid & \mid & \mid \\
+\end{bmatrix} }{= \begin{bmatrix}
+ \mid & \mid & \mid \\
+{\mathbf{v}}_{3} & {\mathbf{v}}_{2} & {\mathbf{v}}_{1} \\
+ \mid & \mid & \mid \\
+\end{bmatrix}\begin{bmatrix}
+d_{1} & 0 & 0 \\
+0 & d_{2} & 0 \\
+0 & 0 & d_{3} \\
+\end{bmatrix} }{= \begin{bmatrix}
+ \mid & \mid & \mid \\
+{A\mathbf{v}}_{3} & A{\mathbf{v}}_{2} & A{\mathbf{v}}_{1} \\
+ \mid & \mid & \mid \\
+\end{bmatrix} }{= \left\lbrack d_{1}\begin{matrix}
+ \mid & \mid & \mid \\
+{\mathbf{v}}_{3} & d_{2}{\mathbf{v}}_{2} & {d_{3}\mathbf{v}}_{1} \\
+ \mid & \mid & \mid \\
+\end{matrix} \right\rbrack} \]
+
+\emph{Order of} \({\mathbf{v}}_{i}\) \emph{will determine the order
+of eigenvalues you put in D.}
+
+
+\subsection{Property of matrix exponentiation with
+diagonalization:}
+
+\emph{Theorem.}
+
+\begin{align*}
+A &= PDP^{- 1} \\
+&\Rightarrow A^{k}  \\
+&= \left( PDP^{- 1} \right)\left( PDP^{- 1} \right)\left( PDP^{- 1} \right)\cdots\left( PDP^{- 1} \right)\text{\ k\ }\text{times} \\
+\Rightarrow A^{k} &= PD\left( P^{- 1}P \right)D\left( P^{- 1}P \right)D\left( P^{- 1}P \right)\cdots\left( P^{- 1}P \right)DP^{- 1} \\
+\Rightarrow A^{k} &= PD^{k}P^{- 1}
+\end{align*}
+
+\end{document}

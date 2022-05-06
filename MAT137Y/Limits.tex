@@ -1,0 +1,3116 @@
+\documentclass[12pt]{article}  
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{booktabs}
+\usepackage{array}
+
+\usepackage{hyperref}
+\providecommand{\href}[1]{\url{#1}}
+\usepackage{iftex}
+\usepackage[utf8]{inputenc}  
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\usepackage[normalem]{ulem}
+\usepackage[
+]{geometry}
+
+\usepackage{amsthm}
+\usepackage{float}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{claim}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]  
+\newtheorem{condition}{Condition}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}{Example}[section]
+
+\renewcommand\qedsymbol{$\blacksquare$}  
+
+\usepackage{mathtools}
+\usepackage{listings}
+
+\usepackage{framed}
+
+\ProvidesPackage{iftex}
+
+\ifxetex
+
+\usepackage{unicode-math}
+% \setmainfont{STIX Two Text}
+% \setmathfont{STIX Two Math}
+% \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{STIX Two Math}
+
+% \setmonofont{JetBrains Mono}
+
+\fi
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} 
+
+\usepackage{csquotes}
+\title{Limits}
+\author{ICPR}
+\date{January 25, 2021}
+
+\begin{document}
+
+
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Proving limits with arbitrary
+parameters}
+
+Given \(L\) as a constant, suppose
+
+\[\lim_{x \rightarrow 0}{f(x)} = L\]
+
+Prove
+
+\[\lim_{x \rightarrow 0}{f(2x)} = L\]
+
+This means we suppose
+
+\[\forall\epsilon_{2} > 0,\ \exists\delta_{2} > 0,\ 0 < \left| x_{2} - 0 \right| < \delta_{2} \Rightarrow \left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\]
+
+We need to prove
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - 0| < \delta \Rightarrow \left| f(2x) - L \right| < \epsilon\]
+
+
+\subsection{Proving the above
+statement}
+
+Let \(\epsilon > 0\)
+
+Show the existence of delta to make the statement hold. Unfortunately,
+you can't find the delta. However, we can pick a particular value of the
+quantified variable labeled under for every. Choose one that is
+advantageous to the proof.
+
+Pick \(\epsilon_{2} = \epsilon\). Then
+
+\[\exists\delta_{2} > 0,\ \forall x_{2}\ if\ 0 < \left| x_{2} - 0 \right| < \delta_{2} \Rightarrow \ \left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\]
+
+Now, \(\epsilon_{2}\) must always be picked prior to delta because the
+existence of delta depends on epsilon.
+
+Pick \(\delta = \_\_\_\) (leave that blank for now).
+
+Assume \(0 < |x - 0| < \delta\)
+
+Prove \(\left| f(2x) - L \right| < \epsilon\)
+
+Consider (pick) \(x_{2} = 2x\). Why are we allowed to do this? Because
+we allowed the blue statement to be true, where \(\forall x_{2}\)
+appears somewhere in the blue statement. Why did we choose \(x_{2}\) to
+be that? Because it is advantageous to solving the problem. Now, the
+statement revisited:
+
+\[\exists\delta_{2} > 0,\ \forall x_{2}\ if\ 0 < \left| x_{2} - 0 \right| < \delta_{2} \Rightarrow \ \left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\]
+
+Because we picked \(x_{2} = 2x\), the red statement above becomes the
+statement we need to prove, as
+\(\left| f\left( x_{2} \right) - L \right| = |f(2x) - L|\). How do we
+prove it? We need to prove the green statement.
+
+When you want to prove an implication, you assume the statement after
+the ``if'' and prove the statement after the then.
+
+However, \textbf{when you know an implication is true,} and you want to
+use it, you actually prove the statement after the ``if'' and then
+conclude the statement after the then. You do not prove the statement
+after the ``then'' because we already know the implication is true. This
+means \emph{if the green statement is true, the red statement is true.
+Proving that the green statement is true verifies the red statement.}
+
+Ask: \(0 < \left| x_{2} - 0 \right| < \delta_{2}\). Can we get this to
+hold (what to solve, given \(|x - 0| < \delta\))?
+
+Since (scroll back up to our assumption), we can end up with:
+
+\begin{align*}
+|x - 0| &= |x| < \delta \\
+0 &< |2x| < 2\delta \\
+0 &< \left| x_{2} - 0 \right| < 2\delta
+\end{align*}
+
+
+However, we want to end up with
+\(\left| x_{2} - 0 \right| < \delta_{2}\), not \(2\delta\). This is
+where we can take advantage of our ``pick \(\delta = \_\_\_\).''
+Remember that we are free to pick \(\delta\) to be whatever we want, and
+if we pick it to be \(\delta = \frac{\delta_{2}}{2}\), then
+\(\delta_{2} = 2\delta\). Now we can substitute:
+
+\[0 < \left| x_{2} - 0 \right| < \delta_{2}\]
+
+Once we know that this (above) is true, we can also conclude (based on
+our assumption) that
+\(\left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\) is true.
+
+Because of our choices that \(\epsilon_{2} = \epsilon\) and
+\(x_{2} = 2x\):
+
+\[\left| f\left( x_{2} \right) - L \right| < \epsilon_{2} \Leftrightarrow \left| f(2x) - L \right| < \epsilon\]
+
+\[\blacksquare\]
+
+
+\subsubsection{Shortened}
+
+Suppose
+
+\[\forall\epsilon_{2} > 0,\ \exists\delta_{2} > 0,\ 0 < \left| x_{2} - 0 \right| < \delta_{2} \Rightarrow \left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\]
+
+We need to prove
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - 0| < \delta \Rightarrow \left| f(2x) - L \right| < \epsilon\]
+
+Proof. Let \(\epsilon > 0\). Pick \(\epsilon_{2} = \epsilon\), pick
+\(\delta = \frac{\delta_{2}}{2}\).
+
+Assume \(|x - 0| < \delta\). Pick \(x_{2} = 2x\). This means
+
+\begin{align*}
+2|x - 0| &< 2\delta \\
+|2x - 0| &< 2\delta \\
+\left| x_{2} - 0 \right| &< 2\delta \\
+\left| x_{2} - 0 \right| &< \delta_{2}
+\end{align*}
+
+
+This implies that
+\(\left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\) and also
+that \(\left| f(2x) - L \right| < \epsilon\).
+
+\(\blacksquare\)
+
+
+\subsection{Proving the sum of two
+limits}
+
+\(\left| f(x) + g(x) - (L + M) \right| < \epsilon\)
+
+\emph{Triangle inequality:} While you can split absolute values over
+multiplications, they can't exactly be split when doing addition.
+\(|x + y| \leq |x| + |y|\)
+
+
+\paragraph{Proving the triangle
+inequality}
+
+Assume your inequality to be true (but don't write it) (start with the
+inequality you want to prove and do some algebra, simplify it, and end
+up with something that is necessarily true).
+
+What is \(|a|^{2}\)? It's \(a^{2}\). If \(a\) was negative and you
+square it, the negative would go away anyways. Use the square operator
+to remove the absolute value.
+
+\begin{align*}
+|x + y| &\leq |x| + |y| \\
+|x + y|^{2} &\leq \left( |x| + |y| \right)^{2} \\
+(x + y)^{2} &\leq \left( |x| + |y| \right)^{2} \\
+x^{2} + 2xy + y^{2} &\leq |x|^{2} + 2|x||y| + |y|^{2} \\
+x^{2} + 2xy + y^{2} &\leq x^{2} + 2|x||y| + y^{2} \\
+2xy &\leq 2|x||y| \\
+xy &\leq |xy|
+\end{align*}
+
+
+Is the absolute value of a number always greater than or equal to that
+number? Yes. \(xy \leq |xy|\) is true beyond reasonable doubt.
+
+But why does using algebra help prove the statement? Because after each
+algebraic step you are making a double-sided implication, where each
+step implies and are equivalent to each other.
+
+
+\subsubsection{Proof}
+
+We assumed the following
+
+\begin{align*}
+\forall\epsilon_{2} &> 0,\ \exists\delta_{2} > 0,\ 0 < \left| x_{2} - 0 \right| < \delta \Rightarrow \left| f\left( x_{2} \right) - L \right| < \epsilon_{2} \\
+\forall\epsilon_{3} &> 0,\ \exists\delta_{3} > 0,\ 0 < |x_{3} - 0| < \delta \Rightarrow |g(x_{3}) - M| < \epsilon_{3}
+\end{align*}
+
+
+Prove \(\lim_{x \rightarrow 0}{f(x) + g(x)} = L + M\)
+
+Prove \(\forall\epsilon > 0\) if
+\(0 < |x - a| < \delta \Rightarrow \left| f(x) + g(x) - (L + M) \right| < \epsilon\)
+
+Let \(\epsilon > 0\) be arbitrary.
+
+Pick \(\epsilon_{2} = \frac{\epsilon}{2}\), (we wouldn't know what
+\(\epsilon_{2}\) is, but it is whatever we want any time in the future)
+and assume the bottom statement to be true:
+
+\[\exists\delta_{2} > 0\ if\ 0 < \left| x_{2} - a \right| < \delta_{2} \Rightarrow \left| f\left( x_{2} \right) - L \right| < \epsilon_{2}\]
+
+Pick \(\epsilon_{3} = \frac{\epsilon}{2}\), and assume the statement
+below to be true:
+
+\[\exists\delta_{3} > 0\ if\ 0 < \left| x_{3} - a \right| < \delta_{3} \Rightarrow \left| g\left( x_{3} \right) - M \right| < \epsilon_{3}\]
+
+Pick
+\(\delta = \min\left\{ \delta_{2},\ d_{3} \right\} \Rightarrow \delta \leq \delta_{2},\ \delta \leq d_{3}\)
+
+Prove what we need to solve: assume the ``if'' and prove the ``then.''
+
+Assume \(0 < |x - a| < \delta\)
+
+Prove \(\left| f(x) + g(x) - (L + M) \right| < \epsilon\)
+
+Consider \(x_{2} = x,\ x_{3} = x\).
+
+Since \(0 < |x - a| < \delta\) (we're using the picked blue statement to
+justify our substitution):
+
+\begin{align*}
+0 \leq |x - a| &= \left| x_{2} - a \right| < \delta \leq \delta_{2} \\
+0 < |x - a| &= \left| x_{3} - a \right| < \delta \leq \delta_{3}
+\end{align*}
+
+
+Which helps up conclude:
+
+\begin{align*}
+\Rightarrow \left| f\left( x_{2} \right) - L \right| &< \epsilon_{2} \\
+\Rightarrow \left| g\left( x_{3} \right) - M \right| &< \epsilon_{3}
+ \\
+&\left| f(x) + g(x) - (L + M) \right| \\
+&= \left| \left( f(x) - L \right) + \left( g(x) - M \right) \right| \\
+&\leq \left| f(x) - L \right| + \left| g(x) - M \right| \\
+< \epsilon_{2} + \epsilon_{3} &= \epsilon
+\end{align*}
+
+
+In the process, we picked \(\epsilon_{2} = \frac{\epsilon}{2}\) and
+\(\epsilon_{3} = \frac{\epsilon}{2}\), as we wanted to end our proof
+with epsilon.
+
+We thus conclude \(\left| f(x) + g(x) - (L + M) \right| < \epsilon\).
+
+\[\blacksquare\]
+
+
+\section{Using existing statements to prove other
+statements}
+
+(\(\land\) means ``and''; \(\vee\) means ``or''.)
+
+A statement is \textbf{necessarily true} means we can prove that
+statement given using the assumption.
+
+A statement is \textbf{not necessarily true} (considered false, usually
+the result of not all \(\forall\) checks passing despite some) when
+there is a counterexample.
+
+
+\subsubsection{Format}
+
+Knowing
+
+\[A \Rightarrow B\]
+
+Prove that
+
+\[C \Rightarrow D\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Assume \(C\) is true.
+\item
+  Try to prove \(A\) is true, then conclude \(B\) is true for this
+  context.
+\item
+  Use \(B\) to prove \(D\) or find a counterexample.
+\end{enumerate}
+
+The end goal is to prove \(D\) is true and \(C\) is false. Remember that
+\(C \Rightarrow D\) is logically equivalent to \(\neg C \vee D\).
+
+For example, if we know this is true (statement 1 a.k.a. first equation,
+from now on):
+
+\[|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 2\]
+
+
+\subsubsection{Example 1}
+
+We can prove the following:
+
+\[|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 3\]
+
+Here's the rationale: If we assume \(|x - 2| < 1\), we know that
+\(\left| f(x) - 5 \right| < 2\). Because \(2 < 3\),
+\(\left| f(x) - 5 \right| < 2 \Rightarrow \left| f(x) - 5 \right| < 3\)
+and therefore what we wanted to prove at the start is proven.
+
+
+\subsubsection{Example 2}
+
+Another statement to prove using the fact that statement 1 is true:
+
+\[|x - 2| < 0.5 \Rightarrow \left| f(x) - 5 \right| < 2\]
+
+By assuming \(|x - 2| < 0.5\), we can conclude \(|x - 2| < 1\), which
+immediately implies \(|x - 2| < 0.5\) and
+\(\left| f(x) - 5 \right| < 2\) (from the first statement, which turns
+out to be what we needed to prove true for the statement we needed to
+prove.
+
+
+\subsubsection{Example 3}
+
+\[|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 1\]
+
+Assume \(|x - 2| < 1\). This means \(\left| f(x) - 5 \right| < 2\), but
+can we conclude \(|f(x) - 5| < 1\)? No. Think about it. For example, if
+\(3 < f(x) < 7\), then
+\(\left| f(x) - 5 \right| < 1 \land \left| f(x) - 5 \right| < 2\), but
+if we let \(f(x) = 7.5\), \(|7.5 - 5| = 1.5 < 2\), but \(1,5 \nless 1\).
+This is the reasoning why the statement we needed to prove is not
+necessarily true. In other words, the steps to prove/disprove a
+statement like this is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Assume ``if'' of what to solve
+\item
+  If the ``if'' of what to solve implies the ``if'' of the first
+  equation, then we can guarantee the ``then'' of the first equation is
+  true.
+\item
+  The ``then'' of what to solve must be implied by the ``then'' of the
+  first equation. You can also find a counterexample to disprove a
+  statement.
+\end{enumerate}
+
+A negation of an implication is where the ``if'' is true and the
+``then'' is false, always.
+
+Consider \(x = 2\), and \(f(x) = 6.5\). (\(f(x)\) can be anything, as we
+did not put any constraints on it.)
+
+\[|x - 2| = 0 < 1 \Rightarrow \left| f(x) - 5 \right| = |6.5 - 5| \nless 1\]
+
+(For what we know that is true must be followed when constructing the
+above work.)
+
+
+\subsubsection{Example 4}
+
+Knowing that:
+
+\[|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 2\]
+
+Prove:
+
+\[|x - 2| < 0.5 \Rightarrow \left| f(x) - 5 \right| < 1\]
+
+\begin{proof}
+
+Assume \(|x - 2| < 0.5\); this implies \(|x - 2| < 1\), and thus implies
+\(\left| f(x) - 5 \right| < 2\). If you scroll up, you can find why
+\(\left| f(x) - 5 \right| < 1\) is false (not always true). Do this by
+giving an example where \(|x - 2| < 0.5\) is true and
+\(\left| f(x) - 5 \right| < 1\) is false. Scroll up to question 3 for
+when that is used.
+
+
+
+\end{proof}
+\subsubsection{Example 5}
+
+Knowing that
+
+\[|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 2\]
+
+Prove
+
+\[\exists\delta > 0,\ |x - 2| < \delta \Rightarrow \left| f(x) - 5 \right| < 1\]
+
+To show WTS is false, show
+
+\[\neg\left( \exists\delta > 0,\ |x - 2| < \delta \Rightarrow \left| f(x) - 5 \right| < 1 \right)\]
+
+\[\forall\delta > 0,\ |x - 2| < \delta \land |f(x) - 5| \nless 1\]
+
+(A very small delta will imply that \(x\) can only be 2; any greater
+than it will exceed \(\delta\))
+
+Let \(\delta > 0\) be arbitrary. Consider \(x = 2\). This means
+\(|x - 2| < \delta\). (Why did we pick \(x = 2\)? Because it is the only
+\(x\) that makes \(|x - 2| < \delta\) where delta can be as close to 0
+as it wants but never negative)
+
+Consider \(f(x) = 6.5\)
+
+It satisfies \(|x - 2| = 0 < 1 \Rightarrow \left| f(x) - 5 \right| < 2\)
+
+With that checked off, the value we assigned to \(f(x)\) is legal. Then
+\(|6.5 - 5| = 1.5 \nless 1\).
+
+This is satisfied, ultimately proving that
+
+\[\forall\delta > 0,\ |x - 2| < \delta \land |f(x) - 5| \nless 1\]
+
+Is true.
+
+
+\section{Proving that a limit doesn't
+exist}
+
+We still have the assumption
+
+\[|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 2\]
+
+We know something about \(f\), but we don't know what the function truly
+is. It is just the function that satisfies the assumption.
+
+Now we suppose that
+
+\[\lim_{x \rightarrow 2}{f(x) = L}\]
+
+This means, we know the following is true:
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - 2| < \delta \Rightarrow \left| f(x) - L \right| < \epsilon\]
+
+
+\subsection{Deciding whether to prove the limit exists or
+not}
+
+Can \(L = 2\)? Give an example of a function with that limit being two.
+If you think the limit cannot be two, then prove it using the
+assumption.
+
+If you say so, it means
+\(L - \epsilon < f(x) < L + \epsilon \Rightarrow f(x) = 2\)
+
+Now what do we know about our first assumption? Then
+\(\left| f(x) - 5 \right| < 2 \Leftrightarrow 3 < f(x) < 7\)
+
+The two above statements contradict. \(L\) cannot be 2. A.K.A. because
+\(f(x) \in (3,\ 7)\) and we wanted \(f(x)\) to output 2, but we know
+that can't be the case because \(f(x)\) is restricted.
+
+\emph{To prove an implication is false: A is true, and B is false.}
+
+
+\subsection{The ``Proving the limit doesn't
+exist''}
+
+Prove \(\lim_{x \rightarrow 2}{f(x)} \neq 2\). To prove a limit is not
+something, negate the limit definition. So, the limit definition,
+negated is:
+
+\[\exists\epsilon > 0,\ \forall\delta > 0,\ \exists x,\ 0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\]
+
+Pick \(\epsilon = 0.5\) (Initially blank and to be written down later.
+Could be small as we want.)
+
+Let \(\delta > 0\) be randomly chosen.
+
+Pick \(x = 2 + \min\left\{ \frac{\delta}{2},\frac{1}{2} \right\}\)
+(Initially blank. You technically can pick
+\(2 + \frac{\delta}{69696969}\) but please don't.)
+
+Prove
+\(0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\)
+
+Firstly, prove that the left side is true. Pick a particular \(x\) that
+makes the blue statement is true. Remember: our assumption still holds:
+
+\begin{align*}
+|x - 2| &< 1 \Rightarrow \left| f(x) - 5 \right| < 2 \\
+\Rightarrow 1 &< x < 3 \\
+\Rightarrow 3 &< f(x) < 7
+\end{align*}
+
+
+Okay, back to \(0 < |x - 2| < \delta\). Notice that \(x \neq 2\). 2 is
+the most obvious answer, but there is a slight technical detail that
+needs to be fixed. The statement
+\(0 < |x - 2| < \delta \Rightarrow 2 - \delta < x < 2 + \delta\). We
+know \(\delta\) can be really small, but not at zero. Therefore, make
+\(x\) be slightly larger than 2. This is why we picked
+\(x = 2 + \frac{\delta}{2}\), which was picked just now.
+
+Okay, how would you know that \(1 < 2 + \frac{\delta}{2} < 3\)?
+\(\delta\) could be anything. The way to solve this is to use the
+minimum function. This means
+\(x = 2 + \min\left\{ \frac{\delta}{2},\frac{1}{2} \right\}\).
+
+Now since we chose \(x\) to be that:
+
+\begin{align*}
+x &\leq 2 + \frac{\delta}{2} < 2 + \delta \\
+x &\leq 2 + \frac{1}{2} < 3 \Leftrightarrow x \leq 2.5 < 3
+\end{align*}
+
+
+Compress this, and we have \(x \leq 2 + \frac{\delta}{2}\) and
+\(x \leq \frac{5}{2}\).
+
+Since \(\frac{\delta}{2} > 0\) and \(\frac{1}{2} > 0\), \(x > 2\) if we
+pick either of them. (\(x\) is designed to be ever so slightly greater
+than two.)
+
+\[\Rightarrow 2 - \delta < x < 2 + \delta\]
+
+\[\Leftrightarrow 0 < |x - 2| < \delta\]
+
+What we know: This limit exists. \(\lim_{x \rightarrow 2}{f(x) = L}\).
+Can the limit be equal to two? Prove that it can't, which is what we
+want to prove.
+
+Back to what we needed to prove:
+\(0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\). We
+proved \(0 < |x - 2| < \delta\), and now we need to prove
+\(\left| f(x) - L \right| \geq \epsilon\).
+
+These are the assumptions we have in our disposal:
+
+\[1 < x < 3 \Rightarrow 3 < f(x) < 7\]
+
+We can confirm that we did declare \(x\) to be slightly greater than two
+and we know that it is less than 3 (scroll up), so we can confirm
+\(2 < x < 3 \Rightarrow 1 < x < 3\)
+
+Now we finally know \(3 < f(x) < 7\) is true. Knowing this is the fact,
+we need to prove \(\left| f(x) - L \right| \geq \epsilon\), which is
+\textbf{equivalent} to
+\(f(x) \geq L + \epsilon,\ f(x) \leq L - \epsilon\) \textbf{or}
+\(f(x) \notin (L - \epsilon,\ L + \epsilon)\) -- if this statement meets
+for all intervals of \(f(x)\), \textbf{then we proved what we needed to
+solve:} \(\left| f(x) - L \right| \geq \epsilon\) (Recall \(L = 2\))
+
+
+We didn't choose what epsilon is yet, so can we choose an epsilon in a
+way that the interval of \(3 < f(x) < 7\) lies outside of the diagram
+above? Yes. Just let \(\epsilon = 0.5\). We know \(L\) is 2, and that
+guarantees the interval of \(f(x)\) is outside the interval of
+\((L - \epsilon,\ L + \epsilon)\).
+
+Therefore \(f(x)\) does not lie in the interval \((1.5,\ 2.5)\)
+
+
+A diagram that visualizes it: \(f(x)\) cannot be within the blue zone.
+
+\(\square\)
+
+
+\subsubsection{Formal Proof, shortened}
+
+Suppose the following are true:
+
+\begin{align*}
+|x - 2| &< 1 \Rightarrow \left| f(x) - 5 \right| < 2 \\
+&\lim_{x \rightarrow 2}{f(x) = L}\
+\end{align*}
+
+
+Prove \(L \neq 2\).
+
+From the limit presented, we get this, which we can assume holds.
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - 2| < \delta \Rightarrow \left| f(x) - L \right| < \epsilon\]
+
+This is an implication that proves a limit exists. We want to prove that
+the limit doesn't exist, so we reverse the epsilon-delta definition of
+the limit \(\lim_{x \rightarrow 2}{f(x) = L}\):
+
+\[\exists\epsilon > 0,\ \forall\delta > 0,\ 0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\]
+
+Our task is to prove this with \(L = 2\).
+
+Pick \(\epsilon = 0.5\)
+
+Let \(\delta > 0\) be picked arbitrarily / randomly chosen.
+
+Pick \(x = \min\left\{ 2 + \frac{\delta}{2},\ 2 + \frac{1}{2} \right\}\)
+
+Prove
+\(0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\)
+
+We want \(x\) to be a value slightly greater than 2. So, we pick
+\(x = \min\left\{ 2 + \frac{\delta}{2},\ 2 + \frac{1}{2} \right\}\) (The
+right side of the minimum function prevents \(x\) from being 3 or
+greater as it breaks one of our assumptions.
+
+This means \(x \leq 2 + \frac{\delta}{2}\) and
+\(x \leq 2 + \frac{1}{2}\). The minimum function also tells us \(x > 2\)
+as \(\frac{\delta}{2},\frac{1}{2} > 0\). We can thus write: (also
+\(2 + \frac{\delta}{2} < 2 + \delta\))
+
+\begin{align*}
+2 &< x < 2 + \delta \\
+\Leftrightarrow 0 &< |x - 2| < \delta
+\end{align*}
+
+
+We proved the left side of
+\(0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\).
+Now to prove \(\left| f(x) - L \right| \geq \epsilon\)
+
+Remember our assumptions:
+\(|x - 2| < 1 \Rightarrow \left| f(x) - 5 \right| < 2\)
+
+\[(|x - 2| < 1 \Leftrightarrow 1 < x < 3) \Rightarrow \left( \left| f(x) - 5 \right| < 2 \Leftrightarrow 3 < f(x) < 7 \right)\]
+
+It means \(f(x)\) must be between 3 and 7, non-inclusively. Now, we let
+\(L = 2\), remember? This means:
+
+\begin{align*}
+\left| f(x) - 2 \right| &\geq \epsilon \\
+f(x) &\geq 2 + \epsilon \vee f(x) \leq 2 - \epsilon
+\end{align*}
+
+
+We said we could let \(\epsilon\) be anything, so let's make it 0.5;
+this is what happens:
+
+\[f(x) \geq 2.5 \vee f(x) \leq 1.5\]
+
+\[2.5 \leq 3 < f(x) < 7\]
+
+(This says \(f(x)\) must be greater that 2.5 or something else. But
+\(f(x)\) has to be between 3 and 7. This means \(f(x)\) must be greater
+than 2.5; statement proved -- we proved the other side of the ``and''.)
+
+
+\subsubsection{Shortened, again}
+
+\begin{align*}
+|x - 2| &< 1 \Rightarrow \left| f(x) - 5 \right| < 2 \\
+&\lim_{x \rightarrow 2}{f(x) = L}
+\end{align*}
+
+
+\[\exists\epsilon > 0,\ \forall\delta > 0,\ 0 < |x - 2| < \delta \land \left| f(x) - L \right| \geq \epsilon\]
+
+Pick \(\epsilon = 0.5\), let \(\delta > 0\) be picked arbitrarily /
+randomly chosen, and pick
+\(x = \min\left\{ 2 + \frac{\delta}{2},\ 2 + \frac{1}{2} \right\}\)
+
+Prove \(0 < |x - 2| < \delta\). This statement is the same as
+\(2 < x < 2 + \delta\). Because
+\(x = \min\left\{ 2 + \frac{\delta}{2},\ 2 + \frac{1}{2} \right\}\),
+then \(2 < x\) and \(x < 2 + \delta\). We can thus verify the statement.
+
+Prove \(\left| f(x) - L \right| \geq \epsilon\). Choose
+\(\epsilon = \frac{1}{2}\). Then we need to prove that \(f(x)\) is not
+in \((L - \epsilon,\ L + \epsilon)\). This means \(f(x)\) is not in
+\((2 - 0.5,\ 2 + 2.5)\). We can prove that is the case because \(f(x)\)
+is assumed to be in the interval \((3,\ 7)\). Therefore, proven.
+
+
+\subsection{Preliminary conclusions}
+
+We know \(0 < |x - 2| < \delta\) is true, as \(L\) does not affect it.
+
+\(L = 2.5\)? Choose \(\epsilon = \frac{1}{4}\). Then we need to prove
+that \(f(x)\) is not in \((L - \epsilon,\ L + \epsilon)\). This means
+\(f(x)\) is not in \((2.25,\ 2 + 2.75)\). We can prove that is the case
+because \(f(x)\) is assumed to be in the interval \((3,\ 7)\).
+Therefore, proven.
+
+\(L = 8\)? Choose \(\epsilon = \frac{1}{2}\). Then we need to prove that
+\(f(x)\) is not in \((L - \epsilon,\ L + \epsilon)\). This means
+\(f(x)\) is not in \((8 - 0.5,\ 8 + 0.5)\). We can prove that is the
+case because \(f(x)\) is assumed to be in the interval \((3,\ 7)\).
+Therefore, proven.
+
+We can conclude preliminary (by realizing) that
+\(L \notin (3,\ 7) \Rightarrow\) limit does not exist. However, we have
+only checked the values of values out of \(\lbrack 3,\ 7\rbrack\).
+
+\(L = 5\)? This means \(3 < f(x) < 7\) has to hold. Therefore, we think
+that it is possible, but it is not a proper answer, as we need to give
+an example \(f(x)\) with \(L = 5\), so we can have \(f(x) = 5\): it
+satisfies \(3 < f(x) < 7\).
+
+Suppose \(|x - 2| < 1\), prove \(\left| f(x) - 5 \right| < 2\).
+\(\left| f(x) - 5 \right| \Rightarrow \left| f(x) - 5 \right| = |5 - 5| < 2\);
+therefore, we can be confident that \(L = 5\) is a possibility, but not
+completely.
+
+Consider \(L = 4\). Suppose \(|x - 2| < 1\), prove
+\(\left| f(x) - 4 \right| < 2\).
+\(\left| f(x) - 5 \right| \Rightarrow |4 - 5| = |4 - 5| < 2\);
+therefore, we can be confident that \(L = 4\) is a possibility, but not
+completely.
+
+
+\subsection{It is not always what it
+seems}
+
+\begin{align*}
+|x - 2| &< 1 \Rightarrow \left| f(x) - 5 \right| < 2 \\
+&\lim_{x \rightarrow 2}{f(x) = L}
+\end{align*}
+
+
+Remember the definition of a limit at \(x = 2\):
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - 2| < \delta \Rightarrow |f(x) - L| < \epsilon\]
+
+Can \(L = 3\)? We cannot make the conclusion that \(L = 3\) is
+impossible, even though making a preliminary conclusion makes it look
+like \(L = 3\) is impossible. Suppose \(|x - 2| < 1\), prove
+\(\left| f(x) - 5 \right| < 2\).
+\(\left| f(x) - 5 \right| \Rightarrow |3 - 5| = |3 - 5| < 2 \Rightarrow 2 < 2\)\ldots{}
+however, that does not rule out the possibility of \(L = 3\). If we let
+\(f(x)\) be a function represented by the black line with a hole at
+\(x = 2\), the graph \(y = f(x)\) approaches 3 from above but doesn't
+hit it.
+
+
+\begin{proof}
+
+Consider \(f(x) = \left\{ \begin{matrix}
+(x - 2)^{2} + 3,\ x \neq 2 \\
+5,\ x = 2 \\
+\end{matrix} \right.\ \). The limit of \(f(x)\) at 2 would be 3, but
+\(f(2) = 5\). That point (in red) is irrelevant when we consider limits.
+We have a specific condition that \(x \neq 2\). So:
+
+Suppose \(|x - 2| < 1\) (an arbitrary value between 1 and 3). Prove
+\(\left| f(x) - 5 \right| < 2\).
+
+Case 1: \(x = 2\). Then \(f(x) = 5\), and
+\(\left| f(x) - 5 \right| = |5 - 5| < 2\), sastifying that
+\(\left| f(x) - 5 \right| < 2\)
+
+Case 2: \(x \neq 2\). Since \(|x - 2| < 1\)
+
+\begin{align*}
+0 &< |x - 2|^{2} < 1^{2} \\
+0 &< (x - 2)^{2} < 1 \\
+3 &< (x - 2)^{2} + 3 < 4 \\
+3 &< f(x) < 4 \\
+- 2 &< f(x) - 5 < - 1 \\
+1 &< \left| f(x) - 5 \right| < 2
+\end{align*}
+
+
+This proves satisfied that this function works. This means \(L\) can be
+3, and we can also come up that \(3 \leq f(x) \leq 7\) (though not
+proven yet).
+
+
+
+\end{proof}
+\section{Limits and Continuity}
+
+Sided-limits are only meant for 2-dimensional visualizations and can be
+used for computations.
+
+
+\subsection{Two-sided limits}
+
+The \textbf{limit} at a point \(a\) of the function \(f(x)\) is equal to
+the number \(L\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  When you let \(x\) approach \(a\) from the left side \textbf{and} the
+  right side of \(a\), the graph of \(f(x)\) gets close to number \(L\).
+\item
+  The actual value of \(f(a)\) does \textbf{NOT} matter at all.
+\end{enumerate}
+
+\[\lim_{x \rightarrow a}{f(x) = L}\]
+
+
+\subsection{One-sided limits}
+
+A limit from the left side is
+\(\lim_{x \rightarrow a^{-}}{f(x) = L_{1}}\). A limit from the right
+side is \(\lim_{x \rightarrow a^{+}}{f(x) = L_{2}}\). If the two values
+match, the limit of \(f(x)\) at \(a\) from both sides exist.
+
+The formal definition of a left side limit is if \(0 < a - x < \delta\),
+and the right limit is \(a < x < a + \delta\). These two cannot be
+generalized for higher dimensions.
+
+
+\subsection{Continuity}
+
+Intuitively, \(f(x)\) is continuous in an interval if the graph if the
+graph is in one piece. \(f(x)\) is continuous at the point \(a\) if the
+limit \(a\) is equal to \(f(x)\):
+
+\[\lim_{x \rightarrow a}{f(x) = f(a)}\]
+
+We can only define that a function is continuous on a point, but using
+that we can:
+
+\(f(x)\) is \textbf{continuous} in an interval means \(f(x)\) is
+continuous at every point in the interval. Most functions are
+continuous. Transforming a continuous function using any means (such as
++, ×, and composition) does not change whether the transformed interval
+is continuous (except division by zero.) Every standard function we know
+are continuous in their domains.
+
+E.g.,
+\(\lim_{x \rightarrow 1}{\left( x^{2} + 2^{x} \right) = f(1) = 1^{2} + 2^{1} = 3}\)
+
+Find conditions on A and B so that
+
+\[f(x) = \left\{ \begin{matrix}
+Ax - B & x \leq 1 \\
+3x & 1 < x < 2 \\
+Bx^{2} - A & 2 \leq x \\
+\end{matrix} \right.\ \]
+
+Is continuous at \(x = 1\) and discontinuous at \(x = 2\).
+
+\textbf{Continuous:} This means \(\lim_{x \rightarrow 1}{f(x) = f(1)}\)
+and \(\lim_{x \rightarrow 2}{f(x) \neq f(2)}\). Fortunately, all of the
+pieces of the piecewise functions are continuous. To evaluate this
+question, we need to use left and right sided limits.
+
+\[\lim_{x \rightarrow 1^{-}}{f(x)} = \lim_{x \rightarrow 1^{-}}{Ax - B} = A - B\]
+
+\[\lim_{x \rightarrow 1^{+}}{f(x)} = \lim_{x \rightarrow 1^{+}}{3x} = 3x = 3\]
+
+\[A - B = 3 = \lim_{x \rightarrow 1}{f(x) = f(1)}\]
+
+As long \(A - B = 3\), then \(f(x)\) is continuous at 1.
+
+\textbf{Discontinuous:} This means
+\(\lim_{x \rightarrow 2}{f(x) \neq 2}\)
+
+\[\lim_{x \rightarrow 2^{-}}{f(x) =}\lim_{x \rightarrow 2^{-}}3x = 6\]
+
+\[\lim_{x \rightarrow 2^{+}}{f(x) = \lim_{x \rightarrow 2^{+}}(Bx^{2} - A)} = 4B - A\]
+
+Now, we need to make sure \(\lim_{x \rightarrow 2}{f(x)} \neq f(2)\). If
+this two-sided limit were to exist, the left limit and the right limit
+would match, meaning
+\(6 = 4B - A = \lim_{x \rightarrow 2}{f(x)} = f(2)\). When would the
+limit not exist? \(6 \neq 4B - A\). Solve it.
+
+\[\left\{ \begin{matrix}
+6 \neq 4B - A \\
+3 = A - B \\
+\end{matrix} \right.\ \]
+
+
+\subsection{Limits approaching
+infinity}
+
+We allow \(a\) to be infinite as well. This is understood intuitively
+as:
+
+As \(x\) becomes larger and largher, \(f(x)\) gets closer to a number
+\(L\).
+
+\[\lim_{x \rightarrow \infty}{f(x) = L}\]
+
+We can also have \(a\) being minus infinity:
+
+\(\lim_{x \rightarrow - \infty}{f(x) = L}\)
+
+
+\subsection{Limit Properties}
+
+First, we \textbf{need} to know the following limits to exist:
+
+\[\lim_{x \rightarrow a}{f(x) = L},\lim_{x \rightarrow a}{g(x) = M}\]
+
+If we are not certain these limits exist, we cannot use the properties
+below.
+
+Then we can attain
+
+\[\lim_{x \rightarrow a}{\left\lbrack f(x) + g(x) \right\rbrack = L + M}\]
+
+\[\lim_{x \rightarrow a}{\left\lbrack f(x) - g(x) \right\rbrack = L - M}\]
+
+\[\lim_{x \rightarrow a}{c \cdot f(x) = c \cdot L}\]
+
+\[\lim_{x \rightarrow a}{\lbrack f(x) \cdot g(x)\rbrack = L \cdot M}\]
+
+\[\lim_{x \rightarrow a}{\frac{f(x)}{g(x)} = \frac{L}{M}},\ M \neq 0\]
+
+Third property onward, proving these become extremely hard.
+
+If \(f(x)\) is continuous, we can move the limit \textbf{inside} \(f\):
+
+\[\lim_{x \rightarrow a}{f\left( g(x) \right) = f\left\lbrack \lim_{x \rightarrow a}{g(x)} \right\rbrack}\]
+
+
+\subsubsection{Limit properties proofs}
+
+\emph{\textbf{If we know two limits is true}}
+
+Firstly, we have this statement brought from the previous subsection:
+
+
+\begin{equation}
+\lim(f)\ \text{and}\lim(g)\ \text{exists} \Rightarrow \lim(f + g) = \lim(f) + \lim(g)\ \tag{1}  \label{eq:1}
+\end{equation}
+
+
+Prove the following statement: Suppose
+\(\lim_{x \rightarrow a}{\lbrack f(x) + g(x)\rbrack}\) exists and
+\(\lim_{x \rightarrow a}{f(x)}\) exists, then
+\(\lim_{x \rightarrow a}{g(x)}\) also exists. Unfortunately, it is not
+correct to use (1) at first. You need to prove (1) first, so we know
+that it holds, and for (1) to be true we need to know that the limit at
+\(f\) and \(g\) exists. However, we do not know for sure that
+\(\lim(g)\) exists, meaning we \textbf{cannot assume that (1) is true.}
+
+What would happen if we considered
+\(\lim_{x \rightarrow a}{(f + g)} - \lim_{x \rightarrow a}f\). Are we
+allowed to consider this? This requires us to use this property:
+
+
+\begin{equation}
+\lim(f)\ \text{and}\lim(g)\ \text{exists} \Rightarrow \lim(f + g)\lim(f - g) = \lim(f) - \lim(g)\ \tag{2}  \label{eq:2}
+\end{equation}
+
+
+This doesn't hold. We do not know that \(\lim_{x \rightarrow a}{g(x)}\)
+exists.
+
+What if we consider the function \(f + g\) and the function \(f\)? We
+know that \(\lim(f + g)\) exists and so is \(\lim(f)\), so we can deduce
+that \(\lim\left( (f + g) - f \right)\).
+
+The key point is to use limit laws, you need to know that the two limits
+you would use the laws exist in the first place. We considered
+\(\lim(f + g)\) to be one function, and \(\lim(f)\) to be the other,
+which is why it is perfectly acceptable to write \(\lim(f + g - f)\). Is
+this confusing? Think as if I made the substitution
+\(\lim(f + g) = \lim(h)\).
+
+We have \(\lim(f + g - f) = \lim(g)\), \textbf{which we know exists} as
+it was derived from a limit that exists. It is precise to say:
+
+\emph{Since} \(\lim(f + g),\lim(f)\) \emph{exists, then we can conclude
+that} \(\lim(f + g) - \lim(f)\) \emph{exists, and so on.}
+
+
+\paragraph{Part 2}
+
+\textbf{T/F?} Suppose
+\(\lim_{x \rightarrow a}\left\lbrack f(x) + g(x) \right\rbrack\) exists
+but \(\lim_{x \rightarrow a}{f(x)}\) does not exist, then
+\(\lim_{x \rightarrow a}{g(x)}\) also does not exist.
+
+\begin{proof} Suppose \(\lim_{x \rightarrow a}{g(x)}\) exists. We know
+\(\lim_{x \rightarrow a}\left\lbrack f(x) + g(x) \right\rbrack\) exists.
+
+Consider
+\(\lim(f + g) - \lim(g) \Rightarrow \lim(f + g - g) \Rightarrow \lim(f)\)
+(we can do this because the limit of \(f + g\) and \(g\) are assumed to
+exist), meaning we proved that \(\lim(f)\) exists. However, we have
+reached a statement which is contradictory to something we assumed
+initially. This means it is not possible for \(\lim(g)\) to exist.
+
+When you reach a contradiction, your ``supposed'' assumption will
+automatically falsify itself (or turn true if supposed false). For
+regular proof questions, we cannot assume what we want to prove.
+However, when working with true/false questions, take a guess and go
+both paths.
+
+
+\paragraph{Part 3}
+
+Suppose \(\lim_{x \rightarrow a}{f(x)}\) exists but
+\(\lim_{x \rightarrow a}{g(x)}\) does not exist, then
+\(\lim_{x \rightarrow a}{\lbrack f(x) + g(x)\rbrack}\) does not exist.
+This statement is true.
+\(\lim_{x \rightarrow a}{\lbrack f(x) + g(x)\rbrack}\) cannot exist if
+either limit of \(f\) or \(g\) do not exist -- the limit property
+\(\lim_{x \rightarrow a}{\lbrack f(x) + g(x)\rbrack}\) only works if the
+two functions as individual limits work in the first place. Here, we
+know the opposite.
+
+
+
+\end{proof}
+\subsection{Continuity law for
+composition}
+
+Prove the \emph{continuity law for composition:}
+
+If \(f(x)\) is continuous at \(\lim_{x \rightarrow a}{g(x)}\), then we
+can move the limit inside:
+
+
+\begin{equation}
+\lim_{x \rightarrow a}{f\left( g(x) \right) = f\left\lbrack \lim_{x \rightarrow a}{g(x)} \right\rbrack}\ \tag{1}  \label{eq:1}
+\end{equation}
+
+
+\textbf{Deducing this implies that composition of continuous functions
+is continuous.}
+
+We know that if you put a continuous function inside another continuous
+function, you get a composite function. However, we think of continuous
+as a graph being in one piece. However, you have no idea.
+
+\begin{framed}
+
+What does it mean for \(f(x)\) to be continuous? It means
+\(\lim_{x \rightarrow a}{f(x)} = f(a)\). How would we write this
+statement?
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - a| < \delta \Rightarrow |f(x) - f(a)| < \epsilon\]
+
+\end{framed}
+
+
+
+Because \(L = f(a)\), we modified our epsilon-delta definition
+accordingly. Our assumption is that \(f(x)\) is continuous at
+\(\lim_{x \rightarrow a}{g(x)}\), but that should be treated just like a
+number. This means, which we know is true:
+
+
+\begin{equation}
+\lim_{x \rightarrow \lim_{x \rightarrow a}{g(x)}}{f(x)} = f\left\lbrack \lim_{x \rightarrow a}{g(x)} \right\rbrack\ \tag{2}  \label{eq:2}
+\end{equation}
+
+
+This is the true definition of if \(f(x)\) is continuous at
+\(\lim_{x \rightarrow a}{g(x)}\) (we know
+\(\lim_{x \rightarrow a}{g(x)}\) exists, because we must assume
+everything in the assumption to be true). This is what the question is
+asking.
+
+Now, what does (1) mean? \textbf{WTS:}
+
+\[\forall\epsilon > 0,\ \exists\delta > 0,\ 0 < |x - a| < \delta \Rightarrow \left| f\left( g(x) \right) - f\left\lbrack \lim_{x \rightarrow a}{g(x)} \right\rbrack \right| < \epsilon  \]
+
+This is a modified \(\epsilon - \delta\) definition presented in the box
+if you scroll up. This statement is what (1) is trying to say. All we
+need to do is prove that (3) is true. This is where we start using our
+assumptions. Meaning we know
+
+\[\forall\epsilon_{2} > 0,\exists\delta_{2} > 0,0 < \left| x_{2} - \lim_{x \rightarrow a}{g(x)} \right| < \delta_{2} \Rightarrow \left| f\left( x_{2} \right) - f\left( \lim_{x \rightarrow a}{g(x)} \right) \right| < \epsilon_{2}\  \]
+
+We used assumption (2) to help us construct the limit definition (4)
+that we can assume true when proving (3). Our (4) is something that we
+use.
+
+\begin{proof} Let \(\epsilon > 0\). Pick \(\epsilon_{2} = \_\_\), which
+makes the statement below true.
+
+\[\exists\delta_{2} > 0,\ 0 < \left| x_{2} - \lim_{x \rightarrow a}{g(x)} \right| < \delta_{2} \Rightarrow \left| f\left( x_{2} \right) - f\left( \lim_{x \rightarrow a}{g(x)} \right) \right| < \epsilon_{2}\  \]
+
+Pick \(\delta = \_\_\). It may depend on \(\delta_{2}\).
+
+From (4), suppose \(0 < |x - a| < \delta\)
+
+Prove
+\(\left| f\left( g(x) \right) - f\left\lbrack \lim_{x \rightarrow a}{g(x)} \right\rbrack \right| < \epsilon\).
+
+We haven't started the proof yet. We have set up the proof, though.
+
+So, we pick \(\epsilon_{2} = \epsilon\) and \(x_{2} = g(x)\). Then
+\(\left| f\left( x_{2} \right) - f\left( \lim_{x \rightarrow a}{g(x)} \right) \right| < \epsilon_{2}\)
+from (4) becomes
+\(\left| f\left( g(x) \right) - f\left( \lim_{x \rightarrow a}{g(x)} \right) \right| < \epsilon_{2}\)
+from (5.0). This means we know this is true:
+
+\[\forall\epsilon_{2} > 0,\exists\delta_{2} > 0,0 < \left| g(x) - \lim_{x \rightarrow a}{g(x)} \right| < \delta_{2} \Rightarrow \left| f\left( g(x) \right) - f\left( \lim_{x \rightarrow a}{g(x)} \right) \right| < \epsilon\  \]
+
+(We are so close! Verify
+\(0 < \left| g(x) - \lim_{x \rightarrow a}{g(x)} \right| < \delta_{2}\))
+
+Connection: If
+\(a \rightarrow g(a) \approx \lim_{x \rightarrow a}{g(x)} \rightarrow f\left( g(a) \right)\)
+
+If I pick an \(x\) that is very close to \(a\), then
+\(x \rightarrow g(x) \rightarrow f\left( g(x) \right)\). We are asking
+if \(x\) was near \(a\), can we prove \(f\left( g(x) \right)\) would be
+very close to \(f\left( g(a) \right)\)? We then pick an \(\epsilon > 0\)
+which gives us an error range around \(f\left( g(a) \right)\), and we
+would like to ask: can we find a \(\delta\) range on the left. Then
+\(f\left( g(x) \right)\) will be in the epsilon range within
+\(f\left( g(a) \right)\)? Then notice that if you start with \(x\), if
+you want to get to the right side, it needs to get to \(g(x)\), then
+\(g(x)\) would be inputted to \(f\) to obtain \(f\left( g(x) \right)\).
+Now, \(\exists\delta_{2}\) around \(g(a)\), then
+\(f\left( g(x) \right)\) would be very close to
+\(f\left( g(a) \right)\). If we take a look at how \(\delta_{2}\) is set
+up, the delta we are looking for is all the way on the left. They are
+not even in the same place.
+
+
+There is an implicit assumption that
+\(\lim_{x \rightarrow a}{g(x)} = M\) exists. Then, we know that
+
+\[\forall\epsilon_{3} > 0,\ \exists\delta_{3} > 0,\ 0 < \left| x_{3} - a \right| < \delta_{3} \Rightarrow \left| g\left( x_{3} \right) - \lim_{x \rightarrow a}{g(x)} \right| < \epsilon_{3}\  \]
+
+Pick \(\epsilon_{3} = \delta_{2}\). Then
+
+\[\exists\delta_{3} > 0,\ 0 < \left| x_{3} - a \right| < \delta_{3} \Rightarrow \left| g\left( x_{3} \right) - \lim_{x \rightarrow a}{g(x)} \right| < \epsilon_{3}\]
+
+Pick \(\delta = \delta_{3}\).
+
+Now how can I make sure \(g(x)\) lands in the \(\delta_{2}\) range?
+
+Using the red statement: Give me any \(\epsilon_{3}\) range in the
+middle centered around the red point, I will make sure \(g(x)\) lands in
+the \(\epsilon_{3}\) error range in the middle by giving a
+\(\delta_{3}\) control on the left side. This is why \(\delta_{2}\) is
+the control of the \(f\) function, which is the target of the \(g\)
+function. This justifies why we picked those variables. These guarantees
+\(g(x)\) will be sent to \(f\left( g(x) \right)\). It is not that these
+choices are intuitive.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Set a target on the right
+\item
+  Want a control on the left
+\item
+  Two-leg journey broken up in two pieces
+\item
+  Have \(g(x)\) land in \(\delta_{2} = \epsilon_{3}\) which grants a
+  \(\delta_{3}\) control range on the left
+\item
+  That will guarantee \(f\left( g(x) \right)\) will land on
+  \(\epsilon\).
+\end{enumerate}
+
+Considering \(x_{2} = g(x),\ x_{3} = x\)
+
+Since \(0 < |x - a| < \delta = \delta_{3}\)
+
+Then
+\(\left| g\left( x_{3} \right) - \lim_{x \rightarrow a}{g(x)} \right| < \epsilon_{3} = \delta_{2} \Rightarrow \left| g(x_{3}) - \lim_{x \rightarrow a}{g(x)} \right| < \epsilon_{3} = \delta_{2}\)
+
+Referring back to equation 6, we can then get:
+\(\left| f\left( g(x) \right) - f\left( \lim_{x \rightarrow a}{g(x)} \right) \right| < \epsilon\)
+
+
+
+\end{proof}
+\section{Limits approaching
+infinity}
+
+We do allow \(a\) to be infinite. This can be understood as: As \(x\)
+becomes larger and larger, \(f(x)\) becomes closer to \(L\).
+
+\textbf{Vertical Asymptotes:}
+
+\[f(x) = \frac{1}{x - 1}\]
+
+\[\lim_{x \rightarrow 1}{= \pm \infty}\]
+
+\textbf{Horizontal Asymptotes:}
+
+As \(x\) approaches \(\pm \infty\), sometimes \(f(x)\) will attain a
+limit. This is the horizontal asymptote. The graph is allowed to cross
+the horizontal asymptote. For example, \(\arctan(x)\) gives us
+horizontal asymptotes of \(\pm \frac{\pi}{2}\).
+
+Anything divided by infinity, other than infinity, gives zero.
+
+If a limit ends up evaluating to infinity, the limit does not exist.
+Also, the sum of a limit that exists and a limit that does not will
+exist.
+
+
+\subsection{Limit Evaluation
+Techniques}
+
+ALL INVOLVE GETTING AROUND HOLES. DON'T BREAK THE LIMIT UNTIL YOU'RE
+FINISHED! THESE ARE THE EXCEPTIONS TO THE REGULAR RULES.
+
+\textbf{Rational Functions}
+
+Rational functions is a polynomial dividing a polynomial. Factor the top
+and bottom and cancel out the factors. Any cases that would result in a
+`hole' as you did in Grade 11 will not apply as you are taking limits.
+
+\textbf{Rational functions with} \(\mathbf{x}\) \textbf{approaching
+infinity}
+
+Only the term with the highest exponent in the numerator and denominator
+matters when computing limits to infinity.
+
+\[\lim_{x \rightarrow \infty}{f(x) = \frac{24x^{6} + 1}{2x^{6} + 30x^{5} + 1} \approx \frac{24x^{6}}{2x^{6}} = 12}\]
+
+To be precise, we divide by the highest exponent on the numerator and
+the denominator. In this example, \(x^{6}\) is the highest exponent.
+
+\[\frac{\frac{24x^{6}}{x^{6}} + \frac{1}{x^{6}}}{\frac{2x^{6}}{x^{6}} + \frac{30x^{5}}{x^{6}} + \frac{1}{x^{6}}} = \frac{24 + 0}{2 + 0 + 0} = \frac{24}{2} = 12\]
+
+
+\[\frac{ax^{m}}{bx^{n}}\]
+
+\(m < n\) indicates the limit is zero.
+
+\(m = n\) indicates the limit is a horizontal asymptote.
+
+\(m > n\) limit is \(\pm \infty\)
+
+\textbf{Square Roots}
+
+Multiply the fraction by its conjugate. Treat the square root as an
+entire package. For example:
+
+\[f(x) = \frac{\sqrt{4x + 1} - 3}{x - 2}\]
+
+The square root is \(\sqrt{4x + 1}\). Treat that as one term when
+conjugating.
+
+Use this to get around a ``hole''.
+
+\textbf{Small angle approximation}
+
+If the limit is given as \(x \rightarrow 0\) then we can make this
+substitution.
+
+\[\sin(x) \approx x \approx \tan(x)\]
+
+This means \(\lim_{x \rightarrow 0}{\frac{\sin(x)}{x} = 1}\).
+
+This works for \(\arcsin(x)\) and \(\arctan(x)\).
+
+Example: \(\lim_{x \rightarrow 0}{\sin(2x)} = 2\).
+\(\lim_{x \rightarrow 0}{\frac{\sin^{2}(5x)}{x^{2}} = \frac{\left( \sin(5x) \right)^{2}}{x^{2}}} = \frac{(5x)^{2}}{x^{2}} = \frac{25x^{2}}{x^{2}} = 25\)
+
+Look out for \(\lim_{x \rightarrow 3}\frac{\sin(x - 3)}{x}\).
+
+\textbf{Absolute Values}
+
+Approach from the left and right side separately. The moment you
+determine that the expression inside the absolute value is positive or
+negative, do what is necessary and remove the absolute value sign. If
+the limit exists, they should evaluate to the same values.
+
+For example, approaching from the positive side guarantees \(x\) is
+positive, meaning \(|x| = x\); from the negative side guarantees \(x\)
+is negative meaning \(|x| = - x\).
+
+It is better to write the actual values of the limits even if it does
+not exist, using two single-sided limits.
+
+\textbf{Squeeze Theorem}
+
+The only technique that can be extended to higher dimensions.
+
+To attain \(\lim_{x \rightarrow a}{f(x)}\), you can try to find \(g(x)\)
+and \(h(x)\) so that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(g(x) \leq f(x) \leq h(x)\) near the point \(a\)
+\item
+  \(\lim_{x \rightarrow a}{g(x) = L = \lim_{x \rightarrow a}{h(x)}}\)
+\end{enumerate}
+
+Then we conclude \(\lim_{x \rightarrow a}{f(x) = L}\)
+
+In practice, we want to show \(\lim_{x \rightarrow a}{f(x) = 0}\). Start
+at \(|f(x)|\), create a chian of inequality, simplify \(|f(x)|\) to
+attain \(|g(x)|\) which has limit 0:
+
+\[\left| f(x) \right| \leq \ldots \leq \left| g(x) \right| \rightarrow 0\ \text{i.e.\ }\lim_{x \rightarrow a}{\left| g(x) \right| = 0}\]
+
+The only possible way for \(\left| f(x) \right|\) to be \(\leq\) and
+\(\geq\) to 0 is for \(\lim_{x \rightarrow a}{f(x) = 0}.\)
+
+For example:
+\(\lim_{x \rightarrow 0}{x^{2}\sin\left( \frac{1}{x} \right)}\)
+
+Squeeze theorem is used very commonly for
+\(\sin\left( \frac{1}{x} \right)\). Remember that
+\(\sin(\theta) \in \lbrack - 1,\ 1\rbrack\). This means
+\(\left| \sin(\theta) \right| \in \lbrack 0,\ 1\rbrack\). To use squeeze
+theorem, take the entire function in absolute value:
+
+\[0 \leq \left| x^{2}\sin\left( \frac{1}{x} \right) \right| \leq \left| x^{2} \right| \cdot 1 \rightarrow 0\]
+
+Thus \(\lim_{x \rightarrow 0}{x^{2}\sin\left( \frac{1}{x} \right)} = 0\)
+by squeeze theorem. Refer to the template:
+\(\left| f(x) \right| = \left| x^{2}\sin\left( \frac{1}{x} \right) \right|\)
+and \(\left| g(x) \right| = \left| x^{2} \right| \cdot 1\)
+
+Note that \(\left| \sin\left( \frac{1}{x} \right) \right| \leq 1\)
+because of \(\sin(\theta)\)'s domain.
+
+Squeeze theorem is if you want to show that
+\(\lim_{x \rightarrow a}{f(x) = 2}\), you can turn it into
+\(\lim_{x \rightarrow a}{f(x) - 2 = 0}\). Regardless of what \(a\) is it
+should work regardless of what value it is unless some other problems
+independent of squeeze theorem arise.
+
+Discussion: \(y = \sin\left( \frac{1}{x} \right)\). Take a look at
+\(y = x^{2}\sin\left( \frac{1}{x} \right)\). Closer to zero, the
+function will never be above \(x^{2}\) or \(- x^{2}\). This means
+despite the infinite oscillation of \(\sin\left( \frac{1}{x} \right)\),
+\(x^{2}\) squeezes the function to zero.
+
+\(x^{2}\) can only be multiplied by a number in the interval
+\(\lbrack - 1,\ 1\rbrack\) in
+\(y = x^{2}\sin\left( \frac{1}{x} \right)\). This means it can never be
+multiplied by anything greater than 1. This is why \(x^{2}\) is the max
+value, and \(- x^{2}\) is the minimum value.
+
+
+
+\subsection{Types of discontinuity}
+
+Continuous at a point means the limit is the same as the point itself.
+
+\[\lim_{x \rightarrow a}{f(x) = f(a)}\]
+
+To say \(f(x)\) is not continuous, it could fail either case:
+
+\textbf{Removable Discontinuity (HOLE)}
+
+\(\lim_{x \rightarrow a}{f(x) = L}\) exists, but \(f(a) \neq L\) or
+\(f(a)\) DNE
+
+In any case, we can redefine the function at \(a\), by setting
+\(f(a) = L\).
+
+Removable discontinuity typically arises when a cancellation occurs in a
+fraction (rational function):
+
+\[f(x) = \frac{(x - 1)(x + 1)}{x - 1},\ x \neq 1\]
+
+But since the function can be \(x + 1\) if you get rid of the hole, you
+can redefine the function as:
+
+\[f_{\text{redefined}}(x) = \left\{ \begin{matrix}
+\frac{(x - 1)(x + 1)}{x - 1},\ x \neq 1 \\
+2,\ x = 1 \\
+\end{matrix} \right.\ \]
+
+What we have done is that despite the hole in \(f(x)\), we can redefine
+it to fill in the hole of the function. That is the intuitive thing.
+
+\(f_{\text{redefined}}(x)\) is now continuous at \(a = 1\). Note that
+\(f(X) = x + 1\ \)everywhere.
+
+\textbf{Jump Discontinuity}
+
+\[\lim_{x \rightarrow a}{f(x)}\ \text{DNE\ as\ a\ 2-sided\ limit}\]
+
+However, both sided limits exist but are not equal. For example:
+
+\[f(x) = \frac{|x|}{x} = \left\{ \begin{matrix}
+1,\ x > 0 \\
+ - 1,\ x < 0 \\
+\end{matrix} \right.\ \]
+
+This is a true discontinuity as you cannot fix it. We have
+\(\lim_{x \rightarrow 0^{-}}{f(x) = - 1}\) and
+\(\lim_{x \rightarrow 0^{+}}{f(x) = 1}\)
+
+\textbf{Infinite Discontinuity}
+
+When one or both of the 1-sided limits are \textbf{infinite.}
+
+\[\lim_{x \rightarrow a^{-}}{f(x) = \pm \infty}\ \text{or\ }\lim_{x \rightarrow a^{+}}{f(x) = \pm \infty}\ \text{or\ both}\]
+
+Infinite discontinuity typically arises when a fraction is dividing by
+0. However, we require that the numerator to be nonzero. You need to
+deduce whether it is \(+ \infty\) or \(- \infty\). This can change
+depending on what side you approach from.
+
+Note that \(\frac{0}{0}\) is not allowed. \(\frac{0}{0}\) is called an
+indeterminant form, which requires further manipulations. Dividing by
+zero and computing limits when doing so can lead to untrue statements, a
+case of mathematical fallacy. Sometimes, cancellations may not be
+obvious.
+
+\textbf{Essential Discontinuity}
+
+Does not fit the description above. It only comes up in very specific
+functions:
+
+\[\lim_{x \rightarrow 0}{\sin\left( \frac{1}{x} \right)}\]
+
+As \(x \rightarrow 0,\ \theta = \frac{1}{x} \rightarrow \infty\). The
+oscillations become faster as \(x\) approaches zero. There is no way to
+describe the discontinuity. You cannot approach infinite numbers at the
+same time, as limits are required to be unique. It cannot be captured by
+\(\epsilon - \delta\) limit definitions. The same applies to
+\(\lim_{x \rightarrow 0}{\cos\left( \frac{1}{x} \right)}\).
+
+
+\subsection{The idea of a Derivative}
+
+The derivative of \(f(x)\) from first principles is:
+
+\[f'(a) = \lim_{h \rightarrow 0}\frac{f(a + h) - f(a)}{h}\]
+
+You must do some manipulation to the function to solve this.
+
+Note that \(f'(a)\) is typically different with a different point \(a\).
+This can be understood as a function:
+
+\[f'(x) = \lim_{h \rightarrow 0}\frac{f(x + h) - f(x)}{h}\]
+
+Where \(x\) is now thought of as the variable to the function \(f'\).
+
+The three ideas can be presented very differently. They don't seem to be
+related at all, but they do end up being the same definition: the first
+principles equation. The three definitions are just a coincidence. In
+higher dimensions, the three different ideas, simply because they are
+very different, they end up being different flavors of derivatives,
+hence why they need to be presented.
+
+
+\subsubsection{Graphically (slope)}
+
+The slope of the line tangent to the graph of the function \(y = f(x)\)
+at point \(a\). If you pick a point \(a\) and pick another point, you
+can connect them together and that creates a straight line, which you
+can compute the slope for it. That new point would be called \(a + h\),
+and the corresponding \(y\) values would be \(f(a)\) and \(f(a + h)\).
+To find the slope, it would be \(\frac{\Delta y}{\Delta x}\). This is
+called the difference quotient which matches the slope of the secant
+line. We would like to shift \(a + h\) closer to \(a\), which gives you
+a better approximation. The closer you get it, the better the
+approximation of the slope would be to the slope of the function at
+\(a\). If we approximate that difference to be zero, we get the tangent
+line. The tangent line at \(a\) would be defined as the derivative
+first-principles equation.
+
+The \textbf{tangent line} at \(x = a\) is defined to be the line with
+the \textbf{slope} as the derivative \(f'(a)\) passing through the point
+\(\left( a,\ f(a) \right)\).
+
+The point-slope form of a line is
+\(y - y_{0} = m\left( x - x_{0} \right)\). Here, the point-slope form of
+the line tangent to a point \(a\) of any function would be:
+
+\[y - f(a) = f'(a)(x - a)\]
+
+Where \(y_{0} = f(a),\ m = f'(a),\ x_{0} = a\)
+
+
+\subsubsection{Sensitivity to Input
+changes}
+
+The word ``rate of change'' actually has a more complicated meaning. It
+means \emph{the ratio of the changes.} Rate of change is the sensitivity
+to input changes. For example, consider a function \(f(x) = 2x\). If you
+start with the input \(x = 1\), we have \(f(1) = 2\). If we increase the
+input by 1 unit, with \(x = 2\), we have \(f(2) = 4\). The output
+changed by two units. If we were to change the input by \(h\) units, the
+output is changed by \(2h\) units.
+
+This has nothing to do with the slope. The reason why is because when we
+are talking about the slope of a graph, there needs to be a graph in the
+first place. However, we usually don't draw graphs all the time. In one
+dimension, a graph is a curve on the \(x - y\) axis. In higher
+dimensions, it is a surface that floats in mid-air. We don't think of
+visual examples here.
+
+If we change the input by a lot, the output will change by a lot. The
+meaningful question is not how much the output has change, but rather
+the ratio of the changes between the output and the input. It is the
+ratio of the change of the output of the function divided by the change
+in the input of a function.
+
+\[\frac{\text{change\ in\ output}}{\text{change\ in\ input}}\]
+
+Which is
+
+\[\frac{f(a + h) - f(a)}{h} = \text{Average\ Rate\ of\ Change}\]
+
+It is just a coincidence in one dimension that this idea algebraically
+becomes the same expression as the slope of the tangent of the graph,
+but the idea is completely different.
+
+If we let \(h \rightarrow 0\), we get the derivative. It measures the
+ratio when \textbf{very small} change is done to the input. However, the
+ratio of the changes between the output and the input may in fact be
+small or large.
+
+(For example: effort becomes less correlated with reception the more
+effort you put in.)
+
+The function \(f(x) = x^{2}\), close to zero, changing inputs near it
+affects the output a lot less.
+
+Price elasticity of demand has lots of applications here.
+
+The derivative here would be the instantaneous rate of change. The
+derivative is a local phenomenon. \(f'(a)\) does not give any
+information of \(f(x)\) at other points.
+
+
+\subsubsection{Velocity}
+
+\(f(t) = s(t)\) is the position of a particle at time \(t\). The average
+velocity between times \(t = a\) and \(t = b\) is
+
+\[v_{\text{avg}} = \frac{s(b) - s(a)}{b - a} = \frac{\text{difference\ in\ position}}{\text{time\ used}}\]
+
+This corresponds to the slope of the secant line defined by two points
+\(\left( a,\ s(a) \right)\) and \(\left( b,\ s(b) \right)\) on the graph
+of \(s(t)\).
+
+The instantaneous velocity, or just simply velocity, at time \(t = a\)
+is the derivative:
+
+\[v_{\text{inst}} = v(a) = s'(a) = \lim_{h \rightarrow 0}\frac{s(a + h) - s(a)}{h} = \lim_{t \rightarrow a}\frac{s(t) - s(a)}{t - a}\]
+
+The velocity can again be thought as a function of time:
+
+\[v(t) = s'(t)\]
+
+Velocity also generalizes to higher dimensions. It can be generalized to
+be the position of something, having multi-dimensional aspects. This
+would be completely different from the rate of change interpretation and
+no relation to the slope of the tangent.
+
+
+\subsection{Calculating derivatives through first
+principles}
+
+\[f'(a) = \lim_{h \rightarrow 0}\frac{f(a + h) - f(a)}{h}\]
+
+\[f(x) = x^{3}\]
+
+\begin{align*}
+&\frac{(a + h)^{3} - a^{3}}{h} \\
+&\frac{a^{3} + 3a^{2}h + 3ah^{2} + h^{3} - a^{3}}{h} \\
+&\frac{3a^{2}h + 3ah^{2} + h^{3}}{h} \\
+&3a^{2} + 3ah + h^{2} \\
+&3a^{2}
+\end{align*}
+
+
+Find \(f(x) = x^{3}\) at (1, 1)
+
+\begin{align*}
+y - y_{0} &= m\left( x - x_{0} \right) \\
+y - 1 &= m(x - 1) \\
+f'(a) &= 3a^{2} = 3a = 3 \\
+y - 1 &= 3(x - 1)
+\end{align*}
+
+
+Let \(f'(x) = 0\forall x\) and \(f(x) = 0\). What about \(f(2)\)?
+This means the function is not sensitive to input changes meaning
+\(f(2) = 0\)
+
+The derivative is a local phenomenon. Let \(f'(x) = 0\) and
+\(f(x) = 0\). What about \(f(2)\)? We do not know for sure. For example,
+\(f(x) = x^{2},\ f'(x) = 2x\). \(f'(0) = 0\). However, derivative
+increases away from zero. At 2, the function becomes more sensitive to
+input changes. However, for \(f'(0) = 0\) we only know what happens
+to the function at zero and no where else. It Is not about the numerical
+difference. As long as \(x\) is not at zero, we do not know what
+\(f(x)\) or \(f'(x)\) is. There are infinitely as many values between 0
+and 2. It is just as far from zero as 0.2 is, in terms of the number
+gap, because all of them are some finite distance away. Knowing
+something about the behavior of the function at zero tells us nothing
+about the behavior of the function elsewhere.
+
+We however need a more power theorem to prove this statement more
+rigorously.
+
+Next:
+
+Let \(s(t) = t^{2} - 6t\). Find the average velocity for \(t\) between
+the interval \(\lbrack 4,\ 8\rbrack\) and the instantaneous velocity at
+\(t = 8\).
+
+\[v_{\text{avg}} = \frac{s(8) - s(4)}{8 - 4} = \frac{(64 - 48) - (16 - 24)}{4} = \frac{16 + 8}{4} = 6\]
+
+Instantaneous velocity at \(t = 8\)? \(v(t) = s'(t) = 2t - 6\) so, if
+you plug in \(v(8) = 16 - 6 = 10\). The velocity is increasing as time
+increases. When you take the average of the velocity between 4 and 8,
+the number is somewhere in the middle.
+
+
+\section{Three Important Theorems}
+
+These theorems can't be proven with standard axioms of the real numbers.
+
+The axiom of the least upper bound: TBA
+
+
+\subsection{Intermediate Value
+Theorem}
+
+If \(f(x)\) is \uline{continuous} on \(\lbrack a,\ b\rbrack\) and
+\(f(a) < 0,\ f(b) > 0 \Rightarrow \exists c \in (a,\ b)\) with
+\(f(c) = 0\) (we mentioned an interval here). \emph{To draw a continuous
+curve from below the x-axis to above the x-axis, the curve must cross
+the x-axis at least once.}
+
+\textbf{IVT Generalized}
+
+If \(f(x)\) is continuous on \(\lbrack a,\ b\rbrack\) then for any \(K\)
+between \(f(a)\), \(f(b)\), there exists \(c \in (a,\ b)\) with
+\(f(c) = K\)
+
+
+\subsection{Extreme Value Theorem
+(EVT)}
+
+If \(f(x)\) is continuous on \(\lbrack a,\ b\rbrack\), then \(f(x)\) has
+a maximum and minimum on the interval {[}a, b{]}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\exists x_{M}\), with \(f\left( x_{M} \right) \geq f(x)\) for all
+  \(x \in \lbrack a,\ b\rbrack\) as a maximum.
+\item
+  \(\mathbf{\exists}x_{m}\), with \(f\left( x_{m} \right) \leq f(x)\)
+  for all \(x \in \lbrack a,\ b\rbrack\) as a minimum.
+\end{enumerate}
+
+(On a closed interval a continuous curve would have a highest and lowest
+point.)
+
+
+\subsection{Mean value theorem}
+
+If \(f(x)\) is continuous on \(\lbrack a,\ b\rbrack\) and is
+differentiable on \((a,\ b)\), then \(\exists c \in (a,\ b)\) with
+
+\[f'(c) = \frac{f(b) - f(a)}{b - a}\]
+
+(In terms of velocity, there is a \(c\) where
+\(f'(c) = \text{average\ velocity}\))
+
+\emph{Intuition: if the average speed of a car is
+100kmh\textsuperscript{-1}, will there be a point where the car travels
+at exactly 100kmh\textsuperscript{-1}?}
+
+These theorems do not help find the exact values -- sometimes, you
+cannot find exact values; you must use approximations. It just
+guarantees the existence of them.
+
+(Note: differentiable on \(\lbrack a,\ b\rbrack \Rightarrow\)
+differentiable on \((a,\ b)\) -- we use the weakest assumption. Rare
+situation is when cusps exist on the edge of the interval.)
+
+Jumps and cusps are not allowed. Jumps would be considered
+teleportation, and cups are sudden increases in speed with no
+acceleration for some time, and that cannot happen in real life.
+
+When the assumption for the theorems is not satisfied, the theorem may
+not work. Even if the assumptions are not satisfied, the theorem may
+still work, but not always.
+
+
+\subsubsection{Q}
+
+Show that there are at least 3 solutions in
+\(\left( \frac{x}{\pi} \right)^{3} - 2\sin(x) + \frac{1}{2} = 0\)
+
+\(x\) is not solvable. Knowing you can't solve it, use IVT.
+
+\begin{table}[H]
+\centering
+
+
+\begin{tabular}{|m{17em}|m{17em}|}
+
+\hline
+\[x\]& \[f(x)\]\\ \hline
+\[0\] & \[\frac{1}{2}\] \\ \hline
+\[\pi\] & \[\frac{3}{2}\]
+\\\hline
+\end{tabular}
+
+\end{table}
+Interval checking
+
+
+\section{Squeeze theorem}
+
+For every \(x \neq 0\):
+
+\[- 1 \leq \sin\frac{1}{x} \leq 1\]
+
+\[- x^{2} \leq x^{2}\sin\frac{1}{x} \leq x^{2}\]
+
+A more general picture:
+
+If you have two functions which have the same limit \(L\) at \(a\), and
+I have a third function that is squeezed in between them, no matter how
+it behaves, it has the same limit.
+
+This means:
+
+Let \(a,\ L\mathbb{\in R}\). Let \(f,\ g,\ h\) be functions defined near
+\(a\), except possibly at \(a\)
+
+If:
+
+\begin{itemize}
+\item
+  \(h(x) \leq g(x) \leq f(x)\)
+\item
+  \(\lim_{x \rightarrow a}{f(x)} = L\)
+\item
+  \(\lim_{x \rightarrow a}{h(x)} = L\)
+\end{itemize}
+
+Then
+
+\begin{itemize}
+\item
+  \(\lim_{x \rightarrow a}{g(x)} = L\)
+\end{itemize}
+
+Compute \(\lim_{x \rightarrow 0}{x^{2}\sin\frac{1}{x}}\).
+
+\begin{itemize}
+\item
+  For every \(x \neq 0:\  - x^{2} < x^{2}\sin\frac{1}{x} \leq x^{2}\)
+\item
+  \(\lim_{x \rightarrow 0}x^{2} = 0\) and
+  \(\lim_{x \rightarrow 0}{( - x^{2})} = 0\)
+\item
+  By the squeeze theorem:
+  \(\lim_{x \rightarrow 0}{x^{2}\sin\frac{1}{x} = 0}\)
+\end{itemize}
+
+
+\section{Derivative}
+
+The function is differentiable at a point if the limit exists as the
+derivative at the point.
+
+\textbf{Tangent line}
+
+\[y - y_{0} = m\left( x - x_{0} \right)\]
+
+Tangent line at
+\(\left( x_{0},\ y_{0} \right) = \left( a,\ f(a) \right)\) has slope
+\(m = f'(a)\)
+
+\[e^{\ln(x)} = \ln\left( e^{x} \right)\]
+
+(This works because an inverse function acts as an argument to the
+function)
+
+Note: \(\tan'(x) = \sec^{2}(x)\) and
+\(\left( \sec(x) \right)' = \sec(x)\tan(x)\)
+
+
+\subsection{Inverse Function Theorem}
+
+\[\left( f^{- 1} \right)'(x) = \frac{1}{f'\left( f^{- 1}(x) \right)}\]
+
+\begin{align*}
+\sin^{- 1}{(x)} &= \frac{1}{\sqrt{1 - x^{2}}} \\
+\text{acos}(x) &= - \frac{1}{\sqrt{1 - x^{2}}}
+\end{align*}
+
+
+\[\text{atan}'(x) = \frac{1}{1 + x^{2}}\]
+
+Square roots: \(\sqrt{x} \geq 0\)
+
+\begin{itemize}
+\item
+  \(x = 4\)
+\item
+  \(\sqrt{x} = a\) (Square root is defined to simply represent the
+  positive side.)
+\item
+  \(a^{2} = 4 \Rightarrow a = \pm 2\)
+\end{itemize}
+
+
+\subsection{Higher order derivatives}
+
+\[\sin^{2}{(x)} = \sin^{2}(x) + \sin^{2}x^{2}\]
+
+Derivative is
+
+\[2\sin(x)\cos(x) + \cos\left( x^{2} \right)2x + 2\sin\left( x^{2} \right)\cos\left( x^{2} \right)2x\]
+
+Derivative of \(e^{x^{e}}\) is \(e^{x^{e}}ex^{e - 1}\)
+
+\(x^{x}\) (when both the base of the exponent and the exponent is the
+same, you cannot take the derivative.) \textbf{The power rule may not be
+applied if the exponent is variable}
+
+\[x = e^{\ln(x)} \Rightarrow x^{x} = e^{\left( \ln(x) \right)^{x}} = \left( e^{\ln(x)} \right)^{x} = e^{x \cdot \ln(x)}\]
+
+Using \(x = e^{\ln(x)}\) is workable. The derivative of
+\(e^{x \cdot \ln(x)}\) is
+\(e^{x \cdot \ln(x)} \cdot \left( 1 \cdot \ln(x) + x\left( \frac{1}{x} \right) \right)\)
+(then simplify it using the product rule)
+
+
+\subsection{Nth order derivatives}
+
+\[f(x) = \ln(x)\]
+
+\begin{align*}
+f'(x) &= x^{- 1} \\
+f''(x) &= - x^{- 2} \\
+f'''(x) &= ( - 1)( - 2)x^{- 3} \\
+f^{4}(x) &= ( - 1)( - 2)( - 3)x^{- 4} \\
+f^{n}(x) &= ( - 1)^{n - 1}\left( 1 \times 2 \times \cdots \times (n - 1) \right)x^{- 4} = - 1 \cdot (n - 1)! \cdot x^{- 4}
+\end{align*}
+
+
+The \(( - 1)^{n - 1}\) is how we compress signs. For example, the second
+derivative ends up\ldots.
+
+
+Firstly, derivative: \(3x^{2} = A\) at \(x = 1\), meaning \(3 = A\).
+This is not enough to guarantee that \(f\) is differentiable at 1.
+
+Second, continuous: \(x^{3} = 3x + b\) at \(x = 1\) means
+\(1 = 3 + b \Rightarrow b = - 2\)
+
+
+\subsection{Exponents and logs}
+
+\[\left( e^{x} \right)' = e^{x}\]
+
+What if base \(e\) are not used?
+
+We will use the fact that \(e^{x}\) and \(\ln(x)\) are inverse
+functions.
+
+Use the relation:
+\(a^{x} = \left( e^{\ln(a)} \right)^{x} = e^{x \cdot \ln(a)}\)
+
+\[\left( a^{x} \right)' = e^{x \cdot \ln(a)} \cdot \ln(a) = a^{x} \cdot \ln(a)\]
+
+
+\subsubsection{Natural log:}
+
+\[\left( \ln(x) \right)' = \frac{1}{x}\]
+
+(We define \(\ln(x)\) for which its derivative is exactly
+\(\frac{1}{x}\). It does not come from base 10 log or any other base.
+\(\ln(x)\) is defined to be the integral of \(\frac{1}{x}\))
+
+
+\subsubsection{Derivative of logs:}
+
+\[y = \log_{a}{(x) \Leftrightarrow x = a^{y}}\]
+
+Using the relation \(a = e^{\ln(a)}\):
+
+\[x = a^{y} = \left( e^{\ln(a)} \right)^{y} = y \cdot \ln(a)\]
+
+Take the ln of both sides:
+
+\[\ln(x) = \ln\left( e^{y} \cdot \ln(a) \right) = y \cdot \ln(a)\]
+
+Divide by the constant \(\ln(a)\)
+
+\[y = \log_{a}(x) = \frac{\ln(x)}{\ln(a)}\]
+
+(This is simply log change of base. \(\ln(a)\) is simply a vertical
+stretch.)
+
+Taking the derivative:
+\(y' = \left( \log_{a}(x) \right)' = \frac{1}{\ln(a)} \cdot \frac{1}{x} = \frac{1}{x\ln(a)}\)
+
+I mean:
+
+\begin{align*}
+f(x) &= e^{x} \\
+f\left( x \cdot \ln(a) \right) &= e^{x \cdot \ln(a)}
+\end{align*}
+
+
+
+\subsubsection{Logarithmic
+differentiation:}
+
+\emph{When rolling a dice and flipping a coin, the probability of
+rolling a 1 and getting a head on the coin is the product of the
+probabilities of either. With the logical connection AND, the
+probabilities multiply together. When you have a lot of things connected
+with AND, it is a bunch of things multiplied by each other. The problem
+is, the derivative works very well with addition but not very well with
+multiplication.}
+
+\begin{align*}
+\left( fg \right)' &= f'g + fg' \\
+\left( \text{fgh} \right)' &= f'gh + fg'h + fgh'
+\end{align*}
+
+
+(The prime carries from the left to the right.)
+
+We can use ln to change multiplication to addition, division to
+subtraction, and exponentiation to multiplication. We have the following
+properties:
+
+\begin{align*}
+\ln\left( xy \right) &= \ln(x) + \ln(y) \\
+\ln\left( \frac{x}{y} \right) &= \ln(x) - \ln(y) \\
+\ln\left( x^{y} \right) &= y\ln(x)
+\end{align*}
+
+
+To use it:
+
+\[y(x) = \frac{f(x)^{2}g(x)}{h(x)}
+\]
+
+\[\ln\left( y(x) \right) = \ln\left( \frac{f(x)^{2}g(x)}{h(x)} \right)\]
+
+Applying the log rules, we get (note that the square in \(f(x)\) is part
+of the function, as \(\ln\left( f(x)^{2} \right) = 2\ln{f(x)}\):
+
+\[\ln\left( y(x) \right) = 2\ln\left( f(x) \right) + \ln\left( g(x) \right) - \ln\left( h(x) \right)\]
+
+Take the derivative against \(x\) on both sides using the chain rule, we
+get:
+
+\[\frac{1}{y(x)} \cdot y'(x) = \frac{2}{f(x)} \cdot f'(x) + \frac{1}{g(x)} \cdot g'(x) - \frac{1}{h(x)} \cdot h'(x)\]
+
+Multiply both sides by \(y(x)\)
+
+\begin{align*}
+\frac{y(x)}{y(x)} \cdot y'(x) &= 2\frac{y(x)}{f(x)} \cdot f'(x) + \frac{y(x)}{g(x)} \cdot g'(x) - \frac{y(x)}{h(x)} \cdot h'(x) \\
+y'(x) &= 2\frac{y(x)}{f(x)} \cdot f'(x) + \frac{y(x)}{g(x)} \cdot g'(x) - \frac{y(x)}{h(x)} \cdot h'(x)
+\end{align*}
+
+
+Okay good luck stuffing \(y(x)\) into this mess
+
+\[y'(x) = 2\frac{\frac{f(x)^{2}g(x)}{h(x)}}{f(x)} \cdot f'(x) + \frac{\frac{f(x)^{2}g(x)}{h(x)}}{g(x)} \cdot g'(x) - \frac{\frac{f(x)^{2}g(x)}{h(x)}}{h(x)} \cdot h'(x)\]
+
+
+\paragraph{An example}
+
+\[y(x) = \left( \frac{\sqrt{x^{2} + 3}}{\sqrt[3]{x^{2} + 2x}} \right)\]
+
+What is \(\ln\left( y(x) \right)\)? It is
+
+\[\ln\left( y(x) \right) = \frac{1}{2}\ln\left( x^{2} + 3 \right) - \frac{1}{3}\ln\left( x^{2} + 3x \right)\]
+
+\[\frac{1}{y(x)}y'(x) = \frac{1}{2\left( x^{2} + 3 \right)} - \frac{1}{3\left( x^{2} + 3x \right)}\]
+
+\[y'(x) = \frac{y(x)}{2\left( x^{2} + 3 \right)} - \frac{y(x)}{3\left( x^{2} + 3x \right)}\]
+
+\[y'(x) = \frac{\frac{\sqrt{x^{2} + 3}}{\sqrt[3]{x^{2} + 2x}}}{2\left( x^{2} + 3 \right)} - \frac{\frac{\sqrt{x^{2} + 3}}{\sqrt[3]{x^{2} + 2x}}}{3\left( x^{2} + 3x \right)}\]
+
+
+\section{Inverse functions (computationally
+difficult)}
+
+A function starts with a domain and a codomain.
+
+\[f:A \rightarrow B\]
+
+
+\subsection{One-to-one}
+
+A function is \textbf{one-to-one} when any two different points in the
+domain will get sent (by \emph{f}) to two different points in the
+codomain. Equivalently:
+
+\textbf{There cannot exist 2 different points that get sent by f to the
+same point.}
+
+The simplest logical statement for one-to-one is:
+
+\textbf{f is one-to-one} \(\Leftrightarrow\)
+\(\left( f(a) = f(b) \Rightarrow a = b \right)\)
+
+\emph{Why is this the case? If it seems as though we have 2 different
+points sent to the same point, then these two points have to be the
+same.} What you are concluding is that it is \textbf{not} two different
+points.
+
+\[f(a) = f(b) \Rightarrow a = b\]
+
+We feel as though \(a\) and \(b\) are different, but we never said that.
+The only time where it seems that two different points are getting sent
+to the same point, you didn't start with two different points.
+
+Contrapositive of \(a \neq b \Rightarrow f(a) \neq f(b)\) \emph{There
+cannot exist two points that get sent to the same point.}
+
+\textbf{Example:}
+
+\(f(x) = x + 3\). Suppose \(f(a) = f(b)\), \(a + 3 = b + 3\), so
+\(a = b \Rightarrow f\) is one-to-one
+
+
+\subsection{Onto}
+
+The \textbf{image} is all possible values that \(f\) can take (based on
+the domain).
+
+\(f\) is \textbf{onto} if: \textbf{image = codomain}
+
+Consider this function, which we can assume to be one-to-one for now:
+
+We have defined our function to be
+\(f\mathbb{:R \rightarrow R,\ }f(x) = \arctan(x)\)
+
+Consider \(A\mathbb{= R}\) (on the left) and \(B\mathbb{= R}\) (on the
+right). However, as \(x\) can be any real number in
+\(A\mathbb{= R,}\arctan(x)\) can take on every value in
+\(\left( - \frac{\pi}{2},\frac{\pi}{2} \right)\).
+
+The function is not \textbf{onto,} as we typically define the codomain
+for 1D calculus to be \(\mathbb{R}\), but the image does not cover
+\(\mathbb{R}\).
+
+However, we can redefine the codomain. If we set
+\(f\mathbb{:R \rightarrow}\left( - \frac{\pi}{2},\frac{\pi}{2} \right)\),
+then we have made the function onto. Then \(f\) is \textbf{one to one
+and onto.}
+
+This means we can remove elements from the codomain by redefining what
+the function is supposed to map to in order to make our function onto.
+
+(e.g. in linear algebra,
+\(f:\mathbb{R}^{2} \rightarrow \mathbb{R}^{3}\), codomain is
+\(\mathbb{R}^{3}\). Yes, your linear transformation can be redundant as
+\(\left\lbrack x_{1} + x_{2} + x_{3},\ 0,\ 0 \right\rbrack\) -- if you
+redefine the codomain to be smaller you are going to have to get rid of
+dimensions of that linear transformation)
+
+\textbf{DOMAIN}
+
+If the function's domain is \(\mathbb{R}\), only consider the point
+where the function is defined at that point.
+
+
+\subsection{Horizontal line test
+(one-to-one)}
+
+Given a function \(f:f\) is one-to-one if and only if every possible
+horizontal line in the x-y plane intersect the curve at most once.
+
+
+\subsection{One-to-one and onto}
+
+A function is \textbf{one-to-one and onto}
+
+\[f:A \rightarrow B\]
+
+\textbf{if and only if there exists an inverse function}
+\(\mathbf{f}^{\mathbf{- 1}}\)\textbf{:}
+
+\[f^{- 1}:B \rightarrow A\]
+
+Suddenly, \(B\) is the domain.
+
+One-to-one rationale -- if it wasn't, our inverse wouldn't be a function
+
+If it isn't onto, there will be missing correspondences. Better remove
+things from the codomain first, because if something is on the codomain
+that can't be associated with a point on the domain, then you have a
+missing correspondence.
+
+The inverse comes in pairs. The function \(f\) takes \(a \in A\) as
+input and gibves \(b \in B\) as output. The function \(f^{- 1}\) takes
+\(b \in B\ \) and spits out \(a \in A\) as output of \(f^{- 1}\).
+
+The domain of \(f^{- 1}\) is B and the image of \(f^{- 1}\) is \(A\).
+
+The inverse of \(f^{- 1}\) is \(f\), written as
+\(\left( f^{- 1} \right)^{- 1} = f\)
+
+Meaning
+
+\[f^{- 1}\left( f(1) \right) = 1;f\left( f^{- 1}(4) \right) = 4\]
+
+The inverse function and the regular function should cancel each other
+out.
+
+There is a one-to-one correspondence between the points in \(A\) and
+\(B\).
+
+\begin{align*}
+y &= f(x) \\
+f^{- 1}(y) &= f^{- 1}\left( f(x) \right) \\
+f^{- 1}(y) &= x
+\end{align*}
+
+
+This means if \(y = f(x)\),
+\(y = \arctan(x) \Rightarrow f^{- 1}(y) = \tan(y) \Rightarrow x = \tan(y)\)
+
+However:
+\(f\mathbb{:R \rightarrow}\left( - \frac{\pi}{2},\frac{\pi}{2} \right)\)
+
+\[f^{- 1}:\left( - \frac{\pi}{2},\frac{\pi}{2} \right)\mathbb{\rightarrow R}\]
+
+The domain is restricted. The domain of the inverse function does not
+expand infinitely out. This is how inverse trigonometric functions are
+defined.
+
+Although \(f^{- 1}(y)\) is defined to be a formula to \(\tan(y)\), it
+has a different domain than the standard \(\tan(y)\) function.
+
+The inverse function only works is because we have restricted the domain
+of the input for the inverse. For
+\(y \notin \left( - \frac{\pi}{2},\frac{\pi}{2} \right)\), we have
+\(\arctan\left( \tan(y) \right) \neq y\). To avoid confusion, instead of
+using \(y\), we will be using \(\theta\) for angle and \(x\) for the
+real number part.
+
+
+\subsection{Inverse trig function}
+
+Consider \(f(\theta) = \sin(\theta)\). Let
+\(f:A\mathbb{= R \rightarrow}B\mathbb{= R}\)
+
+We have \(\text{image}(f) = \lbrack - 1,\ 1\rbrack\) so we set
+
+\[f:A\mathbb{= R \rightarrow}B\lbrack - 1,\ 1\rbrack\]
+
+We see that for a sine function, it is not 1:1 -- the image is
+\(\lbrack - 1,\ 1\rbrack\) so the function is onto. We can fix that by
+redefining the codomain is \(\lbrack - 1,\ 1\rbrack\), so
+\(\sin(\theta)\) is onto. But \(\sin(\theta)\) is not one-to-one, as it
+fails the horizontal line test.
+
+Restrict the domain by removing \(2\pi\) and \(4\pi\) if the circle on
+the left is our domain. At least something smaller than all real
+numbers. While the original \(f(\theta)\) is the entire sine functiuon,
+we will restrict the domain to be the green portion of the curve.
+
+The most common way for \(f(\theta) = \sin(\theta)\) is to choose
+\(A = \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\). Then
+\(f\) is \textbf{one-to-one and onto,} and \(f^{- 1}(x) = \arcsin(x)\)
+
+\[f(\theta) = \sin(\theta):\left\lbrack \frac{-\pi}{2},\frac{\pi}{2} \right\rbrack \rightarrow \lbrack - 1,\ 1\rbrack\]
+
+\[f^{- 1}(x) = \arcsin(x):\lbrack - 1,\ 1\rbrack \rightarrow \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\]
+
+Sin takes an angle and returns a ratio; arcsin takes a ratio and returns
+an angle.
+
+We restrict around zero for the sake of simplicity.
+
+These restrictions are universally agreed with to give the functions
+one-to-one properties. The confusing part about
+\(\arcsin\left( \sin(6) \right) \neq 6\) -- how do we deal with angles
+that are outside the domain that would make \(\sin(\theta)\) bijective?
+
+
+\subsection{Working with inverse trigonometric
+functions}
+
+Following values:
+
+\[x = \cos\left( \frac{2\pi}{3} \right) = - \frac{1}{2}\]
+
+\[y = \sin\left( \frac{2\pi}{3} \right) = \frac{\sqrt{3}}{2}\]
+
+\(\frac{2\pi}{3}\) is in the restricted domain
+\(\lbrack 0,\ \pi\rbrack\). This means
+\(\arccos(x) = \arccos\left( \cos\left( \frac{2\pi}{3} \right) \right) = \frac{2\pi}{3}\)
+
+The two parts,
+\(\arccos\left( \cos\left( \frac{2\pi}{3} \right) \right)\) are inverses
+of each other, giving exactly \(\frac{2\pi}{3}\) back, meaning
+\(\arccos\left( - \frac{1}{2} \right) = \frac{2\pi}{3}\). We can only
+cancel out inverse functions if the input is in the restriction.
+
+Okay. Now, consider
+\(y = \sin\left( \frac{2\pi}{3} \right) = \frac{\sqrt{3}}{2}\). Now what
+is
+\(\arcsin\left( \sin\left( \frac{2\pi}{3} \right) \right) = \arcsin(y)\)?
+
+Unfortunately,
+\(\arcsin\left( \sin\left( \frac{2\pi}{3} \right) \right) \neq \frac{2\pi}{3}\).
+However, if you look at how arcsine is defined, it will only take values
+between
+\(\lbrack - 1,\ 1\rbrack \rightarrow \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\).
+
+\begin{itemize}
+\item
+  We said
+  \(y = \sin\left( \frac{2\pi}{3} \right) = \frac{\sqrt{3}}{2}\). Why is
+  the representation of
+  \(\frac{\sqrt{3}}{2} = \sin\left( \frac{2\pi}{3} \right)\)? Is there
+  another way to represent \(\frac{\sqrt{3}}{2}\)? Consider the angle
+  \(\frac{\pi}{3}\). Note that
+  \(\frac{\sqrt{3}}{2} = \sin\left( \frac{\pi}{3} \right)\)
+\end{itemize}
+
+\[\arcsin\left( \sin\left( \frac{2\pi}{3} \right) \right) = \arcsin(y) = \arcsin\left( \sin\left( \frac{\pi}{3} \right) \right)\]
+
+Because \(\frac{\pi}{3}\) falls in the region for how arcsine is
+defined, arcsine and sine here act as inverse functions to each other
+and give out the same thing. Meaning
+\(\arcsin\left( \sin\left( \frac{2\pi}{3} \right) \right) = \arcsin\left( \sin\left( \frac{\pi}{3} \right) \right) = \frac{\pi}{3}\).
+
+\(\frac{\sqrt{3}}{2}\) has multiple ways of being represented. In other
+words, if I were to apply arcsine on both sides of the equation, we get
+\(\arcsin(y) = \arcsin\left( \sin\left( \frac{2\pi}{3} \right) \right)\)
+which is the natural thing to do, but then if you were to do this, sine
+and arcsine cannot act as inverse functions as each other, as
+\(\frac{2\pi}{3}\) is not in the correct angle domain for sine and
+arcsine that would make them inverse functions of each other.
+
+So instead, \(\frac{\sqrt{3}}{2}\) not only can be represented as
+\(\sin\left( \frac{2\pi}{3} \right)\), but I could also represent it as
+\(\sin\left( \frac{\pi}{3} \right)\).
+
+Now, other cases:
+\(x = \cos\left( \frac{2\pi}{3} \right) = - \frac{1}{2}\);
+\(\arccos\left( \cos\left( \frac{2\pi}{3} \right) \right) = \frac{2\pi}{3}\)
+
+Now \(\arctan\left( \tan\left( \frac{2\pi}{3} \right) \right)\)
+
+Note that
+\(z = \tan\left( \frac{2\pi}{3} \right) = \frac{\sqrt{3}}{- 1}\)
+
+Use the same technique: what between
+\(( - \frac{\pi}{2},\frac{\pi}{2})\) if inputted into tan gives us
+\(- \sqrt{3}\)?
+
+Use the CAST rule. \(\tan\left( - \frac{\pi}{3} \right) = - \sqrt{3}\).
+Using this insight,
+\(- \frac{\pi}{3} = \arctan\left( \tan\left( - \frac{\pi}{3} \right) \right)\).
+Notice that
+\(- \frac{\pi}{3} \in \left( - \frac{\pi}{2},\frac{\pi}{2} \right)\).
+
+\emph{The only matching angle in the interval where the inverse trig
+functions would be defined.}
+
+
+\subsubsection{\texorpdfstring{ Inverse on the
+inside}{ Inverse on the inside}}
+
+What if we do the reverse?
+
+\[\cos\left( \arccos(x) \right)\]
+
+If we take a look at the arccosine function, it takes in a ratio between
+\(\lbrack - 1,\ 1\rbrack\) and gives us an angle in
+\(\lbrack 0,\ \pi\rbrack\). Then cosine takes an angle in its correct
+angle domain according to how arccosine is defined. This means
+\(x = \cos\left( \arccos(x) \right)\), ONLY IF
+\(x \in \lbrack - 1,\ 1\rbrack\). \(\arccos(2) = \text{DNE}\)
+
+Consider \(\sin\left( \arcsin(x) \right) = x\), as
+\(\arcsin(x) = \theta \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\),
+ONLY IF \(x \in \lbrack - 1,\ 1\rbrack\). \(\arcsin(2) = \text{DNE}\);
+don't try.
+
+For tangent, we get the same conclusion.
+\(\tan\left( \arctan(x) \right) = x\), which works for
+\(x\mathbb{\in R}\). It is true always.
+
+Therefore, having the inverse trigonometric function in the inside, you
+will always get \(x\) as long as \(x\) is in the domain of the inverse
+function.
+
+We can conclude that:
+
+\(\arccos\left( \cos(\theta) \right) = \theta\) for
+\(\theta \in \lbrack 0,\ \pi\rbrack\)
+
+\(\arcsin\left( \sin(\theta) \right) = \theta\) for
+\(\theta \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\)
+
+Some questions:
+
+\[\arccos\left( \cos\left( - \frac{\pi}{3} \right) \right) = \frac{\pi}{3}\]
+
+(Work:
+\(\cos\left( - \frac{\pi}{3} \right) = \frac{1}{2} = \cos\left( \frac{\pi}{3} \right)\);
+\(\arccos\left( \cos\left( - \frac{\pi}{3} \right) \right) = \arccos\left( \frac{1}{2} \right) = \frac{\pi}{3} \neq - \frac{\pi}{3}\).
+\(\frac{\pi}{3} \in \lbrack 0,\ \pi\rbrack\), required interval for
+\(\arccos(\ldots)\) to be defined).
+
+Now, how do we do this for any angle that is not in the special
+triangles?
+
+
+\subsection{Trig properties}
+
+To easily calculate \(\arccos\left( \cos(\theta) \right)\) for any
+\(\theta\), use the following properties:
+
+\begin{itemize}
+\item
+  \(\cos(\theta) = \cos( - \theta)\) as cosine is an even function.
+\item
+  \(\cos(\theta \pm 2k\pi) = \cos(\theta)\ \forall k\mathbb{\in Z}\) as
+  cosine is a periodic function. Note \(2\pi \approx 6.28\)
+\end{itemize}
+
+Sine is more complicated because the same properties do not hold.
+
+\begin{itemize}
+\item
+  \(\sin( - \theta) = - \sin(\theta)\) as sine is an odd function -- you
+  can move the negative sign in or out
+\item
+  \(\sin(\theta \pm \pi) = - \sin(\theta)\)
+
+  \begin{itemize}
+  \item
+    As
+    \(\sin(\theta)\cos(\pi) + \cos(\theta)\sin(\pi) = - \sin(\theta) + 0\)
+    from the addition property.
+  \item
+    We can imply
+    \(\sin\left( \theta \pm (2k + 1)\pi \right) = - \sin(\theta)\ \forall k\mathbb{\in Z}\)
+  \end{itemize}
+\item
+  \(\sin(\theta + 2k\pi) = \sin(\theta)\ \forall k\mathbb{\in Z}\) as
+  sine is a periodic function. Note \(2\pi \approx 6.28\)
+\end{itemize}
+
+Example:
+
+\begin{align*}
+\arcsin\left( \sin\left( \frac{5\pi}{6} \right) \right) &= - \arcsin\left( \sin\left( \frac{5\pi}{6} - \pi \right) \right) = \arcsin\left( - \sin\left( - \frac{\pi}{6} \right) \right) \\
+&= \arcsin\left( \sin\left( \frac{\pi}{6} \right) \right) = \frac{\pi}{6}
+\end{align*}
+
+
+
+\subsection{Graphing inverse of itself for trig
+functions}
+
+
+\subsubsection{\texorpdfstring{ Sine}{ Sine}}
+
+Sine is a periodic function. The arcsine of sine is also a periodic
+function because sine is periodic. To figure out how
+\(\arcsin\left( \sin(\theta) \right)\) will look like, you only need to
+deduce what it will look like for \textbf{one period} of the function;
+the function then repeats from there infinitely. By the way, the period
+for \(\sin(\theta)\) is \(2\pi\).
+
+Firstly, we know \(y = \arcsin\left( \sin(\theta) \right) = \theta\) if
+\(\theta \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\).
+This gives us how the function behaves between that region, which covers
+\(\frac{1}{2}\) of the period we need.
+
+\textbf{Expanding regions}
+
+Now, what is \(y\) when
+
+\[\theta \in \left\lbrack \frac{\pi}{2},\frac{3\pi}{2} \right\rbrack\]
+
+We can make the following deductions (REMEMBER: \(\theta\) STAYS
+FAITHFUL TO ITS DEFINED INTERVAL,
+\(\left\lbrack \frac{\pi}{2},\frac{3\pi}{2} \right\rbrack\)):
+
+\[f(\theta) = \arcsin\left( \sin(\theta) \right) \neq 0\]
+
+Use the property \(\sin(\theta \pm \pi) = - \sin(\theta)\), so subtract
+\(\pi\) and add the negative sign to sine.
+
+\[f(\theta) = \arcsin\left( - \sin(\theta - \pi) \right)\]
+
+Then
+
+\[\theta - \pi \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\]
+
+Unfortunately, arcsine and sine cannot cancel each other out. But since
+we know
+
+\[\theta - \pi \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack \Leftrightarrow \pi - \theta \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\]
+
+Then
+
+\[f(\theta) = \arcsin\left( - \sin(\theta - \pi) \right) = \arcsin\left( \sin(\pi - \theta) \right) = \pi - \theta\]
+
+Because
+\(- \theta + \pi \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\),
+the above statement is true. This means
+
+\[f(\theta) = - \theta + \pi,\ \theta \in \left\lbrack \frac{\pi}{2},\frac{3\pi}{2} \right\rbrack\]
+
+By this point, we have found \(f(\theta)\) for
+\(\theta \in \left\lbrack - \frac{\pi}{2},\frac{3\pi}{2} \right\rbrack\).
+
+\textbf{Looping}
+
+Note that \(\sin(\theta) = \sin(\theta + 2\theta)\). Therefore, we can
+conclude our graph looks like this:
+
+In other words: loop the following function:
+
+\[f(\theta) = \left\{ \begin{matrix}
+\theta,\ \theta \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack \\
+ - \theta + \pi,\ \theta \in \left\lbrack \frac{\pi}{2},\frac{3\pi}{2} \right\rbrack \\
+\end{matrix} \right.\ \]
+
+
+\subsection{Converting between sine and
+cosine}
+
+Sine is just cosine transformed.
+
+\[\sin(\theta) = \cos\left( \theta - \frac{\pi}{2} \right)\]
+
+Trying to solve
+\(\arccos\left( \sin(\theta) \right),\ \theta \in \left\lbrack \frac{\pi}{2},\frac{3\pi}{2} \right\rbrack\)
+
+\begin{align*}
+\arccos\left( \sin\theta \right) &= \arccos\left( \cos\left( \theta - \frac{\pi}{2} \right) \right),\ \theta - \frac{\pi}{2} \in \lbrack 0,\ \pi\rbrack \\
+&= \theta - \pi/2
+\end{align*}
+
+
+As long as \(x\) is between the domain that lets cosine be injective,
+\(\arccos\left( \cos(x) \right) = x\)
+
+Now consider \(\theta\) being in a different region,
+\(\theta \in \left\lbrack - \frac{\pi}{2},\frac{\pi}{2} \right\rbrack\)
+
+Then
+\(\arccos\left( \cos\left( \theta - \frac{\pi}{2} \right) \right),\ \theta - \frac{\pi}{2} \in \lbrack - \pi,\ 0\rbrack\).
+Not in the same region where cos and arccosine would cancel each other
+out. If you add \(2\pi\), it will overshoot, so don't. Consider negating
+the input to cosine (taking advantage of the fact that cosine is an even
+function).
+
+\[= \arccos\left( \cos\left( - \theta + \frac{\pi}{2} \right) \right) = - \theta + \frac{\pi}{2} \in \lbrack 0,\ \pi\rbrack\ \text{(same\ as\ negating\ inequalities)}\]
+
+Recall: placing the arc function inside the regular function will cancel
+out, except the domain will be restricted. If you put the trig function
+on the inside, any angle can be placed in.
+
+\[\sec\left( \arccos(x) \right),\ x \in (0,\ 1\rbrack\]
+
+\[\arccos(x) = \theta \in \lbrack 0,\ \pi\rbrack\]
+
+\[\cos\left( \arccos(x) \right) = \cos(\theta) = x\]
+
+By limiting \(x\) to be positive, it requires that \(\theta\) be
+positive.
+
+\[\frac{A}{H} = \frac{x}{1} = x = \cos(\theta)
+\]
+
+\[\sec\left( \arccos(x) \right)\]
+
+But \(\arccos(x) = \theta\) so
+
+\[\frac{1}{\cos\left( \arccos(x) \right)} = \frac{1}{x}\]
+
+Now what about \(\sin\left( \arccos(x) \right)\) and knowing that \(x\)
+is positive, then
+
+\[\arccos(x) = \theta,\ \theta \in \left\lbrack 0,\frac{\pi}{2} \right\rbrack\ \text{(theta\ restriction\ from\ x\ forced\ positive)}\]
+
+\[\sin(\theta) = \frac{l}{1} = \sqrt{1 - x^{2}}\]
+
+This diagram: say that \(x = \cos(\theta)\). Now, calculate the height
+of the opposite of \(\theta\). Using the Pythagoras theorem,
+\(l = \sqrt{1 - x^{2}}\)
+
+
+\section{Solving inverse functions}
+
+Solving for an inverse function:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Set \(y = f(x)\)
+\item
+  Isolate \(x\) on one side, \(x = g(y)\), where \(g(y)\) is the right
+  side with only \(y\)
+\item
+  Write \(f^{- 1}(y) = g(y)\), then switch all \(y\) to \(x\), so
+  \(f^{- 1}(x) = g(x)\). Note that switching the letter back to \(x\) is
+  optional, but the moment you switch the \(x\) is NOT the same as the
+  \(x\) of the original function.
+\end{enumerate}
+
+
+\subsection{Inverse Function Theorem}
+
+Why do we use \(f^{- 1}\) to indicate inverse functions? Note:
+\(\det\left( A^{- 1} \right) = \left( \det(A) \right)^{- 1} = \frac{1}{\det(A)}\).
+The inverse of any number is its reciprocal. Now, get a function, and
+let's say we have an inverse function: \(f\) and \(f^{- 1}\). Now, what
+is \((f^{- 1})'\)? Note that you can interchange derivative operators
+with inverse operators. This means:
+
+\[\left( f^{- 1} \right)' = \left( f' \right)^{- 1}\]
+
+\begin{align*}
+f(x) &= y,\ x = f^{- 1}(y) \\
+\left( f^{- 1} \right)'(y) &= \left( f'(x) \right)^{- 1} = \frac{1}{f'(x)} = \frac{1}{f'\left( f^{- 1}(y) \right)}
+\end{align*}
+
+
+Note: input changes when you swap a function's inverse and derivative
+operator. You have a function in terms of \(y\), so substitute. The
+input value \(y\) must show up on the right. \(x\) and \(y\) are related
+by their inverse functions.
+
+
+\subsection{Usage}
+
+\[f(x) = \sin(x),\ f^{- 1}(x) = \arcsin(x)\]
+
+Here, we are using \(x\) as both of the variables but we aren't supposed
+to do that. If you are interested in taking the derivative of arcsine:
+
+\begin{align*}
+\left( f^{- 1} \right)'(x) &= \frac{1}{\cos\left( \arcsin(x) \right)} \\
+\arcsin(x) &= \theta \\
+x &= \sin(\theta) \\
+l^{2} + x^{2} &= 1^{2} \\
+l &= \sqrt{1 - x^{2}} = \cos(\theta)
+\end{align*}
+
+
+
+
+\section{Implicit differentiation}
+
+Not functions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Replace all \(y\) with \(y(x)\)
+\item
+  Take derivative against \(x\) on both sides.
+\item
+  Isolate \(y'(x) = \frac{\text{d}y}{\text{d}x}\)
+\end{enumerate}
+
+Remember to use the product and chain rule when taking derivatives.
+
+For example:
+
+\begin{align*}
+\cos\left( xy \right) &= 1 + \sin(y) \\
+\cos\left( x \cdot y(x) \right) &= 1 + \sin\left( y(x) \right) \\
+\frac{d}{\text{d}x}\cos\left( x \cdot y(x) \right) &= \frac{d}{\text{d}x}\left\lbrack 1 + \sin\left( y(x) \right) \right\rbrack \\
+- \sin\left( x \cdot y(x) \right) \cdot \left\lbrack 1 \cdot y(x) + x \cdot \frac{\text{d}y}{\text{d}x} \right\rbrack &= \cos\left( y(x) \right) \cdot \frac{\text{d}y}{\text{d}x}
+\end{align*}
+
+
+Isolate \(\frac{\text{d}y}{\text{d}x}\):
+
+\begin{align*}
+- \sin\left( x \cdot y(x) \right) \cdot y(x) - x \cdot \sin\left( x \cdot y(x) \right) \cdot \frac{\text{d}y}{\text{d}x} - \cos\left( y(x) \right) \cdot \frac{\text{d}y}{\text{d}x} &= 0 \\
+\left\lbrack - x \cdot \sin\left( x \cdot y(x) \right) - \cos\left( y(x) \right) \right\rbrack \cdot \frac{\text{d}y}{\text{d}x} &= \sin\left( x \cdot y(x) \right) \cdot y(x) \\
+\frac{\text{d}y}{\text{d}x} &= \frac{\sin\left( x \cdot y(x) \right) \cdot y(x)}{- x \cdot \sin\left( x \cdot y(x) \right) - \cos\left( y(x) \right)}
+\end{align*}
+
+
+Notation stuff:
+
+\begin{align*}
+y &= y(x) \\
+y'(x) &= \frac{\text{d}y}{\text{d}x} = \frac{\text{d}}{\text{d}x}y(x) = y'
+\end{align*}
+
+
+
+\section{Related rates}
+
+TAKE DERIVATIVE FIRST BEFORE PLUGGING IN VALUES
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Assign symbols to all variables in the problem
+\item
+  Writes an eqn that relates all the variables
+\item
+  Identify which variables change with time (If some quantity \(x\)
+  changes as time passes, replace \(x\) with \(x(t)\)).
+\item
+  Take derivative against \(t\) on both sides using implicit
+  differentiation
+\item
+  Plug in the values given for the variables in the problem.
+\end{enumerate}
+
+Example: vol of cone increases at 30\(m^{3}\) per minute. Diameter and
+height are always equal. How fast is the height increasing when it is 10
+meters tall?
+
+\[v = \text{vol},\ r = \text{radius},\ h = ht\]
+
+\[v = \frac{1}{3}\pi r^{2}h\]
+
+Using assumption that \(d = h\),
+\(d = 2r = h \Rightarrow r = \frac{h}{2}\)
+
+\[v = \frac{1}{3}\pi\left( \frac{h}{2} \right)^{2}h = \frac{1}{12}\pi h^{3}\]
+
+Because both change with time
+
+\begin{align*}
+v(t) &= \frac{1}{12}\pi{h(t)}^{3} \\
+\frac{d}{\text{d}t}v(t) &= \frac{1}{12}\pi \cdot \frac{d}{\text{d}t}\left( h(t) \right)^{3} \\
+\frac{\text{d}v}{\text{d}t} &= \frac{1}{12}\pi \cdot 3 \cdot h(t)^{2} \cdot \frac{\text{d}h}{\text{d}t} \\
+30 &= \frac{1}{12} \cdot 3 \cdot \left( 10^{2} \right) \cdot \frac{\text{d}h}{\text{d}t} = 25\pi \cdot \frac{\text{d}h}{\text{d}t} \Rightarrow \frac{\text{d}h}{\text{d}t} = \frac{6}{5\pi}
+\end{align*}
+
+
+(Objective: find \(\frac{\text{d}h}{\text{d}t}\) or change in height
+over time.)
+
+
+The distance \(D\) is the distance between car W and car S. (W and S
+indicate direction of car). \(x\) is the distance W driven so far, and
+\(y\) is S driven so far. \(x(t),\ y(t)\) current position of car,
+\(x'(t)\) and so on is the speed of the car right now.
+
+\begin{align*}
+x^{2} + y^{2} &= D^{2} \\
+x(t)^{2} + y(t)^{2} &= D(t)^{2} \\
+2x(t) \cdot x'(t) + 2y(t) \cdot y'(t) &= 2D(t) \cdot D'(t) \\
+x(t) \cdot x'(t) + 2y(t) \cdot y'(t) &= D(t) \cdot D'(t)
+\end{align*}
+
+
+At
+\(t = 2,\ x(t) = 50,\ y(t) = 120,\ D(t) = \sqrt{x^{2} + y^{2}} = \sqrt{50^{2} + 120^{2}} = \sqrt{2500 + 14400} = \sqrt{100} + \sqrt{25 + 144} = 10\sqrt{169} = 10 \cdot 13 = 130\)
+
+\[50 \cdot 25 + 120 \cdot 60 = 1300D'(t)\]
+
+
+\begin{align*}
+x(t)^{2} + 200^{2} &= D(t)^{2} \\
+2x(t)x'(t) &= 2D(t)D'(t) \\
+x(t)x'(t) &= D(t)D'(t)
+\end{align*}
+
+
+When the police did the measurement, the radar indicates that the
+distance between the police and the car is increasing by 70 km/h. That
+is your \(D'(t)\)
+
+Solve for \(x'(t) \approx 100\)
+
+\begin{align*}
+200x'(t) &= 100\sqrt{8} \cdot 70 \\
+x'(t) &= \frac{100\sqrt{8} \cdot 70}{200} = \frac{1}{2}\sqrt{8} \cdot 70 = 35\sqrt{8}
+\end{align*}
+
+
+
+\section{MVT revisited}
+
+Consequences of the MVT
+
+\[f(b) = f(a) \Rightarrow \exists c \in (a,\ b),\ f'(c) = 0\]
+
+Constant function
+
+If \(f'(x) = 0\forall x\) in an interval, \(\Rightarrow f(x)\) is a
+constant function.
+
+If \(f'(x) \neq 0\forall x\) in an interval, then \(f(x)\) is 1-1.
+
+If \(f'(x) > 0\forall x\) in an interval, then \(f(x)\) is
+increasing.
+
+If \(f'(x) < 0\) \ldots{} \(f(x)\) is decreasing.
+
+Local max: A point \(c\) is a local max if \(\exists\) interval
+\((c - l,\ c + l)\) such that for all \(x\) in interval,
+\(f(x) \leq f(c)\) when \(f(x)\) is defined.
+
+Local extrema: in the interior of interval \(\lbrack a,\ b\rbrack\) then
+\(c\) is a critical point \(f'(c) = 0\) or \(f'(c)\) DNE.
+
+\begin{align*}
+f(x) &= \arcsin\left( \frac{1 - x}{1 + x} \right) + 2\arctan\left( \sqrt{x} \right) \\
+&= \frac{1}{\sqrt{1 - \left( \frac{1 - x}{1 + x} \right)^{2}}} \cdot \left( - \frac{2}{(1 + x)^{2}} \right) \\
+&= - \frac{2}{\sqrt{4x}(1 + x)} + \frac{1}{(1 + x)\sqrt{x}} = - \frac{1}{\sqrt{x}(1 + x)} + \frac{1}{(1 + x)\sqrt{x}} = 0
+\end{align*}
+
+
+Note:
+
+\[f(0) = c = \arcsin\left( \frac{1}{1} \right) + 2\arctan(0) = \frac{\pi}{2} + 0\]
+
+(Test a value somewhere in the interval.)
+
+Deducing domain of the function:
+
+\[\arcsin\left( \frac{1 - x}{1 + x} \right) + 2\arctan\left( \sqrt{x} \right)
+\]
+
+True
+
+\begin{align*}
+1 - x &\leq 1 + x \\
+1 &\leq 1 + 2x \\
+0 &\leq 2x
+\end{align*}
+
+
+Another question
+
+Find all functions defined on \(\mathbb{R}\) that has \(f'(x) = 3\)
+everywhere.
+
+That is \(f(x) = 3x + C\), where \(C\) is a constant. We can mention it
+in another way: there is an infinite number of functions that have
+\(f'(x) = 3\) everywhere in the form \(f(x) = 3x + C\).
+
+Suppose \(g(x) \neq 3x + C\) and \(g'(x) = 3\) everywhere. How do we
+show that? The trick here is to consider:
+
+\[f'(x) - g'(x) = 0,\ as\ f'(3) - g'(3) = 0\]
+
+This means
+
+\[f - g = D,\ \text{a\ constant}\]
+
+Is a constant function.
+
+However, if you solve for \(g\):
+\(f - g = D \Rightarrow g = f - D \Rightarrow g = 3x + C - D\)
+
+But \(C - D\ \)is just another constant.
+
+
+\subsection{At most some zeroes}
+
+Suppose \(f'(x)\) has only \(k\) zeroes on \(\lbrack a,\ b\rbrack\).
+Then \(f(x)\) can have at most \(k + 1\) zeroes. This can be proved by
+induction.
+
+
+\section{Maximum and minimum (second derivative
+test)}
+
+What to do at each critical point:
+
+\begin{itemize}
+\item
+  \(f''(a) > 0\), \(a\) is a local minimum.
+\item
+  \(f''(a) < 0\), then local max
+\item
+  \(f''(a) = 0\) then it is unclear
+\item
+  We can also use the first derivative test for the local max or min.
+\end{itemize}
+
+Compare all values of \(f(a)\) for all critical points and endpoints of
+an interval. The largest value is a global maximum. The smallest value
+is an absolute (global) minimum.
+
+
+\subsection{Absolute max and min}
+
+For
+\(\lim_{x \rightarrow \infty}{f(x)} = + \infty = \lim_{x \rightarrow - \infty}{f(x)}\)
+then there exists an absolute minimum.
+
+For
+\(\lim_{x \rightarrow \infty}{f(x)} = - \infty = \lim_{x \rightarrow - \infty}{f(x)}\)
+then there exists an absolute max.
+
+
+For
+\(\lim_{x \rightarrow \infty}{f(x)} = \pm \infty,\ \lim_{x \rightarrow - \infty}{f(x)} = \mp \infty\)
+then no absolute max or min.
+
+
+\subsubsection{\texorpdfstring{
+Optimization}{ Optimization}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Identify quantity to be maximized/minimized. Set as \(y\).
+\item
+  Identify changeable quantity. Set as \(x\).
+\item
+  Write an equation that relates all variables and draw a diagram if
+  needed.
+\item
+  Calculate \(\frac{\text{d}y}{\text{d}x}\) and set to 0.
+\item
+  Solve for \(x\) and the quantities needed.
+\item
+  Context helps you determine which \(x\) is correct.
+\item
+  -\\
+\end{enumerate}
+
+
+\section{Concavity and Point of
+Inflection}
+
+If \(f'(x) > 0\) function increasing, negative then the function is
+decreasing.
+
+For \(f''(x)\), positive \(\Rightarrow\) concave up; negative then
+concave down.
+
+A point of inflexion is when \(f''(x) = 0\) and the sign changes. If
+\(f''(x)\) changes sign at \(x\) but \(f''(x)\) DNE it can still
+be a point of inflexion. Test points around the point of inflexion.
+
+
+\section{Graph sketching}
+
+Draw a decent enough picture so calculus can be done on it. We need the
+following:
+
+\begin{itemize}
+\item
+  Domain
+\item
+  Vertical asymptotes: \(\lim_{x \rightarrow a}{f(x)} = \pm \infty\)
+\item
+  Horizontal asymptotes and slant asymptotes (when the power on top is
+  greater than the power on the bottom). Obtain slant asymptotes using
+  long division.
+\item
+  Points of intersection with axis (\(x\) and \(y\) intercept)
+\item
+  Critical points. Set derivative equal to 0.
+\item
+  Points of inflexion, but don't do that.
+\item
+  Others.
+\end{itemize}
+
+
+\subsection{Examples}
+
+\[\frac{x^{3}}{x^{2} + 1}\]
+
+No VA, as \(x^{2} \neq - 1\)
+
+May have slant asymptotes. \(\lim_{x \rightarrow \infty}f = + \infty\),
+\(\lim_{x \rightarrow - \infty}f = - \infty\)
+
+Occurs when power on top of the rational function is higher than the
+bottom.
+
+
+The remainder means if I were to remove the remainder from the
+beginning, then the division would go through. This means if you
+subtract the remainder from the numerator:
+
+\[\frac{x^{3} - ( - x)}{x^{2} + 1} = x\]
+
+You can have this:
+
+\[\frac{x^{3}}{x^{2} + 1} = x + \left( \frac{- x}{x^{2} + 1} \right)\]
+
+The function highlighted in orange will always have a lower degree on
+the top.
+
+If we now take
+\(\lim_{x \rightarrow \pm \infty}\left( - \frac{x}{x^{2} + 1} \right)\),
+we will get 0, as the degree is larger on the bottom. This means, in the
+long run, you will end with \(x\). This means
+
+\[{\lim_{x \rightarrow \pm \infty}\left( \frac{x^{3}}{x^{2} + 1} \right)} \approx x\]
+
+This function, \(y = x\) is power 1 is because the numerator \(x^{3}\)
+and the denominator \(x^{2} + 1\) differ by one power. When the top
+power is 1 more than the bottom, the quotient will be a linear function.
+The function essentially becomes linear as \(x\) approaches infinity. In
+general, if you have \(\frac{x^{4}}{x^{2} + 1}\), you will get a
+quadratic as the quotient, so instead of having a straight line to what
+the function will conform to, you will get a parabola instead.
+
+Point of intersect: \((0,\ 0)\) (just plug it in)
+
+Take the derivative and find critical points:
+
+\begin{align*}
+f' &= \frac{3x^{2}\left( x^{2} + 1 \right) - 2x \cdot x^{3}}{\left( x^{2} + 1 \right)^{2}} = 0 \\
+3x^{4} + 3x^{2} - 2x^{4} &= 0 \\
+x^{2}\left( x^{2} + 3 \right) &= 0 \\
+x^{2} &= 0,\ x = 0
+\end{align*}
+
+
+At \(x = 0\), this is the only critical point.
+
+Order of zeroes: The only zero is at \(x = 0\), which is what we found.
+If we take a look at the function, \(f = \frac{x^{3}}{x^{2} + 1}\). This
+means that this is an order 3, as the power on \(x\) is 3. You only need
+to worry about the numerator, is that the idea is, when we are
+interested in order of 0, we only care how the function behaves near the
+zero, which turns out to be \(x = 0\). When \(x\) is near 0, the
+denominator \(x^{2} + 1\) basically becomes a constant, approaching 1.
+Near \(x = 0\), the function is essentially \(\frac{x^{3}}{1}\). That is
+the reason why \(x^{3}\) governs the behavior of the function.
+
+
+\subsection{Order of zeroes}
+
+Aside:
+
+\[g = \frac{(x - 1)^{2}(x + 2)^{3}}{x - 2}\]
+
+Zero: \(x = 1,\ x = - 2\). Order of \(x = 1\) is 2; order of \(x = - 2\)
+is 3. If the order is even, the graph will bounce off. If the order is
+odd, the function will make a cubic-like wiggle across the \(x\)-axis.
+
+
+\section{L'Hopital's rule}
+
+L'Hopital's rule makes no sense of why it works until you get to Taylor
+series, but not every function can be written as a Taylor series.
+
+When
+
+\[\frac{\lim{f(x)}}{\lim{g(x)}} = \frac{0}{0}\ \text{or} \pm \frac{\infty}{\infty}\]
+
+Then
+
+\[\lim\left( \frac{f(x)}{g(x)} \right) = \lim\left( \frac{f'(x)}{g'(x)} \right)\]
+
+
+\subsection{Examples}
+
+\[\lim_{x \rightarrow 0}\frac{x^{3}}{x^{2} + x} = \frac{0}{0}\]
+
+\[= \lim_{x \rightarrow 0}\frac{3x^{2}}{2x + 1} = \frac{0}{1} = 0\]
+
+This is done by taking the derivative of the numerator and the
+denominator.
+
+
+\subsection{Flip and multiply}
+
+Case of \(0 \cdot \infty\)
+
+\[\lim\left( f(x) \cdot g(x) \right) = 0 \cdot \infty\]
+
+Turn it into a fraction by forcing either \(f\) or \(g\) onto the
+denominator. Choose either, better the simpler one. Whatever gets
+flipped turns from \(\pm \infty\) to 0 or the other way around.
+
+\begin{align*}
+\lim\left( \frac{f(x)}{\frac{1}{g(x)}} \right) &= \frac{0}{0}\text{\ or\ } \pm \frac{\infty}{\infty} \\
+\lim\left( \frac{g(x)}{\frac{1}{f(x)}} \right) &= \frac{0}{0}\text{\ or\ } \pm \frac{\infty}{\infty}\
+\end{align*}
+
+
+Then proceed with L'Hopital's rule.
+
+
+\subsection{Non-indeterminate forms}
+
+\[\frac{0}{\infty} = 0\]
+
+\[\frac{\infty}{0} = \infty\]
+
+
+\subsection{How would we have figured that
+out?}
+
+Suppose \(f(x) = a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + \ldots\) (an
+infinite polynomial) and
+\(g(x) = b_{0} + b_{1}x + b_{2}x^{2} + b_{3}x^{3} + \ldots\) and have
+
+\[\lim_{x \rightarrow 0}\frac{f(x)}{g(x)} = \frac{a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + \ldots}{b_{0} + b_{1}x + b_{2}x^{2} + b_{3}x^{3} + \ldots}\]
+
+Since every term at the back contains an \(x\), most of the time, we
+should end up with
+
+\[\frac{a_{0}}{b_{0}}\]
+
+L'Hopital's rule says that this answer is true most of the time, but if
+\textbf{both} \(b_{0} = 0\ \text{and}\ a_{0} = 0\), then we end up with
+an indeterminate form.
+
+When you take L'Hopital's rule, only these have an impact:
+
+\[\frac{a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + \ldots}{b_{0} + b_{1}x + b_{2}x^{2} + b_{3}x^{3} + \ldots}\]
+
+With \(a_{0}\) and \(b_{1}\) disappearing, we should actually get
+
+\[\frac{a_{1} + a_{2}x + a_{3}x^{2} + \ldots}{b_{1} + b_{2}x + b_{3}x^{2} + \ldots} = \frac{a_{1}}{b_{1}}\]
+
+Repeat process if \(a_{1}\) and \(b_{1}\) are zero.
+
+When you take the derivative of \(f(x)\) and \(g(x)\), you remove
+\(a_{0}\) and \(b_{0}\). Meaning:
+
+\[\frac{f'(x)}{g'(x)} = \frac{a_{1} + a_{2}x + a_{3}x^{2} + \ldots}{b_{1} + b_{2}x + b_{3}x^{2} + \ldots}\]
+
+Note that this fraction is completely different from \(\frac{f}{g}\).
+This gets rid of \(a_{0}\) and \(b_{0}\).
+
+Now we have \(\frac{a_{1}}{b_{1}}\). This is a way to extract it.
+
+Analytic functions can be written as polynomials, and nearly all
+functions aren't. Yet, the functions we work with the most often are
+analytic functions.
+
+
+\subsection{Exponent cases}
+
+When the base of an exponent \textbf{includes} \(x\), then use the
+formula:
+
+\[f(x)^{g(x)} = \left( e^{\ln\left( f(x) \right)} \right)^{g(x)} = e^{g(x) \cdot \ln\left( f(x) \right)}\]
+
+\begin{align*}
+f(x) &= e^{\ln\left( f(x) \right)} \\
+f(x)^{g(x)} &= \left( e^{\ln\left( f(x) \right)} \right)^{g(x)} \\
+x^{x} &= e^{\ln\left( x^{x} \right)} = e^{x\ln(x)}
+\end{align*}
+
+
+For example:
+
+\[\lim_{x \rightarrow 0^{+}}\left( \tan(2x) \right)^{x} = \lim_{x \rightarrow 0^{+}}e^{x \cdot \ln\left( \tan(2x) \right)}\]
+
+Using the property of limits, we can move the limit onto the exponent.
+
+\[e^{\lim_{x \rightarrow 0^{+}}{x \cdot \ln\left( \tan(2x) \right)}}\]
+
+So we only need to compute:
+
+
+Simplify stuff the moment you take the derivative.
+
+
+You may have to take L'Hopital's again.
+
+\end{document}

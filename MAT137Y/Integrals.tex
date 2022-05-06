@@ -1,176 +1,98 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-%
-\documentclass[
-]{article}
-\usepackage{amsmath,amssymb}
+\documentclass[12pt]{article}  
+\usepackage{amsmath}
+\usepackage{amssymb}
 
+\usepackage{booktabs}
+\usepackage{array}
+
+\usepackage{hyperref}
+\providecommand{\href}[1]{\url{#1}}
 \usepackage{iftex}
-\usepackage[fontsize=11pt]{scrextend}
-\usepackage[margin=0.75in]{geometry}
-
-\newcounter{example}
-\counterwithin*{example}{section}
-\newenvironment{example}[1][]{%
-\stepcounter{example}%
-\par\vspace{5pt}\noindent
-\fbox{\textbf{Example~\thesection.\theexample}}%
-\hrulefill\par\vspace{10pt}\noindent\rmfamily}%
-{\par\noindent\hrulefill\vrule width10pt height2pt depth2pt\par}
-
-\usepackage{array}
-
-\usepackage[many]{tcolorbox}
-\usepackage{lipsum}
-
-\definecolor{myblue}{RGB}{0,163,243}
-
-\newtcolorbox[auto counter,number within=section]{mytheorem}[1][]{
-  enhanced jigsaw,colback=white,colframe=myblue,coltitle=myblue,
-  fonttitle=\bfseries\sffamily,
-  sharp corners,
-  detach title,
-  leftrule=22mm,
-  underlay unbroken and first={\node[below,text=white,font=\sffamily\bfseries,align=center]
-    at ([xshift=-11mm,yshift=-1mm]interior.north west) {THEOREM\\\thetcbcounter};},
-  breakable,pad at break=1mm,
-  #1,
-  code={\ifdefempty{\tcbtitletext}{}{\tcbset{before upper={\tcbtitle\par\medskip}}}},
-}
-
-
-\usepackage{xcolor}
-\definecolor{grey}{RGB}{0.5,0.5,0.5}
-
-\usepackage{tcolorbox}
-
-
-% Warning tcolorbox
-% #1: tcolorbox options
-% #2: Box title
-\newtcolorbox{warningbox}[2][]
-{
-  colframe = red!25,
-  colback  = red!10,
-  coltitle = red!20!black,
-  title    = #2,
-  #1,
-}
-
-% Hint tcolorbox
-% #1: tcolorbox options
-% #2: Box title
-\newtcolorbox{hintbox}[2][]
-{
-  colframe = green!25,
-  colback  = green!10,
-  coltitle = green!20!black,
-  title    = #2,
-  #1,
-}
-
-% Info (information) tcolorbox
-% #1: tcolorbox options
-% #2: Box title
-\newtcolorbox{infobox}[2][]
-{
-  colframe = grey!25,
-  colback  = grey!10,
-  coltitle = grey!20!black,
-  title    = #2,
-  #1,
-}
-
-\usepackage{array}
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Corollary}
-\newtheorem{lemma}{Lemma}
-\newtheorem{remark}{Remark}
-\newtheorem{definition}{Definition}
-\usepackage[style=apa]{biblatex}
-\renewcommand\qedsymbol{$\blacksquare$}
-% \usepackage{mathptmx}
-\ifPDFTeX
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Integrals},
-  pdfauthor={ICPR},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
+\usepackage[utf8]{inputenc}  
 \usepackage{graphicx}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\usepackage[normalem]{ulem}
+\usepackage[
+]{geometry}
 
+\usepackage{amsthm}
+\usepackage{float}
 
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{note}{Note}
+\newtheorem{claim}{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]  
+\newtheorem{condition}{Condition}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{example}{Example}[section]
+
+\renewcommand\qedsymbol{$\blacksquare$}  
+
+\usepackage{mathtools}
+\usepackage{listings}
+
+\usepackage{framed}
+
+\ProvidesPackage{iftex}
+
+\ifxetex
+
+\usepackage{unicode-math}
+% \setmainfont{STIX Two Text}
+% \setmathfont{STIX Two Math}
+% \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{STIX Two Math}
+
+% \setmonofont{JetBrains Mono}
+
 \fi
 
+% \usepackage{minted}
+\usepackage{color}
+\definecolor{bg}{rgb}{0.92, 0.92, 0.92}
+\usepackage{mdframed}
+\surroundwithmdframed[linewidth=0, backgroundcolor=bg]{minted}
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} 
+
+\usepackage{csquotes}
 \title{Integrals}
 \author{ICPR}
 \date{January 25, 2022}
 
 \begin{document}
 
+
 \maketitle
 
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
 
 \section{The idea of integration}
 
-Assume $f(x) > 0$
+Assume \(f(x) > 0\)
 
-We want the area under the curve of $f(x)$ on
-$\lbrack a,\ b\rbrack$. Split the area underneath into many rectangles
+We want the area under the curve of \(f(x)\) on
+\(\lbrack a,\ b\rbrack\). Split the area underneath into many rectangles
 and add up their total area.
 
-\includegraphics[width=2.21712in,height=1.65368in]{TEXIMAGEF_Integrals-1/media/image1.png}
 
 \textbf{Partition}: the way we pick the bases of the rectangles. There's
 nothing stopping you from splitting the partitions into equal length
-intervals, but you should. For example, Partition $P$: some number of
-rectangles between $a$ and $b$. You can refine a partition by adding
+intervals, but you should. For example, Partition \(P\): some number of
+rectangles between \(a\) and \(b\). You can refine a partition by adding
 other points. The result would be called a \textbf{refinement.}
 
 \textbf{Choosing the heights of the rectangles:} There are two methods
@@ -178,19 +100,17 @@ we can do (WIDTH OF RECTANGLE IS CONTROLLED HERE):
 
 \begin{itemize}
 \item
-  Upper sum: Highest point; maximum value of $f$ (supremum) of $f$
-  in the rectangle; called $U_{f}(P)$; area over-estimator $\geq$
+  Upper sum: Highest point; maximum value of \(f\) (supremum) of \(f\)
+  in the rectangle; called \(U_{f}(P)\); area over-estimator \(\geq\)
 \end{itemize}
 
-\includegraphics[width=2.25972in,height=0.83542in]{TEXIMAGEF_Integrals-1/media/image2.png}
 
 \begin{itemize}
 \item
-  Lower sum: Lowest point; takes the infimum of $f$; called
-  $L_{f}(P)$; area under-estimator
+  Lower sum: Lowest point; takes the infimum of \(f\); called
+  \(L_{f}(P)\); area under-estimator
 \end{itemize}
 
-\includegraphics[width=1.39234in,height=0.59376in]{TEXIMAGEF_Integrals-1/media/image3.png}\includegraphics[width=1.61458in,height=0.59306in]{TEXIMAGEF_Integrals-1/media/image4.png}
 
 While these two are great for theoretical purposes they aren't
 computationally feasible. Here are the methods that are easy for
@@ -201,62 +121,57 @@ computation:
   Right-point method
 \end{itemize}
 
-\includegraphics[width=1.27292in,height=0.79931in]{TEXIMAGEF_Integrals-1/media/image5.png}
 
 \begin{itemize}
 \item
   Left-point method
 \end{itemize}
 
-\includegraphics[width=1.49306in,height=0.86597in]{TEXIMAGEF_Integrals-1/media/image6.png}
 
 There are drawbacks of these two methods (often due to inaccuracies),
 but the height is already determined for you the moment you choose where
 your rectangles go. For example:
 
-\includegraphics[width=1.5368in,height=1.47276in]{TEXIMAGEF_Integrals-1/media/image7.png}
 
-$$h_{1} = f\left( t_{1} \right),\ h_{2} = f\left( t_{2} \right),\ h_{3} = f\left( t_{3} \right)$$
+\[h_{1} = f\left( t_{1} \right),\ h_{2} = f\left( t_{2} \right),\ h_{3} = f\left( t_{3} \right)\]
 
 
 \subsection{Formulas for these
 methods}
 
-Given a partition of $\lbrack a,\ b\rbrack$ where $t_{0} = a$ and
-$t_{n} = b$
+Given a partition of \(\lbrack a,\ b\rbrack\) where \(t_{0} = a\) and
+\(t_{n} = b\)
 
-$$P = t_{0} < t_{1} < \ldots < t_{n}$$
+\[P = t_{0} < t_{1} < \ldots < t_{n}\]
 
-We may compute the total area explicitly. In the $i$th rectangle with
-base $\left\lbrack t_{i - 1},\ t_{i} \right\rbrack$, the right most
-endpoint is $t_{i}$ and left is $t_{i - 1}$.
+We may compute the total area explicitly. In the \(i\)th rectangle with
+base \(\left\lbrack t_{i - 1},\ t_{i} \right\rbrack\), the right most
+endpoint is \(t_{i}\) and left is \(t_{i - 1}\).
 
 Total area by the right-point method:
 
-$$A = \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\left( t_{i} - t_{i - 1} \right) \cdot f\left( t_{i} \right)}$$
+\[A = \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\left( t_{i} - t_{i - 1} \right) \cdot f\left( t_{i} \right)}\]
 
 For the left-point method:
 
-$$A = \sum_{i = 1}^{i}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\left( t_{i} - t_{i - 1} \right) \cdot f(t_{i - 1})}$$
+\[A = \sum_{i = 1}^{i}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\left( t_{i} - t_{i - 1} \right) \cdot f(t_{i - 1})}\]
 
 The right-point method is slightly easier.
 
 
 \subsection{Even splits}
 
-\includegraphics[width=1.54545in,height=1.0439in]{TEXIMAGEF_Integrals-1/media/image8.png}
 
-If we split an interval $\lbrack a,\ b\rbrack$ into $n$-equal sized
+If we split an interval \(\lbrack a,\ b\rbrack\) into \(n\)-equal sized
 pieces:
 
-Each rectangle would have base length $b_{i} = \frac{b - a}{n}$
+Each rectangle would have base length \(b_{i} = \frac{b - a}{n}\)
 
-This means to determine where a split point $t$ is, where
-$t_{0} = a$:
+This means to determine where a split point \(t\) is, where
+\(t_{0} = a\):
 
 \begin{align*}
-t_{1} &= a + \frac{b - a}{n}
- \\
+t_{1} &= a + \frac{b - a}{n} \\
 t_{i} &= a + i\frac{(b - a)}{n}
 \end{align*}
 
@@ -265,8 +180,7 @@ Using equal-length intervals, using rectangle width and height (depends
 on right point or left point):
 
 \begin{align*}
-A_{R} &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + i\frac{(b - a)}{n} \right)}
- \\
+A_{R} &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + i\frac{(b - a)}{n} \right)} \\
 A_{L} &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + (i - 1)\frac{(b - a)}{n} \right)}
 \end{align*}
 
@@ -275,22 +189,22 @@ A_{L} &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} 
 \subsection{True area}
 
 As we use more rectangles, the better approximation to the \textbf{true
-area} under the curve we get of $f(x)$.
+area} under the curve we get of \(f(x)\).
 
 An informal definition of the true area (named integral) under the curve
-of $f(x)$ is approximated using more and more angles.
+of \(f(x)\) is approximated using more and more angles.
 
-$$A_{T} = \int_{a}^{b}{f(x)\text{d}x} = \lim_{n \rightarrow \infty}{\sum_{i = 1}^{n}{b_{i} \cdot h_{i}}}$$
+\[A_{T} = \int_{a}^{b}{f(x)\text{d}x} = \lim_{n \rightarrow \infty}{\sum_{i = 1}^{n}{b_{i} \cdot h_{i}}}\]
 
-(Remember how $b_{i}$ and $h_{i}$ are defined, but $h_{i}$
+(Remember how \(b_{i}\) and \(h_{i}\) are defined, but \(h_{i}\)
 represents some way we choose the height of the rectangles. As the
 number of rectangles reaches infinity, we are supposed to get the true
 answer every time.)
 
-When $n$ becomes large, $b_{i}$ becomes verry narrow so it is
-centered around a point $x$, so we can change that notation from
-$b_{i} \rightarrow dx$. $f(x)$ comes from the fact that
-$h_{i} \rightarrow f(x)$ when $b_{i}$, the box length becomes very
+When \(n\) becomes large, \(b_{i}\) becomes verry narrow so it is
+centered around a point \(x\), so we can change that notation from
+\(b_{i} \rightarrow dx\). \(f(x)\) comes from the fact that
+\(h_{i} \rightarrow f(x)\) when \(b_{i}\), the box length becomes very
 narrow.
 
 
@@ -299,13 +213,12 @@ area}
 
 About net area:
 
-When $f(x) > 0$, we count the area above the $x$-axis and below
-$f(x)$ to be positive area.
+When \(f(x) > 0\), we count the area above the \(x\)-axis and below
+\(f(x)\) to be positive area.
 
-When $f(x) < 0$, we count the area below the $x$-axis and below
-$f(x)$ to be negative area.
+When \(f(x) < 0\), we count the area below the \(x\)-axis and below
+\(f(x)\) to be negative area.
 
-\includegraphics[width=1.41736in,height=0.81528in]{TEXIMAGEF_Integrals-1/media/image9.png}
 
 The net area is the sum of both positive area and negative area.
 
@@ -313,29 +226,26 @@ The net area is the sum of both positive area and negative area.
 \subsection{Integrals without integral
 rules}
 
-Compute $\int_{0}^{1}{2xdx}$. Area is
-$A = \frac{1}{2} \cdot 1 \cdot 2 = 1$ (triangle).
+Compute \(\int_{0}^{1}{2xdx}\). Area is
+\(A = \frac{1}{2} \cdot 1 \cdot 2 = 1\) (triangle).
 
-\includegraphics[width=0.71667in,height=1.01597in]{TEXIMAGEF_Integrals-1/media/image10.png}
 
 Using integrals, we can do this instead, for
-$f(x) = 2x,\ \lbrack a = \ 0,b = 1\rbrack$:
+\(f(x) = 2x,\ \lbrack a = \ 0,b = 1\rbrack\):
 
 \begin{align*}
-A &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + i\frac{(b - a)}{n} \right)}
- \\
-&= \sum_{i = 1}^{n}{\frac{1}{n} \cdot f\left( i\frac{1}{n} \right)} = \sum_{i = 1}^{n}{\frac{1}{n} \cdot 2\left( i\frac{1}{n} \right)}
- \\
+A &= \sum_{i = 1}^{n}{b_{i} \cdot h_{i}} = \sum_{i = 1}^{n}{\frac{b - a}{n} \cdot f\left( a + i\frac{(b - a)}{n} \right)} \\
+&= \sum_{i = 1}^{n}{\frac{1}{n} \cdot f\left( i\frac{1}{n} \right)} = \sum_{i = 1}^{n}{\frac{1}{n} \cdot 2\left( i\frac{1}{n} \right)} \\
 &= 2\sum_{i = 1}^{n}\frac{i}{n^{2}} = \frac{2}{n^{2}}\sum_{i = 1}^{n}i = \frac{2}{n^{2}} \cdot \frac{n(n + 1)}{2} = \frac{n + 1}{n}
 \end{align*}
 
 
-Anything that does not involve $i$ can be taken out of summations, so
+Anything that does not involve \(i\) can be taken out of summations, so
 you can use this fact to your advantage.
 
-Taking the limit of $n$ to infinity:
+Taking the limit of \(n\) to infinity:
 
-$$\lim_{n \rightarrow \infty}\frac{n + 1}{n} = \frac{n}{n} + \frac{1}{n} = 1$$
+\[\lim_{n \rightarrow \infty}\frac{n + 1}{n} = \frac{n}{n} + \frac{1}{n} = 1\]
 
 
 \section{1D Integration}
@@ -344,30 +254,27 @@ The upper and lower sums are the methods to theoretically find the
 integral. The true area is always sandwiched between the upper sum and
 the lower sum.
 
-For any partitions $P_{1}$ and $P_{2}$:
+For any partitions \(P_{1}\) and \(P_{2}\):
 
-$$L_{f}\left( P_{1} \right) \leq \text{True\ Area} \leq U_{f}\left( P_{2} \right)$$
+\[L_{f}\left( P_{1} \right) \leq \text{True\ Area} \leq U_{f}\left( P_{2} \right)\]
 
-This holds even if $P_{1}$ and $P_{2}$ are different.
+This holds even if \(P_{1}\) and \(P_{2}\) are different.
 
-\includegraphics[width=1.35707in,height=1.34807in]{TEXIMAGEF_Integrals-1/media/image11.png}
 
 By picking more rectangles, we can make the upper sum and lower sum
 closer and closer together.
 
-If $P_{2}$ is a \textbf{refinement} of $P_{1}$ ($P_{2}$ has all
-the rectangles of $P_{1}$ and some more), then $P_{2}$ should
+If \(P_{2}\) is a \textbf{refinement} of \(P_{1}\) (\(P_{2}\) has all
+the rectangles of \(P_{1}\) and some more), then \(P_{2}\) should
 provide a better estimate:
 
-$$L_{f}\left( P_{1} \right) \leq L_{f}\left( P_{2} \right) \leq \text{True\ Area} \leq U_{f}\left( P_{2} \right) \leq U_{f}\left( P_{1} \right)$$
+\[L_{f}\left( P_{1} \right) \leq L_{f}\left( P_{2} \right) \leq \text{True\ Area} \leq U_{f}\left( P_{2} \right) \leq U_{f}\left( P_{1} \right)\]
 
-\includegraphics[width=1.61265in,height=1.05556in]{TEXIMAGEF_Integrals-1/media/image12.png}
 
 Here, there are 4 rectangles instead of the 3. The area of the green
 rectangles is larger than the area of the black rectangles, and the area
 of the red rectangles is less than the area of the blue rectangles.
 
-\includegraphics[width=4.49722in,height=1.13819in]{TEXIMAGEF_Integrals-1/media/image13.png}
 
 The more rectangles, the closer to the true area we are, but we haven't
 defined true area yet.
@@ -376,24 +283,22 @@ defined true area yet.
 \subsection{Defining true area without defining true
 area}
 
-Approximate the true area up to some error $\varepsilon$ we are
-comfortable with, such that $U_{f}(P) - L_{f}(P) < \varepsilon$. Pick
-an $\varepsilon$ as small as possible.
+Approximate the true area up to some error \(\varepsilon\) we are
+comfortable with, such that \(U_{f}(P) - L_{f}(P) < \varepsilon\). Pick
+an \(\varepsilon\) as small as possible.
 
+\begin{definition}[Integrable]
+A function is \textbf{integrable} if
+the upper sum and lower sum can be made as close as you want (by picking
+more rectangles).
 
-\begin{definition}
-A function is \textbf{integrable} if the upper sum
-and lower sum can be made as close as you want (by picking more
-rectangles).
+\[\forall\varepsilon > 0,\ \exists P\ \text{such\ that}\ U_{f}(P) - L_{f}(P) < \varepsilon\]
+\end{definition}
 
-$$\forall\varepsilon > 0,\ \exists P\ \text{such\ that}\ U_{f}(P) - L_{f}(P) < \varepsilon$$
-
-Note the same partition $P$ is used here in the upper and lower sum.
+Note the same partition \(P\) is used here in the upper and lower sum.
 The theory here is that the error can be made as small as possible (you
 can always make your error smaller provided that it is positive), but
 there will always be some error.
-\end{definition}
-
 
 The \textbf{true area} should be the minimum of all possible upper sums
 whilst also being equal to the maximum of all possible lower sums. There
@@ -403,31 +308,23 @@ exists for them:
 
 \begin{itemize}
 \item
-  The supremum of a set $S$ is intuitively understood as the maximum
-  of the set $S$.
+  The supremum of a set \(S\) is intuitively understood as the maximum
+  of the set \(S\).
 \item
-  The infimum of a set $S$ is intuitively understood as the minimum of
-  the set $S$.
+  The infimum of a set \(S\) is intuitively understood as the minimum of
+  the set \(S\).
 \item
   This is from point 13 of the axioms of real numbers.
 \end{itemize}
 
+\begin{definition}[True area]
+It is as follows:
 
-\begin{definition}
-True area:
-
-\begin{align*}
-\text{True\ Area} &= \int_{a}^{b}f = \text{infimum\ of\ all\ possible}\ \left\{ U_{f}(P) \right\} = {\overline{I}}_{a}^{b}  \\
-&= \text{supremum\ of\ all\ possible}\ \left\{ L_{f}(P) \right\}
-\end{align*}
+\[{\text{True\ Area} = \int_{a}^{b}f }{= \text{infimum\ of\ all\ possible}\ \left\{ U_{f}(P) \right\} }{= {\overline{I}}_{a}^{b} }{= \text{supremum\ of\ all\ possible}\ \left\{ L_{f}(P) \right\} = I_{a}^{b}} \]
 \end{definition}
 
+\(U_{f}(P) - L_{f}(P)\) is liked the shaded area below:
 
-I'd rather use definition 1.
-
-$U_{f}(P) - L_{f}(P)$ is liked the shaded area below:
-
-\includegraphics[width=1.29282in,height=0.90948in]{TEXIMAGEF_Integrals-1/media/image14.png}
 
 Almost all functions are integrable. Even though definition 1 can be
 used, it doesn't define true area.
@@ -438,47 +335,45 @@ integrable}
 
 Show whether the following functions are integrable.
 
-$$f(x) = 2,\ x \in \lbrack 0,\ 2\rbrack$$
+\[f(x) = 2,\ x \in \lbrack 0,\ 2\rbrack\]
 
 Prove
-$\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon$.
+\(\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon\).
 
-\begin{proof} Let $\varepsilon > 0$. Pick $P$, which is the
+\begin{proof} Let \(\varepsilon > 0\). Pick \(P\), which is the
 rectangle from 0 to 2. There is only one rectangle, the base being 2 and
 the height being 2 by looking at the function, so
-$U_{f}(P) = 2_{\text{height}} \cdot 2_{\text{base}} = 4$.
+\(U_{f}(P) = 2_{\text{height}} \cdot 2_{\text{base}} = 4\).
 
-For $L_{f}(P)$, calculate it by
-$L_{f}(P) = 2_{\text{height}} \cdot 2_{\text{base}} = 4$.
+For \(L_{f}(P)\), calculate it by
+\(L_{f}(P) = 2_{\text{height}} \cdot 2_{\text{base}} = 4\).
 
 Then:
 
-$$U_{f}(P) - L_{f}(P) = 2 - 2 = 0 < \varepsilon$$
+\[U_{f}(P) - L_{f}(P) = 2 - 2 = 0 < \varepsilon\]
 
-Here, the error is always less than epsilon. \end{proof}
+Here, the error is always less than epsilon. 
+\end{proof}
 
 We can try something more complicated:
 
-$$f(x) = \left\{ \begin{matrix}
+\[f(x) = \left\{ \begin{matrix}
 2 & x \neq 1 \\
 4 & x = 1 \\
-\end{matrix} \right.\ ,\ x \in \lbrack 0,\ 2\rbrack$$
+\end{matrix} \right.\ ,\ x \in \lbrack 0,\ 2\rbrack\]
 
-\includegraphics[width=1.1105in,height=0.98625in]{TEXIMAGEF_Integrals-1/media/image15.png}
 
 This is a jump discontinuity.
 
-\includegraphics[width=2.47569in,height=2.04306in]{TEXIMAGEF_Integrals-1/media/image16.png}
 
-\begin{proof} Let $\varepsilon > 0$. Pick partition
-$P:0 \rightarrow 1 - \frac{l}{2} \rightarrow 1 + \frac{l}{2} \rightarrow 2$
+\begin{proof} Let \(\varepsilon > 0\). Pick partition
+\(P:0 \rightarrow 1 - \frac{l}{2} \rightarrow 1 + \frac{l}{2} \rightarrow 2\)
 (the partitions do not need to be equal length).
 
 Effectively, you are creating three rectangles. This means:
 
 \begin{align*}
-U_{f}(P) &= \overset{\text{left\ rectangle}}{\overbrace{b_{1} \cdot 2}} + \overset{\text{middle\ rectangle}}{\overbrace{l \cdot 4}} + \overset{\text{right\ rectangle}}{\overbrace{b_{3} \cdot 2}}
- \\
+U_{f}(P) &= \overset{\text{left\ rectangle}}{\overbrace{b_{1} \cdot 2}} + \overset{\text{middle\ rectangle}}{\overbrace{l \cdot 4}} + \overset{\text{right\ rectangle}}{\overbrace{b_{3} \cdot 2}} \\
 L_{f}(P) &= b_{1} \cdot 2 + l \cdot 2 + b_{2} \cdot 2
 \end{align*}
 
@@ -486,24 +381,21 @@ L_{f}(P) &= b_{1} \cdot 2 + l \cdot 2 + b_{2} \cdot 2
 Now:
 
 \begin{align*}
-U_{f}(P) - L_{f}(P) &< \varepsilon
- \\
+U_{f}(P) - L_{f}(P) &< \varepsilon \\
 \left( 2b_{1} + 4l + 2b_{3} \right) - \left( 2b_{1} + 2l + 2b_{2} \right) &< \varepsilon
 \end{align*}
 
 
-Choose $l = \frac{\varepsilon}{4}$. You can choose whatever you want,
-but you should be choosing $l$ such that the end result does not look
+Choose \(l = \frac{\varepsilon}{4}\). You can choose whatever you want,
+but you should be choosing \(l\) such that the end result does not look
 ugly.
 
 \begin{align*}
-2b_{1} + \varepsilon + 2b_{3} - 2b_{1} - \frac{\varepsilon}{2} - 2b_{2} &< \varepsilon
- \\
-\frac{\varepsilon}{2} &< \varepsilon
+2b_{1} + \varepsilon + 2b_{3} - 2b_{1} - \frac{\varepsilon}{2} - 2b_{2} &< \varepsilon \\
+\frac{\varepsilon}{2} &< \varepsilon\
 \end{align*}
 
 \end{proof}
-
 
 What does this mean? Integrals are more versatile than the derivative.
 It can handle discontinuities, which can be done by picking small
@@ -512,87 +404,78 @@ for you.
 
 Another example:
 
-$$f(x) = \left\{ \begin{matrix}
+\[f(x) = \left\{ \begin{matrix}
 2 & x \neq 1 \\
 4 & x = 1 \\
-\end{matrix} \right.\ ,\ x \in \lbrack 0,\ 2\rbrack$$
+\end{matrix} \right.\ ,\ x \in \lbrack 0,\ 2\rbrack\]
 
-\begin{proof} Let $\varepsilon > 0$, and pick
-$P:0 \rightarrow 1 - \frac{l}{2} \rightarrow 1 + \frac{l}{2} \rightarrow 2 - \frac{l}{2} \rightarrow 2$.
+\begin{proof} Let \(\varepsilon > 0\), and pick
+\(P:0 \rightarrow 1 - \frac{l}{2} \rightarrow 1 + \frac{l}{2} \rightarrow 2 - \frac{l}{2} \rightarrow 2\).
 This means
 
 \begin{align*}
-U_{f}(P) &= 2b_{1} + 4l + 4b_{3} + 6 \cdot \frac{l}{2}
- \\
-L_{f}(P) &= 2b_{1} + 2l + 4b_{3} + 4 \cdot \frac{l}{2}
- \\
-U_{f}(P) - L_{f}(P) &< \varepsilon
- \\
-2b_{1} + 4l + 4b_{3} + 6 \cdot \frac{l}{2} - 2b_{1} - 2l - 4b_{3} - 4 \cdot \frac{l}{2} &< \varepsilon
- \\
-(4 - 2)l + \frac{(6 - 4)l}{2} = 3l &< \varepsilon
+U_{f}(P) &= 2b_{1} + 4l + 4b_{3} + 6 \cdot \frac{l}{2} \\
+L_{f}(P) &= 2b_{1} + 2l + 4b_{3} + 4 \cdot \frac{l}{2} \\
+U_{f}(P) - L_{f}(P) &< \varepsilon \\
+2b_{1} + 4l + 4b_{3} + 6 \cdot \frac{l}{2} - 2b_{1} - 2l - 4b_{3} - 4 \cdot \frac{l}{2} &< \varepsilon \\
+(4 - 2)l + \frac{(6 - 4)l}{2} &= 3l < \varepsilon
 \end{align*}
 
 
-Pick $l = \frac{\varepsilon}{6}$
+Pick \(l = \frac{\varepsilon}{6}\)
 
 \begin{align*}
-3 \cdot \frac{\varepsilon}{6} &< \varepsilon
- \\
-\frac{\varepsilon}{2} &< \varepsilon
+3 \cdot \frac{\varepsilon}{6} &< \varepsilon \\
+\frac{\varepsilon}{2} &< \varepsilon\
 \end{align*}
 
 \end{proof}
 
-
 This method handles all discontinuities.
 
 For a function that isn't flat:
-$f(x) = x,\ x \in \lbrack 0,\ 2\rbrack$
+\(f(x) = x,\ x \in \lbrack 0,\ 2\rbrack\)
 
 \begin{align*}
-b_{1}h_{1} &= b_{2}h_{2}
- \\
-U_{f}(P) &= 1 \cdot 1 + 1 \cdot 2
- \\
+b_{1}h_{1} &= b_{2}h_{2} \\
+U_{f}(P) &= 1 \cdot 1 + 1 \cdot 2 \\
 L_{f}(P) &= 1 \cdot 2 + 1 \cdot 1
 \end{align*}
 
 
-Notice that $f$ is increasing so if you pick the same base for each
+Notice that \(f\) is increasing so if you pick the same base for each
 rectangle, then the adjacent rectangle's area of the upper sum and the
 lower sum would cancel.
 
-\includegraphics[width=1.57013in,height=2.04865in]{TEXIMAGEF_Integrals-1/media/image17.png}
 
-\begin{proof} Let $\varepsilon > 0$. Let $P$ be $n$-equal spaced
-intervals, meaning $b = \frac{2}{n}$. Pick $n$ such that
-$\frac{4}{n} < \varepsilon$.
+\begin{proof} Let \(\varepsilon > 0\). Let \(P\) be \(n\)-equal spaced
+intervals, meaning \(b = \frac{2}{n}\). Pick \(n\) such that
+\(\frac{4}{n} < \varepsilon\).
 
 Then:
 
 \begin{align*}
-U_{f}(P) &= b \cdot f\left( t_{1} \right) + b \cdot f\left( t_{2} \right) + \cdots + b \cdot f\left( t_{n} \right)
- \\
+U_{f}(P) &= b \cdot f\left( t_{1} \right) + b \cdot f\left( t_{2} \right) + \cdots + b \cdot f\left( t_{n} \right) \\
 L_{f}(P) &= b \cdot f\left( t_{0} \right) + b \cdot f\left( t_{1} \right) + \cdots + b \cdot f\left( t_{n - 1} \right)
 \end{align*}
 
 
-$$U_{f}(P) - L_{f}(P) = b \cdot f\left( t_{n} \right) - b \cdot f\left( t_{0} \right) = b\left( f\left( t_{n} \right) - f\left( t_{0} \right) \right) = \frac{2}{n} \cdot 2 = \frac{4}{n} < \varepsilon\ $$ \end{proof}
+\[U_{f}(P) - L_{f}(P) = b \cdot f\left( t_{n} \right) - b \cdot f\left( t_{0} \right) = b\left( f\left( t_{n} \right) - f\left( t_{0} \right) \right) = \frac{2}{n} \cdot 2 = \frac{4}{n} < \varepsilon\ \]
+\end{proof}
 
 
 \subsubsection{Finitely many
 discontinuities}
 
-Suppose $g(x)$ is integrable and bounded (by $M$) on
-$\lbrack a,\ b\rbrack$. Let $f(x) = g(x)$ except at finitely many
-points $\left\{ c_{1},\ \ldots,\ c_{n} \right\}$ where
-$f\left( c_{i} \right) \neq g\left( c_{i} \right)$.
+Suppose \(g(x)\) is integrable and bounded (by \(M\)) on
+\(\lbrack a,\ b\rbrack\). Let \(f(x) = g(x)\) except at finitely many
+points \(\left\{ c_{1},\ \ldots,\ c_{n} \right\}\) where
+\(f\left( c_{i} \right) \neq g\left( c_{i} \right)\).
 
 The idea is to have small rectangles around each of the discontinuities.
-Make each of the errors $\frac{\varepsilon}{2n}$ and the total error
+Make each of the errors \(\frac{\varepsilon}{2n}\) and the total error
 is
-$n \cdot \frac{\varepsilon}{2n} = \frac{\varepsilon}{2} < \varepsilon$.
+\(n \cdot \frac{\varepsilon}{2n} = \frac{\varepsilon}{2} < \varepsilon\).
 
 Key word: \textbf{finitely} as many discontinuities.
 
@@ -603,32 +486,32 @@ Basically, if you have a continuous function with finitely many holes.
 discontinuities}
 
 This will cause you to set something like
-$\frac{\varepsilon}{\infty} = 0$, which can't happen, as the error
+\(\frac{\varepsilon}{\infty} = 0\), which can't happen, as the error
 can't be zero. The techniques of splitting up partitions and creating
 rectangles on discontinuities wouldn't work.
 
-Example, where $\mathbb{Q}$ (standing for quotient) means rational
+Example, where \(\mathbb{Q}\) (standing for quotient) means rational
 numbers, which can be represented as
-$\frac{p}{q},\ p,\ q\mathbb{\in Z}$:
+\(\frac{p}{q},\ p,\ q\mathbb{\in Z}\):
 
-$$f(x) = \left\{ \begin{matrix}
+\[f(x) = \left\{ \begin{matrix}
 1 & x\mathbb{\in Q} \\
 0 & x\mathbb{\notin Q} \\
-\end{matrix} \right.\ $$
+\end{matrix} \right.\ \]
 
 There are a lot of rational numbers (more like infinitely as many)
-scattered between $\lbrack 0,\ 1\rbrack$. It is an infinitely
-scattering of points in $\lbrack 0,\ 1\rbrack$. It is not a solid
-line; irrational numbers like $\frac{\pi}{4}$ exist. This means
-$f\left( \frac{\pi}{4} \right) = 0$. But also $\frac{\pi}{8}$ is
-irrational, so $f\left( \frac{\pi}{8} \right) = 0$, and so is
-$\frac{\pi}{16}$, $\frac{\pi}{5}$, and so on, and don't forget
-$\frac{e}{5},\ \sqrt{2}$, and so on. There is an infinite scattering
-of points at $y = 0$, as there are a lot of irrational numbers
-scattered at $y = 0$.
+scattered between \(\lbrack 0,\ 1\rbrack\). It is an infinitely
+scattering of points in \(\lbrack 0,\ 1\rbrack\). It is not a solid
+line; irrational numbers like \(\frac{\pi}{4}\) exist. This means
+\(f\left( \frac{\pi}{4} \right) = 0\). But also \(\frac{\pi}{8}\) is
+irrational, so \(f\left( \frac{\pi}{8} \right) = 0\), and so is
+\(\frac{\pi}{16}\), \(\frac{\pi}{5}\), and so on, and don't forget
+\(\frac{e}{5},\ \sqrt{2}\), and so on. There is an infinite scattering
+of points at \(y = 0\), as there are a lot of irrational numbers
+scattered at \(y = 0\).
 
-At a visual standpoint, there are points at $y = 1$ infinitely
-scattered and points at $y = 0$ infinitely scattered.
+At a visual standpoint, there are points at \(y = 1\) infinitely
+scattered and points at \(y = 0\) infinitely scattered.
 
 The trick of controlling errors can only work for finite
 discontinuities. If there are infinitely as many discontinuities, it
@@ -636,307 +519,2298 @@ feels like the function is not continuous everywhere, or even anywhere.
 At every single point, there's a discontinuity.
 
 It does not mean that the function isn't integrable, but we run into
-this problem (note that $a < b$):
+this problem (note that \(a < b\)):
 
 \begin{align*}
-&\forall\lbrack a,\ b\rbrack,\ \exists x_{1}\mathbb{\in Q,\ }x_{1} \in \lbrack a,\ b\rbrack
- \\
+&\forall\lbrack a,\ b\rbrack,\ \exists x_{1}\mathbb{\in Q,\ }x_{1} \in \lbrack a,\ b\rbrack \\
 &\forall\lbrack a,\ b\rbrack,\ \exists x_{1}\mathbb{\notin Q,\ }x_{2} \in \lbrack a,\ b\rbrack
 \end{align*}
 
 
 We can see where the problem comes.
 
-\includegraphics[width=2.00541in,height=1.3292in]{TEXIMAGEF_Integrals-1/media/image18.png}
 
 The upper sum for any interval (that isn't squished to a point) will
 always be 1, and 0 for the lower sum. There will always be an error of 1
-overall, and $1 \nless \varepsilon$. Is it possible to make the error
-less than $\varepsilon$? Regardless of the partition you choose, the
+overall, and \(1 \nless \varepsilon\). Is it possible to make the error
+less than \(\varepsilon\)? Regardless of the partition you choose, the
 error will stay at 1.
 
 What does it mean to be integrable?
-$\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon$.
+\(\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon\).
 I don't think this can be satisfied.
 
 What is the negation of this definition?
 
-$$\exists\varepsilon > 0,\ \forall P,\ U_{f}(P) - L_{f}(P) \geq \varepsilon$$
+\[\exists\varepsilon > 0,\ \forall P,\ U_{f}(P) - L_{f}(P) \geq \varepsilon\]
 
-This is our proof that $f(x)$ here isn't integrable.
+This is our proof that \(f(x)\) here isn't integrable.
 
-\begin{proof} Pick $\varepsilon = \frac{1}{2}$. Let $P$ be
-arbitrary. Regardless of how we choose our partition $P$,
-$U_{f}(P) - L_{f}(P)$ will always be greater or equal than
-$\varepsilon$:
+\begin{proof} Pick \(\varepsilon = \frac{1}{2}\). Let \(P\) be
+arbitrary. Regardless of how we choose our partition \(P\),
+\(U_{f}(P) - L_{f}(P)\) will always be greater or equal than
+\(\varepsilon\):
 
 \begin{align*}
-U_{f}(P) &= \sum b_{i} \cdot h_{i} = \sum b_{i} \cdot 1 = 1
- \\
+U_{f}(P) &= \sum b_{i} \cdot h_{i} = \sum b_{i} \cdot 1 = 1 \\
 L_{f}(P) &= \sum b_{i} \cdot h_{i} = \sum b_{i} \cdot 0 = 0
 \end{align*}
 
 
 This always happens. What can we conclude?
 
-$$U_{f}(P) - L_{f}(P) = 1$$
+\[U_{f}(P) - L_{f}(P) = 1\]
 
-\ldots regardless of what $P$ we choose. The error here is always
-going to be greater than 1, greater than or equal to the $\varepsilon$
-we set, $\frac{1}{2}$. We are unable to minimize the error to be under
-$\varepsilon$. \end{proof}
+\ldots regardless of what \(P\) we choose. The error here is always
+going to be greater than 1, greater than or equal to the \(\varepsilon\)
+we set, \(\frac{1}{2}\). We are unable to minimize the error to be under
+\(\varepsilon\). 
+\end{proof}
 
 Ever so slightly harder example:
 
-$$f(x) = \left\{ \begin{matrix}
+\[f(x) = \left\{ \begin{matrix}
 \frac{1}{q} & x = \frac{p}{q}\ \text{written\ as\ an\ irreducible\ fraction} \\
 0 & x\mathbb{\notin Q} \\
-\end{matrix} \right.\ {x \in \lbrack 0,\ 1\rbrack}\ $$
+\end{matrix} \right.\ {x \in \lbrack 0,\ 1\rbrack}\ \]
 
 What does it mean?
-$f\left( \frac{2}{3} \right) = \frac{1}{3},\ f\left( \frac{4}{5} \right) = \frac{1}{5},f\left( \frac{6}{10} \right) = \frac{1}{5}$
+\(f\left( \frac{2}{3} \right) = \frac{1}{3},\ f\left( \frac{4}{5} \right) = \frac{1}{5},f\left( \frac{6}{10} \right) = \frac{1}{5}\)
 
-\includegraphics[width=4.5in,height=3.73681in]{TEXIMAGEF_Integrals-1/media/image19.png}
 
 
 \subsubsection{That for an increasing
 function}
 
-Suppose $f$ is increasing on $\lbrack a,\ b\rbrack$. Prove $f$ is
-integrable. Do not assume $f$ is continuous.
+Suppose \(f\) is increasing on \(\lbrack a,\ b\rbrack\). Prove \(f\) is
+integrable. Do not assume \(f\) is continuous.
 
-
-\begin{definition}
-A function which is increasing or decreasing would
-be called monotonic.
+\begin{definition}[Monotonic]
+A function which is increasing or
+decreasing would be called monotonic.
 \end{definition}
 
 
+\subsubsection{Debunking Question 7}
 
-\subsubsection{Debunking Q7}
+Suppose \(g(x)\) is integrable and bounded (by \(M\)) on
+\(\lbrack a,\ b\rbrack\).
 
-Suppose $g(x)$ is integrable and bounded by M on
-$\lbrack a,\ b\rbrack$
-
-\includegraphics[width=4.5in,height=2.75208in]{TEXIMAGEF_Integrals-1/media/image20.png}
-
-
-\subsubsection{Debunking Question 6}
-
-Suppose $g(x)$ is integrable and bounded (by $M$) on
-$\lbrack a,\ b\rbrack$.
-
-$$f(x) = \left\{ \begin{matrix}
+\[f(x) = \left\{ \begin{matrix}
 g(x) & \text{if\ }x \neq c \\
 f(c) & \text{if\ }x = c \\
-\end{matrix} \right.\ ,\ \text{where\ }f(c) \neq g(c)$$
+\end{matrix} \right.\ ,\ \text{where\ }f(c) \neq g(c)\]
 
-\includegraphics[width=2.42366in,height=1.64757in]{TEXIMAGEF_Integrals-1/media/image21.png}
 
-\begin{proof} Let $\varepsilon > 0$. Choose
-$l = \frac{\varepsilon}{2(N - n)}$ (technically, we were supposed to
-define $N$ and $n$ earlier).
+\begin{proof} Let \(\varepsilon > 0\). Choose
+\(l = \frac{\varepsilon}{2(N - n)}\) (technically, we were supposed to
+define \(N\) and \(n\) earlier).
 
-Since $g$ is integrable,
-$\forall\varepsilon_{2} > 0,\ \exists Q,\ \text{such\ that\ }U_{g}(Q) - L_{g}(Q) < \varepsilon_{2}$
-(there exists partition $Q$ such that $U_{g}(Q) - L_{g}(Q)$.
+Since \(g\) is integrable,
+\(\forall\varepsilon_{2} > 0,\ \exists Q,\ \text{such\ that\ }U_{g}(Q) - L_{g}(Q) < \varepsilon_{2}\)
+(there exists partition \(Q\) such that \(U_{g}(Q) - L_{g}(Q)\).
 
-Because $g$ is integrable, we can remove parts of the partition in
-parts where we don't need it, such as the $l$-length region around
-$c$. This means the partition $Q$ is only in the blue region.
+Because \(g\) is integrable, we can remove parts of the partition in
+parts where we don't need it, such as the \(l\)-length region around
+\(c\). This means the partition \(Q\) is only in the blue region.
 
-Choose $\varepsilon_{2} = \frac{\varepsilon}{2}$. This means the
+Choose \(\varepsilon_{2} = \frac{\varepsilon}{2}\). This means the
 following:
 
 \begin{itemize}
 \item
   The error in the blue region must be at most
-  $\frac{\varepsilon}{4}$.
+  \(\frac{\varepsilon}{4}\).
 \item
   The error in the green region must be at most
-  $\frac{\varepsilon}{4}$.
+  \(\frac{\varepsilon}{4}\).
 \item
   The total error we will be making will be
-  $\frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}$.
+  \(\frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}\).
 \end{itemize}
 
-$$\exists Q,\ U_{g}(Q) - L_{g}(Q) < \varepsilon_{2}$$
+\[\exists Q,\ U_{g}(Q) - L_{g}(Q) < \varepsilon_{2}\]
 
-Choose $P = Q \cup \left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$
-($Q$ union the green rectangle). There is some way to pick rectangles
-in the partition of $Q$ such that the total error in the blue region
-will be less than $\frac{\varepsilon}{2}$.
+Choose \(P = Q \cup \left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}\)
+(\(Q\) union the green rectangle). There is some way to pick rectangles
+in the partition of \(Q\) such that the total error in the blue region
+will be less than \(\frac{\varepsilon}{2}\).
 
 Focusing on the error in the green region (and we must see how much
 error at most there can be):
 
 For
-$x \in \left\lbrack c - \frac{l}{2},\ c + \frac{l}{2} \right\rbrack$,
-what can be the error at most? It should be less than $\varepsilon$.
-Here, $f$ can be at most $f(c)$, but $g$ could be even larger, so
+\(x \in \left\lbrack c - \frac{l}{2},\ c + \frac{l}{2} \right\rbrack\),
+what can be the error at most? It should be less than \(\varepsilon\).
+Here, \(f\) can be at most \(f(c)\), but \(g\) could be even larger, so
 
 \begin{align*}
-x &\leq \max\left( f(x),M \right)
- \\
+x &\leq \max\left( f(x),M \right) \\
 \min\left( f(x),\  - M \right) &\leq x
 \end{align*}
 
 
-This is based on the bounds $g$, as the function $g$ may not go
-higher than $M$ or lower than $- M$. Also, here are our bounds for
-$x$ if it is in
-$\left\lbrack c - \frac{l}{2},\ c + \frac{l}{2} \right\rbrack$.
+This is based on the bounds \(g\), as the function \(g\) may not go
+higher than \(M\) or lower than \(- M\). Also, here are our bounds for
+\(x\) if it is in
+\(\left\lbrack c - \frac{l}{2},\ c + \frac{l}{2} \right\rbrack\).
 
-$$\min\left( f(c),\  - M \right) \leq f(x) \leq \max\left( f(c),M \right)$$
+\[\min\left( f(c),\  - M \right) \leq f(x) \leq \max\left( f(c),M \right)\]
 
 These two values are simply two numbers, so let
-$n = \min\left( f(c),\  - M \right)$ and
-$N = \max\left( f(c),\ M \right)$.
+\(n = \min\left( f(c),\  - M \right)\) and
+\(N = \max\left( f(c),\ M \right)\).
 
 So
 
 \begin{align*}
-U_{f}(P) - L_{f}(P) &= \overset{\text{blue\ region\ error}}{\overbrace{U_{g}(Q) - L_{g}(Q)}} + \overset{\text{green\ region\ error}}{\overbrace{l \cdot N - l \cdot n}}  \\
-&= \frac{\varepsilon}{4} + \overset{\text{which\ we\ pick\ to\ be\ }\frac{\varepsilon}{4}}{\overbrace{l(N - n)}} = \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}
+&U_{f}(P) - L_{f}(P)  \\
+&= \overset{\text{blue\ region\ error}}{\overbrace{U_{g}(Q) - L_{g}(Q)}} + \overset{\text{green\ region\ error}}{\overbrace{l \cdot N - l \cdot n}}  \\
+&= \frac{\varepsilon}{4} + \overset{\text{which\ we\ pick\ to\ be\ }\frac{\varepsilon}{4}}{\overbrace{l(N - n)}} = \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}  \\
+&< \varepsilon\
 \end{align*}
-
 
 \end{proof}
 
 
 \paragraph{I don't get it.}
 
-Our goal is to prove that $f$ is integrable. This means we must prove
+Our goal is to prove that \(f\) is integrable. This means we must prove
 that
-$\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon$,
-knowing that we have $g$ and the fact that it is integrable. Here's
+\(\forall\varepsilon > 0,\ \exists P,\ U_{f}(P) - L_{f}(P) < \varepsilon\),
+knowing that we have \(g\) and the fact that it is integrable. Here's
 how we did it:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Name $g$'s partition $Q$, which is actually from $a$ to
-  $c - \frac{l}{2}$, and then there is a region where we are not in
-  partition $Q$, and then partition $Q$ resumes at
-  $c + \frac{l}{2}$ all the way to $b$. Yes, partitions can be split
+  Name \(g\)'s partition \(Q\), which is actually from \(a\) to
+  \(c - \frac{l}{2}\), and then there is a region where we are not in
+  partition \(Q\), and then partition \(Q\) resumes at
+  \(c + \frac{l}{2}\) all the way to \(b\). Yes, partitions can be split
   up.
 \item
-  Because we know $g$ is integrable, we know the error it must not
-  exceed: $\varepsilon_{2}$, which is universally quantified. We can
+  Because we know \(g\) is integrable, we know the error it must not
+  exceed: \(\varepsilon_{2}\), which is universally quantified. We can
   let it be anything, so use that opportunity to assign it to something
-  like $\frac{\varepsilon}{9999}$.
+  like \(\frac{\varepsilon}{9999}\).
 \item
-  Choose the partition of $f$, which is the function we wish to prove
-  integrable in the interval $\lbrack a,\ b\rbrack$. Pick it to be
-  partition $Q \cup$ the gap in the middle, which is
-  $\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$ -- just one
+  Choose the partition of \(f\), which is the function we wish to prove
+  integrable in the interval \(\lbrack a,\ b\rbrack\). Pick it to be
+  partition \(Q \cup\) the gap in the middle, which is
+  \(\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}\) -- just one
   rectangle, and we have made gaps like this before because we want
-  $l$ to be the length of that rectangle.
+  \(l\) to be the length of that rectangle.
 \item
-  This still concerns the partition of $f$ we've just chosen. We know
-  that $\forall x \in$ the gap
-  $\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$, $x$ can't:
+  This still concerns the partition of \(f\) we've just chosen. We know
+  that \(\forall x \in\) the gap
+  \(\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}\), \(x\) can't:
 
   \begin{enumerate}
   \def\labelenumii{\alph{enumii}.}
   \item
-    Go higher than $f(c)$ or $M$. We only worry about $f(c)$ when
-    $x = c$, so $M$ covers all the other cases: the maximum possible
-    value of $g$.
+    Go higher than \(f(c)\) or \(M\). We only worry about \(f(c)\) when
+    \(x = c\), so \(M\) covers all the other cases: the maximum possible
+    value of \(g\).
   \item
-    Go lower than $f(c)$ or $- M$. We only worry about $f(c)$ when
-    $x = c$, so $- M$ covers all the other cases: the minimum
-    possible value of $g$.
+    Go lower than \(f(c)\) or \(- M\). We only worry about \(f(c)\) when
+    \(x = c\), so \(- M\) covers all the other cases: the minimum
+    possible value of \(g\).
   \item
     We end up with this expression:
-    $\min\left( f(c),\  - M \right) \leq f(x) \leq \max\left( f(c),\ M \right)$
-    We give aliases: $n = \min\left( f(c),\  - M \right)$ and
-    $N = \max\left( f(c),\ M \right)$ although we totally didn't have
-    to. The reason why we chose $M$ and $- M$ instead of some
-    $g(x)$ thing is because $M$ and $- M$ are constants and will
-    always be an overestimate/underestimate of where $g$ always is.
+    \(\min\left( f(c),\  - M \right) \leq f(x) \leq \max\left( f(c),\ M \right)\)
+    We give aliases: \(n = \min\left( f(c),\  - M \right)\) and
+    \(N = \max\left( f(c),\ M \right)\) although we totally didn't have
+    to. The reason why we chose \(M\) and \(- M\) instead of some
+    \(g(x)\) thing is because \(M\) and \(- M\) are constants and will
+    always be an overestimate/underestimate of where \(g\) always is.
   \end{enumerate}
 \item
   We conclude that the error caused by that rectangle is
-  $\leq (l \cdot N - l \cdot n)$. $l \cdot N$ is the upper height
-  bound of that rectangle, and $l \cdot n$ is the lower height bound
-  of the rectangle. A reminder that $l$ is the length of the
-  rectangle, and remember that we overestimated the upper bound and
-  underestimated the lower bound because instead of choosing $g(x)$,
-  we just looked at the highest/lowest possible value of $g$.
+  \(\leq (l \cdot N - l \cdot n)\). \(l \cdot N\) is the upper height
+  bound of that rectangle, and \(l \cdot n\) is the lower height bound
+  of the rectangle. A reminder that \(l\) is the length of the rectangle
+  and remember that we overestimated the upper bound and underestimated
+  the lower bound because instead of choosing \(g(x)\), we just looked
+  at the highest/lowest possible value of \(g\).
 \item
-  We return to the partition $P$ we've chosen because before after
+  We return to the partition \(P\) we've chosen because before after
   acquiring more information about the rectangle in the middle in the
-  region $\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}$. Because
+  region \(\left\{ c - \frac{l}{2},\ c + \frac{l}{2} \right\}\). Because
   we overestimated the error bound, we can safely say that
-  $U_{f}(P) - L_{f}(P) \leq U_{g}(Q) - L_{g}(Q) + (l \cdot N - l \cdot \ n)$
+  \(U_{f}(P) - L_{f}(P) \leq U_{g}(Q) - L_{g}(Q) + (l \cdot N - l \cdot \ n)\)
   and can finally choose
-  $U_{g}(Q) - L_{g}(Q) < \frac{\varepsilon}{9999999}$ and choose $l$
-  such that $(l \cdot N - l \cdot n) < \frac{\varepsilon}{9999999}$ in
+  \(U_{g}(Q) - L_{g}(Q) < \frac{\varepsilon}{9999999}\) and choose \(l\)
+  such that \((l \cdot N - l \cdot n) < \frac{\varepsilon}{9999999}\) in
   the front of the proof and finally prove that
-  $U_{f}(P) - L_{f}(P) < \varepsilon$.
+  \(U_{f}(P) - L_{f}(P) < \varepsilon\).
 \end{enumerate}
 
 
-\subsubsection{Debunking question 10}
+\subsubsection{Debunking Question 10: The integrable discontinuous
+function that looks like a
+triangle}
 
-$$f(x) = \left\{ \begin{matrix}
+\[f(x) = \left\{ \begin{matrix}
 \frac{1}{q} & x = \frac{p}{q}\ \text{written\ as\ an\ irreducible\ fraction} \\
 0 & x\mathbb{\notin Q} \\
-\end{matrix} \right.\ {x \in \lbrack 0,\ 1\rbrack}$$
+\end{matrix} \right.\ {x \in \lbrack 0,\ 1\rbrack}\]
 
-\includegraphics[width=2.23457in,height=1.49833in]{TEXIMAGEF_Integrals-1/media/image22.png}
 
-Let $\varepsilon > 0$. There are finitely many $x$ with
-$f(x) > \frac{\varepsilon}{4}$. There is a list of possible $x$ for
-which $f(x) > \frac{\varepsilon}{4}$.
+Let \(\varepsilon > 0\). There are finitely many \(x\) with
+\(f(x) > \frac{\varepsilon}{4}\). There is a list of possible \(x\) for
+which \(f(x) > \frac{\varepsilon}{4}\), and yes, for some epsilon
+values, that can be zero.
 
-$$x:\left\{ c_{1},\ c_{2},\ \ldots,\ c_{n} \right\} = \left\{ \frac{1}{2},\frac{1}{3},\frac{2}{3},\ \ldots \right\}$$
+\[x:\left\{ c_{1},\ c_{2},\ \ldots,\ c_{n} \right\} = \left\{ \frac{1}{2},\frac{1}{3},\frac{2}{3},\ \ldots \right\}\]
 
 Well, excluding duplicates.
 
-Construct rectangles around each $c_{i}$ length
-$l = \frac{\varepsilon}{4n}$ (we chose that later).
+Construct rectangles around each \(c_{i}\) length
+\(l = \frac{\varepsilon}{4n}\) (we chose that later).
 
-$$U_{f}(P) - L_{f}(P) = \sum_{\begin{matrix}
+\[U_{f}(P) - L_{f}(P) = \sum_{\begin{matrix}
 \text{rectangles\ } \\
 \text{including}\ c_{i} \\
 \end{matrix}}^{}{b_{i}h_{i}} + \sum_{\begin{matrix}
 \text{rectangles\ not} \\
 \text{including}\ c_{i} \\
-\end{matrix}}^{}{b_{i}h_{i}}$$
+\end{matrix}}^{}{b_{i}h_{i}}\]
 
-In the first (left) sum, there are $n$ rectangles with the base being
-$n \cdot l$ with the height values all being less than $\frac{1}{2}$
-(which implies they are all less than 1). There are $n$ rectangles at
-most, where each base is chosen to have length $l$, and the height of
-each rectangle which includes one of these $c_{i}$ points:
+In the first (left) sum, there are \(n\) rectangles with the base being
+\(n \cdot l\) with the height values all being less than \(\frac{1}{2}\)
+(which implies they are all less than 1). There are \(n\) rectangles at
+most, where each base is chosen to have length \(l\), and the height of
+each rectangle which includes one of these \(c_{i}\) points:
 
-\begin{align*}
-&\sum_{\begin{matrix}
+\[{\sum_{\begin{matrix}
 \text{rectangles\ } \\
 \text{including}\ c_{i} \\
-\end{matrix}}^{}{b_{i}h_{i}} + \sum_{\begin{matrix}
+\end{matrix}}^{}{b_{i}h_{i}} }{+ \sum_{\begin{matrix}
 \text{rectangles\ not} \\
 \text{including}\ c_{i} \\
-\end{matrix}}^{}{b_{i}h_{i}}
-\end{align*}
-
+\end{matrix}}^{}{b_{i}h_{i}} }{< n_{\text{num\ rectangles}} \cdot l_{\text{length\ of\ each}} \cdot 1_{\text{max\ ht\ of\ each}} }{+ \sum_{\begin{matrix}
+\text{rectangles\ not} \\
+\text{including}\ c_{i} \\
+\end{matrix}}^{}{b_{i}h_{i}}} \]
 
 What about the sum on the right? These rectangles do not include any of
-the $c_{1\ldots i\ldots n}$, so the height of these rectangles is at
-most $\frac{\varepsilon}{4}$. So, and we will just be assuming the max
+the \(c_{1\ldots i\ldots n}\), so the height of these rectangles is at
+most \(\frac{\varepsilon}{4}\). So, and we will just be assuming the max
 height and that it does not cover a length over 1:
 
-\begin{align*}
-&< n \cdot l + \sum_{\begin{matrix}
+\[{}{< n \cdot l + \sum_{\begin{matrix}
 \text{rectangles\ not} \\
 \text{including}\ c_{i} \\
-\end{matrix}}^{}{b_{i}\left( \frac{\varepsilon}{4} \right)_{\text{max\ ht\ of\ each\ rect}}} < n \cdot l + (1)_{\text{dist\ from\ 0\ to\ 1}}\frac{\varepsilon}{4} = \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2}
+\end{matrix}}^{}{b_{i}\left( \frac{\varepsilon}{4} \right)_{\text{max\ ht\ of\ each\ rect}}} }{< n \cdot l + (1)_{\text{dist\ from\ 0\ to\ 1}}\frac{\varepsilon}{4} = \frac{\varepsilon}{4} + \frac{\varepsilon}{4} = \frac{\varepsilon}{2} < \varepsilon} \]
+
+
+
+\subsection{True area revisited}
+
+The true area is the minimum of all possible upper sum values and also
+the maximum of all possible lower sum values. However, the case where
+\(S = (0,\ 1)\) (the supremum of all possible \(L_{f}(P)\)), the
+supremum will still exist.
+
+Say our set is \(S = \left\{ \frac{1}{n}\mid n\mathbb{\in N} \right\}\).
+This set is infinite. To plot this set on the number line, it would be
+an infinite scattering of points close to 0, but never at 0. Even though
+it never touches 0, we can still define the infimum to exist, which is
+at 0. We decide that they exist; we don't prove it.
+
+A number \(u\) is the supremum of a set if it is the last upper bound of
+\(S\). It is the smallest number which can satisfy:
+\(\forall s,\ s \leq u\).
+
+What is the smallest number which can satisfy this? This is called the
+least upper bound, which for \(S\), is at \(1\).
+
+
+\subsection{The epsilon characterization of supremum and
+infimum}
+
+For all \(\varepsilon > 0\), there exists \(s \in S\) such that
+\(u - \varepsilon < s \leq u\). As \(u\) is the maximum of \(S\), moving
+down even a tiny amount will bump into an element of \(S\).
+
+For all \(\varepsilon > 0\), there exists \(s \in S\) such that
+\(l \leq s \leq l + \varepsilon\). As \(l\) is the minimum of \(S\),
+moving up even a tiny amount will bump into an element of \(S\).
+
+Let \(\int_{a}^{b}{f(x)\text{d}x} < \int_{a}^{b}{g(x)\text{d}x}\). Let
+\(P\) be a partition of \(\lbrack a,\ b\rbrack\). Are the following
+statements true or false?
+
+Q1: \(L_{f}(P) < U_{g}(P)\).
+
+\begin{proof}
+\(L_{f}(P) \leq \int_{a}^{b}{f(x)\text{d}x} < \int_{a}^{b}{g(x)\text{d}x} \leq U_{g}(P)\ \)
+\end{proof}
+
+One particular value of \(L_{f}(P)\) would be less than or equal to the
+maximum value of all values of \(L_{f}(P)\).
+
+Q2: \(L_{f}(P) < L_{g}(P)\).
+
+Note the following:
+
+
+We know that \(L_{g}(P) \leq \int g\), but we can never say that
+\(L_{g}(P) \geq \int f\). For example, the approximation of \(L_{g}(P)\)
+can be made very bad. For example, if we pick one rectangle that is way
+below the maximum value of \(L_{g}(P)\), it will be below \(L_{f}(P)\).
+Q2 is false.
+
+Q3: \(L_{f}(P) < \int_{a}^{b}{f(x)\text{d}x}\)
+
+The problem is how we defined the supremum of lower sums: less than or
+equal to the true value. We can't say it is strictly less. Q3 is false.
+If \(f(x)\) is flat,
+\(\text{sup\ }L_{f}(P) = \int_{a}^{b}{f(x)\text{d}x}\).
+
+Q4: \(U_{f}(P) < U_{g}(P)\). Same case as Q2. \(U_{f}(P)\) may be very
+terrible at approximating the area of \(f\) and end up higher than
+\(U_{g}(P)\).
+
+Q5: \(\int_{a}^{b}{f(x)\text{d}x} < U_{g}(P)\). Because
+\(\int f < \int g \leq U_{g}(P)\), this statement is true.
+
+Q6: \(U_{f}(P) < \int_{a}^{b}{g(x)\text{d}x}\) -- this is false, as
+there are no upper bounds for \(U_{f}(P)\).
+
+
+\subsubsection{Debunking question 61}
+
+TBA
+
+
+\subsubsection{Debunking question 63}
+
+Suppose \(f\) is \textbf{continuous}, \(f \geq 0,\ \int_{a}^{b}f = 0\)
+(nonnegative everywhere).
+
+Prove \(\forall x \in \lbrack a,\ b\rbrack,\ \ f(x) = 0\).
+
+\begin{proof} Suppose \(f(c) > 0\). Since \(f\) is continuous,
+\(\exists x \in \left( c - \frac{l}{2},\ c + \frac{l}{2} \right),\ f(x) > \frac{f(c)}{2}\).
+It at least has to decrease slowly towards 0.
+
+\begin{align*}
+L_{f}(P) &= \sum b_{i}h_{i} \geq l \cdot \frac{f(c)}{2} > 0 \\
+L_{f}(P) \leq \sup\left\{ L_{f}(P) \right\} &= \int f = 0
 \end{align*}
 
 
-\includegraphics[width=2.94545in,height=1.88in]{TEXIMAGEF_Integrals-1/media/image23.png}
+This is a contradiction. 
+\end{proof}
 
+Is this still true if we do not assume \(f\) to be continuous? Not.
+
+
+\section{The Fundamental Theorem of
+Calculus}
+
+Let \(f(x)\) be continuous (which implies it is integrable). If you have
+constant \(a\) (which can be anything): Consider the function:
+
+\[F(x) = \int_{a}^{x}{f(t)\text{d}t}\]
+
+It is equal to the area under \(f\) between \(a\) and \(x\). The input
+going into \(F\) is a number, and the output is an area. \(\text{d}t\)
+indicates that the integral is with respect to \(t\).
+
+Should that be the case, \(F'(x) = f(x)\).
+
+You can combine this with the chain rule:
+
+\[F(x) = \int_{a}^{g(x)}{f(t)\text{d}t},\ F'(x) = f\left( g(x) \right) \cdot g'(x)\]
+
+Example:
+
+\begin{align*}
+F(x) &= \int_{5}^{x}{\frac{1}{1 + \sin^{2}(t)}\text{d}t} = \frac{1}{1 + \sin^{2}(x)} \\
+F(x) &= \int_{a}^{x^{2} + 1}{\frac{2}{1 + e^{t}}\text{d}t},\ F'(x) = \frac{2}{1 + e^{x^{2} + 1}} \cdot 2x \\
+F(x) &= \int_{e^{x}}^{4}{\frac{5}{1 + \cos(t)}\text{d}t},\ F(x)  \\
+&= - \int_{4}^{e^{x}}{\frac{5}{1 + \cos(t)}\text{d}t},\ F'(x)  \\
+&= - \frac{5}{1 + \cos\left( e^{x} \right)} \cdot e^{x} \\
+&F(x)  \\
+&= \int_{x^{2} - x}^{x^{3} + x^{2}}{\frac{1}{1 + \cos\left( t^{3} \right)}\text{d}t},\ F(x)  \\
+&= \int_{x^{2} - x}^{a}{\frac{1}{1 + \cos\left( t^{3} \right)}\text{d}t} + \int_{a}^{x^{3} + x^{2}}{\frac{1}{1 + \cos\left( t^{3} \right)}\text{d}t} \\
+& \\
+&= - \int_{a}^{x^{2} - x}{\frac{1}{1 + \cos\left( t^{3} \right)}\text{d}t} + \int_{a}^{x^{3} + x^{2}}{\frac{1}{1 + \cos\left( t^{3} \right)}\text{d}t}  \\
+&= - \frac{1}{1 + \cos\left( \left( x^{2} - x \right)^{3} \right)}(2x - 1) + \frac{1}{1 + \cos\left( \left( x^{3} + x^{2} \right)^{3} \right)}\left( 3x^{2} + 2x \right)
+\end{align*}
+
+
+Note that \(a\) does not need to be between anything.
+
+
+\subsection{Function definitions using
+integrals}
+
+\[\arccos(x) = x\sqrt{1 - x^{2}} + 2\int_{x}^{1}{\sqrt{1 + t^{2}}\text{d}t}\]
+
+How is cosine defined?
+
+
+\[\arccos(x) = \theta = 2\left( \frac{x\sqrt{1 - x^{2}}}{2} + \int_{x}^{1}{\sqrt{1 - t^{2}}\text{d}t} \right)\]
+
+We have defined arccosine for \(x \in \lbrack 0,\ 1\rbrack\).
+
+We can use this to obtain \(\cos(\theta)\), then \(\sin(\theta)\) (by
+shifting cosine 90 degrees to the right), then \(\tan(\theta)\) through
+\(\frac{\sin(\theta)}{\cos(\theta)}\).
+
+
+\section{The Fundamental Theorem of Calculus
+II}
+
+For \(f\) continuous (or just integrable), let \(F'(x) = f(x)\)
+(don't connect this to FTC I; this isn't the \(F\) over there despite
+using the same notation).
+
+\[\int_{a}^{b}{f(x)\text{d}x} = F(b) - F(a)\]
+
+To prove this, we need FTC I, and it must be used to prove FTC II.
+Integral and derivative are not intended to be related to each other,
+the FTC connects them together.
+
+Th compute an integral, we only need to find an anti-derivative: Find a
+function \(F(x)\) such that \(F'(x) = f(x)\).
+
+\[\widehat{F}(x) = \int_{a}^{x}{f(t)\text{d}t} \Rightarrow {\widehat{F}}'(x) = f(x)\]
+
+(\(\widehat{F}\) is used from FTC I)
+
+\(F(x)\) given in FTC II also has \(F'(x) = f(x)\). While
+\(\widehat{F}\) and \(F\) are different, their derivatives are the same.
+
+Firstly, \(f(x) - f(x) = 0\). Then by MVT, \(\exists\) constant \(c\)
+such that
+
+\[\widehat{F}(x) - F(x) = c\]
+
+(From the fact that if \(f'(x) = 0\) everywhere, then \(f\) is a
+constant function.)
+
+We can rearrange what we've got above:
+
+\[\widehat{F}(x) = F(x) + c,\ \forall x\]
+
+
+\subsection{Recall: MVT}
+
+If \(f\) is continuous on \(\lbrack a,\ b\rbrack\) and differentiable on
+\((a,\ b)\), then there exists \(c\) between \((a,\ b)\) so that:
+
+\[f'(c) = \frac{f(b) - f(a)}{b - a}\]
+
+However, if \(f(b) = f(a)\forall a,\ b\), then \(f(x)\) is a constant
+function. This is obtained from the fact that \(f'(x) = 0\) for all
+\(x\) in an interval.
+
+\[\widehat{F}(b) = \int_{a}^{b}{f(t)\text{d}t} = F(b) + c\]
+
+Notes:
+
+\begin{align*}
+\widehat{F}(a) &= \int_{a}^{a}{f(t)\text{d}t} = 0 = F(a) + c \\
+\widehat{F}(b) &= \int_{a}^{b}{f(t)\text{d}t} = F(b) + c
+\end{align*}
+
+
+
+\subsection{Definition of the indefinite
+integral}
+
+We define the indefinite-integral to be \textbf{one of the
+anti-derivatives.}
+
+\[\int f(x) = F(x)\]
+
+There are infinitely many anti-derivatives of \(f(x)\); they are
+different up to an additive constant.
+
+We will not use constant \(c\) here. Anyways:
+
+\begin{align*}
+\int x^{n}dx &= \frac{1}{n + 1}x^{n + 1},\ n \neq - 1 \\
+\int e^{x}dx &= e^{x} \\
+\int_{}^{}{\frac{1}{x}\text{d}x} &= \ln|x|
+\end{align*}
+
+
+The absolute value on the \(|x|\) for ln will require an absolute value
+as it must take in negative values.
+
+
+\subsection{Defining natural logarithm
+(ln)}
+
+We have defined ln in this way:
+\(\ln(x):(0,\ \infty) \rightarrow ( - \infty,\ \infty)\)
+
+\[\ln(x) = \int_{1}^{x}{\frac{1}{t}\text{d}t}\]
+
+\[\ln(1) = \int_{a}^{a}{\frac{1}{t}\text{d}t} = 0\]
+
+Now, what is \(\ln^{- 1}(x)\) (the inverse)?
+
+\[\ln^{- 1}(x):( - \infty,\ \infty) \rightarrow (0,\ \infty)\]
+
+Which happens to be \(\exp(x)\).
+
+Also: \(\exp(a + b) = \exp(a) + \exp(b)\) (proof left as an exercise
+given \(\ln\left( ab \right) = \ln(a) + \ln(b)\).) Also, note
+this:
+
+\[2^{a + b} = 2^{a}2^{b}\]
+
+So \(\exp(x) = b^{x}\), but what is \(b\)? So, define it. Make this the
+value where if you take the ln of it, you get 1. This means
+\(\ln(e) = 1\).
+
+Then \(e = e^{1} \Rightarrow \exp(x) = e^{x}\). This is how \(e\) is
+defined, and this is how \(e^{x}\) is defined.
+
+We then derive log of any base using
+\(y = \log_{a}(x) = \frac{\ln(x)}{\ln(a)}\).
+
+Also:
+
+\begin{align*}
+\ln\left( ab \right) &= \ln(a) + \ln(b) \Leftrightarrow \ln^{- 1}(x + y) = \ln^{- 1}(x) \cdot \ln^{- 1}(y) \\
+\ln^{- 1}(x) &= b^{x}\ \text{some\ base\ to\ a\ power},\ln^{- 1}(1) = b^{1} = e \\
+\text{meaning}\ln(e) &= 1
+\end{align*}
+
+
+
+
+\subsubsection{Do I need to add dx?}
+
+Right now, \(\text{d}x\) is not as important, but later on, it may be
+required. If your function has multiple variables, you need to state
+what variable you are integrating using \(\text{d}y\) or \(\text{d}x\).
+
+
+\subsection{Properties of integrals}
+
+Integrals are closed under addition.
+
+\[\int_{a}^{b}(f + g) = \int_{a}^{b}f + \int_{a}^{b}g\]
+
+Swapping integral bounds negate the integral.
+
+\[\int_{a}^{b}f = - \int_{b}^{a}f\]
+
+If \(f \leq g\) on all \(\lbrack a,\ b\rbrack\), then
+\(\int_{a}^{b}f \leq \int_{a}^{b}g\).
+
+Since \(f(x)\) is integral, \(f(x)\) must be \textbf{bounded:}
+
+\[\exists m,\ M\ \text{such\ that}\ m \leq f(x) \leq M\ \forall x \in \lbrack a,\ b\rbrack\]
+
+(Bounded means \(f(x)\) is not approaching infinity.)
+
+
+\[m(b - a) \leq \int_{a}^{b}f \leq M(b - a)\]
+
+
+\subsubsection{Conditions that guarantee f is
+integrable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Bounded and monotone
+\item
+  \textbf{Bounded and continuous}
+\item
+  Bounded and discontinuous only at finitely many points (if infinitely,
+  it needs to be minimized)
+\end{enumerate}
+
+If the function is approaching infinity, we may not be able to integrate
+it for now, though we'll know how later. But we know for sure we can't
+integrate \(\frac{1}{x}\) to infinity.
+
+
+\section{Antiderivatives}
+
+\[\int_{a}^{b}{f(x)\text{d}x} = F(b) - F(a)\]
+
+Firstly: a simple case
+
+\[\int_{0}^{1}{(2x - 3)\text{d}x} = x^{2} - 3x \mid_{0}^{1} = (1 - 3) - (0 - 0)\]
+
+Cube roots:
+
+\[\int_{0}^{8}\sqrt[3]{x} = \int x^{\frac{1}{3}} = \frac{3}{4}x^{\frac{4}{3}} \mid_{0}^{8} = \frac{3}{4}(8 \cdot 2 - 0)\]
+
+Cancelling derivatives out:
+
+\[\int_{1}^{5}{\frac{d}{\text{d}x}\left( \sqrt{1 + x^{2}} \right)\text{d}x} = \sqrt{1 + x^{2}} \mid_{1}^{5}\]
+
+Piecewise:
+
+\[\int_{0}^{4}{f(x)}\ \text{where}\text{\ f}(x) = \left\{ \begin{matrix}
+2x & 0 \leq x \leq 1 \\
+ - x & 1 < x \leq 4 \\
+\end{matrix} \right.\ \]
+
+Split them.
+
+Denominator approaches infinity:
+
+\[\int_{- 2}^{2}\frac{1}{x^{2}}\text{\ DNE}\]
+
+Reciprocal function:
+
+\[\int_{1}^{3}\frac{1}{x} = \ln|x| \mid_{1}^{3} = \ln 3 - \ln 1\]
+
+Reciprocal but negative bounds:
+
+\[\int_{- 3}^{- 1}\frac{1}{x} = \ln|x| \mid_{- 3}^{- 1} = \ln(1) - \ln(3)\]
+
+Cases where it is not supposed to exist:
+
+\[\int_{- 3}^{3}\frac{1}{x}\text{\ DNE}\]
+
+
+\subsection{Symmetric reciprocals}
+
+
+If the area you want to integrate passes the vertical asymptote of a
+reciprocal function, you can't integrate it.
+
+
+\subsection{Dealing with the constant of
+integration}
+
+\emph{All anti-derivatives are different up to a constant.}
+
+Finding \(f(x)\) where \(f'(x) = x^{2}\) and \(f(2) = 1\)
+
+Well, it's \(f(x) = \frac{x^{3}}{3} + C\) and find \(C\).
+
+
+\section{Integration techniques}
+
+
+\subsection{Substitution}
+
+Set a portion of \(f(x)\) to be equal to \(u = u(x)\)
+
+Compute \(\frac{\text{d}u}{\text{d}x} = u'(x)\)
+
+Rearrange for \(\text{d}x\) regarding the left side as a fraction
+\(dx = \frac{\text{d}u}{u'(x)}\)
+
+Replace \(\text{d}x\) in integral with the \(\text{d}u\) expression
+above. Replace the portion in \(f(x)\) you set to be \(u\). Hopefully,
+there are no more quantities involving x. If there are, solve \(x\) in
+terms of \(u\).
+
+
+\subsubsection{When to use
+substitution}
+
+Given \(f(x)\), try to set the most troublesome piece of \(f(x)\) to
+\(u\).
+
+EXAMPLE:
+
+\begin{align*}
+&\int e^{- 5x + 1}\text{d}x \\
+u &= - 5x + 1 \\
+\frac{\text{d}u}{\text{d}x} &= - 5 \\
+dx &= \frac{\text{d}u}{- 5} \\
+\frac{\int e^{u}\text{d}u}{- 5} &= - \frac{1}{5}e^{u}
+\end{align*}
+
+
+\[- \frac{1}{5}e^{- 5x + 1}\]
+
+A HARDER EXAMPLE where we can't get rid of \(x\) entirely:
+
+\emph{Set} \(u\) \emph{such that it cancels out the remaining}
+\(x\)\emph{-terms.}
+
+\begin{align*}
+&\int x^{2}\sqrt{x^{3} + 1}\text{d}x \\
+u &= x^{3} + 1 \\
+\frac{\text{d}u}{\text{d}x} &= 3x^{2} \\
+dx &= \frac{\text{d}u}{3x^{2}} \\
+\frac{\int x^{2}\sqrt{u}\text{d}u}{3x^{2}} &= \frac{\int_{}^{}\sqrt{u}\text{d}u}{3} = \frac{u^{\frac{3}{2}}}{\frac{3}{2} \cdot 3} = \frac{2}{9}u^{\frac{3}{2}} = \frac{2}{9}\left( x^{3} + 1 \right)^{\frac{3}{2}}
+\end{align*}
+
+
+A complicated example
+
+\begin{align*}
+&\int_{0}^{\frac{\pi}{4}}{\frac{\sin(x)}{\cos^{3}(x)}\text{d}x} \\
+u &= \cos(x) \\
+\frac{\text{d}u}{\text{d}x} &= - \sin(x) \\
+dx &= \frac{\text{d}u}{- \sin(x)} \\
+\int\left( \frac{\sin(x)}{u^{3}} \cdot \frac{\text{d}u}{- \sin(x)} \right)du &= - \int\left( \frac{\text{d}u}{u^{3}} \right) \\
+&= - \left( \frac{1}{- 2} \cdot \frac{1}{u^{2}} \right) = \frac{1}{2u^{2}} = \frac{1}{2\cos^{2}(x)} \mid_{0}^{\frac{\pi}{4}} \\
+&= \frac{1}{2\cos^{2}\left( \frac{\pi}{4} \right)} - \frac{1}{2\cos^{2}(0)}
+\end{align*}
+
+
+Okay so
+
+\begin{align*}
+&\int_{1}^{2}\left( \sqrt{x - 1}(x + 1)\text{d}x \right) \\
+u &= x - 1 \\
+\frac{\text{d}u}{\text{d}x} &= 1 \\
+dx &= du \\
+&\int\sqrt{u} \cdot (x + 1)\text{d}u \\
+&\int\sqrt{u} \cdot u + 2udu \\
+&\frac{2}{5}(x - 1)^{\frac{5}{2}} + \frac{4}{3}(x - 1)^{\frac{3}{2}} \mid_{1}^{2}
+\end{align*}
+
+
+Another one
+
+\begin{align*}
+&\int_{\frac{1}{4}}^{\frac{1}{2}}{\frac{1}{x\ln x}\text{d}x} \\
+u &= \ln(x) \\
+\frac{\text{d}u}{\text{d}x} &= \frac{1}{x} \\
+dx &= xdu \\
+&\int\left( \frac{1}{u}\text{d}u \right) \\
+&= \ln|u| = \ln\left| \ln(x) \right|
+\end{align*}
+
+
+Tip: always, just let \(u = \ln(x)\) because of how differentiating
+\(\ln(x)\) works
+
+When considering fractions, the denominator is always more troublesome
+than the numerator.
+
+\[\int\left( \frac{\sin(x) - \cos(x)}{\sin(x) + \cos(x)} \right)\]
+
+This:
+
+\[\int\left( \frac{\cos\left( \sqrt{x} \right)}{\sqrt{x}} \right)\]
+
+When you see \(\sqrt{x}\) on the denominator, set \(u = \sqrt{x}\)/
+
+\begin{align*}
+u &= \sqrt{x} = x^{\frac{1}{2}} \\
+\frac{\text{d}u}{\text{d}x} &= \frac{1}{2}x^{- \frac{1}{2}} = \frac{1}{2\sqrt{x}} \\
+dx &= 2\sqrt{x}\text{d}u \\
+&= {\int_{}^{}\text{cos}}(u)2du \\
+&= 2\sin u \\
+&= 2\sin\left( \sqrt{x} \right)
+\end{align*}
+
+
+Okay so
+
+\begin{align*}
+&\int\left( \frac{x}{\sqrt{4 - x^{2}}}\text{d}x \right) \\
+u &= 4 - x^{2}
+\end{align*}
+
+
+Q10:
+
+\begin{align*}
+&\int\left( \frac{2x - 7}{x^{2} - 7x + 10}\text{d}x \right) \\
+u &= x^{2} - 7x + 10 \\
+\frac{\text{d}u}{\text{d}x} &= 2x - 7
+\end{align*}
+
+
+Q12:
+
+\[\int\left( \frac{x^{2} - 2x}{x^{3} - 3x^{2} - 5} \right)
+\]
+
+
+\subsection{The involvement of arctangent in
+integrating}
+
+\begin{align*}
+&\int\left( \frac{x + 2}{x^{2} + 1}\text{d}x \right) \\
+u &= x^{2} + 1 \\
+\frac{\text{d}u}{\text{d}x} &= 2x \\
+dx &= \frac{\text{d}u}{2x} \\
+&\int\left( \frac{x + 2}{u} \cdot \frac{\text{d}u}{2x} \right)
+\end{align*}
+
+
+Oops, that doesn't work. All you're doing is hoping that \(u\) happens
+to be the numerator, but what if it's not? \(x + 2\) does not cancel out
+with \(2x\). What do you do? Force \(u'(x)\) to be on the numerator
+-- this is the only thing you can do. You've encountered this rational
+function that is too complicated, and you want to find its
+antiderivative.
+
+In this case, the derivative of \(u\) is \(2x\), but we have \(x + 2\)
+on the numerator. What we are going to do is put the 2 out of the
+integral, so we are going to do a bit of rewriting:
+
+\begin{align*}
+&\int\left( \frac{x}{x^{2} + 1} \right)dx + \int\left( \frac{2}{x^{2} + 1} \right)\text{d}x \\
+\int\left( \frac{x}{u} \cdot \frac{\text{d}u}{2x} \right) &= \frac{1}{2}\ln|u| = \frac{1}{2}\ln\left| x^{2} + 1 \right|
+\end{align*}
+
+
+And also \(\int\left( \frac{2}{x^{2} + 1} \right)\text{d}x\). Now what?
+First, we know that this will be a lower degree of our previous term.
+This one can be solved in a different way. In this case, remember that
+\(\int\left( \frac{1}{x^{2} + 1} \right) = \arctan(x)\). So, this means:
+
+\[\int\left( \frac{2}{x^{2} + 1} \right)dx = 2\arctan(x)\]
+
+Meaning:
+
+\[\int\left( \frac{x + 2}{x^{2} + 1}\text{d}x \right) = \frac{1}{2}\ln\left| x^{2} + 1 \right| + 2\arctan(x)\]
+
+(Anything between 1-13 will be fair game in a challenge.)
+
+
+\subsection{Integration by parts}
+
+Split a function to two pieces, \(u\) and \(\text{d}v\). After choosing
+\(u\), the rest of the function becomes \(\text{d}v\).
+
+\begin{itemize}
+\item
+  Compute the derivative and the anti-derivative of \(u\) and
+  \(\text{d}v\)
+\end{itemize}
+
+Apply the formula:
+
+\[\int u \cdot dv = u \cdot v - \int du \cdot v\]
+
+The point of integration by parts is to move the derivative from one
+part to the other. If you choose \(u\) correctly, hopefully
+\(\int du \cdot v\) would be easier to solve.
+
+
+\subsubsection{When am I supposed to use
+it?}
+
+When \(f(x)\) is in the form:
+
+\begin{itemize}
+\item
+  \(x^{n}\sin(x)\)
+\item
+  \(x^{n}\cos(x)\)
+\item
+  \(x^{n}e^{x}\)
+\end{itemize}
+
+Then set \(u = x^{n}\), then du would have one power less than before.
+Continue the same process until there is no more powers of \(x\) left.
+
+Example:
+
+\[\int x \cdot \cos(x)\]
+
+\begin{align*}
+u &= x \\
+dv &= \cos(x) \\
+du &= 1 \cdot dx \\
+v &= \int_{}^{}{\cos(x)} = \sin(x) \\
+\int x \cdot \cos(x) &= u \cdot v - \int du \cdot v = x \cdot \sin(x) - \int_{}^{}1 \cdot \sin(x)\text{d}x
+\end{align*}
+
+
+The same applies if you're dealing with an inverse trigonometric
+function.
+
+Example:
+
+\[\int\left( x^{2}\cos(x) \right)\]
+
+\begin{align*}
+u &= x^{2},\ dv = \cos(x) \\
+du &= 2x,\ v = \int dv = \int\left( \cos(x) \right) = \sin(x) \\
+&uv - \int du \cdot v \\
+&= x^{2}\sin(x) - \int 2x \cdot \sin(x)
+\end{align*}
+
+
+Go again:
+
+\begin{align*}
+&\int 2x \cdot \sin(x) \\
+u &= 2x,\ dv = \sin(x) \\
+du &= 2,\ v = \int_{}^{}{\sin(x)} = - \cos(x)
+ \\
+&x^{2}\sin(x) - (2x \cdot - \cos(x) - \int 2\left( - \cos(x) \right) \\
+&= x^{2}\sin(x) - (2x \cdot - \cos(x) + 2\sin(x) \\
+&= x^{2}\sin(x) + 2x\cos(x) - 2\sin(x)\
+\end{align*}
+
+
+
+\subsubsection{Infinite loops}
+
+\begin{align*}
+&\int\left( e^{x}\cos(x)\text{d}x \right) \\
+u &= e^{x},\ \text{d}v = \cos(x) \\
+\text{d}u &= e^{x},\ v = \int\left( \cos(x) \right) = \sin(x) \\
+&= uv - \int\text{d}u \cdot v \\
+&e^{x}\sin(x) - \int\left( e^{x}\sin(x) \right) \\
+u &= e^{x},\ dv = \sin(x) \\
+du &= e^{x},\ v = \int(\sin(x) = - \cos(x) \\
+&= e^{x}\sin(x) - (e^{x}\left( - \cos(x) \right) - \int\left( e^{x}\left( - \cos(x) \right) \right)
+ \\
+\int\left( e^{x}\cos(x)\text{d}x \right) &= e^{x}\sin(x) + (e^{x}\left( \cos(x) \right) - \int\left( e^{x}\left( \cos(x) \right) \right) \\
+2\int\left( e^{x}\cos(x)\text{d}x \right) &= e^{x}\sin(x) + \left( e^{x}\left( \cos(x) \right) \right) \\
+\int\left( e^{x}\cos(x)\text{d}x \right) &= \frac{e^{x}\sin(x) + \left( e^{x}\left( \cos(x) \right) \right)}{2}
+\end{align*}
+
+
+
+\subsubsection{MASSIVE HINT}
+
+If you have an equation in the form
+\(\int\left( e^{ax}\sin\left( bx \right) \right)\) or
+\(\int\left( e^{ax}\cos\left( bx \right) \right)\) then it
+should be:
+
+\[= Ae^{ax}\sin\left( bx \right) + Be^{ax}\cos\left( bx \right)\]
+
+Solve \(A,\ B\); take derivative.
+
+Example:
+
+\begin{align*}
+\int\left( e^{x}\cos(x) \right) &= Ae^{ax}\sin\left( bx \right) + Be^{ax}\sin\left( bx \right) \\
+&= Ae^{x}\sin(x) + Be^{x}\cos(x)
+\end{align*}
+
+
+Take the derivative:
+
+\begin{align*}
+e^{x}\cos(x) &= Ae^{x}\sin(x) + Ae^{x}\cos(x) + Be^{x}\cos(x) + Be^{x}\left( - \sin(x) \right) \\
+1 &= A + B;0 = A - B
+\end{align*}
+
+
+
+\subsubsection{Another case to use integration by
+parts}
+
+When you have ln or any of the inverse trigonometric functions, set
+\(u\) to be this quantity. Then \(\text{d}u\) should be way simpler.
+
+Example:
+
+\begin{align*}
+&\int\left( \ln(x) \cdot 1 \right) \\
+u &= \ln(x),\ dv = 1 \\
+du &= \frac{1}{x},\ v = \int_{}^{}1 = x \\
+&uv - \int du \cdot v \\
+\ln(x) \cdot x - \int\left( \frac{1}{x}x \right) &= \ln(x) \cdot x - x
+\end{align*}
+
+
+\textbf{Where you shouldn't integrate by parts directly}
+
+\[\int(\sin\left( \ln(x) \right)\]
+
+Don't implement integration by parts directly. You should probably use
+substitution, which is what you should use if you have a troublesome
+term. Also, \(u\) should be \(\ln(x)\) because you can't really
+integrate ln.
+
+\begin{align*}
+&\int(\sin\left( \ln(x) \right) \\
+u &= \ln(x) \rightarrow x = e^{u} \\
+\frac{\text{d}u}{\text{d}x} &= \frac{1}{x} \\
+dx &= xdu \\
+&= \int\left( \sin(u) \right)\text{xdu} \\
+&\int\left( \sin(u)e^{u}\text{d}u \right) \\
+&= Ae^{u}\sin u + Be^{u}\cos(u)
+\end{align*}
+
+
+(Integral by parts is what you would do by this point)
+
+
+\subsubsection{Integrating inverse trigonometric
+functions}
+
+\begin{align*}
+&\int\left( \arcsin(x) \cdot 1 \right) \\
+u &= \arcsin(x),\ dv = 1 \\
+\frac{\text{d}u}{\text{d}x} &= \frac{1}{\sqrt{1 - x^{2}}},\ v = \int_{}^{}1 = x \\
+&= uv - \int du \cdot v \\
+&= \arcsin(x) \cdot x - \int\left( \frac{1}{\sqrt{1 - x^{2}}}\text{xdx} \right) \\
+u &= 1 - x^{2} \\
+\frac{\text{d}u}{\text{d}x} &= - 2x \\
+dx &= \frac{\text{d}u}{- 2x} \\
+&= \arcsin(x) \cdot x - \int_{}^{}\frac{\frac{1}{\sqrt{u}}\text{xdu}}{- 2x} = \arcsin(x) \cdot x - \int\left( \frac{1}{\sqrt{u}} \cdot \left( - \frac{1}{2} \right) \cdot du \right) \\
+- \int\left( \frac{1}{\sqrt{u}} \cdot \left( - \frac{1}{2} \right) \cdot du \right) &= \frac{1}{2}\int u^{\frac{1}{2}} = \frac{1}{2} \cdot 2u^{\frac{1}{2}} = \left( 1 - x^{2} \right)^{\frac{1}{2}} \\
+&\arcsin(x) \cdot x - \left( 1 - x^{2} \right)^{\frac{1}{2}}
+\end{align*}
+
+
+I kind of want to do this again
+
+\begin{align*}
+&\int\left( \frac{x}{\sqrt{4 - x^{2}}}\text{d}x \right) \\
+u &= 4 - x^{2} \\
+\frac{\text{d}u}{\text{d}x} &= - 2x \\
+dx &= \frac{\text{d}u}{- 2x} \\
+&\int\left( \frac{x}{u}\frac{\text{d}u}{- 2x} \right) \\
+&= \int\left( \frac{1}{u}\frac{\text{d}u}{- 2} \right)
+\end{align*}
+
+
+Question 8:
+
+\begin{align*}
+&\int\left( \frac{\cos\sqrt{x}}{\sqrt{x}} \right)\text{d}x \\
+u &= \sqrt{x} \\
+\frac{\text{d}u}{\text{d}x} &= \frac{1}{2\sqrt{x}} \\
+dx &= du \cdot 2\sqrt{x} \\
+&\int 2\left( \frac{\cos u}{u} \right)du \cdot u \\
+&\int\left( {2cos}u \right)\text{d}u \\
+\sin u &= 2\sin\left( \sqrt{x} \right)
+\end{align*}
+
+
+
+\subsection{Integrating arctan}
+
+\begin{align*}
+&\int\left( x \cdot \arctan(x)\text{d}x \right) \\
+u &= \arctan(x),\ dv = x \\
+du &= \frac{1}{1 + x^{2}},\ v = \frac{x^{2}}{2} \\
+&\arctan(x) \cdot \frac{x^{2}}{2} - \frac{1}{2}\int\left( \frac{x^{2}}{1 + x^{2}} \right)\text{d}x
+ \\
+\int\left( \frac{x^{2}}{1 + x^{2}} \right)dx &= \int\left( \frac{x^{2} + 1 - 1}{1 + x^{2}} \right)\text{d}x \\
+\int\left( \frac{x^{2} + 1}{1 + x^{2}} - \frac{1}{1 + x^{2}} \right)dx &= \int\left( 1 - \frac{1}{1 + x^{2}} \right)dx = x - \arctan(x)
+\end{align*}
+
+
+Back:
+
+\[\arctan(x) \cdot \frac{x^{2}}{2} - \frac{1}{2}\left( x - \arctan(x) \right)\]
+
+
+\subsection{About long division}
+
+\[\frac{14}{3} = 4R2\]
+
+This essentially means
+
+\[\frac{14 - 2}{3} = 4\]
+
+If I remove the remainder from the start before doing the division, it
+will properly divide. 4 is the quotient, and 2 is the remainder.
+
+The same logic can be applied when doing polynomial long division.
+
+
+
+\subsubsection{Another example}
+
+\begin{align*}
+&\int\left( \arctan\left( \sqrt{x} \right)\text{d}x \right) \\
+u &= \sqrt{x} \\
+\frac{\text{d}u}{\text{d}x} &= \frac{1}{2\sqrt{x}} \\
+dx &= 2\sqrt{x} \cdot du \\
+&\int\left( \arctan(u)2\sqrt{x} \cdot du \right)
+\end{align*}
+
+
+When doing integration by substitution, the derivative of \(u\) is in
+terms of \(u\) itself, so we can substitute again:
+
+\[\int\left( \arctan(u)2u \cdot du \right)\]
+
+You can now proceed with integrating by parts using the previous
+example.
+
+
+\subsubsection{Another example}
+
+\[\int\left( x\sec^{2}(x)\text{d}x \right)\]
+
+A bit stuck on substituting. What do I do? Whenever you encounter a
+difficult integral, you can only do integration by parts and hope to get
+somewhere.
+
+\begin{align*}
+u &= x,\ dv = \sec^{2}(x) \\
+du &= 1,\ v = \tan(x) \\
+&x \cdot \tan(x) - \int\left( \tan(x) \right)
+\end{align*}
+
+
+What is the integral of \(\tan(x)\)? I forgot.
+
+\[x \cdot \tan(x) - \int\left( \frac{\sin(x)}{\cos(x)} \right)\]
+
+\begin{align*}
+u &= \cos(x) \\
+\frac{\text{d}u}{\text{d}x} &= - \sin(x) \\
+dx &= \frac{\text{d}u}{- \sin(x)} \\
+\int\left( \frac{\sin(x)}{\cos(x)} \right) &= \int\left( \frac{- 1}{u}\frac{\text{d}u}{1} \right) = \int\left( - \frac{1}{u}\text{d}u \right) = - \ln|u| = - \ln\left| \cos(x) \right|
+\end{align*}
+
+
+We can complete this:
+
+\[x \cdot \tan(x) + \ln\left| \cos(x) \right|\]
+
+
+\subsection{Tips when substituting}
+
+Say you are given
+
+\[\int\left( \frac{x^{3}}{1 + x^{4}}\text{d}x \right)\]
+
+When taking \(u\), make it:
+
+\[u = 1 + x^{4}\]
+
+This ensures the 1 is removed when taking the derivative.
+
+When taking \(u\)-sub, you want to choose a value that would end up
+cancelling the numerator out, when dealing with algebraic variables. For
+example:
+
+\[\int\left( \frac{x}{1 + x^{4}}\text{d}x \right)\]
+
+Then you want to take \(u = x^{2}\) because
+\(\frac{\text{d}u}{\text{d}x} = 2x,\ dx = \frac{\text{d}u}{2x}\), which
+ends up cancelling out the numerator.
+
+
+\section{Applications}
+
+
+\subsection{Velocity}
+
+\begin{align*}
+&\sum\left( \frac{1}{n} \cdot \frac{i^{2}}{n^{2}} \right) \\
+&\sum\left( \frac{1}{n}\left( \frac{i}{n} \right)^{2} \right) \\
+&\frac{1}{n} \cdot \sum\left( \frac{i}{n} \right)^{2} \\
+f(x) &= x^{2}
+\end{align*}
+
+
+
+\section{Area}
+
+Given \(y = f(x) > 0\) on \(x \in \lbrack a,\ b\rbrack\), the area under
+the curve \(y = f(x)\) and above the \(x\)-axis is given by
+
+\[\int_{a}^{b}{f(x)\text{d}x} = \int_{a}^{b}\text{ydx}\]
+
+And then you have area differences:
+
+If \(y = f(x) > g(x)\), then the area between the two curves is given by
+the larger area minus the smaller area.
+
+\[\text{Area\ Difference} = \int_{a}^{b}{f(x)\text{d}x} - \int_{a}^{b}{g(x)\text{d}x}\]
+
+This can be extended when the functions are as negative as well. The
+process is still the same if the area you are measuring crosses the
+\(x\)-axis.
+
+In cases where intersection occurs, make the two functions equal to each
+other (similar to a system of equations). The solutions you find will be
+the intersections. Proceed to test points afterwards.
+
+Example: total area between \(y = x^{3} - 2x + 2\) and \(y = x^{2} + 2\)
+
+Make them equal to each other:
+
+\begin{align*}
+x^{3} - 2x + 2 &= x^{2} + 2 \\
+x^{3} - x^{2} - 2x &= 0 \\
+x(x - 2)(x + 1) &= 0
+\end{align*}
+
+
+\[x = 0,\ x = 2,\ x = - 1\]
+
+We end up with this:
+
+
+The area is then:
+
+\[\int_{- 1}^{0}{x^{3} - 2x + 2dx} - \int_{- 1}^{0}{x^{2} + 2} + \int_{0}^{2}{x^{2} + 2} + \int_{0}^{2}{x^{3} - 2x + 2}\]
+
+
+\subsection{Integrating with respect to
+y}
+
+Sometimes, we are given a curve implicitly, such as
+\(y^{5} + y + 1 = x\). It may be difficult to solve for \(y = f(x)\),
+and sometimes we cannot solve \(y = f(x)\). We can still compute area by
+taking integral against \(y\).
+
+Given \(x = f(y) > 0\) on \(y\) in \(\lbrack c,\ d\rbrack\), the area
+between the curve \(x = f(y)\) and the \(y\)-axis is given by
+
+\[\text{area} = \int_{c}^{d}{f(y)\text{d}y} = \int_{c}^{d}\text{xdy}\]
+
+If \(x = f(y) > g(y)\) which means the curve \(f(y)\) is to the right of
+\(g(Y)\), then the area between the 2 curves is given by the larger area
+minus the smaller area.
+
+\[\text{Area\ difference} = \int_{c}^{d}{f(y)\text{d}y} - \int_{c}^{d}{g(y)\text{d}y}\]
+
+This can be extended to the case when the functions are negative as
+well.
+
+Example:
+
+Area between \(y = x - 1\) and \(y^{2} = 2x + 6\)
+
+Then \(x = y + 1,\ x = \frac{1}{2}y^{2} - 3\)
+
+We need to find the intersection of the two curves by plugging one into
+the other one:
+
+\[x = y + 1 = \frac{1}{2}y^{2} - 3\]
+
+Find all the solutions \(y\).
+
+\begin{align*}
+y + 1 &= \frac{1}{2}y^{2} - 3 \\
+0 &= \frac{1}{2}y^{2} - y - 4 \\
+&= (y - 4)(y + 2)
+\end{align*}
+
+
+\[y = 4,\ y = - 2\]
+
+So, the intercept occurs at these two \(y\)-points.
+
+Then you would be integrating (go from low to high point):
+
+\[\int_{- 2}^{4}{y + 1dy} - \int_{- 2}^{4}{\frac{1}{2}y^{2} - 3dy}\]
+
+\(x = y + 1\) is the larger one as it is more to the right and always
+like that.
+
+
+\subsection{Volume}
+
+Volume by revolution
+
+There are 2 quantities: radius \(r\) and height \(h\). Depending on the
+rotation axis, they will correspond to \(x\) and \(y\).
+
+
+\subsubsection{The cheese wheel method}
+
+\textbf{Rotation axis as} \(\mathbf{y}\)\textbf{-axis: \textbar{}}
+
+\[r = x,\ h = y\]
+
+Given \(x = f(y) \Rightarrow r = f(y)\)
+
+We can compute the volume bounded between \(x = f(y)\) and the
+\(y\)-axis by adding up many horizontal circles on different values of
+\(y\) in \((c,d)\). This is the case if you want to look sideways.
+
+\[V = \int\left( \pi r^{2}\text{d}y \right) = \int_{c}^{d}{\pi\left( f(y) \right)^{2}\text{d}y}\]
+
+\(y\) is the variable of interest.
+
+
+Example:
+
+Considering the region bounded by \(x = y^{3},\ x = 8,\ y = 0\), find
+the volume after revolving this region around the \(y\)-axis.
+
+Firstly. \(8 = y^{3},\ \sqrt[3]{8} = 2\)
+
+So
+\(\int_{0}^{8}{\pi{(8)}^{2}\text{d}y} - \int_{0}^{8}{\pi\left( y^{3} \right)^{2}\text{d}y} = \text{the\ answer}\)
+
+
+\subsubsection{The cylinder method}
+
+
+If we want to instead use \(y = f(x)\):
+
+Given \(y = f(x) \Rightarrow h = f(x)\)
+
+We can compute the volume bounded between \(y = f(x)\) and the
+\(x\)-axis by adding up many thin cylinders on different values of \(x\)
+in \((a,\ b)\).
+
+\[V = \int(2\pi r \cdot h)dx = \int_{a}^{b}{2\pi x \cdot f(x)\text{d}x}\]
+
+Example:
+
+
+
+\[y = x^{2},\ y = x^{\frac{1}{3}}\]
+
+\[\int_{0}^{1}{2\pi x \cdot x^{\frac{1}{3}}\text{d}x} - \int_{0}^{1}{2\pi x \cdot x^{2}\text{d}x}\]
+
+\textbf{Rotation axis as the} \(\mathbf{x}\)\textbf{-axis --}
+
+\[h = x,\ r = y\]
+
+Given \(y = f(x) \Rightarrow r = f(x)\)
+
+We can compute the volume bounded between \(y = f(x)\) and the
+\(x\)-axis by adding up many vertical circles on different values in
+\((a,\ b)\).
+
+\[V = \int\left( \pi r^{2}\text{d}x \right) = \int_{a}^{b}{\pi\left( f(x) \right)^{2}\text{d}x}\]
+
+
+\subsubsection{Volume surrounding the
+x-axis}
+
+\[h = x,\ r = y\]
+
+Given \(y = f(x) \Rightarrow r = f(x)\)
+
+Then
+
+\[V = \int\left( \pi r^{2}\text{d}x \right) = \int_{a}^{b}{\pi\left( f(x) \right)^{2}\text{d}x}\]
+
+
+\begin{align*}
+y &= \sqrt{x} = - x + 6 \\
+\sqrt{x} &= - x + 6 \\
+x &= x^{2} - 12x + 36 \\
+0 &= x^{2} - 13x + 36 \\
+0 &= (x - 4)(x - 9)
+\end{align*}
+
+
+When we squared the step, it did not matter whether you started with
+\(\pm \sqrt{x}\), so the act of squaring removes the information of
+whether or not you removed the \(\pm\) from the square root of \(x\).
+This means solutions caused by \(- \sqrt{x}\) is called a superfluous
+solution. These are extra solutions that are not supposed to exist.
+
+
+And then you have \(y = 1\).
+
+
+You end up having two parts.
+
+Test which points are smaller where the split point is \(x = 4\)
+
+
+\[x = 1,\ \sqrt{1} = 1,\ y = - 1 + 6 = 5\]
+
+So \(\sqrt{x}\) is smaller at that point. Then, on the other side:
+
+\(x = 5\),
+
+\[2 < \sqrt{5} < 3,\ y = - 5 + 6 = 1\]
+
+So \(x + y = 6\) is smaller. We then need to check the points where they
+intersect with \(1\):
+
+\(1 = \sqrt{x},\ x = 1\) and \(x + 1 = 6 \Rightarrow x = 5\), so to
+integrate this:
+
+\[\int_{1}^{4}{\sqrt{x}\text{d}x} - \int_{1}^{4}1 + \int_{4}^{5}{- x + 6dx} - \int_{4}^{5}{1dx}\]
+
+Which is the area, but because we are dealing with volumes, we will have
+to switch up our calculations a bit:
+
+\[{\int_{1}^{4}{\pi\left( \sqrt{x} \right)^{2}\text{d}x} - \int_{1}^{4}{\pi 1^{2}} }{+ \int_{4}^{5}{\pi( - x + 6)^{2}\text{d}x} - \int_{4}^{5}{\pi 1^{2}\text{d}x}} \]
+
+Solving this integral gives us the solution.
+
+\[\int_{1}^{4}\pi xdx - \int_{1}^{4}{\pi 1} + \int_{4}^{5}{\pi\left( x^{2} - 12x + 36 \right)^{2}\text{d}x} - \int_{4}^{5}\pi dx\]
+
+\[\left\lbrack \pi\frac{1}{2}x^{2} \right\rbrack_{1}^{4} - \left\lbrack \pi x \right\rbrack_{1}^{4} + \left\lbrack \pi\left( \frac{1}{3}x^{3} - 6x^{2} + 36x \right) \right\rbrack_{4}^{5} - \left\lbrack \pi x \right\rbrack_{4}^{5}\]
+
+\[{\left( \frac{\pi}{2}\left( 4^{2} \right) - \frac{\pi}{2}\left( 1^{2} \right) \right) }{+ \left( \pi\left( \frac{1}{3}\left( 5^{3} \right) - 6\left( 5^{2} \right) + 36(5) \right) - \pi\left( \frac{1}{3}\left( 4^{3} \right) - 6\left( 4^{2} \right) + 36(4) \right) \right) }{- (5\pi - 4\pi)} \]
+
+There we go. If we evaluate this, we get the answer.
+
+\[7\pi + \frac{11\pi}{6}\]
+
+
+\subsubsection{Cylinder surrounding the
+x-axis}
+
+Given \(x = f(y) \Rightarrow h = f(y)\)
+
+We can compute the volume bounded between \(x = f(y)\ \) and the \(y\)
+axis by adding up many thin cylinders on different values of \(y\) in
+\((c,\ d)\).
+
+\[V = \int(2\pi r \cdot h \cdot dy) = \int_{c}^{d}\left( 2\pi y \cdot f(y) \cdot dy \right)\]
+
+Example question:
+
+
+\[y = x^{2},\ y = 9\]
+
+Revolve the region around the \(x\)-axis. The points of intersection are
+at \(x = \pm 3\). Though I would do the cylindrical shell method:
+
+\[x = \sqrt{y},\ x = - \sqrt{y}\]
+
+Treat them as causing separate volumes then add them up.
+
+In the setup of \(x = f(y):\int\text{right} - \int\text{left\ }\)
+
+\begin{align*}
+&\int_{0}^{9}{2\pi rhdy} - \int_{0}^{9}{2\pi rhdy} \\
+&= \int\left( 2\pi y \cdot \sqrt{y}\text{d}y \right) - \int\left( 2\pi y \cdot \left( - \sqrt{y} \right)\text{d}y \right)
+\end{align*}
+
+
+Solving this gives us the answer.
+
+
+\subsubsection{Cheese wheel or
+cylinder}
+
+The function should be in a form where it is easier to deal with. For
+example, you don't want to deal with \(x = \pm \sqrt{y - 4}\), which
+requires you to use the quadratic formula.
+
+If you have \(y^{5} + y + 1 = x\), just solve with respect to \(y\),
+because it is impossible to solve it by isolating \(y\).
+
+
+\subsubsection{The harder questions}
+
+
+
+\subsubsection{Volume of a circle}
+
+We have:
+
+\[x^{2} + y^{2} = r^{2}\]
+
+Then the upper curve can be modeled by:
+
+\[y = \pm \sqrt{r^{2} - x^{2}}\]
+
+We can just only keep the positive side. Also:
+
+\[V = \int\left( \pi r^{2}\text{d}x \right)\]
+
+Which is
+
+\begin{align*}
+&\int\left( \pi{\sqrt{r^{2} - x^{2}}}^{2} \right)\text{d}x \\
+&\int\left( \pi\left( r^{2} - x^{2} \right) \right) \\
+&\pi\int_{- r}^{r}{r^{2} - x^{2}} \\
+&= \pi\left( r^{2}x \mid_{- r}^{r} - \frac{x^{3}}{3} \mid_{- r}^{r} \right) \\
+&= \pi\left( \left( r^{2}r + r^{2}r \right) - \left( \frac{r^{3}}{3} + \frac{r^{3}}{3} \right) \right) \\
+&= \pi\left( 2r^{3} - \frac{2}{3}r^{3} \right) = \frac{4}{3}r^{3}\pi
+\end{align*}
+
+
+
+\subsubsection{Revolve around both
+cases}
+
+Bounded by \(y = x^{2} + 4,\ y = 6x - x^{2} = x(6 - x)\)
+
+Find points of intersection:
+
+\begin{align*}
+x^{2} + 4 &= 6x - x^{2} \\
+2x^{2} - 6x + 4 &= 0 \\
+2\left( x^{2} - 3x + 2 \right) &= 2(x - 1)(x - 2)
+\end{align*}
+
+
+Intersection is \(x = 1,\ x = 2\)
+
+Now we know: the area in-between is:
+
+\begin{align*}
+&\int_{1}^{2}{6x - x^{2}} - \int_{1}^{2}{x^{2} + 4} \\
+V &= \int\left( \pi r^{2}\text{d}x \right) - \int\left( \pi r^{2}\text{d}x \right) \\
+&= \int_{1}^{2}{\pi\left( 6x - x^{2} \right)^{2}\text{d}x} - \int_{1}^{2}{\pi\left( x^{2} + 4 \right)^{2}\text{d}x}
+\end{align*}
+
+
+Whatever is the solution to this is the volume.
+
+Now: rotating around the \(y\)-axis. We have this formula:
+
+\begin{align*}
+&\int(2\pi rhdx) - \int(2\pi rhdx) \\
+&= \int\left( 2\pi x \cdot \left( 6x - x^{2} \right)\text{d}x \right) - \int\left( 2\pi x \cdot \left( x^{2} + 4 \right)\text{d}x \right)
+\end{align*}
+
+
+From {[}1, 2{]}. Whatever is the solution being the volume.
+
+
+\subsubsection{The rotated parabola
+cases}
+
+\sout{Consider the region bounded by}
+\(x = 0,\ y = 0,\ \sqrt{x} + \sqrt{y} = 1\)\sout{. This region is to be
+revolved around} \(x = 3\)\sout{, but there isn't a formula for that.
+Instead, we have to shift everything leftward by 3 units, then the axis
+of revolution will be on the} \(y\)\sout{-axis.}
+
+\sout{This case:}
+
+\[\sqrt{x + 3} + \sqrt{y} = 1\]
+
+\sout{Solving it with:}
+
+\begin{align*}
+\sqrt{y} &= 1 - \sqrt{x + 3} \\
+y &= \left( 1 - \sqrt{x + 3} \right)^{2} \\
+y &= \left( 1 - 2\sqrt{x + 3} + x + 3 \right) = 4 - 2\sqrt{x + 3} + x
+\end{align*}
+
+
+\sout{This is the area}
+
+\[\int_{- 3}^{- 2}{4 - 2\sqrt{x + 3} + x\ dx}\]
+
+\sout{And this is the volume when revolved around the}
+\(y\)\sout{-axis:}
+
+\begin{align*}
+&\int_{- 3}^{- 2}{2\pi x \cdot \left( 4 - 2\sqrt{x + 3} + x \right)\text{d}x} \\
+&2\pi\int_{- 3}^{2}{4x - 2x\sqrt{x + 3} + x^{2}\text{d}x} \\
+&2\pi\left\lbrack 2x^{2} - \int\left( 2x\sqrt{x + 3} \right) + \frac{1}{3}x^{3} \right\rbrack_{- 3}^{- 2}
+\end{align*}
+
+
+\sout{Because we have a harder integral}
+\(\int\left( 2x\sqrt{x + 3} \right)\)\sout{, we have to integrate it
+separately:}
+
+\begin{align*}
+u &= x + 3 \\
+x &= u - 3 \\
+\frac{\text{d}u}{\text{d}x} &= 1 \\
+du &= dx \\
+\int\left( 2x\sqrt{u} \right) &= \int\left( 2(u - 3)\sqrt{u} \right) = \int\left( 2u^{\frac{3}{2}} - 6\sqrt{u} \right) = 2 \cdot \frac{2}{5}u^{\frac{5}{2}} - 6 \cdot \frac{2}{3}u^{\frac{3}{2}} = \frac{4}{5}u^{\frac{5}{2}} - 4u^{\frac{3}{2}}
+\end{align*}
+
+
+\sout{Returning back:}
+
+\[2\pi\left\lbrack 2x^{2} - \left( \frac{4}{5}u^{\frac{5}{2}} - 4u^{\frac{3}{2}} \right) + \frac{1}{3}x^{3} \right\rbrack_{- 3}^{- 2}\]
+
+The method using the \(y\)-axis:
+
+\begin{align*}
+\sqrt{x + 3} + \sqrt{y} &= 1 \\
+\sqrt{x + 3} &= 1 - \sqrt{y} \\
+x + 3 &= \left( 1 - \sqrt{y} \right)^{2} \\
+x &= \left( 1 - \sqrt{y} \right)^{2} - 3
+\end{align*}
+
+
+Then:
+
+\[\int_{0}^{1}{\pi( - 3)^{2}\text{d}y} - \int_{0}^{1}{\pi\left( \left( 1 - \sqrt{y} \right)^{2} - 3 \right)^{2}\text{d}y}\]
+
+The vertical method revisited:
+
+\begin{align*}
+y &= \left( 1 - \sqrt{x + 3} \right)^{2} \\
+V &= \int_{- 3}^{- 2}{2\pi r\left( 1 - \sqrt{x + 3} \right)^{2}\text{d}x} \\
+&= \int_{- 3}^{2}{2\pi( - x) \cdot \left( 1 - \sqrt{x + 3} \right)^{2}\text{d}x}
+\end{align*}
+
+
+\(x\) happens to be on the negative side, so we must negate it.
+
+
+\subsubsection{The square-based pyramid
+example}
+
+\[V = \int\left( 4 \cdot r^{2}\text{d}y \right)\]
+
+\emph{The relationship between the radius of a circle and the height at
+where it was situated.}
+
+
+\[V = \int\text{area}dz = \int_{0}^{H}{(2r)^{2}\text{d}z}\]
+
+And that
+
+
+\begin{align*}
+z &= - \frac{H}{R}y + H \\
+Z - H &= - \frac{H}{R}y \\
+y &= - \frac{R}{H}(z - H)
+\end{align*}
+
+
+So, we get:
+
+\begin{align*}
+&\int_{0}^{H}{\left( 2 \cdot \frac{- R}{H}(z - H) \right)^{2}\text{d}z} \\
+&= \frac{4R^{2}}{H^{2}}\int_{0}^{H}{(z - H)^{2}\text{d}z} \\
+u &= z - H \\
+\frac{\text{d}u}{\text{d}z} &= 1 \\
+&= \frac{4R^{2}}{H^{2}} \cdot \frac{(Z - H)^{3}}{3} \mid_{0}^{H} \\
+&= \frac{4R^{2}}{H^{2}} \cdot \left( 0 - \frac{( - H)^{3}}{3} \right) = \frac{1}{3}4R^{2}H
+\end{align*}
+
+
+Where \(R\) is the radius of the square.
+
+
+
+\section{Trigonometric integrals}
+
+Note:
+
+\[\int\left( \sin(x) \right) = - \cos(x),\ \int\left( \cos(x) \right) = \sin(x)\]
+
+\textbf{Integrating one power of sine or cosine:}
+
+Use substitution and set \(u\) to be the one with more power.
+
+\textbf{One of sine or cosine have an odd power:}
+
+Use the formula \(\sin^{2}(x) + \cos^{2}(x) = 1\) to interchange
+\(\cos^{2}(x)\) and \(\sin^{2}(x)\) of the odd power so that one power
+remains.
+
+\textbf{Only} \(\sin^{2}(x)\) or \(\cos^{2}(x)\)
+
+Use the identity again. Interchange the cosine and the sine.
+
+Double angle identity:
+
+\[\cos(2x) = \cos(x + x) = \cos(x)\cos(x) - \sin(x)\sin(x) = \cos^{2}(x) - \sin^{2}(x)\]
+
+Interchanging:
+
+\begin{align*}
+\sin^{2}(x) &= \frac{1 - \cos(2x)}{2} \\
+\cos^{2}(x) &= \frac{1 + \cos(2x)}{2}
+\end{align*}
+
+
+Double angle:
+
+\begin{align*}
+\cos(2x) &= \left( 1 - \sin^{2}(x) \right) - \sin^{2}(x) \\
+\cos(2x) &= \cos^{2}(x) - \left( 1 - \cos^{2}(x) \right)
+\end{align*}
+
+
+Integrating even powers:
+
+Use above formula to interchange all even powers into powers of
+\(\cos(2x)\)
+
+
+Multiples of \(\sec(x)\) and \(\tan(x)\):
+
+Note:
+
+\begin{align*}
+\frac{d}{\text{d}x}\tan(x) &= \sec^{2}(x) \\
+\frac{d}{\text{d}x}\sec(x) &= \tan(x)\sec(x)
+\end{align*}
+
+
+Starting with the formula and dividing by \(\cos^{2}(x)\):
+
+\[\sin^{2}(x) + \cos^{2}(x) = 1 \Rightarrow \tan^{2}(x) + 1 = \sec^{2}(x)\]
+
+This allows \(\tan^{2}(x)\) and \(\sec^{2}(x)\) to be interchanged.
+
+\textbf{One power of} \(\mathbf{\tan}\left( \mathbf{x} \right)\)
+\textbf{and at least two powers of} \(\sec(x)\)
+
+\begin{align*}
+&\int(\tan(x)\sec^{100}{(x)\text{d}x} \\
+u &= \sec(x),\ du = \tan(x)\sec(x) \\
+\int\left( \tan(x)\sec^{100}(x)\text{d}x \right) &= TBA
+\end{align*}
+
+
+Even powers of \(\sec(x)\):
+
+Use the formula \(\tan^{2}(x) + 1 = \sec^{2}(x)\) to interchange
+\(\sec^{2}(x)\) with \(\tan^{2}(x)\) so that two powers of \(\sec(x)\)
+remain.
+
+\textbf{Odd powers of} \(\tan(x)\):
+
+Replace so that only one power of \(\tan(x)\) remain.
+
+\textbf{Integral of secant:}
+
+\[\int\left( \sec(x) \right) = \ln\left| \sec(x) + \tan(x) \right|\]
+
+\textbf{Multiples of} \(\csc(x)\text{and}\tan(x)\)
+
+Use \(1 + \cot^{2}(x) = \csc^{2}(x)\) and
+\(csc'(x) = - \cot(x)\csc(x)\) and
+\(\cot{'(x)} = - \csc^{2}(x)\)
+
+Use the relationships with cotangent and cosecant.
+
+\textbf{Different frequencies of} \(\sin\left( mx \right)\) and
+\(\cos\left( nx \right)\)
+
+\begin{align*}
+\sin(A)\cos(B) &= \frac{1}{2}\left( \sin(A - B) + \sin(A + B) \right) \\
+\sin(A)\sin(B) &= \frac{1}{2}\left( \cos(A - B) - \cos(A + B) \right) \\
+\cos(A)\cos(B) &= \frac{1}{2}\left( \cos(A - B) + \cos(A + B) \right)
+\end{align*}
+
+
+The right side is easier to integrate.
+
+
+\subsection{Orthogonal relation for Fourier Sine and Cosine
+Series}
+
+Think of the dot product in linear algebra: if the two vectors are
+orthogonal (perpendicular), their dot products will be zero.
+
+Generalization of the dot product: \(\sum_{i = 1}^{n}{u_{i}v_{i}}\)
+
+Guess what: There is a relationship between the sum and the integral. If
+you have a vector \(\mathbf{u}\) in two dimensions, how much
+information do you need to define it? Two: its \(x\) component and its
+\(y\)-component. If it is \(n\)-dimensional, we need \(n\) components.
+Now, what if I ask a function: \(f(x):x \in \lbrack 0,\ 1\rbrack\), how
+much pieces of information do I need to define the function? I need to
+know \(f(x)\) for all \(x \in \lbrack 0,\ 1\rbrack\). That is infinitely
+many components. A function is like an infinite dimensional vector (if
+its domain isn't discrete).
+
+Suppose we have \(g(x):x \in \lbrack 0,\ 1\rbrack\). Then we can take
+the dot product of the two functions. Then:
+
+\[f \cdot g = \sum f(i)g(i)\]
+
+Where we are summing every possible \(i\) between 0 to 1. When you have
+to sum up infinitely as many variables, we're going to have to use the
+integral. Which is the inner product (dot product for functions):
+
+\[\left\langle f,\ g \right\rangle = \int f(x)g(x)\]
+
+Now, what about trigonometric functions?
+\(\int\left( \sin(2x)\sin(3x) \right) = 0\)
+
+Sines and cosines of different frequencies are orthogonal to each other.
+
+\begin{align*}
+\int_{0}^{\pi}{\sin\left( mx \right)\sin\left( nx \right)\text{d}x} &= \left\{ \begin{matrix}0 & \text{if\ }m \neq n \\\frac{\pi}{2} & \text{if\ }m = n \\\end{matrix} \right.\  \\
+\int_{0}^{\pi}{\cos\left( mx \right)\cos\left( nx \right)\text{d}x} &= \left\{ \begin{matrix}0 & \text{if\ }m \neq n \\\frac{\pi}{2} & \text{if\ }m = n \\\end{matrix} \right.\ \  \\
+\int_{- \pi}^{\pi}{\sin\left( mx \right)\cos\left( nx \right)\text{d}x} &= 0\ \forall n,\ m
+\end{align*}
+
+
+
+\subsubsection{Some examples}
+
+\begin{align*}
+&\int_{0}^{\pi}{\sin\left( mx \right)\sin\left( nx \right),\ m \neq n} \\
+&= \frac{1}{2}\int(\cos(mx - nx) - \cos(mx + nx)\text{d}x \\
+&= \frac{1}{2}\int\left( \cos\left( (m - n)x \right) - \cos\left( (m + n)x \right)\text{d}x \right) \\
+&= \frac{1}{2} \cdot \left( \frac{\sin\left( (m - n)x \right)}{m - n} - \frac{\sin\left( (m + n)x \right)}{m + n} \mid_{0}^{\pi} \right) = 0
+\end{align*}
+
+
+(Treat \((m - n)\) and \((m + n)\) as numbers. I swear it will work --
+as \(\sin\left( k\pi  \right) = 0\ \forall k\mathbb{\in Z}\))
+
+Then the same question for \(m = n\): If so, you're taking the dot
+product of \(\sin\left( mx \right)\) and itself. So how does this
+work out?
+
+\[\int_{0}^{\pi}{\sin\left( nx \right)\sin\left( nx \right)} = \int_{0}^{\pi}{\sin^{2}\left( nx \right)}\]
+
+Grabbing out the even powers of \(\sin(x)\) formula:
+
+\begin{align*}
+&\int_{0}^{\pi}{\frac{1 - \cos(2nx)}{2}\text{d}x} \\
+&= \frac{1}{2}x - \frac{\sin(2nx)}{2n} \mid_{0}^{\pi} \\
+&= \frac{\pi}{2}
+\end{align*}
+
+
+(Reverse chain rule factor applies here. We aren't wasting time doing
+\(u\)-substitution.)
+
+What does this mean? The dot product of a vector with itself is the
+length of the vector squared. So, the ``length'' of the function
+\(\sin\left( nx \right) = \sqrt{\frac{\pi}{2}} = \left| \left| \left( \sin\left( nx \right) \right) \right| \right|\)
+hence
+\(\sin\left( nx \right)\sin\left( nx \right) = \frac{\pi}{2}\).
+
+
+\section{Trigonometric substitution}
+
+The two integration techniques we've learned were substitution and by
+parts.
+
+
+\subsection{Type 1}
+
+Integrals looking like \(\sqrt{a - x^{2}}\)
+
+\begin{itemize}
+\item
+  This looks like \(\sqrt{1 - \sin^{2}(\theta)} = \cos(\theta)\)
+\item
+  Try to turn the expression into \(\sqrt{1 - z^{2}}\) for some new
+  \(z\).
+\item
+  Use substitution, set \(z = \sin(\theta)\).
+\end{itemize}
+
+Particular example:
+
+\begin{align*}
+&\int_{}^{}{\frac{x^{2}}{\sqrt{4 - x^{2}}}\text{d}x} \\
+\sqrt{4 - x^{2}} &= \sqrt{4 - \frac{4x^{2}}{4}} = \sqrt{4\left( 1 - \frac{x^{2}}{4} \right)} = 2\sqrt{1 - \left( \frac{x}{2} \right)^{2}} \\
+\frac{x}{2} &= \sin\theta \Rightarrow x = 2\sin(\theta) \Rightarrow \arcsin\left( \frac{x}{2} \right) = \theta \\
+\frac{\text{d}x}{\text{d}\theta} &= 2\cos(\theta) \Rightarrow dx = 2\cos(\theta)\text{d}\theta \\
+\int_{}^{}{\frac{x^{2}}{\sqrt{4 - x^{2}}}\text{d}x} &= \int_{}^{}{\frac{x^{2}}{2\sqrt{1 - \left( \frac{x}{2} \right)^{2}}}\text{d}x} = \int_{}^{}{\frac{x^{2}}{2\sqrt{1 - \sin^{2}(\theta)}} \cdot 2\cos(\theta)\text{d}\theta} \\
+&= \int_{}^{}{\frac{x^{2}}{2\cos\theta} \cdot 2\cos(\theta)\text{d}\theta} = \int_{}^{}{\frac{4\sin^{2}(\theta)}{2\cos\theta} \cdot 2\cos(\theta)\text{d}\theta} \\
+&= 4\int_{}^{}{\sin^{2}(\theta)\text{d}\theta} = 2\theta - \sin(2\theta) \\
+&= 2\arcsin\left( \frac{x}{2} \right) - \sin(2\theta)
+\end{align*}
+
+
+To deal with \(\sin(2\theta)\), use the double angle identity:
+
+\[\sin(2\theta) = 2\sin\theta\cos\theta = 2 \cdot \frac{x}{2} \cdot \frac{\sqrt{4 - x^{2}}}{2}\]
+
+About \(\cos\theta\): use the triangle.
+
+
+Meaning the final answer is:
+
+\[2\arcsin\left( \frac{x}{2} \right) - \left( x \cdot \frac{\sqrt{4 - x^{2}}}{2} \right)\]
+
+
+\subsection{Type 2}
+
+Integral involving \(\sqrt{a + x^{2}}\)
+
+\begin{itemize}
+\item
+  This looks similar to \(\sqrt{1 + \tan^{2}(x)} = \sec(\theta)\)
+\item
+  Try to turn the expression into \(\sqrt{1 + z^{2}}\) for some new
+  \(z\).
+\item
+  Using substitution, set \(z = \tan(\theta)\).
+\end{itemize}
+
+Integral involving \(\sqrt{x^{2} - a}\)
+
+\begin{itemize}
+\item
+  This looks similar to \(\sqrt{\sec^{2}(\theta) - 1} = \tan\theta\)
+\item
+  Try to turn the expression into \(\sqrt{z^{2} - 1}\) for some new
+  \(z\).
+\item
+  Using substitution, set \(z = \sec(\theta)\).
+\end{itemize}
+
+
+\subsection{Type 3}
+
+Integral involving \(\sqrt{ax^{2} + bx + c}\)
+
+Complete the square inside the square root. Then, depending on the
+situation, do a trigonometric substitution from above.
+
+\[\int_{}^{}{\frac{1}{(x + 1)\sqrt{x^{2} + 2x - 3}}\text{d}x}\]
+
+Complete the square: add and subtract
+\(\left( \frac{b}{2} \right)^{2}\): In general, in vertex form it will
+be \(\left( x + \frac{b}{2} \right)^{2}\)
+
+\[x^{2} + 2x - 3 = x^{2} + 3x - 3 + 1 - 1 = (x + 1)^{2} - 4\]
+
+Then:
+
+\begin{align*}
+&\int_{}^{}{\frac{1}{(x + 1)\sqrt{(x + 1)^{2} - 4}}\text{d}x} \\
+&= \int_{}^{}{\frac{1}{(x + 1)\sqrt{4\left( \frac{(x + 1)^{2}}{4} - 1 \right)}}\text{d}x}\int_{}^{}{\frac{1}{2(x + 1)\sqrt{\left( \frac{x + 1}{2} \right)^{2} - 1}}\text{d}x}
+\end{align*}
+
+
+Now:
+
+\begin{align*}
+\frac{x + 1}{2} &= \sec(\theta) \Rightarrow x = 2\sec(\theta) - 1 \\
+\frac{\text{d}x}{\text{d}\theta} &= 2\sec\theta \ \tan\theta \Rightarrow dx = 2\sec\theta \ \tan\theta \ \text{d}\theta \\
+\int_{}^{}\frac{1}{(x + 1)2\left( \sec^{2}\theta - 1 \right)} \cdot 2\sec\theta\tan\theta d\theta &= \int_{}^{}\frac{1}{(x + 1)2\tan(\theta)} \cdot 2\sec\theta\tan\theta\text{d}\theta \\
+&= \int_{}^{}{\frac{\sec\theta}{2\sec\theta}\text{d}\theta} = \frac{\theta}{2} = \frac{1}{2}\text{arcsec}\frac{x + 1}{2}
+\end{align*}
+
+
+
+\subsection{Some examples}
+
+1
+
+\[\int_{}^{}{\frac{1}{\left( x^{2} + 2 \right)^{\frac{3}{2}}}\text{d}x}\]
+
+Which can be written like
+
+\[{\int_{}^{}{\frac{1}{{\sqrt{x^{2} + 2}}^{3}}\text{d}x} }{= \int_{}^{}{\frac{1}{{\sqrt{2}\sqrt{\frac{x^{2}}{2} + 1}}^{3}}\text{d}x} }{= \int_{}^{}{\frac{1}{\left( \sqrt{2}\sqrt{\left( \frac{x^{2}}{\sqrt{2}} \right)^{2} + 1} \right)^{3}}\text{d}x}} \]
+
+\begin{align*}
+\frac{x}{\sqrt{2}} &= \tan\theta,\ x = \sqrt{2}\tan\theta \\
+\frac{\text{d}x}{\text{d}\theta} &= \sqrt{2}\sec^{2}\theta
+\end{align*}
+
+
+So
+
+\begin{align*}
+\int_{}^{}{\frac{1}{\left( \sqrt{2}\sqrt{\tan^{2}\theta + 1} \right)^{3}}\text{d}x} &= \int_{}^{}{\frac{1}{\left( \sqrt{2}\sec\theta \right)^{3}}\sqrt{2}\sec^{2}\theta\text{d}\theta} \\
+&= \int_{}^{}{\frac{1}{2\sec\theta}\text{d}\theta} = \int_{}^{}{\frac{\cos(\theta)}{2}\text{d}\theta} = \frac{\sin\theta}{2} \\
+l &= \sqrt{x^{2} + 2}
+ \\
+\sin\theta &= \frac{x}{l} = \frac{x}{\sqrt{x^{2} + 2}} \\
+\frac{\sin\theta}{2} &= \frac{x}{2\sqrt{x^{2} + 2}}
+\end{align*}
+
+
+
+3
+
+\begin{align*}
+&\int_{}^{}{\frac{1}{e^{x}\sqrt{e^{2x} - 4}}\text{d}x} \\
+e^{2x} &= \left( e^{x} \right)^{2} = u^{2},\ u = e^{x} \\
+\frac{\text{d}u}{\text{d}x} &= e^{x},\frac{\text{d}u}{e^{x}} = dx
+ \\
+&\int_{}^{}{\frac{1}{u\sqrt{u^{2} - 4}}\left( \frac{\text{d}u}{u} \right)} \\
+&= \int_{}^{}{\frac{1}{u\sqrt{4\left( \frac{u^{2}}{4} - 1 \right)}}\left( \frac{\text{d}u}{u} \right)} \\
+&= \int_{}^{}{\frac{1}{2u\sqrt{\left( \frac{u^{2}}{4} - 1 \right)}}\left( \frac{\text{d}u}{u} \right)}
+\end{align*}
+
+
+
+\section{Partial fractions}
+
+We want to integrate any \textbf{rational function}:
+
+\[f(x) = \frac{p(x)}{q(x)}\]
+
+Where \(p(x),\ q(x)\) are polynomials.
+
+
+\subsection{Long division}
+
+The degree is the highest power of the polynomial (remember big-O
+notation).
+
+\[\frac{14}{3} = 4 + \frac{2}{3}\]
+
+When dealing with polynomials \(\frac{p(x)}{q(x)}\):
+
+If \(\deg{p(x)} < \deg{q(x)}\), then we skip long division.
+
+If \(\deg{p(x)} \geq \deg{q(x)}\), we perform \textbf{long division} on
+\(\frac{p(x)}{q(x)}\).
+
+
+For example:
+
+\[\int_{}^{}{\frac{2x^{3} + x^{2} - x - 4}{(x - 1)^{2}}\text{d}x} = \int_{}^{}{(2x + 5)\text{d}x} + \int_{}^{}{\frac{7x - 9}{x^{2} + 2x + 1}\text{d}x}\]
+
+Meaning we get something that isn't a fraction and something where the
+top power is less than the bottom power.
+
+
+\subsection{Actually, doing partial
+fractions}
+
+We cannot prove why this works.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Completely factor the denominator into irreducible factors. The
+  irreducible factors must have either degree 1 or degree 2.
+\end{enumerate}
+
+\[q(x) = q_{1}(x)\ldots q_{n}(x)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Assume each \(q_{i}(x)\) are distinct. Write the original fraction
+  into a sum of polynomials.
+\end{enumerate}
+
+\[\frac{p(x)}{q(x)} = \frac{p_{1}(x)}{q_{1}(x)} + \cdots + \frac{p_{n}(x)}{q_{n}(x)}\]
+
+\begin{quote}
+If \(q_{i}(x)\) is degree 1, set \(p_{i}(x)\) to be constant, like
+\(p_{i}(x) = A\).
+
+If \(q_{i}(x)\) is degree 2, we set \(p_{i}(x)\) to be degree 1, such as
+\(p_{1}(x) = Ax + B\).
+
+Example:
+
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Take a common denominator on the right side. Solve for the constants
+  in \(p_{i}(x)\) based on \(p(x)\) as a system of linear equations.
+\end{enumerate}
+
+Example:
+
+\[\frac{x^{3} + x^{2} - x + 1}{x(x - 1)\left( x^{2} + 1 \right)} = \frac{A}{x} \cdot \frac{(x - 1)\left( x^{2} + 1 \right)}{(x - 1)\left( x^{2} + 1 \right)} + \frac{B}{x - 1} \cdot \frac{x\left( x^{2} + 1 \right)}{x\left( x^{2} + 1 \right)} + \frac{Cx + D}{\left( x^{2} + 1 \right)} \cdot \frac{x(x - 1)}{x(x - 1)}\]
+
+\[x^{3} + x^{2} - x + 1 = A(x - 1)\left( x^{2} + 1 \right) + Bx\left( x^{2} + 1 \right) + (Cx + D)x(x - 1)\]
+
+Expand and factor out \(x^{n}\) (it gets messy in-between, but the steps
+make sense):
+
+\[x^{3} + x^{2} - x + 1 = (A + B + C)x^{3} + ( - A - C + D)x^{2} + (A + B - D)x - A\]
+
+We get
+
+\begin{align*}
+1 &= A + B + C \\
+1 &= - A - C + D \\
+- 1 &= A + B - D \\
+1 &= - A
+\end{align*}
+
+
+Solving this system, we see that \(A = - 1,\ B = 1,\ C = 1,\ D = 1\)
+
+So, we attain:
+
+\[\frac{x^{3} + x^{2} - x + 1}{x(x - 1)\left( x^{2} + 1 \right)} = - \frac{1}{x} + \frac{1}{x - 1} + \frac{x + 1}{x^{2} + 1}\]
+
+
+Integrating this:
+
+\[\ln|x| + \ln|x - 1| + \cdots\]
+
+And
+
+\[\int_{}^{}{\frac{x + 1}{x^{2} + 1}\text{d}x} = \int_{}^{}{\frac{x}{x^{2} + 1} + \frac{1}{x^{2} + 1}\text{d}x}\]
+
+
+\subsection{Indistinct quotients
+(multiplicity)}
+
+In the event that a factor has a multiplicity, that is to say \(q(x)\)
+has a repeated irreducible factor, such as
+\(\left( q_{1}(x) \right)^{n}\):
+
+Then to form a sum of functions for this factor, we must repeatedly form
+new fractions in the sum, with denominator
+\(\left( q_{1}(x) \right)^{k}\) with \(k\) increasing from 1 up to
+\(n\).
+
+The numerator is still determined by whether \(q_{1}(x)\) is linear or
+quadratic. Meaning no \(Mx + B\)
+
+Example:
+
+\[\frac{p(x)}{q(x)} = \frac{3x^{2} + x + 1}{x(2x - 1)^{3}} = \frac{A}{x} + \frac{B}{2x - 1} + \frac{C}{(2x - 1)^{2}} + \frac{D}{(2x - 1)^{3}}\]
+
+Remember that \(x^{2}\) is factorable. It can be factored to
+\(x \cdot x\).
+
+Example:
+
+\[\frac{p(x)}{q(x)} = \frac{3x^{2} + x + 1}{x^{2}\left( x^{2} + 1 \right)^{3}} = \frac{A}{x} + \frac{B}{x^{2}} + \frac{Cx + D}{x^{2} + 1} + \frac{(Ex + F)}{\left( x^{2} + 1 \right)^{2}} + \frac{Gx + H}{\left( x^{2} + 1 \right)^{3}}\]
+
+
+\subsection{Cleanup}
+
+The partial function method writes \(f(x)\) as a sum of fractions with
+degree 1 / 2 denominator, and each fraction can be integrated
+separately. We are left with solving integrals of the following forms:
+
+\begin{align*}
+&\int_{}^{}\frac{A}{(ax + b)^{k}} \\
+&\int_{}^{}\frac{Ax + B}{\left( ax^{2} + bx + c \right)^{k}}
+\end{align*}
+
+
+Integration:
+
+
+\subsubsection{Linear term on
+numerator}
+
+\[\int_{}^{}\frac{A}{(ax + b)^{k}}\]
+
+\begin{align*}
+\frac{\text{d}u}{\text{d}x} &= a,\ dx = \int_{}^{}{\frac{A}{u^{k}}\frac{\text{d}u}{a}} \\
+&= \frac{A}{a}\int_{}^{}u^{- k} \\
+&= \frac{A}{a} \cdot \frac{u^{- k + 1}}{- k + 1}\text{\ or\ }\frac{A}{a}\ln|ax + b|
+\end{align*}
+
+
+
+\subsection{Quadratic term on the
+denominator}
+
+If there is a linear term on the numerator, split the fraction using +.
+First, focus on the term with \(x\) in the numerator.
+
+\[\int_{}^{}{\frac{Ax}{\left( ax^{2} + bx + c \right)^{k}}\text{d}x}\]
+
+Set \(u = ax^{2} + bx + c\) from the denominator. Then
+\(du = (2ax + b)\text{d}x\) as a linear term. So we try to make the
+numerator to be \(du = (2ax + b)\text{d}x\) exactly. (Note:
+\(2ax = 2ax + b - b\)
+
+\[{= \frac{A}{2a}\int_{}^{}{\frac{2ax}{\left( ax^{2} + bx + c \right)^{k}}\text{d}x} }{= \frac{A}{2a}\left( \int_{}^{}{\frac{2ax + b}{\left( ax^{2} + bx + c \right)^{k}}\text{d}x} + \int_{}^{}{- \frac{b}{\left( ax^{2} + bx + c \right)^{k}}\text{d}x} \right)} \]
+
+\[\int_{}^{}{\frac{1}{u^{k}}\text{d}u}\]
+
+The second integral is of the form
+
+\[\int_{}^{}\frac{B}{\left( ax^{2} + bx + c \right)^{k}} = B\int_{}^{}\frac{1}{\left( ax^{2} + bx + c \right)^{k}}\]
+
+
+\subsection{Constant term over
+quadratic}
+
+\[\int_{}^{}{\frac{1}{\left( ax^{2} + bx + c \right)^{k}}\text{d}x}\]
+
+This case is difficult. Focus on the case that \(k = 1\):
+
+\[\int_{}^{}\frac{1}{ax^{2} + bx + c}\]
+
+By the partial fraction procedure, the quadratic must be irreducible.
+Complete the square:
+
+\begin{align*}
+&1x^{2} + bx + c + \left( \frac{b}{2} \right)^{2} - \left( \frac{b}{2} \right)^{2} \\
+&x^{2} + bx + \left( \frac{b}{2} \right)^{2} + c - \left( \frac{b}{2} \right)^{2} \\
+&\left( x + \frac{b}{2} \right)^{2} + c - \left( \frac{b}{2} \right)^{2}
+\end{align*}
+
+
+You want to obtain this form:
+
+\[\int_{}^{}\frac{1}{(gx + d)^{2} + 1}\]
+
+Take \(u = cx + d\). This gives the integral of the form
+\(\int_{}^{}\frac{1}{u^{2} + 1} = \arctan(u)\) and substitute back.
+
+
+\subsubsection{Example:}
+
+\begin{align*}
+&\int_{}^{}{\frac{x + 1}{x^{3} - 2x^{2} + 2x}\text{d}x} \\
+x^{3} - 2x^{2} + 2x &= x\left( x^{2} - 2x + 2 \right)
+\end{align*}
+
+
+Then we have:
+
+\[\frac{A}{x} + \frac{Bx + C}{x^{2} - 2x + 2}\]
+
+\[\frac{x + 1}{x\left( x^{2} - 2x + 2 \right)} = \frac{A}{x} \cdot \frac{\left( x^{2} - 2x + 2 \right)}{x^{2} - 2x + 2} + \frac{Bx + C}{x^{2} - 2x + 2} \cdot \frac{x}{x}\]
+
+Since now the denominators are equal, so are the numerators. Then:
+
+\begin{align*}
+&A\left( x^{2} - 2x + 2 \right) + \left( Bx^{2} + Cx \right) \\
+0 &= (A + B)x^{2} \\
+1 &= \ ( - 2A + C)x \\
+1 &= \ 2A
+\end{align*}
+
+
+Solve this system.
+
+\begin{align*}
+A &= \frac{1}{2} \\
+A + B &= \frac{0}{x^{2}} = 0,\ B = - \frac{1}{2} \\
+1 &= - 2 \cdot \frac{1}{2} + C,\ C = 2
+ \\
+&\int_{}^{}\left( \frac{A}{x} + \frac{Bx + C}{x^{2} - 2x + 2} \right) \\
+&= \frac{1}{2}\int_{}^{}{\frac{1}{x}\text{d}x} + \int_{}^{}{\frac{- \frac{1}{2}x + 2}{x^{2} - 2x + 2}\text{d}x} \\
+u &= x^{2} - 2x + 2 \\
+du &= (2x - 2)\text{d}x
+ \\
+\int_{}^{}{\frac{- \frac{1}{2}x + 2}{x^{2} - 2x + 2}\text{d}x} &= \frac{1}{- 4}\left( \int_{}^{}\frac{2x - 8}{x^{2} - 2x + 2}\text{d}x \right) \\
+&= - \frac{1}{4}\left( \int_{}^{}{\frac{2x - 2}{x^{2} - 2x + 2}\text{d}x} + \int_{}^{}{- \frac{6}{x^{2} - 2x + 2}} \right)
+\end{align*}
+
+
+\[\int_{}^{}{\frac{2x - 2}{x^{2} - 2x + 2}\text{d}x} = \int_{}^{}\frac{\text{d}u}{u} = \ln|u|\]
+
+\[- \int_{}^{}\frac{6}{x^{2} - 2x + 2} = - 6\int_{}^{}\frac{1}{x^{2} - 2x + 2}\]
+
+Complete the square:
+
+\begin{align*}
+- 6\int_{}^{}\frac{1}{x^{2} - 2x + 2 + \left( \frac{2}{2} \right)^{2} - \left( \frac{2}{2} \right)^{2}} &= - 6\int_{}^{}\frac{1}{\left( x^{2} - 2x - 1 \right) + 1} \\
+&= - 6\int_{}^{}\frac{1}{(x - 1)^{2} + 1} \\
+u &= x - 1,\ du = 1,\  - 6\int_{}^{}\frac{\text{d}u}{u^{2} + 1} = - 6\arctan(u) = - 6\arctan(x - 1)
+\end{align*}
+
+
+Combine the two sides:
+
+\[- \frac{1}{4}\ln\left| x^{2} - 2x + 2 \right| + \frac{3}{2}\arctan(x + 1)\]
+
+
+\subsection{Quartic on the
+denominator}
+
+\[\int_{}^{}{\frac{1}{\left( x^{2} + 1 \right)^{2}}\text{d}x}\]
+
+Another integration technique is to be clever.
+
+\begin{align*}
+\int_{}^{}\frac{1}{\left( x^{2} + 1 \right)^{2}} &= \int_{}^{}\frac{1 + x^{2} - x^{2}}{\left( x^{2} + 1 \right)^{2}} = \int_{}^{}\frac{1 + x^{2}}{\left( x^{2} + 1 \right)^{2}} - \int_{}^{}\frac{x^{2}}{\left( x^{2} + 1 \right)^{2}} \\
+&= \int_{}^{}{\left( \frac{1}{1 + x^{2}} \right) - \int_{}^{}\frac{x^{2}}{\left( x^{2} + 1 \right)^{2}}} = \arctan(x) - \int_{}^{}\frac{x^{2}}{\left( x^{2} + 1 \right)^{2}}
+ \\
+\int_{}^{}\frac{x^{2}}{\left( x^{2} + 1 \right)^{2}} &= \int_{}^{}\frac{x \cdot x}{\left( x^{2} + 1 \right)^{2}} \\
+u &= x,\ dv = \frac{x}{\left( x^{2} + 1 \right)^{2}} \\
+du &= 1,\ v = \int_{}^{}\frac{x}{\left( x^{2} + 1 \right)^{2}} \\
+z &= x^{2} + 1,\ dz = 2xdx \\
+v &= \frac{\int_{}^{}{\frac{1}{z^{2}}\text{d}z}}{2} = \frac{1}{2}\int_{}^{}z^{- 2} = \frac{\frac{1}{2}z^{- 1}}{- 1} = - \frac{1}{2\left( x^{2} + 1 \right)}
+\end{align*}
+
+
+So:
+
+\begin{align*}
+\int_{}^{}\frac{x^{2}}{\left( x^{2} + 1 \right)^{2}} &= - \frac{x}{2\left( x^{2} + 1 \right)} + \int_{}^{}\frac{1}{2\left( x^{2} + 1 \right)} \\
+&= - \frac{x}{2\left( x^{2} + 1 \right)} + \frac{1}{2}\int_{}^{}\frac{1}{\left( x^{2} + 1 \right)} \\
+&= - \frac{x}{2\left( x^{2} + 1 \right)} + \frac{1}{2}\arctan(x)
+\end{align*}
 
 \end{document}
