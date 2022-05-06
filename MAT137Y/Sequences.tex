@@ -49,11 +49,11 @@
 \ifxetex
 
 \usepackage{unicode-math}
-% \setmainfont{STIX Two Text}
-% \setmathfont{STIX Two Math}
-% \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{STIX Two Math}
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
+\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{STIX Two Math}
 
-% \setmonofont{JetBrains Mono}
+\setmonofont{JetBrains Mono}
 
 \fi
 
@@ -278,12 +278,6 @@ the beginning.} Feel free to ignore the first few terms (or more,
 precisely finitely as many).
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=4.0839in,height=0.55216in]{latex_images_Sequences_20/media/image1.png}
-\end{figure}
-
-
 
 \subsection{Finding limits to
 infinity}
@@ -433,7 +427,7 @@ Example 3:
 
 Example 4:
 
-\[\int_{0}^{1}{\frac{1}{x^{2}}\text{d}x} = \int_{0}^{1}x^{- 2} = \frac{x^{- 1}}{- 1} \mid_{0}^{1} = - \frac{1}{x} \mid_{0}^{1} = - \frac{1}{1} - \left( - \frac{1}{0} \right) = + \infty\]
+\[{\int_{0}^{1}{\frac{1}{x^{2}}\text{d}x} = \int_{0}^{1}x^{- 2} }{= \frac{x^{- 1}}{- 1} \mid_{0}^{1} = - \frac{1}{x} \mid_{0}^{1} }{= - \frac{1}{1} - \left( - \frac{1}{0} \right) = + \infty} \]
 
 Of course, we should have used
 \(\lim_{b \rightarrow 0^{+}}{\frac{1}{x} \mid_{b}^{1}} = \infty\)
@@ -460,17 +454,12 @@ Just integrate from 0 to 1, 1 to some finite location \(C\), and \(C\)
 to infinity.
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=4.5in,height=1.10069in]{latex_images_Sequences_20/media/image2.png}
-\end{figure}
-
-
 This changes the direction of limits if you choose to evaluate some. In
 this case:
 
 \begin{align*}
-&\lim_{b \rightarrow 1^{-}}{\int_{0}^{b}{\frac{1}{(x - 1)^{3}}\text{d}x}} + \lim_{b \rightarrow 1^{+}}{\int_{b}^{c}\frac{1}{(x - 1)^{3}}\text{d}x}  \\
+&\lim_{b \rightarrow 1^{-}}{\int_{0}^{b}{\frac{1}{(x - 1)^{3}}\text{d}x}}  \\
+&+ \lim_{b \rightarrow 1^{+}}{\int_{b}^{c}\frac{1}{(x - 1)^{3}}\text{d}x}  \\
 &+ \lim_{b \rightarrow \infty}{\int_{c}^{b}{\frac{1}{(x - 3)^{3}}\text{d}x}} \\
 &= - \frac{2}{{2(x - 1)}^{2}} \mid_{0}^{1} + \frac{- 2}{{2(x - 1)}^{2}} \mid_{1}^{c} + \left( - \frac{2}{{2(x - 1)}^{2}} \mid_{c}^{\infty} \right)\  \\
 &\cdots \\
@@ -780,7 +769,7 @@ where the original series involving positive and negative terms
 converge, but if we absolute value \(a_{n}\), then we say that it is
 conditionally convergent. In formal logic:
 
-\[\sum_{}^{\infty}a_{n}\ \text{converges}\ \text{and\ }\sum_{}^{\infty}\left| a_{n} \right|\ \text{diverges} \Rightarrow \sum_{}^{\infty}a_{n}\ \text{is\ conditionally\ convergent}\]
+\[{\sum_{}^{\infty}a_{n}\ \text{converges}\ \text{and\ }\sum_{}^{\infty}\left| a_{n} \right|\ \text{diverges} }{\Rightarrow \sum_{}^{\infty}a_{n}\ \text{is\ conditionally\ convergent}} \]
 
 An example of an erratic sequence:
 
@@ -867,12 +856,6 @@ subtracted back in \(a_{2}\). So:
 The cycle repeats.
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=2.18518in,height=2.22363in]{latex_images_Sequences_20/media/image3.png}
-\end{figure}
-
-
 And that's another reason to why \(\sum_{}^{\infty}\frac{1}{n}\)
 converges.
 
@@ -951,7 +934,7 @@ series \(\sum_{}^{\infty}a_{n}\):
   \end{enumerate}
 \end{enumerate}
 
-\[\sum_{}^{\infty}a_{n}\ \text{converges}\ \text{and\ }\sum_{}^{\infty}\left| a_{n} \right|\ \text{diverges} \Rightarrow \sum_{}^{\infty}a_{n}\ \text{is\ conditionally\ convergent}\]
+\[{\sum_{}^{\infty}a_{n}\ \text{converges}\ \text{and\ }\sum_{}^{\infty}\left| a_{n} \right|\ \text{diverges} }{\Rightarrow \sum_{}^{\infty}a_{n}\ \text{is\ conditionally\ convergent}} \]
 
 Otherwise, it is absolutely convergent.
 
@@ -1034,7 +1017,9 @@ This absolutely converges. Meaning it converges.
 
 \begin{align*}
 &\sum_{n = 1}^{\infty}\frac{n^{2} + 4n}{\sqrt{n^{5} + 4n^{4} + 2n}} \\
-\sum_{n = 1}^{\infty}\left| \frac{n^{2} + 4n}{\sqrt{n^{5} + 4n^{4} + 2n}} \right| &\approx \sum_{n = 1}^{\infty}\left| \frac{n^{2}}{\sqrt{n^{5}}} \right| = \sum_{n = 1}^{\infty}\frac{1}{n^{\frac{1}{2}}},\ p = \frac{1}{2} \leq 1
+&\sum_{n = 1}^{\infty}\left| \frac{n^{2} + 4n}{\sqrt{n^{5} + 4n^{4} + 2n}} \right|  \\
+&\approx \sum_{n = 1}^{\infty}\left| \frac{n^{2}}{\sqrt{n^{5}}} \right|  \\
+&= \sum_{n = 1}^{\infty}\frac{1}{n^{\frac{1}{2}}},\ p = \frac{1}{2} \leq 1
 \end{align*}
 
 
@@ -1176,7 +1161,7 @@ Choose strategically, but make sure to choose something high in the
 hierarchy that retains the information that \(n^{n}\) grows very fast.
 For example:
 
-\[\sum_{n = 1}^{\infty}\frac{1}{n^{n}}:\sum_{n = 1}^{\infty}\left| a_{n} \right| = \ \sum_{n = 1}^{\infty}\frac{2^{n}}{n^{n}}\sim\sum_{n = 1}^{\infty}\frac{2^{n}}{3^{n}},\ x = \frac{2}{3},\ |x| < 1 \Rightarrow \text{conver}\text{ges}\]
+\[{\sum_{n = 1}^{\infty}\frac{1}{n^{n}}:\sum_{n = 1}^{\infty}\left| a_{n} \right| }{= \ \sum_{n = 1}^{\infty}\frac{2^{n}}{n^{n}}\sim\sum_{n = 1}^{\infty}\frac{2^{n}}{3^{n}},\ x }{= \frac{2}{3},\ |x| < 1 \Rightarrow \text{conver}\text{ges}} \]
 
 Try this again:
 
@@ -1660,12 +1645,6 @@ If we try to plot \(\frac{1}{1 - x}\), we have a function that looks
 like
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.45607in,height=1.10493in]{latex_images_Sequences_20/media/image4.png}
-\end{figure}
-
-
 We can only approximate the function up to \(|x| < 1\). The function
 approaching infinity gives us the radius of convergence. In the real
 plane and the complex plane, anything inside the circle formed by the
@@ -1704,7 +1683,9 @@ formula must be used:
 \begin{align*}
 \sin(x) &= \sin\left( \left( x - \frac{\pi}{4} \right) + \frac{\pi}{4} \right) \\
 &= \sin\left( x - \frac{\pi}{4} \right)\cos\left( \frac{\pi}{4} \right) + \cos\left( x - \frac{\pi}{4} \right)\sin\left( \frac{\pi}{4} \right) \\
-&= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}\left( x - \frac{\pi}{4} \right)^{2n + 1} \cdot \frac{1}{\sqrt{2}}} + \sum_{n = 0}^{\infty}{\frac{- 1}{(2n)!}\left( x - \frac{\pi}{4} \right)^{2n}} \cdot \frac{1}{\sqrt{2}}
+& \\
+&= \sum_{n = 0}^{\infty}{\frac{( - 1)^{n}}{(2n + 1)!}\left( x - \frac{\pi}{4} \right)^{2n + 1} \cdot \frac{1}{\sqrt{2}}}  \\
+&+ \sum_{n = 0}^{\infty}{\frac{- 1}{(2n)!}\left( x - \frac{\pi}{4} \right)^{2n}} \cdot \frac{1}{\sqrt{2}}
 \end{align*}
 
 
@@ -1852,7 +1833,9 @@ Example:
 
 \begin{align*}
 &\sum_{n = 1}^{\infty}{\arctan(n) - \arctan(n + 1)} = \lim_{N \rightarrow \infty}{\sum_{n = 1}^{N}{\arctan(n) - \arctan(n + 1)}} \\
-&= \arctan(0) - \arctan(1) + \arctan(1) - \arctan(2) + \arctan(2) - \arctan(3) + \cdots + \arctan(N) - \arctan(N + 1)
+& \\
+&= \arctan(0) - \arctan(1) + \arctan(1) - \arctan(2) + \arctan(2)  \\
+&- \arctan(3) + \cdots + \arctan(N) - \arctan(N + 1)
 \end{align*}
 
 
@@ -1963,11 +1946,5 @@ increases. In general, the Nth order Taylor Polynomial would have its
 error go to zero \textbf{faster than N powers} \((x - a):\)
 
 \[\lim_{x \rightarrow a}\frac{f(x) - P_{N}(x)}{(x - a)^{N}} = 0\]
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1in,height=0.8642in]{latex_images_Sequences_20/media/image5.png}
-\end{figure}
 
 \end{document}
