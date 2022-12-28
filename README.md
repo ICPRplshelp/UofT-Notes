@@ -23,18 +23,6 @@ Notes for courses I've taken in the past, which won't update other than minor ch
 
 These notes may not cover all the course material.
 
-## What is the best way to download these?
-
-Here's a tutorial on how to download these notes and have them update with a push of a button. If you're experienced with `git` or the GitHub desktop app, you'll recognize these steps. This only works on Windows, though some Mac OS users may know how to get this to work on Mac OS.
-
-1. Git clone this repository, **or** install Github Desktop, hit `<> Code`, and click on `local > open with GitHub Desktop`.
-
-2. Either way, you'll be prompted to do some steps that will end up with this repository appearing on your computer. You can now freely access these nodes, but don't tamper with the `.pdf` files or the `.tex` files (as that will break the next step).
-
-3. At any time, click on `pull_notes.bat` to update and resync the notes (this essentially does a `git pull`).
-
-
-
 
 ## Bugs
 
