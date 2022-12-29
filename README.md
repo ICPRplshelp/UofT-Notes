@@ -1,7 +1,7 @@
 # UofT-Notes
 
 This repository contains all the notes I've taken in-class that I've decided to make public.
-**I make no guarantees with the correctness of my notes, so take them with a grain of salt. Hence, I'm not responsible if any mistake I make impacts you in any way.** If you find this repository useful, please share it or give it a star.
+**I make no guarantees with the correctness of my notes, so take them with a grain of salt. Hence, I'm not responsible if any mistake I make impacts you in any way.** If you find this repository useful, please give it a star.
 
 ## Current courses that are being updated
 
@@ -32,3 +32,5 @@ Sometimes, course notes may not match the course specified in the filename. If t
 ## About content
 
 This repo **does not contain any work I've done that is for marks.** Most of the notes are in my own words, depending on the versatility I can word them.
+
+You may use these notes for reference but **you may not copy stuff from these notes to any of your assignments.** Checkers are really good at finding things out.
