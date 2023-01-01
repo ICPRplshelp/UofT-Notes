@@ -32,5 +32,8 @@ __pycache__/
 *.json
 *.txt
 *.sh
+*.tex
+!a_placeholder.tex
 PANDOCIMAGES/
 helper_files/
+out/

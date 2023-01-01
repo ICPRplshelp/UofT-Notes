@@ -34,4 +34,4 @@ Sometimes, course notes may not match the course specified in the filename. If t
 
 This repo **does not contain any work I've done that is for marks.** Most of the notes are in my own words, depending on the versatility I can word them.
 
-You may use these notes for reference.
+You may use these notes for reference. However, please don't use them commercially or copy-paste anything from here into any of your assignments (I'm serious about this!!).
