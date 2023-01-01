@@ -1,15 +1,16 @@
 # UofT-Notes
 
-This repository contains all the notes I've taken in-class that I've decided to make public.
-**I make no guarantees with the correctness of my notes, so take them with a grain of salt. Hence, I'm not responsible if any mistake I make impacts you in any way.** If you find this repository useful, please give it a star.
-
+This repository contains all the notes I've taken in-class that I've decided to make public. **These notes are constantly updating, so check on them often!**
+**I make no guarantees with the correctness of my notes, so take them with a grain of salt. Hence, I'm not responsible if any mistake I make impacts you in any way.** If you find this repository useful, please give it a star. The amount of notes I take per course strongly depends on how it is taught.
+ 
 ## Current courses that are being updated
 
-This repository will update between 6PM-1AM ET after each lecture. However, the amount of notes I take per course strongly depends on how it is taught.
 
-Courses with a ⭐ beside it indicate that my notes for it are polished and more likely to be correct. This list is currently tentative as I don't know if the teaching style of the courses I'll take will allow me to take notes.
+Courses with a ⭐ indicate that the notes are polished. These notes normally update **immediately after each lecture** unless said otherwise (there may be a 1-6 hour delay, though).
 
 - TBA
+
+These times are targets; they are not exaustive and random circumstances can cause delays.
 
 ## Past courses
 
@@ -33,4 +34,4 @@ Sometimes, course notes may not match the course specified in the filename. If t
 
 This repo **does not contain any work I've done that is for marks.** Most of the notes are in my own words, depending on the versatility I can word them.
 
-You may use these notes for reference but **you may not copy stuff from these notes to any of your assignments.** Checkers are really good at finding things out.
+You may use these notes for reference.
