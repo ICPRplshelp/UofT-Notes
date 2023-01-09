@@ -37,3 +37,4 @@ PANDOCIMAGES/
 helper_files/
 out/
 *.command
+.DS_Store

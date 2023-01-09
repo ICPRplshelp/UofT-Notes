@@ -6,11 +6,18 @@ This repository contains all the notes I've taken in-class that I've decided to 
 ## Current courses that are being updated
 
 
-Courses with a ⭐ indicate that the notes are polished. These notes normally update **immediately after each lecture** unless said otherwise (there may be a 1-6 hour delay, though).
+Courses with a ⭐ indicate that the notes are polished. 
+These notes normally update **shortly after each lecture** 
+unless said otherwise (typically immediately; usually 20 minutes; at most 12 hours excluding
+exceptional circumstances).
 
-- TBA
+- CSC311
+- CSC343
+- CSC209
+- CSC263
+- MAT235
 
-These times are targets; they are not exaustive and random circumstances can cause delays.
+These times are targets; they are not exhaustive and random circumstances can cause delays.
 
 ## Past courses
 
