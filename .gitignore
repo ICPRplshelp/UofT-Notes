@@ -33,7 +33,7 @@ __pycache__/
 *.txt
 *.sh
 *.tex
-!a_placeholder.tex
 PANDOCIMAGES/
 helper_files/
 out/
+*.command
