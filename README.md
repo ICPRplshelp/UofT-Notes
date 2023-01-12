@@ -11,12 +11,12 @@ These notes normally update **shortly after each lecture**
 unless said otherwise (typically immediately; usually 20 minutes; at most 12 hours excluding
 exceptional circumstances).
 
-- CSC311
-- CSC343
-- CSC209
-- CSC263 ⭐
-- MAT235
-- STA238 ⭐
+- [CSC311](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC311.pdf)
+- [CSC343](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC341.pdf)
+- [CSC263](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC263.pdf) ⭐
+- [CSC209](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC209.pdf)
+- [MAT235](https://github.com/ICPRplshelp/UofT-Notes/blob/main/MAT235.pdf)
+- [STA238](https://github.com/ICPRplshelp/UofT-Notes/blob/main/STA238.pdf) ⭐
 
 (ICPR carefully cramming his schedule with ~~6~~ 7 courses, being unable to decide which one to drop)
 
@@ -45,3 +45,7 @@ Sometimes, course notes may not match the course specified in the filename. If t
 This repo **does not contain any work I've done that is for marks.** Most of the notes are in my own words, depending on the versatility I can word them.
 
 You may use these notes for reference. However, please don't use them commercially or copy-paste anything from here into any of your assignments (I'm serious about this!!).
+
+## Shell / batch files
+
+If you ever clone these notes, run `_pullnotes.bat` (or `_pullnotes.sh` on Mac OS) to update them in one click.
