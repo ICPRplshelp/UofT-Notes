@@ -38,3 +38,5 @@ helper_files/
 out/
 *.command
 .DS_Store
+!_pullnotes.bat
+!_pullnotes.sh
