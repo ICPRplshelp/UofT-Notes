@@ -14,8 +14,11 @@ exceptional circumstances).
 - CSC311
 - CSC343
 - CSC209
-- CSC263
+- CSC263 ⭐
 - MAT235
+- STA238 ⭐
+
+(ICPR carefully cramming his schedule with ~~6~~ 7 courses, being unable to decide which one to drop)
 
 These times are targets; they are not exhaustive and random circumstances can cause delays.
 
