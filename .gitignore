@@ -40,3 +40,4 @@ out/
 .DS_Store
 !_pullnotes.bat
 !_pullnotes.sh
+!td.tex
