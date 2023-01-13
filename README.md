@@ -12,7 +12,7 @@ unless said otherwise (typically immediately; usually 20 minutes; at most 12 hou
 exceptional circumstances).
 
 - [CSC311](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC311.pdf)
-- [CSC343](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC341.pdf)
+- [CSC343](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC343.pdf)
 - [CSC263](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC263.pdf) ⭐
 - [CSC209](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC209.pdf)
 - [MAT235](https://github.com/ICPRplshelp/UofT-Notes/blob/main/MAT235.pdf)
