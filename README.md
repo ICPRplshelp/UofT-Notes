@@ -8,8 +8,7 @@ This repository contains all the notes I've taken in-class that I've decided to 
 
 Courses with a ⭐ indicate that the notes are polished. 
 These notes normally update **shortly after each lecture** 
-unless said otherwise (typically immediately; usually 20 minutes; at most 12 hours excluding
-exceptional circumstances).
+unless said otherwise (usually within 20 minutes except for back-to-back lectures).
 
 - [CSC311](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC311.pdf)
 - [CSC343](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC343.pdf)
