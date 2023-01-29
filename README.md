@@ -9,14 +9,11 @@ This repository contains all the notes I've taken in-class that I've decided to 
 Courses with a ⭐ indicate that the notes are polished. 
 These notes normally update before the end of each day.
 
-- [CSC311](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC311.pdf)
 - [CSC343](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC343.pdf)
 - [CSC263](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC263.pdf) ⭐
 - [CSC209](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC209.pdf)
 - [MAT235](https://github.com/ICPRplshelp/UofT-Notes/blob/main/MAT235.pdf)
 - [STA238](https://github.com/ICPRplshelp/UofT-Notes/blob/main/STA238.pdf) ⭐
-
-(ICPR carefully cramming his schedule with ~~6~~ 7 courses, being unable to decide which one to drop)
 
 These times are targets; they are not exhaustive and random circumstances can cause delays.
 
@@ -46,4 +43,4 @@ You may use these notes for reference. However, please don't use them commercial
 
 ## Shell / batch files
 
-If you ever clone these notes, run `_pullnotes.bat` (or `_pullnotes.sh` on Mac OS) to update them in one click.
+If you ever clone these notes, run `_pullnotes.bat` (or `_pullnotes.sh` on macOS) to update them in one click.
