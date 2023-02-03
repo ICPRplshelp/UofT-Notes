@@ -41,3 +41,14 @@ out/
 !_pullnotes.bat
 !_pullnotes.sh
 !td.tex
+*.pdf
+!CSC209.pdf
+!CSC236.pdf
+!CSC258.pdf
+!CSC263.pdf
+!CSC343.pdf
+!MAT137.pdf
+!MAT223.pdf
+!MAT235.pdf
+!STA237.pdf
+!STA238.pdf
