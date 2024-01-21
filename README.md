@@ -2,33 +2,8 @@
 
 This repository contains all the notes I've taken in-class that I've decided to make public. **These notes are constantly updating, so check on them often!**
 **I make no guarantees with the correctness of my notes, so take them with a grain of salt. Hence, I'm not responsible if any mistake I make impacts you in any way.** If you find this repository useful, please give it a star. The amount of notes I take per course strongly depends on how it is taught.
- 
-## Current courses that are being updated
 
-
-Courses with a ⭐ indicate that the notes are polished. 
-These notes normally update before the end of each day.
-
-- [CSC343](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC343.pdf)
-- [CSC263](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC263.pdf) ⭐
-- [CSC209](https://github.com/ICPRplshelp/UofT-Notes/blob/main/CSC209.pdf)
-- [MAT235](https://github.com/ICPRplshelp/UofT-Notes/blob/main/MAT235.pdf)
-- [STA238](https://github.com/ICPRplshelp/UofT-Notes/blob/main/STA238.pdf) ⭐
-
-These times are targets; they are not exhaustive and random circumstances can cause delays.
-
-## Past courses
-
-Notes for courses I've taken in the past, which won't update other than minor changes:
-
-- MAT223
-- MAT137
-- CSC236 ⭐
-- CSC258 ⭐
-- STA237 ⭐
-
-These notes may not cover all the course material.
-
+If any instructor wants me to take any of these down let me know in the issues.
 
 ## Bugs
 
